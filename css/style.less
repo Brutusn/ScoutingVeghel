@@ -1,0 +1,470 @@
+/*!
+ * Styling created by Bart Niessen 2015
+ * Scouting Veghel approved!
+ */
+@import "fa/font-awesome.less";
+@import "config.less";
+@import "datepickr.less";
+
+// Full elements
+*, *:before, *:after {
+	-webkit-box-sizing: border-box; // Safari/Chrome, other WebKit
+	-moz-box-sizing: border-box;    // Firefox, other Gecko
+	box-sizing: border-box;         // Opera/IE 8+
+	-moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box;
+}
+body, html {
+	max-height: 100%;
+	max-width: 100%;
+}
+
+body {
+  font-family: Segoe UI, Helvetica, Verdana, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: @col-text;
+  color: @col-text;
+  text-align: center;
+  font-size: 1em;
+}
+a {
+	color: @col-link;
+}
+footer {
+	background-color: @col-text;
+	color: @col-background2;
+	position: relative;
+	z-index: 100;
+	& a {	
+		color: @col-background2;
+	}
+	& i {
+	.transition;
+	&:hover {
+		color: @col-link-hover;
+	}
+	}
+	& a {
+		&:first-of-type {
+			margin-right: 1em;
+		}
+	}
+}
+
+header {
+	background-color: @col-text;
+	background-image: url(../images/background.jpg);
+	background-position: center center;
+	  -webkit-background-size: cover;
+	  -moz-background-size: cover;
+	  -o-background-size: cover;
+	  background-size: cover;
+	color: @col-text-light;
+	height: 100vh;
+	width: 100vw;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 50;
+	&.section {
+		padding: .1em;
+	}
+	& a {	
+		color: @col-background3;
+	}
+	& h1 {
+		font-size: 10vw; 
+		font-weight: bold;
+		margin: .5em .1em 0 .1em;
+		.text-shadow;
+		& span {
+			display: block;
+			color: @col-background2;
+			font-size: 50%;
+			text-align: center;
+			margin: 0 0 .5em .5em;
+			font-weight: lighter;
+		}
+	}
+}
+
+// Form
+form {
+  & span {
+    font-size: 75%;
+    font-color: @col-text-lighter;
+  }
+  & textarea {
+    height: 15em;
+    font-family: inherit;
+    resize:none;
+  }
+}
+.inform {
+    font-size: 1.25em;
+    padding: .5em;
+    border-radius: 5px;
+    width: calc(~"100% - .5em");
+    margin: 0 0 .5em 0;
+    .transition;
+}
+.inp {
+    background-color: @col-text-light;
+    color: @col-text;
+    border: 0;
+    .inner-shadow-small;
+    &::-webkit-input-placeholder {
+       color: @col-text-lighter;
+    }
+    &:-moz-placeholder { /* Firefox 18- */
+       color: @col-text-lighter;
+    }
+    &::-moz-placeholder {  /* Firefox 19+ */
+       color: @col-text-lighter;
+    }
+    &:-ms-input-placeholder {
+       color: @col-text-lighter;
+    }
+    &:focus {
+        outline: none;
+        background-color: fade(@col-text-light, 90%);
+    }
+}
+.button {
+    background-color: @col-link;
+    color: @col-text-light;
+    border: 0;
+    cursor: pointer;
+    &:hover {
+        background-color: @col-link-hover;
+    }
+    &:focus {
+        outline: none;
+        background-color: @col-link-hover;
+    }
+    &:active {
+        background-color: @col-link;
+    }
+}
+.error-message, .success-message {
+    padding: .75em;
+    border-radius: 5px;
+    width: calc(~"100% - 1em");
+    max-width: 400px;
+    margin: 0 auto;
+    .transition;
+}
+.error-message {
+    background-color: @col-error;
+}
+.success-message {
+    background-color: @col-success;
+}
+
+.contact-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+.contact-form {
+  padding: @normal;
+  display: inline-block;
+  width: 30vw;
+  min-width: 320px;
+}
+.contact-right h3 {
+  margin-top: 0;
+}
+
+// Classes
+.size-limit, .size-limit-header {
+	display: block;
+	max-width: 1280px;
+	margin: 0 auto;
+}
+.size-limit-small {
+    display: block;
+    max-width: 640px;
+    margin: 0 auto;
+  text-align: left;
+}
+.header-box {
+	position: absolute;
+	top: 45vh;
+	width: 30vw;
+	& p {
+		margin: 0;
+		padding: 0;
+	}
+}
+.header-info {
+	text-align: left;
+	left: 12%;
+  & p {
+    font-size: 2.5vh;
+  }
+  .text-shadow;
+}
+.verhuur-small {
+	right: 12%;
+  & h2 {
+    .text-shadow;
+    text-align: left;
+  }
+}
+
+.section {
+	.inner-shadow;
+	margin: 0 auto;
+	padding: 3em 0;
+	& .size-limit {
+		text-align: left;
+	}
+	& h2 {
+		&:first-of-type {
+			margin-top: 0;
+		}
+	}
+}
+div.section {
+	z-index: 100;
+	position: relative;
+}
+
+.navigatie {
+	position: absolute;
+	background-color: fade(@col-text-light, 90%);
+	z-index: 150;
+	top: calc(~"100vh - "@tripple);
+	height: @tripple;
+	width: 100%;
+	
+	& ul {
+	margin: 0 auto;
+	padding: 0;
+	height: inherit;
+		& li {
+			display: inline-block;
+			border-bottom: 2px solid @col-text;
+			color: @col-text;
+			padding: 0 @double;
+			margin: 0;
+			line-height: @tripple;
+			height: @tripple;
+			
+			.transition;
+			&:hover {				
+				border-bottom: 4px solid @col-hover;	
+				background-color: @col-text-light;
+				cursor: pointer;
+			}
+			&.menu-active {
+				border-bottom: 6px solid @col-link;				
+			}
+		}
+	}
+  svg {
+    position: absolute;
+    left: 1em;
+    top: .35em;
+    & g {
+      & path, & polygon {
+        fill: @col-text-lighter;
+        .transition;
+      }
+    }
+  }
+}
+.nav-sticky-top {
+	top: 0;
+	position: fixed;
+  svg {
+    & g {
+      & path, & polygon {
+        fill: @col-text;
+      }
+    }
+  }
+}
+.groepen-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: flex-start;
+	margin-top: @tripple;
+	& div {
+		background: @col-text-light;
+		background-position: center center;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+		width: 300px;
+		height: 400px;
+		margin: 0 auto 20px auto;
+		padding: @normal;
+		border-radius: 2px;
+		position: relative;	
+		.shadow;		
+		& h2 {
+			font-size: @normal * 1.25em;
+			color: @col-text-light;
+			margin: -.8em;
+			background-color: fade(@col-text, 30%);
+			padding: .75em;
+			border-radius: 2px 2px 0 0;
+			&:first-of-type {
+				margin-top: -.8em;
+			}
+		}
+		& p {
+			position: absolute;
+			bottom: @double;
+			margin-right: @normal;
+			&.draaitijden {
+				color: lighten(@col-text, 40%);
+				bottom: .75em;
+				margin-bottom: 0;
+			}
+		}
+	}
+}
+.bestuur-container {
+	& div {	
+		& p {
+			position: absolute;
+			bottom: .75em;
+		}
+	}
+}
+.gemengd:after, .jongens:after {
+	font-family: 'FontAwesome';
+	color: @col-text-light;
+	float: right;
+	line-height: 1.25em;
+}
+.gemengd:after {
+	content: "\f228";
+}
+.jongens:after {
+	content: "\f222";
+}
+
+// ID's only used for adding images
+#bevers {
+  background-image: linear-gradient(to bottom, fade(@col-text-light, 10%) 25%, fade(@col-text-light, 90%) 45%, @col-text-light), url("../images/bevers.jpg");
+}
+#nepwelpen {
+  background-image: linear-gradient(to bottom, fade(@col-text-light, 10%) 25%, fade(@col-text-light, 90%) 45%, @col-text-light), url("../images/kl4.jpg");
+}
+#sionie {
+  background-image: linear-gradient(to bottom, fade(@col-text-light, 10%) 25%, fade(@col-text-light, 90%) 45%, @col-text-light), url("../images/welpen.jpg");
+}
+#scouts {
+  background-image: linear-gradient(to bottom, fade(@col-text-light, 10%) 25%, fade(@col-text-light, 90%) 45%, @col-text-light), url("../images/scouts.jpg");
+}
+#verkenners {
+  background-image: linear-gradient(to bottom, fade(@col-text-light, 10%) 25%, fade(@col-text-light, 90%) 45%, @col-text-light), url("../images/verkenners.jpg");
+}
+#explo {
+  background-image: linear-gradient(to bottom, fade(@col-text-light, 10%) 25%, fade(@col-text-light, 90%) 45%, @col-text-light), url("../images/explo.jpg");
+}
+#stam {
+	background-image: linear-gradient(to bottom, fade(@col-text-light, 10%) 25%, fade(@col-text-light, 90%) 45%, @col-text-light), url("../images/stam.jpg");
+}
+#leiders {
+
+}
+#gebe {
+
+}
+#bestuur {
+
+}
+
+
+
+.groepen {
+	background-color: @col-background2;
+}
+.staf {
+	background-color: @col-background3;
+}
+.activiteiten {
+  background-color: @col-background4;
+  background-image: url("../images/jota.jpg");
+  background-position: center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  color: @col-text-light;
+  & h3 {
+    border-bottom: 1px solid fade(@col-text-light, 75%);
+    padding-bottom: .5em;
+    margin-bottom: 0em;
+  }
+  & a {
+    color: darken(@col-text-light, 10%);
+    &:hover {
+      color: lighten(@col-link, 25%);
+    }
+  }
+}
+.contact {
+	background-color: @col-background4;
+}
+.verhuur {
+	background-color: @col-background4;
+}
+
+
+.info-kaart {
+	width: 100%;
+	height: 300px;
+}
+.map-box {
+	display: block;
+	width: 100%;
+	max-width: 700px;
+	height: 300px;
+	margin: 1em auto 0 auto;
+	padding: 0;
+}
+
+// Jup, an ID... well this is so specific, it's not problem.
+#arrowDown {
+	position: absolute;
+	left: calc(~"50vw - 22px");
+	top: calc(~"100vh - 88px - "@tripple);
+}
+
+.high-margin {
+	margin-top: 100vh;
+}
+
+//Media querries
+@media (max-width:1280px) {
+	.size-limit, .size-limit-small {
+		padding: 0 1em;
+	}
+}
+@media (max-width:690px) {
+  .contact-form {
+    width: 80vw;
+  }
+}
+@media (max-width:600px) {
+	//TODO: Do something with the navigation
+}
+@media (max-width:480px) {
+  .contact-form {
+    width: 100vw;
+  }
+}
+@media (min-width:700px) {
+	.info-kaart {
+		border-radius: 3px 3px 0 0;
+	}
+}

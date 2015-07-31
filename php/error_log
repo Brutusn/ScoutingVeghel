@@ -1,0 +1,136 @@
+[12-Apr-2015 20:45:32 UTC] PHP Fatal error:  Call to undefined function js_array() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 10
+[12-Apr-2015 20:46:18 UTC] PHP Fatal error:  Call to undefined function js_array() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 10
+[12-Apr-2015 20:47:19 UTC] PHP Fatal error:  Call to undefined function js_array() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 10
+[12-Apr-2015 20:48:38 UTC] PHP Fatal error:  Call to undefined function js_array() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 10
+[12-Apr-2015 20:49:03 UTC] PHP Fatal error:  Call to undefined function js_array() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 10
+[12-Apr-2015 20:49:30 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 29
+[12-Apr-2015 20:49:31 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 29
+[12-Apr-2015 20:49:32 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 29
+[12-Apr-2015 20:49:33 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 29
+[12-Apr-2015 20:49:33 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 29
+[12-Apr-2015 20:49:49 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 29
+[12-Apr-2015 20:49:50 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 29
+[12-Apr-2015 20:49:51 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 29
+[12-Apr-2015 20:49:51 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 29
+[12-Apr-2015 20:50:03 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 29
+[12-Apr-2015 20:50:23 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 29
+[12-Apr-2015 20:50:31 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 29
+[12-Apr-2015 20:51:08 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 30
+[12-Apr-2015 20:51:09 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 30
+[12-Apr-2015 20:51:34 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 30
+[12-Apr-2015 20:51:36 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 30
+[12-Apr-2015 20:51:41 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 30
+[12-Apr-2015 20:51:44 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 30
+[12-Apr-2015 20:52:05 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 30
+[12-Apr-2015 20:52:28 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 29
+[12-Apr-2015 20:52:30 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 29
+[12-Apr-2015 20:52:57 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 29
+[12-Apr-2015 20:52:58 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 29
+[12-Apr-2015 20:52:59 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 29
+[12-Apr-2015 20:54:09 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 11
+[12-Apr-2015 20:54:10 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 11
+[12-Apr-2015 20:54:11 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 11
+[12-Apr-2015 20:54:44 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 11
+[12-Apr-2015 20:54:45 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 11
+[12-Apr-2015 20:55:03 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 11
+[12-Apr-2015 20:55:43 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 35
+[12-Apr-2015 20:55:45 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 35
+[12-Apr-2015 20:55:58 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 35
+[12-Apr-2015 20:57:38 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 32
+[12-Apr-2015 20:57:40 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 32
+[12-Apr-2015 20:57:54 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 32
+[12-Apr-2015 20:58:17 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 32
+[12-Apr-2015 21:03:48 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 31
+[19-Apr-2015 13:26:43 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 31
+[19-Apr-2015 13:26:44 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 31
+[19-Apr-2015 13:27:00 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 31
+[19-Apr-2015 13:27:01 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 31
+[19-Apr-2015 13:28:38 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 31
+[19-Apr-2015 13:28:48 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 31
+[19-Apr-2015 13:29:06 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 31
+[19-Apr-2015 13:29:37 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 31
+[19-Apr-2015 13:30:01 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 31
+[19-Apr-2015 13:30:02 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 31
+[19-Apr-2015 13:30:03 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 31
+[19-Apr-2015 13:30:22 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 31
+[19-Apr-2015 13:30:23 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 31
+[19-Apr-2015 13:30:25 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 31
+[19-Apr-2015 13:31:12 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 31
+[19-Apr-2015 13:32:01 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 31
+[19-Apr-2015 13:32:39 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 31
+[19-Apr-2015 13:32:42 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 31
+[19-Apr-2015 13:33:38 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 31
+[19-Apr-2015 13:33:40 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 31
+[19-Apr-2015 13:34:52 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 31
+[19-Apr-2015 13:35:23 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 31
+[19-Apr-2015 13:35:24 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 31
+[19-Apr-2015 13:35:26 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 31
+[19-Apr-2015 13:36:22 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 31
+[19-Apr-2015 13:36:23 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 31
+[19-Apr-2015 13:36:24 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 31
+[19-Apr-2015 13:36:24 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 31
+[19-Apr-2015 13:36:37 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 31
+[19-Apr-2015 13:36:38 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 31
+[19-Apr-2015 13:36:53 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 31
+[19-Apr-2015 13:36:54 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 31
+[19-Apr-2015 13:36:55 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 31
+[19-Apr-2015 13:37:00 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 31
+[19-Apr-2015 13:37:13 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 31
+[19-Apr-2015 13:37:36 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 33
+[19-Apr-2015 13:38:30 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 31
+[19-Apr-2015 13:39:07 UTC] PHP Catchable fatal error:  Object of class DateTime could not be converted to string in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 28
+[19-Apr-2015 13:39:08 UTC] PHP Catchable fatal error:  Object of class DateTime could not be converted to string in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 28
+[19-Apr-2015 13:39:30 UTC] PHP Catchable fatal error:  Object of class DateTime could not be converted to string in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 28
+[19-Apr-2015 13:39:31 UTC] PHP Catchable fatal error:  Object of class DateTime could not be converted to string in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 28
+[19-Apr-2015 13:39:50 UTC] PHP Catchable fatal error:  Object of class DateTime could not be converted to string in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 28
+[19-Apr-2015 13:39:50 UTC] PHP Catchable fatal error:  Object of class DateTime could not be converted to string in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 28
+[19-Apr-2015 13:39:51 UTC] PHP Catchable fatal error:  Object of class DateTime could not be converted to string in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 28
+[19-Apr-2015 13:41:09 UTC] PHP Catchable fatal error:  Object of class DateTime could not be converted to string in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 81
+[19-Apr-2015 13:41:42 UTC] PHP Catchable fatal error:  Object of class DateTime could not be converted to string in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 28
+[19-Apr-2015 13:42:22 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 36
+[19-Apr-2015 13:42:39 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 36
+[19-Apr-2015 13:43:00 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 36
+[19-Apr-2015 13:43:21 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 36
+[19-Apr-2015 13:43:22 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 36
+[19-Apr-2015 13:43:37 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 36
+[19-Apr-2015 13:43:37 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 36
+[19-Apr-2015 13:43:38 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 36
+[19-Apr-2015 13:43:45 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 36
+[19-Apr-2015 13:44:42 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 38
+[19-Apr-2015 13:44:42 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 38
+[19-Apr-2015 13:45:01 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 38
+[19-Apr-2015 13:45:02 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 38
+[19-Apr-2015 13:45:50 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 38
+[19-Apr-2015 13:45:51 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 38
+[19-Apr-2015 13:45:51 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 38
+[19-Apr-2015 13:45:52 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 38
+[19-Apr-2015 13:45:53 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 38
+[19-Apr-2015 13:46:10 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 38
+[19-Apr-2015 13:47:16 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 38
+[19-Apr-2015 13:47:56 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 38
+[19-Apr-2015 13:48:29 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 38
+[19-Apr-2015 13:48:30 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 38
+[19-Apr-2015 13:48:31 UTC] PHP Fatal error:  Call to undefined function databasemysqli() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 38
+[19-Apr-2015 13:48:54 UTC] PHP Catchable fatal error:  Object of class mysqli_stmt could not be converted to string in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 46
+[19-Apr-2015 13:49:30 UTC] PHP Catchable fatal error:  Object of class mysqli_stmt could not be converted to string in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 46
+[19-Apr-2015 13:49:36 UTC] PHP Catchable fatal error:  Object of class mysqli_stmt could not be converted to string in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 45
+[19-Apr-2015 13:49:37 UTC] PHP Catchable fatal error:  Object of class mysqli_stmt could not be converted to string in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 45
+[19-Apr-2015 13:50:46 UTC] PHP Catchable fatal error:  Object of class mysqli_stmt could not be converted to string in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 49
+[19-Apr-2015 13:52:43 UTC] PHP Notice:  Array to string conversion in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 16
+[19-Apr-2015 13:53:11 UTC] PHP Fatal error:  Call to undefined function js_array() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 18
+[19-Apr-2015 14:14:44 UTC] PHP Fatal error:  Call to a member function format() on a non-object in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 52
+[19-Apr-2015 14:15:39 UTC] PHP Parse error:  syntax error, unexpected 'createFromFormat' (T_STRING), expecting variable (T_VARIABLE) or '$' in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 51
+[19-Apr-2015 14:15:55 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'DateTime::__construct() expects parameter 2 to be DateTimeZone, string given' in /home/scouti61/subdomain/nieuw/php/Reservering.php:50
+Stack trace:
+#0 /home/scouti61/subdomain/nieuw/php/Reservering.php(50): DateTime->__construct('Y/m/d H:i:s', '2015-04-16 20:0...')
+#1 /home/scouti61/subdomain/nieuw/php/Reservering.php(80): getReservations(Object(DateTime), Object(DateTime))
+#2 /home/scouti61/subdomain/nieuw/php/Reservering.php(18): getReservationsMonth(4, 2015)
+#3 {main}
+  thrown in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 50
+[19-Apr-2015 14:17:15 UTC] PHP Fatal error:  Call to undefined function format() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 50
+[19-Apr-2015 14:17:18 UTC] PHP Fatal error:  Call to undefined function format() in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 50
+[19-Apr-2015 14:17:32 UTC] PHP Fatal error:  Call to a member function format() on a non-object in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 50
+[19-Apr-2015 14:19:20 UTC] PHP Fatal error:  Call to a member function format() on a non-object in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 50
+[19-Apr-2015 14:19:34 UTC] PHP Notice:  Undefined index: m in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 9
+[19-Apr-2015 14:19:34 UTC] PHP Notice:  Undefined index: y in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 10
+[19-Apr-2015 14:19:52 UTC] PHP Fatal error:  Call to a member function format() on a non-object in /home/scouti61/subdomain/nieuw/php/Reservering.php on line 50

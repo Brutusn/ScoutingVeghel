@@ -1,0 +1,168 @@
+@import "config.less";
+
+
+
+.datepickr-wrapper {
+  display: inline-block;
+  position: relative;
+}
+.verhuur-small .datepickr-wrapper {
+  width: 100%
+}
+
+.datepickr-calendar {
+  //font-family: 'Trebuchet MS', Tahoma, Verdana, Arial, sans-serif;
+  //font-size: 12px;
+  background-color: @col-text-light;
+  //color: #333;
+  //border: 1px solid #ddd;
+  //-moz-border-radius: 4px;
+  //-webkit-border-radius: 4px;
+  //border-radius: 4px;
+  padding: 2px;
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 100;
+}
+
+.open .datepickr-calendar {
+  display: block;
+}
+
+.datepickr-calendar .datepickr-months {
+  background-color: #f6af3a;
+  border: 1px solid #e78f08;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  color: #fff;
+  padding: 2px;
+  text-align: center;
+  font-size: 120%;
+}
+
+.datepickr-calendar .datepickr-prev-month,
+.datepickr-calendar .datepickr-next-month {
+  color: @col-text-light;
+  text-decoration: none;
+  padding: 0 .4em;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.datepickr-calendar .datepickr-prev-month {
+  float: left;
+}
+
+.datepickr-calendar .datepickr-next-month {
+  float: right;
+}
+
+.datepickr-calendar .datepickr-current-month {
+  padding: 0 .5em;
+  font-weight: bold;
+}
+
+.datepickr-calendar .datepickr-prev-month:hover,
+.datepickr-calendar .datepickr-next-month:hover {
+  background-color: fade(@col-link, 50%);
+  color: @col-text-light;
+  font-weight: bold;
+}
+
+.datepickr-calendar table {
+  border-collapse: collapse;
+  padding: 0;
+  width: 100%;
+}
+
+
+.datepickr-calendar thead {
+  font-size: 90%;
+}
+
+.datepickr-calendar th,
+.datepickr-calendar td {
+  width: 14.3%;
+}
+
+.datepickr-calendar th {
+  text-align: center;
+  padding: 5px;
+}
+
+.datepickr-calendar td {
+  text-align: right;
+  padding: 1px;
+}
+
+.datepickr-calendar .datepickr-day {
+  display: block;
+  color: @col-text-light;
+  background-color: fade(@col-text-light, 10%);
+  border: 1px solid @col-text-light;
+  border-radius: 2px;
+  text-align: center;
+  padding: @half;
+  cursor: pointer;
+}
+
+//.datepickr-calendar .datepickr-day:hover {
+//  color: #C77405;
+//  background-color: #fdf5ce;
+//  border: 1px solid #fbcb09;
+//}
+
+.datepickr-calendar .today .datepickr-day {
+  background-color: fade(@col-link, 50%);
+  border: 1px solid @col-text-light;
+  color: @col-text-light;
+  font-weight: bold;
+}
+
+.datepickr-calendar .selected .datepickr-day {
+  background-color: #1c94c4;
+}
+.datepickr-calendar .datepickr-sv .datepickr-day {
+  background-color: fade(@col-success , 50%);
+  //border: 1px solid @col-link;
+  &:before {
+    content: "\2713 ";
+  }
+}
+.datepickr-calendar .datepickr-other .datepickr-day {
+  background-color: fade(@col-error, 50%);
+  //border: 1px solid @col-error;
+  &:before {
+    content: "\2717 ";
+  }
+}
+
+//.datepickr-calendar .disabled .datepickr-day,
+//.datepickr-calendar .disabled .datepickr-day:hover {
+//  background-color: #eee;
+//  border: 1px dotted #ccc;
+//  color: #bbb;
+//  cursor: default;
+//}
+
+.datepickr-full-width {
+  & ~ .datepickr-calendar {
+    width: 100%;
+  }
+}
+.datepickr-open {
+  & ~ .datepickr-calendar {
+    background-color: transparent;
+    padding: 0;
+    & .datepickr-months {
+      background-color: inherit;
+      border: none;
+      border-bottom: 1px solid @col-text-light;
+    }
+  }
+}

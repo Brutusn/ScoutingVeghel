@@ -1,0 +1,61 @@
+// Colors
+
+@col-background: #CBC5A3;
+@col-background2: #CBC5A3; //#AA9F7F;
+@col-background3: lighten(@col-background2, 5%);
+@col-background4: lighten(@col-background2, 10%);
+
+@col-text: #2E2F2A;
+@col-text-lighter: lighten(@col-text, 30%);
+@col-text-light: #ECF0F1;
+@col-link: #568096;
+@col-link-hover: darken(@col-link, 15%);
+@col-hover: darken(@col-text, 25%);
+@col-shadow: darken(@col-text, 20%);
+@col-error: #C0392B;
+@col-success: #2ECC71;
+
+// Mixins
+.inner-shadow {
+-webkit-box-shadow: inset 0 1em 1em -1em @col-shadow;
+   -moz-box-shadow: inset 0 1em 1em -1em @col-shadow;
+		box-shadow: inset 0 1em 1em -1em @col-shadow;
+}
+.inner-shadow-small {
+-webkit-box-shadow: inset 0 .1em .5em 0em fade(@col-shadow, 30%);
+   -moz-box-shadow: inset 0 .1em .5em 0em fade(@col-shadow, 30%);
+		box-shadow: inset 0 .1em .5em 0em fade(@col-shadow, 30%);
+}
+.shadow {
+	-webkit-box-shadow: 0px 0px 10px 0px fade(@col-shadow, 40%);
+	-moz-box-shadow:    0px 0px 10px 0px fade(@col-shadow, 40%);
+	box-shadow:         0px 0px 10px 0px fade(@col-shadow, 40%);
+}
+
+.transition{
+	-webkit-transition: all .1s;
+    transition: all .1s;
+}
+
+.text-shadow {
+	text-shadow: 2px 2px fade(@col-text, 60%);
+}
+
+// Sizes
+@half: .5em;
+@normal: 1em;
+@double: 2em;
+@tripple: 3em;
+@quad: 4em;
+
+// Font faces...
+/*@font-face {
+    font-family: 'HNYP';
+    src: url('@{fa-font-path}/rothenbg-webfont.eot');
+    src: url('@{fa-font-path}/rothenbg-webfont.eot?#iefix') format('embedded-opentype'),
+         url('@{fa-font-path}/rothenbg-webfont.woff') format('woff'),
+         url('@{fa-font-path}/rothenbg-webfont.ttf') format('truetype'),
+         url('@{fa-font-path}/rothenbg-webfont.svg#webfontregular') format('svg');
+    font-weight: normal;
+    font-style: normal;	
+}*/
