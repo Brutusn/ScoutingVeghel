@@ -3,73 +3,125 @@ function $I(elem) {
 	return document.getElementById(elem);
 }
 
-function scrollTop (to) {
-    if (!to) {
-        return window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
-    } else {
-        window.pageYOffset = to;
-        document.documentElement.scrollTop = to;
-        document.body.scrollTop = to;
-    }
-}
+// shim layer with setTimeout fallback
+window.requestAnimFrame = (function(){
+    return  window.requestAnimationFrame       ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame    ||
+        window.oRequestAnimationFrame      ||
+        window.msRequestAnimationFrame     ||
+        function( callback ){
+            window.setTimeout(callback, 1000 / 60);
+        };
+})();
 
-console.info(document.documentElement.scrollTop||document.body.scrollTop);
+function onScrollEvt () {
+    var box = navElem.getBoundingClientRect(),
+        box2 = groupElem.getBoundingClientRect();
+
+    if (box.top <= 0 && box2.top <= box.height) {
+        navElem.classList.add("nav-sticky-top");
+    } else {
+        //if (box2.top >= box.height) {
+        navElem.classList.remove("nav-sticky-top");
+    }
+    // Set scrolling back to false
+    scrolling = false;
+}
+function requestScroll () {
+    if (!scrolling) {
+        requestAnimFrame(onScrollEvt);
+    }
+    scrolling = true;
+}
+function setScroll(to) {
+    if (window.scrollTo) {
+        //console.info("window.scrollTo()");
+        window.scrollTo(0, to);
+        return;
+    }
+    if (window.pageYOffset) {
+        //console.info("window.pageYOffset");
+        window.pageYOffset = to;
+        return;
+    }
+    if (document.documentElement.scrollTop) {
+        //console.info("document.documentElement.scrollTop");
+        document.documentElement.scrollTop = to;
+        return;
+    }
+    if (document.body.scrollTop) {
+        //console.info("document.body.scrollTop");
+        document.body.scrollTop = to;
+        return;
+    }
+    //console.warn("non of the above");
+}
 
 function scrollUp(d){
-    var s = $I(d).offsetTop;
-	var b = scrollTop();//document.body.scrollTop;
-	var w = document.body.scrollHeight - window.innerHeight;
-	var nav = $I("navigatie").clientHeight;
-    var scrollDistance = 20;
-    var scrollSpeed = 5; // 1000 = 1 seconde
-	var animation = false;
+    var s = $I(d).offsetTop,
+	    b,//document.body.scrollTop;
+	    pos,
+	    nav = $I("navigatie").clientHeight,
+        scrollTo = [],
+        i = 0,
+        scrollTime = 50,
+        range = 1,
+        scrollTop = function () {
+            return window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+        },
+        animateScroll = function () {
+            setScroll(pos);
+            animation();
+        },
+        // t: current time, b: begin value, c: change in value thus end - begin, d: duration
+        easeOutQuad = function (t, b, c, d) {
+            return -c *(t/=d)*(t-2) + b;
+        },
+        inRange = function (x, y) {
+            var rangeSmall = y[1] - range,
+                rangeLarge = y[1] + range;
 
-	var calc = {
-		plus: function () {
-			b += scrollDistance;
-			if ((s - b) < 10) {
-				b = s;
-				return false;
-			} else {
-				return s >= b;				
-			}
-		},
-		min: function () {
-			b -= scrollDistance;
-			if ((b - s) < 10) {
-				b = s;
-				return false;
-			} else {
-				return s <= b;				
-			}			
-		}
-	};
-	
-	var check = s < b ? calc.min : calc.plus;
+            // Scroll is positive
+            if (y[2]) {
+                // Normal positive version
+                return x >= rangeSmall && x <= rangeLarge;
+            } else {
+                // Negative version
+                x *= -1;
+                return x >= rangeLarge && x <= rangeSmall;
+            }
+        };
+    b = scrollTop();
+    if (b < s) {
+        scrollTo[0] = (s - nav) - b;
+        scrollTo[1] = s - nav;
+        scrollTo[2] = true;
+    } else {
+        scrollTo[0] = (b - (s - nav)) * -1;
+        scrollTo[1] = (s - nav) * -1;
+        scrollTo[2] = false;
+    }
 
-	if (!animation) {
-		animation = true;
-		var scrollAnimate = setInterval(function() {				
-			if (check()) {
-                //console.info(document.body.scrollTop, document.documentElement.scrollTop);
-                //window.scrollY = b - nav;
-                scrollTop(b - nav);
-                //document.body.scrollTop = b - nav;
-                //document.documentElement.scrollTop = b - nav;
-				if ((b - nav) >= w) {
-					clearInterval(scrollAnimate);
-					animation = false;
-				}
-			} else {
-			    clearInterval(scrollAnimate);
-                scrollTop(b - nav);
-                //document.body.scrollTop = b - nav;
-                //document.documentElement.scrollTop = b - nav;
-			    animation = false;
-			} 
-		}, scrollSpeed);
-	}
+    // Start the animation.
+    function animation() {
+        //setTimeout(function (){},fps);
+        if (i < scrollTime) {
+            pos = easeOutQuad(i, b, scrollTo[0], scrollTime);
+            //console.info("position", pos);
+            if (!inRange(pos, scrollTo)) {
+                requestAnimFrame(animateScroll);
+                i++;
+            } else {
+                // If it's within range set is to stick to the place we want.
+                setScroll(scrollTo[1]);
+                return;
+            }
+        }
+    }
+    animation();
 }
+
 
 var ajax = {};
 ajax.x = function() {
@@ -168,41 +220,28 @@ function showSuccess(msg, form){
 /////// SCOUTING VEGHEL CODE!
 
 // Sticky navigation bar :)
-var elem = $I("navigatie");
-var elem2 = $I("groepen");
+var navElem = $I("navigatie"),
+    groupElem = $I("groepen"),
+    scrollYpos = window.scrollY,
+    scrolling = false,
+    menu = $I("menu-links");
 
 window.onscroll = function () {
-	var box = elem.getBoundingClientRect();
-	var box2 = elem2.getBoundingClientRect();
-
-    if (box2.top <= 0) {
-        $I("landing-page").style.display = "none";
-    } else {
-        $I("landing-page").removeAttribute("style");
-    }
-			
-	if (box.top <= 0 && box2.top <= box.height) {
-		elem.classList.add("nav-sticky-top");
-	} else {
-	//if (box2.top >= box.height) {		
-		elem.classList.remove("nav-sticky-top");
-	}
+    scrollYpos = window.scrollY;
+    requestScroll();
 };
 
-var menu = $I("menu-links").childNodes;
+// TODO: One click event on the menu.. not on the list elements..
+menu.onclick = function (evt) {
+    var goto = evt.target.getAttribute("data-link");
+    if (goto) {
+        var old = document.getElementsByClassName("menu-active");
+        if (old.length !== 0) old[0].classList.remove("menu-active");
 
-for (var i = 0; i < menu.length; i++) {
-	menu[i].onclick = function () {
-		var goto = this.getAttribute("data-link");
-		
-		// Remove old active;
-		var old = document.getElementsByClassName("menu-active");
-		if (old.length !== 0) old[0].classList.remove("menu-active");
-		
-		this.classList.add("menu-active");		
-		scrollUp(goto);
-	}
-}
+        evt.target.classList.add("menu-active");
+        scrollUp(goto);
+    }
+};
 
 // Contact form submission.
 $I("contact-form").onsubmit = function () {
@@ -216,7 +255,7 @@ $I("contact-form").onsubmit = function () {
         data[inputs[i].name] = inputs[i].value;
     }
 
-    if (data.whoTo === "") {
+    if (!data.whoTo) {
         showError("Aan wie moet je vraag/opmerking verstuurd worden?", form);
     }
     if (!re.test(data.mailadr)){
@@ -239,6 +278,7 @@ $I("contact-form").onsubmit = function () {
 
 $I("hb-menu-btn-click").onclick = function () {
     $I("menu-links").classList.toggle("hb-menu-open");
+    this.classList.toggle("hb-menu-btn-open");
 };
 
 //=======Date Picker code===============================================================================================
