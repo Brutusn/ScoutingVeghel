@@ -16,15 +16,53 @@ window.requestAnimFrame = (function(){
 })();
 
 function onScrollEvt () {
-    var box = navElem.getBoundingClientRect(),
-        box2 = groupElem.getBoundingClientRect();
+    function _b (e) {
+        return e.getBoundingClientRect();
+    }
 
-    if (box.top <= 0 && box2.top <= box.height) {
+    var old,
+        nav = _b(navElem),
+        gro = _b(groupElem);
+
+    // Only do this when normal scrolling is happening..
+    if (!menuClick) {
+        var sta = _b(stafElem),
+            act = _b(actiElem),
+            con = _b(contElem),
+            huu = _b(huurElem);
+    }
+
+    // Sticky the navigation!
+    if (nav.top <= 0 && gro.top <= nav.height) {
         navElem.classList.add("nav-sticky-top");
     } else {
         //if (box2.top >= box.height) {
         navElem.classList.remove("nav-sticky-top");
     }
+
+    if (!menuClick) {
+        // remove old active class.
+        old = document.getElementsByClassName("menu-active");
+        if (old.length !== 0) old[0].classList.remove("menu-active");
+
+        // Auto set navigation on where you are...
+        if (nav.height >= gro.top && nav.height <= gro.bottom) {
+            menu.children[0].classList.add("menu-active");
+        }
+        if (nav.height >= sta.top && nav.height <= sta.bottom) {
+            menu.children[1].classList.add("menu-active");
+        }
+        if (nav.height >= act.top && nav.height <= act.bottom) {
+            menu.children[2].classList.add("menu-active");
+        }
+        if (nav.height >= con.top && nav.height <= con.bottom) {
+            menu.children[3].classList.add("menu-active");
+        }
+        if (nav.height >= huu.top && nav.height <= huu.bottom) {
+            menu.children[4].classList.add("menu-active");
+        }
+    }
+
     // Set scrolling back to false
     scrolling = false;
 }
@@ -115,6 +153,7 @@ function scrollUp(d){
             } else {
                 // If it's within range set is to stick to the place we want.
                 setScroll(scrollTo[1]);
+                menuClick = false;
                 return;
             }
         }
@@ -222,9 +261,14 @@ function showSuccess(msg, form){
 // Sticky navigation bar :)
 var navElem = $I("navigatie"),
     groupElem = $I("groepen"),
+    stafElem = $I("staf"),
+    actiElem = $I("activiteiten"),
+    contElem = $I("contact"),
+    huurElem = $I("verhuur"),
     scrollYpos = window.scrollY,
     scrolling = false,
-    menu = $I("menu-links");
+    menu = $I("menu-links"),
+    menuClick = false;
 
 window.onscroll = function () {
     scrollYpos = window.scrollY;
@@ -234,6 +278,7 @@ window.onscroll = function () {
 // TODO: One click event on the menu.. not on the list elements..
 menu.onclick = function (evt) {
     var goto = evt.target.getAttribute("data-link");
+    menuClick = true;
     if (goto) {
         var old = document.getElementsByClassName("menu-active");
         if (old.length !== 0) old[0].classList.remove("menu-active");

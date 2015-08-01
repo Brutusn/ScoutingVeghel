@@ -298,6 +298,7 @@ div.section {
       cursor: pointer;
     }
     &.menu-active {
+      .transition;
       border-bottom: (@menu-border-width * 3) solid @col-link;
     }
   }
@@ -335,7 +336,7 @@ div.section {
     padding: @normal;
     border-radius: 2px;
     position: relative;
-    .shadow;
+    .shadow(2);
     & h2 {
       font-size: @normal * 1.25em;
       color: @col-text-light;
@@ -425,6 +426,7 @@ div.section {
 }
 .activiteiten {
   &:before {
+    .inner-shadow;
     background-color: @col-background4;
     background-image: url("../images/jota.jpg");
     background-position: center center;
@@ -439,6 +441,7 @@ div.section {
     bottom: 0;
     right: 0;
     z-index: -1;
+    will-change: transform;
   }
   color: @col-text-light;
   & h3 {

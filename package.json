@@ -1,0 +1,31 @@
+{
+  "name": "ScoutingVeghel",
+  "version": "1.0.0",
+  "description": "Website van Scouting Veghel",
+  "main": "index.js",
+  "dependencies": {
+    "clean-css": "latest",
+    "less-plugin-clean-css": "latest",
+    "less": "latest"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Brutusn/ScoutingVeghel.git"
+  },
+  "keywords": [
+    "Scouting",
+    "Veghel",
+    "Site",
+    "Verhuur"
+  ],
+  "author": "Bart Niessen & Colin Lambrechts",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Brutusn/ScoutingVeghel/issues"
+  },
+  "homepage": "https://github.com/Brutusn/ScoutingVeghel"
+}

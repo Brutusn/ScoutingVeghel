@@ -17,24 +17,34 @@
 
 // Mixins
 .inner-shadow {
--webkit-box-shadow: inset 0 1em 1em -1em @col-shadow;
-   -moz-box-shadow: inset 0 1em 1em -1em @col-shadow;
-		box-shadow: inset 0 1em 1em -1em @col-shadow;
+		box-shadow: inset 0 1em 1em -1em fade(@col-shadow, 30%);
 }
 .inner-shadow-small {
--webkit-box-shadow: inset 0 .1em .5em 0em fade(@col-shadow, 30%);
-   -moz-box-shadow: inset 0 .1em .5em 0em fade(@col-shadow, 30%);
 		box-shadow: inset 0 .1em .5em 0em fade(@col-shadow, 30%);
 }
-.shadow {
-	-webkit-box-shadow: 0px 0px 10px 0px fade(@col-shadow, 40%);
-	-moz-box-shadow:    0px 0px 10px 0px fade(@col-shadow, 40%);
-	box-shadow:         0px 0px 10px 0px fade(@col-shadow, 40%);
+
+.shadow(@level: 1){
+  & when (@level = 1) {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  }
+  & when (@level = 2) {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  }
+  & when (@level = 3) {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  }
+  & when (@level = 4) {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  }
+  & when (@level = 5) {
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  }
 }
 
-.transition{
-	-webkit-transition: all .1s;
-    transition: all .1s;
+
+.transition {
+	-webkit-transition: all .1s ease-out;
+    transition: all .1s ease-out;
 }
 
 .text-shadow {
