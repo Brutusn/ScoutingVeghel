@@ -36,17 +36,11 @@ footer {
   position: relative;
   z-index: 100;
   & a {
-    color: @col-background2;
-  }
-  & i {
     .transition;
+    color: @col-background2;
+    text-decoration: none;
     &:hover {
-      color: @col-link-hover;
-    }
-  }
-  & a {
-    &:first-of-type {
-      margin-right: 1em;
+      color: @col-text-light;
     }
   }
 }
@@ -59,24 +53,6 @@ header {
   top: 0;
   left: 0;
   z-index: 50;
-
-  &:before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    will-change: transform;
-    z-index: -1;
-    background-color: @col-text;
-    background-image: url(../images/background.jpg);
-    background-position: center center;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-  }
 
   &.section {
     padding: .1em;
@@ -99,6 +75,7 @@ header {
     }
   }
 }
+
 
 // Form
 form {
@@ -247,8 +224,9 @@ div.section {
 
 .navigatie {
   position: absolute;
-  background-color: fade(@col-text-light, 95%);
+  background-color: @col-text-light;
   z-index: 150;
+  .shadow(1);
   top: calc(~"100vh - "@tripple);
   height: @tripple;
   width: 100%;
@@ -306,6 +284,7 @@ div.section {
 .nav-sticky-top {
   top: 0;
   position: fixed;
+  will-change: transform;
   svg {
     & g {
       & path, & polygon {
@@ -406,6 +385,9 @@ div.section {
 #stam {
   background-image: linear-gradient(to bottom, fade(@col-text-light, 10%) 25%, fade(@col-text-light, 90%) 45%, @col-text-light), url("../images/stam.jpg");
 }
+#plus {
+  background-image: linear-gradient(to bottom, fade(@col-text-light, 10%) 25%, fade(@col-text-light, 90%) 45%, @col-text-light), url("../images/stam.jpg");
+}
 #leiders {
 
 }
@@ -425,29 +407,17 @@ div.section {
   background-color: @col-background3;
 }
 .activiteiten {
-  &:before {
-    .inner-shadow;
-    background-color: @col-background4;
-    background-image: url("../images/jota.jpg");
-    background-position: center center;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    z-index: -1;
-    will-change: transform;
-  }
+  .inner-shadow;
+  background: @col-background4 url("../images/jota.jpg") center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   color: @col-text-light;
   & h3 {
     border-bottom: 1px solid fade(@col-text-light, 75%);
     padding-bottom: .5em;
-    margin-bottom: 0em;
+    margin-bottom: 0;
   }
   & a {
     color: darken(@col-text-light, 10%);
@@ -561,3 +531,20 @@ div.section {
   }
 }
 
+@media (min-width: 480px) {
+  header:before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    will-change: transform;
+    z-index: -1;
+    background: @col-text url(../images/background.jpg) center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+}

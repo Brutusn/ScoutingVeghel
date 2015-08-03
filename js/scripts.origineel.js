@@ -1,3 +1,6 @@
+// Yes! We use strict :)
+"use strict";
+
 // Custom functions.
 function $I(elem) {
 	return document.getElementById(elem);
@@ -15,13 +18,29 @@ window.requestAnimFrame = (function(){
         };
 })();
 
+function removeClass(c) {
+    var x = document.getElementsByClassName(c), i;
+    if (x.length === 0) {
+        return;
+    }
+    if (x.length === 1) {
+        x[0].classList.remove(c);
+        return;
+    }
+    if (x.length > 1) {
+        for (i = 0; i < x.length; i++) {
+            x[i].classList.remove(c);
+        }
+        return;
+    }
+}
+
 function onScrollEvt () {
     function _b (e) {
         return e.getBoundingClientRect();
     }
 
-    var old,
-        nav = _b(navElem),
+    var nav = _b(navElem),
         gro = _b(groupElem);
 
     // Only do this when normal scrolling is happening..
@@ -40,25 +59,30 @@ function onScrollEvt () {
         navElem.classList.remove("nav-sticky-top");
     }
 
+    if (gro.top <= 0) {
+        $I("landing-page").style.visibility = "hidden";
+    } else {
+        $I("landing-page").removeAttribute("style");
+    }
+
     if (!menuClick) {
         // remove old active class.
-        old = document.getElementsByClassName("menu-active");
-        if (old.length !== 0) old[0].classList.remove("menu-active");
+        removeClass("menu-active");
 
         // Auto set navigation on where you are...
-        if (nav.height >= gro.top && nav.height <= gro.bottom) {
+        if (nav.height >= gro.top && nav.height < gro.bottom) {
             menu.children[0].classList.add("menu-active");
         }
-        if (nav.height >= sta.top && nav.height <= sta.bottom) {
+        if (nav.height >= sta.top && nav.height < sta.bottom) {
             menu.children[1].classList.add("menu-active");
         }
-        if (nav.height >= act.top && nav.height <= act.bottom) {
+        if (nav.height >= act.top && nav.height < act.bottom) {
             menu.children[2].classList.add("menu-active");
         }
-        if (nav.height >= con.top && nav.height <= con.bottom) {
+        if (nav.height >= con.top && nav.height < con.bottom) {
             menu.children[3].classList.add("menu-active");
         }
-        if (nav.height >= huu.top && nav.height <= huu.bottom) {
+        if (nav.height >= huu.top && nav.height < huu.bottom) {
             menu.children[4].classList.add("menu-active");
         }
     }
@@ -277,14 +301,13 @@ window.onscroll = function () {
 
 // TODO: One click event on the menu.. not on the list elements..
 menu.onclick = function (evt) {
-    var goto = evt.target.getAttribute("data-link");
-    menuClick = true;
-    if (goto) {
-        var old = document.getElementsByClassName("menu-active");
-        if (old.length !== 0) old[0].classList.remove("menu-active");
+    var x = evt.target.getAttribute("data-link");
+    if (x) {
+        menuClick = true;
+        removeClass("menu-active");
 
         evt.target.classList.add("menu-active");
-        scrollUp(goto);
+        scrollUp(x);
     }
 };
 

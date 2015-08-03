@@ -7,7 +7,7 @@
     <meta name="KEYWORDS" content="scouting veghel explorers stam welpen bevers verkenners scouts">
     <meta name="revisit-after" content="3 days">
     <meta name="robots" content="all">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0">
     
     <title>Scouting Veghel</title>
     <link href="css/style.min.css" type="text/css" rel="stylesheet">
@@ -242,17 +242,14 @@
 
       <footer class="section">
 	    <h2>Volg ons:</h2>
-		<a href="https://www.facebook.com/ScoutingVeghel" target="_BLANK"><i class="fa fa-facebook-square fa-5x"></i></a>
-		<a href="https://twitter.com/scoutingveghel" target="_BLANK"><i class="fa fa-twitter-square fa-5x"></i></a>
-		
-        <span style="font-size: 9pt"><span id="copy"></span>&copy; Scouting Veghel - 2015 -
-          <a href="mailto:website@scoutingveghel.nl">Problemen?</a>
-        </span>
+		<p></p><a href="https://www.facebook.com/ScoutingVeghel" target="_BLANK"><i class="fa fa-facebook-square"></i> /ScoutingVeghel</a></p>
+		<p><a href="https://twitter.com/scoutingveghel" target="_BLANK"><i class="fa fa-twitter-square"></i> @ScoutingVeghel</a></p>
+        <p class="small">&copy; Scouting Veghel - <span id="copy-year"></span></p>
       </footer>
   </body>
   <!--<script src="js/datepickr.js"></script>-->
   <script src="js/scripts.origineel.js"></script>
   <script>
-
+    $I("copy-year").innerHTML = new Date().getFullYear();
   </script>
 </html>
