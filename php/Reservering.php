@@ -49,8 +49,8 @@ function getReservations(DateTime $start, DateTime $end)
         $ar = [];//array('dayFrom', 'dayTo', 'bySV');
         $begin = new DateTime($begindate);
         $end = new DateTime($enddate);
-        $ar['dayFrom'] = $begin->format("Y m d H:m:s");
-        $ar['dayTo'] = $end->format("Y m d H:m:s");
+        $ar['dayFrom'] = $begin->format("Y-m-d H:m:s");
+        $ar['dayTo'] = $end->format("Y-m-d H:m:s");
         $ar['bySV'] = ($groep == NULL) ? False : True;
         $array[] = $ar;
     }
