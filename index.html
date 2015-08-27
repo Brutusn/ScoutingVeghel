@@ -125,29 +125,6 @@
 			</div>
 		</span>
       </div>
-      
-      <div class="section staf" id="staf">
-	  
-		<span class="size-limit">
-        <h2>Leiding, GéBé en het bestuur:</h2>
-
-		<div class="groepen-container bestuur-container">		
-			<div id="leiders">
-				<h2>Het leiding team</h2>
-				<p>De fanatieke leid(st)ers zetten zich wekelijks in om een te gek programma te maken met als doel een lachend kind! Ze vormen een gezellig groep binnen Scouting Veghel! Naast de verschillende groepen zetten ze zich ook in voor andere activiteiten.</p>
-				</div>
-			<div id="gebe">
-				<h2>De groepsbegeleiding</h2>
-				<p>Waar een leider een groep doet draaien, zorgt de groepsbegeleiding ervoor dat het volledige leiding team goed blijft draaien. Ze zijn de echte steun pilaren voor de leid(st)ers, staan altijd klaar om te helpen of voor het brengen van goede tompoezen.</p>
-				</div>
-			<div id="bestuur">
-				<h2>Het bestuur</h2>
-				<p>Je ziet ze niet vaak, maar ze zijn er wel degelijk. Het bestuur! Als geen ander weten ze Scouting Veghel draaiende te houden, dragen zorg voor de blokhut en een gezond financieel plaatje. De sterke kracht achter Scouting Veghel.</p>
-			</div>
-		</div>
-		
-		</span>
-      </div>
 	  
       <div class="section activiteiten" id="activiteiten">
 		<span class="size-limit-small">
@@ -194,6 +171,29 @@
 		
 		</span>
       </div>
+
+    <div class="section staf" id="staf">
+
+        <span class="size-limit">
+        <h2>Leiding, GéBé en het bestuur:</h2>
+
+        <div class="groepen-container bestuur-container">
+            <div id="leiders">
+                <h2>Het leiding team</h2>
+                <p>De fanatieke leid(st)ers zetten zich wekelijks in om een te gek programma te maken met als doel een lachend kind! Ze vormen een gezellig groep binnen Scouting Veghel! Naast de verschillende groepen zetten ze zich ook in voor andere activiteiten.</p>
+            </div>
+            <div id="gebe">
+                <h2>De groepsbegeleiding</h2>
+                <p>Waar een leider een groep doet draaien, zorgt de groepsbegeleiding ervoor dat het volledige leiding team goed blijft draaien. Ze zijn de echte steun pilaren voor de leid(st)ers, staan altijd klaar om te helpen of voor het brengen van goede tompoezen.</p>
+            </div>
+            <div id="bestuur">
+                <h2>Het bestuur</h2>
+                <p>Je ziet ze niet vaak, maar ze zijn er wel degelijk. Het bestuur! Als geen ander weten ze Scouting Veghel draaiende te houden, dragen zorg voor de blokhut en een gezond financieel plaatje. De sterke kracht achter Scouting Veghel.</p>
+            </div>
+        </div>
+
+        </span>
+    </div>
 	  
 	  <div class="section contact" id="contact">
 	  
@@ -234,16 +234,50 @@
 	  
 		<span class="size-limit">
         <h2>Blokhut en verhuur:</h2>
+            <div class="contact-container">
+                <div class="contact-form contact-left">
+                    <form id="verhuur-form" action="" method="POST">
+                        <input type="text" id="name" name="name" class="inform inp btm" maxlength="133" placeholder="Naam" required>
+                        <input type="text" id="contactperson" name="contactperson" class="inform inp btm" maxlength="133" placeholder="Contactpersoon" required>
+                        <br><input type="email" id="mail" name="mailadr" class="inform inp" placeholder="E-mail adres" required>
+                        <br><input type="number" id="phone" name="phone" class="inform inp" placeholder="Telefoon nummer" required>
+                        <input type="text" id="adress" name="adress" class="inform inp btm" maxlength="133" placeholder="Adres" required>
+                        <input type="text" id="postcode" name="contactperson" class="inform inp btm" maxlength="7" placeholder="Postcode" required>
+                        <input type="text" id="city" name="city" class="inform inp btm" maxlength="133" placeholder="Woonplaats" required>
 
-		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                        <br><input type="number" id="people" name="people" class="inform inp" min="25" max="150" placeholder="Aantal personen" required>
+
+                        <br><textarea class="inform inp" name="tArea" required placeholder="Beschrijving van de activiteit en eventuele wensen/vragen."></textarea>
+                        <p>Vul het onderstaande veld in wanneer de huuroptie voor een eigen groep is.</p>
+                        <input type="text" id="groepcode" name="groepcode" class="inform inp btm" maxlength="255" placeholder="Groepcode">
+                        <br><input type="submit" value="Neem optie" id="subm" name="subm" class="inform button">
+                        <br><span>Alle velden behalve "Eigen groepen" zijn verplicht</span>
+                    </form>
+                </div>
+
+                <div class="contact-form contact-right">
+                    <h3>Blokhut van Scouting Veghel huren</h3>
+                    <p>In principe is onze blokhut het hele jaar door beschikbaar voor verhuur voor kampen en weekenden.
+                        Bij het nemen van een optie wordt een indicatie gegeven van de daadwerkelijke beschikbaarheid.
+                        Houdt er rekening mee dat wanneer er groepen van Scouting Veghel draaien, de huurder tijdelijk de blokhut moet verlaten.</p>
+                    <h3>Wensen of vragen</h3>
+                    <p>Heeft u speciale wensen voor het verhuur dan kunt u die aangeven tijdens het huren. Vragen kunnen altijd gesteld worden via het bovenstaande contact formulier.</p>
+
+                    <h3>Kosten</h3>
+                    <p>Gebruik onderstaande rekenmachine om een indicatie te krijgen van de kosten voor het huren. De rekenmachine dient enkel als indicatie!</p>
+
+                </div>
+            </div>
+
 		
 		</span>
       </div>
 
       <footer class="section">
 	    <h2>Volg ons:</h2>
-		<p></p><a href="https://www.facebook.com/ScoutingVeghel" target="_BLANK"><i class="fa fa-facebook-square"></i> /ScoutingVeghel</a></p>
+		<p><a href="https://www.facebook.com/ScoutingVeghel" target="_BLANK"><i class="fa fa-facebook-square"></i> /ScoutingVeghel</a></p>
 		<p><a href="https://twitter.com/scoutingveghel" target="_BLANK"><i class="fa fa-twitter-square"></i> @ScoutingVeghel</a></p>
+        <p><a href="https://github.com/Brutusn/ScoutingVeghel" target="_BLANK"><i class="fa fa-github-square"></i> GitHub project</a></p>
         <p class="small">&copy; Scouting Veghel - <span id="copy-year"></span></p>
       </footer>
   </body>

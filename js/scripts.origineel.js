@@ -297,7 +297,18 @@ window.onscroll = function () {
     requestScroll();
 };
 
-// TODO: One click event on the menu.. not on the list elements..
+$I("arrowDown").onclick = function () {
+    menuClick = true;
+    removeClass("menu-active");
+    $I("menu-links").children[0].classList.add("menu-active");
+    scrollUp("groepen");
+};
+
+$I("sv-logo").onclick = function () {
+    removeClass("menu-active");
+    scrollUp("landing-page");
+};
+
 menu.onclick = function (evt) {
     var x = evt.target.getAttribute("data-link");
     if (x) {
@@ -390,19 +401,37 @@ var hired = [];
 }];*/
 
 // Function returns true as soon as one of the dates inside obj is true.
-var isBetweenDate = function(obj, checkDate, callback) {
-    var dayFrom, dayTo;
+//var isBetweenDate = function(obj, checkDate, callback) {
+//    var dayFrom, dayTo;
+//    console.info(Date.parse(checkDate));
+//    if (obj) {
+//        for (var i = 0; i < obj.length; i++) {
+//            dayFrom = Date.parse(obj[i].dayFrom);
+//            dayTo = Date.parse(obj[i].dayTo);
+//            console.info(dayFrom, dayTo, (checkDate <= dayTo && checkDate >= dayFrom));
+//            if ((checkDate <= dayTo && checkDate >= dayFrom)) {
+//                callback(obj[i].bySV ? "sv": "other");
+//            }
+//        }
+//        callback(false);
+//    }
+//};
+var isTodayHired = function(obj) {
+    var dayFrom, dayTo, checkDate = Date.now();
+    console.info(checkDate);
     if (obj) {
         for (var i = 0; i < obj.length; i++) {
             dayFrom = Date.parse(obj[i].dayFrom);
             dayTo = Date.parse(obj[i].dayTo);
+            console.info(dayFrom, dayTo, (checkDate <= dayTo && checkDate >= dayFrom));
             if ((checkDate <= dayTo && checkDate >= dayFrom)) {
-                callback(obj[i].bySV ? "sv": "other");
+                return obj[i].bySV ? "sv": "other";
             }
         }
-        callback(false);
+        return false;
     }
 };
+
 //
 //var datepickr = function (selector, config) {
 //    'use strict';
@@ -934,7 +963,7 @@ function processHired(msg) {
 
             return weekdays.shorthand[t.getDay()] + " " + t.getDate() + " " + months.shorthand[t.getMonth()]/* + " " + t.getFullYear()*/ + ", " + t.getHours() +  ":00";
         },
-        today = new Date();
+        today;
 
     // Make a list...
     ul = $el("ul");
@@ -959,20 +988,17 @@ function processHired(msg) {
     fragment.appendChild(p);
 
     // Function that checks if it's today...
-    isBetweenDate(msg, today, function (msg) {
-        if (!msg) {
-            p.innerHTML = "De blokhut is op dit moment vrij."
+    today = isTodayHired(msg);
+    if (today) {
+        if (today === "sv") {
+            p.innerHTML = "De blokhut wordt gebruikt door Scouting Veghel.";
         } else {
-            if (msg === "sv") {
-                p.innerHTML = "De blokhut wordt gebruikt door Scouting Veghel.";
-            } else {
-                p.innerHTML = "De blokhut is op dit moment bezet.";
-            }
+            p.innerHTML = "De blokhut is op dit moment bezet.";
         }
-    });
+    } else {
+        p.innerHTML = "De blokhut is op dit moment vrij.";
+    }
 
     container.innerHTML = "";
     container.appendChild(fragment);
 }
-
-
