@@ -2,9 +2,8 @@
 session_start();
 date_default_timezone_set('Europe/Paris');
 
-error_reporting(1);
+//error_reporting(1);
 
-//mail('nieuwjaarparty@gmail.com', 'Test', 'Kijken of dit wel werk', 'FROM: Hnyp');
 if (isset($_POST["name"]) && isset($_POST["mailadr"]) && isset($_POST["whoTo"]) && isset($_POST["tArea"])) {
     $naam = trim(strip_tags($_POST["name"]), " \n");
     $mail = trim(strip_tags($_POST["mailadr"]), " \n");
