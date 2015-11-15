@@ -35,61 +35,40 @@ function removeClass(c) {
         return;
     }
 }
-var ajax = {
-    x: function() {
-        if (typeof XMLHttpRequest !== 'undefined') {
-            return new XMLHttpRequest();
-        }
-        var versions = [
-            "MSXML2.XmlHttp.5.0",
-            "MSXML2.XmlHttp.4.0",
-            "MSXML2.XmlHttp.3.0",
-            "MSXML2.XmlHttp.2.0",
-            "Microsoft.XmlHttp"
-        ];
 
-        var xhr;
-        for(var i = 0; i < versions.length; i++) {
-            try {
-                xhr = new ActiveXObject(versions[i]);
-                break;
-            } catch (e) {
-            }
-        }
-        return xhr;
-    },
-    send: function(url, callback, method, data, sync) {
-        var x = ajax.x();
-        x.open(method, url, sync);
-        x.onreadystatechange = function() {
-            if (x.readyState > 3) {
-                if (x.status === 200) {
-                    callback(x.responseText);
-                } else {
-                    showError("Er is iets mis gegaan. (Status: " + x.status + ")");
-                }
-            }
-        };
-        if (method === 'POST') {
-            x.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        }
-        x.send(data)
-    },
-    get: function(url, data, callback) {
-        var sync = true;
-        var query = [];
-        for (var key in data) {
-            query.push(encodeURIComponent(key) + '=' + encodeURIComponent(data[key]));
-        }
-        ajax.send(url + '?' + query.join('&'), callback, 'GET', null, sync)
-    },
-    post: function(url, data, callback, sync) {
-        var query = [];
-        for (var key in data) {
-            query.push(encodeURIComponent(key) + '=' + encodeURIComponent(data[key]));
-        }
-        ajax.send(url, callback, 'POST', query.join('&'), sync)
+// Ajax call...
+var ajax = function(url, data, callback) {
+    // Check if "ajax" is possible.
+    var x = {};
+    if (typeof XMLHttpRequest !== 'undefined') {
+        x = new XMLHttpRequest();
+    } else {
+        showError("Dingen zijn niet ondersteund.. update je browser...");
+        return;
     }
+
+    // Construct query.
+    var query = [];
+    for (var key in data) {
+        query.push(encodeURIComponent(key) + '=' + encodeURIComponent(data[key]));
+    }
+
+    // Do stuff with the data.
+    x.open("POST", url, true);
+
+    x.onreadystatechange = function() {
+        if (x.readyState === 4 && x.status === 200) {
+            // Success!
+            callback(x.responseText)
+        } //else {
+            // We reached our target server, but it returned an error
+            //showError("Er is iets mis gegaan. (Status: " + x.status + ")");
+        //}
+    };
+
+    x.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+    x.send(query.join("&"));
 };
 
 function onScrollEvt () {
@@ -343,7 +322,7 @@ $I("contact-form").onsubmit = function () {
 
         showSuccess("Aanmelding verstsuren...", form);
 
-        ajax.post("../php/contact-form.php", data, function (msg) {
+        ajax("../php/contact-form.php", data, function (msg) {
             // Reset form after succes.
             $I(form).reset();
             showSuccess(msg, form);
@@ -418,14 +397,14 @@ var hired = [];
 //};
 var isTodayHired = function(obj) {
     var dayFrom, dayTo, checkDate = Date.now();
-    console.info(checkDate);
+    //console.info(checkDate);
     if (obj) {
         for (var i = 0; i < obj.length; i++) {
             dayFrom = Date.parse(obj[i].dayFrom);
             dayTo = Date.parse(obj[i].dayTo);
             //Because of the removel of the time we need to add 24 hours minus 1 millisecond to make sure the entire day is actually hired.
             dayTo = (dayTo === dayFrom) ? dayTo + 86399999 : dayTo;
-            console.info(dayFrom, dayTo, (checkDate <= dayTo && checkDate >= dayFrom));
+            //console.info(dayFrom, dayTo, (checkDate <= dayTo && checkDate >= dayFrom));
             if ((checkDate <= dayTo && checkDate >= dayFrom)) {
                 return obj[i].bySV ? "sv": "other";
             }
@@ -940,9 +919,13 @@ var isTodayHired = function(obj) {
 // Get all the reserveringen..
 (function () {
     var currentDate = new Date();
-    ajax.get("../php/Reservering.php", {d: currentDate.getDate(), m: currentDate.getMonth() + 1, y: currentDate.getFullYear()}, function (msg) {
-        console.info(JSON.parse(msg));
-        processHired(JSON.parse(msg));
+    ajax("../php/Reservering.php", {d: currentDate.getDate(), m: currentDate.getMonth() + 1, y: currentDate.getFullYear()}, function (msg) {
+        //console.info(JSON.parse(msg));
+        try {
+            processHired(JSON.parse(msg));
+        } catch(e) {
+            console.warn("Er is iets mis gegaan met het ophalen van de reserveringen.", msg);
+        }
     });
 })();
 

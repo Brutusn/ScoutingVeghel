@@ -6,9 +6,9 @@
 
 require_once("DB2.php");
 
-$d = $_GET['d'];
-$m = $_GET['m'];
-$y = $_GET['y'];
+$d = $_POST['d'];
+$m = $_POST['m'];
+$y = $_POST['y'];
 
 $d = filter_var($d, FILTER_VALIDATE_INT);
 $m = filter_var($m, FILTER_VALIDATE_INT);
