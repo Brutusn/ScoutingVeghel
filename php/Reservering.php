@@ -1,10 +1,11 @@
 <?php
 
-//ini_set('display_startup_errors',1);
-//ini_set('display_errors',1);
-//error_reporting(-1);
+ini_set('display_startup_errors',1);
+ini_set('display_errors',1);
+error_reporting(-1);
 
 require_once("DB2.php");
+
 
 $m = $_GET['m'];
 $y = $_GET['y'];
@@ -14,7 +15,6 @@ $y = filter_var($y, FILTER_VALIDATE_INT);
 
 if($m >= 1 && $m <= 12 && $y > 0) {
     //echo getReservationsMonth($m, $y);
-
 	echo json_encode(getReservationsMonth($m, $y));
 } else {
 	echo "fout";
@@ -49,8 +49,8 @@ function getReservations(DateTime $start, DateTime $end)
         $ar = [];//array('dayFrom', 'dayTo', 'bySV');
         $begin = new DateTime($begindate);
         $end = new DateTime($enddate);
-        $ar['dayFrom'] = $begin->format("Y-m-d H:m:s");
-        $ar['dayTo'] = $end->format("Y-m-d H:m:s");
+        $ar['dayFrom'] = $begin->format("Y-m-d");
+        $ar['dayTo'] = $end->format("Y-m-d");
         $ar['bySV'] = ($groep == NULL) ? False : True;
         $array[] = $ar;
     }
@@ -74,10 +74,10 @@ function getReservationsMonth($m, $y)
     //if the month is 12, we know that the next month is 01 and in the next year
     $y2 = ($m == 12) ? $y + 1 : $y;
     //month 13 does not exist so count modulo
-    $m2 = ($m + 1) % 12;
+    $m2 = ($m == 12 ) ? 1 : ($m + 1) ;
 
-    return getReservations(DateTime::createFromFormat("Y/m/d H:i:s", "" . $y . "/" . $m . "/01 00:00:00"),
-        DateTime::createFromFormat("Y/m/d H:i:s", "" . $y2 . "/" . $m2 . "/01 00:00:00"));
+    return getReservations(DateTime::createFromFormat("Y-m-d H:i:s", "" . $y . "-" . $m . "-01 00:00:00"),
+        DateTime::createFromFormat("Y-m-d H:i:s", "" . $y2 . "-" . $m2 . "-01 00:00:00"));
 }
 
 ?>
