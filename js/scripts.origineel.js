@@ -970,7 +970,7 @@ function processHired(msg) {
     ul.classList.add("hide-mobile");
 
     // Reverse array loop :)
-    for (i = msg.length - 1; i >= 0; i--) {
+    for (i = 0; i < msg.length; i++) {
         li = $el("li");
         dateFrom = time(msg[i].dayFrom);
         dateTo = time(msg[i].dayTo);
