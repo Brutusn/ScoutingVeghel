@@ -294,6 +294,12 @@ menu.onclick = function (evt) {
         menuClick = true;
         removeClass("menu-active");
 
+        // Closes the menu button..
+        if (menu.classList.contains("hb-menu-open")) {
+            menu.classList.toggle("hb-menu-open");
+            $I("hb-menu-btn-click").classList.toggle("hb-menu-btn-open");
+        }
+
         evt.target.classList.add("menu-active");
         scrollUp(x);
     }
