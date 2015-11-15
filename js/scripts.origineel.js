@@ -977,7 +977,7 @@ function processHired(msg) {
         dateFrom = time(msg[i].dayFrom);
         dateTo = time(msg[i].dayTo);
 
-        li.innerHTML = "Van: " + dateFrom + " tot: " + dateTo;
+        li.innerHTML = ((dateTo === dateFrom) ? ("Op: " + dateFrom) : ("Van: " + dateFrom + " tot: " + dateTo));
 
         ul.appendChild(li);
     }
