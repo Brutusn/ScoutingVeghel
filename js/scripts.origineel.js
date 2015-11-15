@@ -938,7 +938,7 @@ var isTodayHired = function(obj) {
 // Get all the reserveringen..
 (function () {
     var currentDate = new Date();
-    ajax.get("../php/Reservering.php", {m: currentDate.getMonth() + 1, y: currentDate.getFullYear()}, function (msg) {
+    ajax.get("../php/Reservering.php", {d: currentDate.getDate(), m: currentDate.getMonth() + 1, y: currentDate.getFullYear()}, function (msg) {
         console.info(JSON.parse(msg));
         processHired(JSON.parse(msg));
     });
