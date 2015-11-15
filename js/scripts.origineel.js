@@ -130,10 +130,10 @@ function onScrollEvt () {
         if (nav.height >= gro.top && nav.height < gro.bottom) {
             menu.children[0].classList.add("menu-active");
         }
-        if (nav.height >= sta.top && nav.height < sta.bottom) {
+        if (nav.height >= act.top && nav.height < act.bottom) {
             menu.children[1].classList.add("menu-active");
         }
-        if (nav.height >= act.top && nav.height < act.bottom) {
+        if (nav.height >= sta.top && nav.height < sta.bottom) {
             menu.children[2].classList.add("menu-active");
         }
         if (nav.height >= con.top && nav.height < con.bottom) {
@@ -283,8 +283,8 @@ function showSuccess(msg, form){
 // Sticky navigation bar :)
 var navElem = $I("navigatie"),
     groupElem = $I("groepen"),
-    stafElem = $I("staf"),
     actiElem = $I("activiteiten"),
+    stafElem = $I("staf"),
     contElem = $I("contact"),
     huurElem = $I("verhuur"),
     scrollYpos = window.scrollY,
@@ -977,7 +977,7 @@ function processHired(msg) {
         dateFrom = time(msg[i].dayFrom);
         dateTo = time(msg[i].dayTo);
 
-        li.innerHTML = ((dateTo === dateFrom) ? ("Op: " + dateFrom) : ("Van: " + dateFrom + " tot: " + dateTo));
+        li.textContent = ((dateTo === dateFrom) ? ("Op: " + dateFrom) : ("Van: " + dateFrom + " tot: " + dateTo));
 
         ul.appendChild(li);
     }
@@ -993,12 +993,12 @@ function processHired(msg) {
     today = isTodayHired(msg);
     if (today) {
         if (today === "sv") {
-            p.innerHTML = "De blokhut wordt gebruikt door Scouting Veghel.";
+            p.textContent = "De blokhut wordt gebruikt door Scouting Veghel.";
         } else {
-            p.innerHTML = "De blokhut is op dit moment bezet.";
+            p.textContent = "De blokhut is op dit moment bezet.";
         }
     } else {
-        p.innerHTML = "De blokhut is op dit moment vrij.";
+        p.textContent = "De blokhut is op dit moment vrij.";
     }
 
     container.innerHTML = "";
