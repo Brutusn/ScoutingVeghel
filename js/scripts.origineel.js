@@ -961,7 +961,7 @@ function processHired(msg) {
                     longhand: ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November', 'December']
                 };
 
-            return weekdays.shorthand[t.getDay()] + " " + t.getDate() + " " + months.shorthand[t.getMonth()]/* + " " + t.getFullYear()*/ + ", " + t.getHours() +  ":00";
+            return weekdays.shorthand[t.getDay()] + " " + t.getDate() + " " + months.shorthand[t.getMonth()] /*+ " " + t.getFullYear() *//*+ ", " + t.getHours() +  ":00"*/;
         },
         today;
 
