@@ -80,15 +80,73 @@ header {
 
 // Form
 form {
-  & span {
-    font-size: 75%;
-    font-color: @col-text-lighter;
-  }
   & textarea {
     height: 15em;
     font-family: inherit;
     resize:none;
   }
+}
+
+.tab-list {
+  width: 100%;
+  list-style: none;
+  font-weight: bold;
+  font-size: 100%;
+  overflow: hidden;
+  margin: 0 0 .75em 0;
+  padding: 0;
+  .shadow(1);
+  border-radius: 5px;
+  & li {
+    cursor: pointer;
+    margin: 0;
+    padding: .5em 2em .5em 1em;
+    background-color: @col-text-light;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    position: relative;
+    float: left;
+    width: calc(~"100% / 3");
+    .transition;
+    &:after {
+      content: "\f0da";
+      font: normal normal normal @fa-font-size-base/1 FontAwesome; // shortening font declaration
+      position: absolute;
+      right: .5em;
+      top: .75em;
+
+      font-size: inherit; // can't have font-size inherit on line above, so need to override
+      text-rendering: auto; // optimizelegibility throws things off #1094
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      transform: translate(0, 0); // ensures no half-pixel rendering in firefox
+    }
+    &.tab-active {
+      color: @col-text-light;
+      background-color: @col-link;
+      &:after {
+        transform: rotate(90deg);
+        right: .625em;
+      }
+    }
+    &:hover {
+      color: @col-text-light;
+      background-color: @col-link-hover;
+    }
+
+  }
+}
+.tabpanel {
+  display: none;
+}
+.tabpanel-active {
+  display: block;
+}
+
+.text-small {
+  font-size: 75%;
+  font-color: @col-text-lighter;
 }
 .inform {
   font-size: 1.25em;
@@ -126,6 +184,13 @@ form {
       border-right: @half solid @col-error;
     }
   }
+}
+.inp-25 {
+  width: calc(~"35% - .75em");
+  margin-right: .5em;
+}
+.inp-75 {
+  width: 65%;
 }
 .button {
   background-color: @col-link;

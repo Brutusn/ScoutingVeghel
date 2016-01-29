@@ -338,6 +338,15 @@ $I("contact-form").onsubmit = function () {
     return false;
 };
 
+$I("verhuur-tabs").addEventListener("click", function (evt) {
+    console.info(evt.target);
+    removeClass("tab-active");
+    removeClass("tabpanel-active");
+    evt.target.classList.add("tab-active");
+
+    $I(evt.target.getAttribute("data-tab")).classList.add("tabpanel-active");
+});
+
 $I("hb-menu-btn-click").onclick = function () {
     $I("menu-links").classList.toggle("hb-menu-open");
     this.classList.toggle("hb-menu-btn-open");

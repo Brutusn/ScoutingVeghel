@@ -262,14 +262,29 @@
         <h2>Blokhut en verhuur:</h2>
             <div class="contact-container">
                 <div class="contact-form contact-left">
+                    <ul id="verhuur-tabs" class="tab-list" role="tablist">
+                        <li role="tab" data-tab="verhuur-stap-1" class="tab-active" title="Aankomst">Aankomst</li>
+                        <li role="tab" data-tab="verhuur-stap-2" title="Vertrek">Vertrek</li>
+                        <li role="tab" data-tab="verhuur-stap-3" title="Gegevens">Gegegevens</li>
+                    </ul>
                     <form id="verhuur-form" action="" method="POST">
+                        <!-- One form to rule them all -->
+                    <span id="verhuur-stap-1" role="tabpanel" class="tabpanel tabpanel-active">
+                        <p>Kies een aankomst datum en tijd:</p>
+                    </span>
+                    <span id="verhuur-stap-2" role="tabpanel" class="tabpanel">
+                        <p>Kies een vertrek datum en tijd:</p>
+
+                    </span>
+                    <span id="verhuur-stap-3" role="tabpanel" class="tabpanel">
+
                         <input type="text" id="name" name="name" class="inform inp btm" maxlength="133" placeholder="Naam" required>
                         <input type="text" id="contactperson" name="contactperson" class="inform inp btm" maxlength="133" placeholder="Contactpersoon" required>
                         <br><input type="email" id="mail" name="mailadr" class="inform inp" placeholder="E-mail adres" required>
                         <br><input type="number" id="phone" name="phone" class="inform inp" placeholder="Telefoon nummer" required>
-                        <input type="text" id="adress" name="adress" class="inform inp btm" maxlength="133" placeholder="Adres" required>
-                        <input type="text" id="postcode" name="contactperson" class="inform inp btm" maxlength="7" placeholder="Postcode" required>
-                        <input type="text" id="city" name="city" class="inform inp btm" maxlength="133" placeholder="Woonplaats" required>
+                        <input type="text" id="adress" name="adress" class="inform inp btm" maxlength="133" placeholder="Straat + huisnummer" required>
+                        <input type="text" id="postcode" name="contactperson" class="inform inp btm inp-25" maxlength="7" placeholder="Postcode" required>
+                        <input type="text" id="city" name="city" class="inform inp btm inp-75" maxlength="133" placeholder="Woonplaats" required>
 
                         <br><input type="number" id="people" name="people" class="inform inp" min="25" max="150" placeholder="Aantal personen" required>
 
@@ -277,7 +292,9 @@
                         <p>Vul het onderstaande veld in wanneer de huuroptie voor een eigen groep is.</p>
                         <input type="text" id="groepcode" name="groepcode" class="inform inp btm" maxlength="255" placeholder="Groepcode">
                         <br><input type="submit" value="Neem optie" id="subm" name="subm" class="inform button">
-                        <br><span>Alle velden behalve "Eigen groepen" zijn verplicht</span>
+                        <br><span class="text-small">Alle velden behalve "Eigen groepen" zijn verplicht</span>
+                    </span>
+
                     </form>
                 </div>
 
