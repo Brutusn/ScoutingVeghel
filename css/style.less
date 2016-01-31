@@ -8,10 +8,10 @@
 
 // Full elements
 *, *:before, *:after {
-  -webkit-box-sizing: border-box; // Safari/Chrome, other WebKit
   -moz-box-sizing: border-box;    // Firefox, other Gecko
   box-sizing: border-box;         // Opera/IE 8+
-  -moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
 }
 body, html {
   max-height: 100%;
@@ -89,7 +89,7 @@ form {
 }
 
 .tab-list {
-  width: 100%;
+  //width: 100%;
   list-style: none;
   font-weight: bold;
   font-size: 100%;
@@ -105,10 +105,11 @@ form {
     background-color: @col-text-light;
     overflow: hidden;
     text-overflow: ellipsis;
-    display: inline-block;
+    display: block;
     position: relative;
     float: left;
     width: calc(~"100% / 3");
+    .no-select;
     .transition;
     &:after {
       content: "\f0da";
@@ -116,6 +117,7 @@ form {
       position: absolute;
       right: .5em;
       top: .75em;
+      .transition(transform);
 
       font-size: inherit; // can't have font-size inherit on line above, so need to override
       text-rendering: auto; // optimizelegibility throws things off #1094
@@ -232,9 +234,9 @@ form {
   align-items: flex-start;
 }
 .contact-form {
-  padding: @normal;
+  //padding: @normal;
   display: inline-block;
-  width: 30vw;
+  width: 45%;
   min-width: 320px;
 }
 .contact-right h3 {
@@ -377,7 +379,6 @@ div.section {
   & div {
     background: @col-text-light;
     background-position: center center;
-    -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
@@ -484,7 +485,6 @@ div.section {
 .activiteiten {
   .inner-shadow;
   background: @col-background4 url("../images/jota.jpg") center center;
-  -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
@@ -534,7 +534,7 @@ div.section {
 //}
 
 //Media querries
-// MAXIMAL WIDTH
+// MAXIMUM WIDTH
 @media (max-width: 1280px) {
   .size-limit, .size-limit-small {
     padding: 0 1em;

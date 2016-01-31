@@ -95,12 +95,6 @@ function onScrollEvt () {
         navElem.classList.remove("nav-sticky-top");
     }
 
-    //if (gro.top <= 0) {
-    //    $I("landing-page").style.visibility = "hidden";
-    //} else {
-    //    $I("landing-page").removeAttribute("style");
-    //}
-
     if (!menuClick) {
         // remove old active class.
         removeClass("menu-active");
@@ -339,7 +333,7 @@ $I("contact-form").onsubmit = function () {
 };
 
 $I("verhuur-tabs").addEventListener("click", function (evt) {
-    console.info(evt.target);
+    //console.info(evt.target);
     removeClass("tab-active");
     removeClass("tabpanel-active");
     evt.target.classList.add("tab-active");

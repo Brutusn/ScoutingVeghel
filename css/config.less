@@ -42,13 +42,21 @@
 }
 
 
-.transition {
-	//-webkit-transition: all .1s ease-out;
-    transition: all .1s ease-out;
+.transition(@el: all) {
+    transition: @el .1s ease-out;
 }
 
 .text-shadow {
 	text-shadow: 2px 2px fade(@col-text, 60%);
+}
+
+.no-select {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 // Sizes
