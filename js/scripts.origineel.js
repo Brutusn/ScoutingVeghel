@@ -332,6 +332,7 @@ $I("contact-form").onsubmit = function () {
     return false;
 };
 
+// Verhuur tab control
 $I("verhuur-tabs").addEventListener("click", function (evt) {
     //console.info(evt.target);
     removeClass("tab-active");
@@ -340,6 +341,41 @@ $I("verhuur-tabs").addEventListener("click", function (evt) {
 
     $I(evt.target.getAttribute("data-tab")).classList.add("tabpanel-active");
 });
+$I("verhuur-goto-2").addEventListener("click", function (evt) {
+    evt.preventDefault();
+    removeClass("tab-active");
+    removeClass("tabpanel-active");
+
+    $I("verhuur-stap-2").classList.add("tabpanel-active");
+    $I("verhuur-tabs").children[1].classList.add("tab-active");
+    //return false;
+});
+$I("verhuur-goto-3").addEventListener("click", function (evt) {
+    evt.preventDefault();
+    removeClass("tab-active");
+    removeClass("tabpanel-active");
+
+    $I("verhuur-stap-3").classList.add("tabpanel-active");
+    $I("verhuur-tabs").children[2].classList.add("tab-active");
+    //return false;
+});
+
+$I("EllenIkWil1DagHuren").addEventListener("change", function (evt) {
+    var bool = this.checked;
+
+    // Enable or disable date input fields :)
+    $I("vertrek-dag").disabled = bool;
+    $I("vertrek-maand").disabled = bool;
+    $I("vertrek-jaar").disabled = bool;
+
+    if (bool) {
+        // Set the dates the same as the aankomst...
+        $I("vertrek-dag").value = $I("aankomst-dag").value;
+        $I("vertrek-maand").value = $I("aankomst-maand").value;
+        $I("vertrek-jaar").value = $I("aankomst-jaar").value;
+    }
+});
+
 
 $I("hb-menu-btn-click").onclick = function () {
     $I("menu-links").classList.toggle("hb-menu-open");
