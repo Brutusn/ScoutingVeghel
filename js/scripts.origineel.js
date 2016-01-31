@@ -360,6 +360,22 @@ $I("verhuur-goto-3").addEventListener("click", function (evt) {
     //return false;
 });
 
+$I("EllenIkWil1DagHuren").addEventListener("change", function (evt) {
+    var bool = this.checked;
+
+    // Enable or disable date input fields :)
+    $I("vertrek-dag").disabled = bool;
+    $I("vertrek-maand").disabled = bool;
+    $I("vertrek-jaar").disabled = bool;
+
+    if (bool) {
+        // Set the dates the same as the aankomst...
+        $I("vertrek-dag").value = $I("aankomst-dag").value;
+        $I("vertrek-maand").value = $I("aankomst-maand").value;
+        $I("vertrek-jaar").value = $I("aankomst-jaar").value;
+    }
+});
+
 
 $I("hb-menu-btn-click").onclick = function () {
     $I("menu-links").classList.toggle("hb-menu-open");
