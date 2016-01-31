@@ -14,6 +14,8 @@ $d = filter_var($d, FILTER_VALIDATE_INT);
 $m = filter_var($m, FILTER_VALIDATE_INT);
 $y = filter_var($y, FILTER_VALIDATE_INT);
 
+//TODO Add the possibility to specify an end date. If not set use the behaviour specified below and if set check for that specific interval
+
 if($d <= 31 && $d > 0 && $m >= 1 && $m <= 12 && $y > 0) {
     //echo getReservationsMonth($m, $y);
 	echo json_encode(getReservationsNextDays($d, $m, $y));

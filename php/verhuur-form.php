@@ -1,11 +1,14 @@
 <?php
+
+require_once("DB2.php");
+
 session_start();
 date_default_timezone_set('Europe/Paris');
 
 error_reporting(1);
 
 //check if all fields are fille din
-//TODO still need to add the dateFrom nd the dateTo
+//TODO still need to add the dateFrom and the dateTo
 if (isset($_POST["name"]) && isset($_POST["contact"]) && isset($_POST["mailadr"]) && isset($_POST["telefoon"]) 
     && isset($_POST["adres"]) && isset($_POST["postcode"]) && isset($_POST["plaats"]) 
     && isset($_POST["aantalPers"]) && isset($_POST["tArea"]) && isset($_POST["groepsCode"])) {
@@ -26,17 +29,33 @@ if (isset($_POST["name"]) && isset($_POST["contact"]) && isset($_POST["mailadr"]
         //Get information based on the group code and process the request
 
     }
-    else if ($naam != "" && $conact != "" && $mail != "" && $telefoon != "" && $adres != "" && $postcode != "" && $plaats != "" && $aantalPers != "" && $area) {
+    else if ($naam != "" && $contact != "" && $mail != "" && $telefoon != "" && $adres != "" && $postcode != "" && $plaats != "" && $aantalPers != "" && $area) {
         //Filled in by external party
         
         //First cehck if the party already exists
 
+        $mysqli = databaseMYSQLi();
+        $stmt = $mysqli->prepare("CALL GetHuurder(?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssssss", $naam, $contact, $mail, $telefoon, $adres, $postcode, $plaats);
+        $stmt->execute();
+        $stmt->bind_result($hid);
 
         //If the party does not exists, create it
+        if ($hid->fetchColumn())
 
 
 
         //Then create the reservation and do the real processing of the request
+        $startSTR = $start->format("Y-m-d H:i:s");
+        $endSTR = $end->format("Y-m-d H:i:s");
+        //First create the Reservering
+
+        //Then create the link between de verhuurder and the reservering (the actual verhuring)
+        $today = time();
+        $todaySTR = $today->format("Y-m-d H:i:s");
+
+        //Then send confirmation email to verhuurder with confirm string
+
     }
         
 }
