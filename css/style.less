@@ -522,6 +522,48 @@ div.section {
   padding: 0;
 }
 
+// Verhuursite deel..
+.input-wrapper, .datum-wrapper, .tijd-wrapper {
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+.input-wrapper {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.datum-wrapper {
+  width: 60%;
+  margin-bottom: @normal;
+}
+.tijd-wrapper {
+  width: 39%;
+  float: right;
+  margin-bottom: @normal;
+}
+
+// Sub wrappers
+.wrapper-one-third {
+  width: 40%;
+  display: inline;
+  &:first-of-type, &:last-of-type {
+    width: 28%;
+  }
+}
+.wrapper-half {
+  width: 49%;
+  display: inline;
+}
+.label-top, .label-bottom {
+  text-align: center;
+  display: block;
+}
+.label-top {
+  margin-bottom: @half;
+}
+
 // Jup, an ID... well this is so specific, it's not problem.
 #arrowDown {
   position: absolute;
@@ -612,6 +654,13 @@ div.section {
 
   .verhuur-status {
     font-weight: normal;
+  }
+  .datum-wrapper {
+    width: 100%;
+  }
+  .tijd-wrapper {
+    width: 100%;
+    float: none;
   }
 }
 // MINIMAL WIDTH
