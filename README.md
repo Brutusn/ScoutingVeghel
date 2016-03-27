@@ -1,2 +1,2 @@
 # ScoutingVeghel
-Website van Scouting Veghel
+De vernieuwde website van Scouting Veghel
