@@ -360,27 +360,85 @@ $I("verhuur-goto-3").addEventListener("click", function (evt) {
     //return false;
 });
 
-$I("EllenIkWil1DagHuren").addEventListener("change", function (evt) {
-    var bool = this.checked;
-
-    // Enable or disable date input fields :)
-    $I("vertrek-dag").disabled = bool;
-    $I("vertrek-maand").disabled = bool;
-    $I("vertrek-jaar").disabled = bool;
-
-    if (bool) {
-        // Set the dates the same as the aankomst...
-        $I("vertrek-dag").value = $I("aankomst-dag").value;
-        $I("vertrek-maand").value = $I("aankomst-maand").value;
-        $I("vertrek-jaar").value = $I("aankomst-jaar").value;
-    }
-});
-
-
 $I("hb-menu-btn-click").onclick = function () {
     $I("menu-links").classList.toggle("hb-menu-open");
     this.classList.toggle("hb-menu-btn-open");
 };
+
+//======== Some cool function to do stuf with the verhuur date time picker...
+
+function verhuurDateTime () {
+    // Private variables... actually all are..
+    var $begin = {
+            j: $I("aankomst-jaar"),
+            m: $I("aankomst-maand"),
+            d: $I("aankomst-dag"),
+            uu: $I("aankomst-uur"),
+            mm: $I("aankomst-minuut")
+        },
+        $einde = {
+            j: $I("vertrek-jaar"),
+            m: $I("vertrek-maand"),
+            d: $I("vertrek-dag"),
+            uu: $I("vertrek-uur"),
+            mm: $I("vertrek-minuut")
+        },
+        $labels = document.getElementsByClassName("verhuur-label");
+        // De checkbox voor elle
+        $1dag = $I("EllenIkWil1DagHuren"),
+        
+        // Soort stop met automagisch dingen aanpassen...
+        nogGeenInput = true;
+    
+    function onJaarChange () {
+        
+    }
+    function onMaandChange () {
+        
+    }
+    function onDagChange () {
+        
+    }
+    function onUurChange () {
+        
+    }
+    function onMinuutChange () {
+        
+    }
+    function onEllenChange () {
+        for (var x in $einde) {
+            var e = $einde[x], b = $begin[x];
+            if (this.checked) {
+                if (e.nodeName !== "SELECT") {
+                    e.value = b.value;
+                } else {
+                    // It's the selectbox..
+                    e.selectedIndex = b.selectedIndex;
+                }
+            }
+            e.disabled = $1dag.checked;
+        }
+    }
+
+    // Apply listeners..
+    $1dag.onchange = onEllenChange;
+
+}
+
+// Activate functionality:
+verhuurDateTime();
+
+
+
+
+
+
+
+
+
+
+
+
 
 //=======Date Picker code===============================================================================================
 

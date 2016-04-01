@@ -159,6 +159,14 @@ form {
   width: 100%;
   margin: 0 0 .5em 0;
   .transition;
+  &:disabled {
+    background-color: #e0e0e0;
+    color: lighten(@col-text, 50%);
+    .shadow(0);
+  }
+}
+select.inform {
+  padding: .45em;
 }
 .inp {
   background-color: @col-text-light;
