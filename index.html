@@ -243,14 +243,19 @@
                     </form>
                 </div>
 
-                <div class="contact-form contact-right">
+                <div class="contact-form contact-right" id="map-size">
                     <h3>Wie moet ik hebben?</h3>
                     <strong>Groepsbegeleiding:</strong> Ik wil graag mijn kind aanmelden of ik wil graag het leiding team versterken.
                     <br><strong>Verhuur:</strong> Ik wil iets weten over het verhuur van de blokhut en ik kan het niet vinden op de <a href="http://verhuur.scoutingveghel.nl">verhuur</a> site.
                     <br><strong>Sponsoring:</strong> Ik kan een financiele of materiele bijdrage leveren aan Scouting Veghel.
                     <br><strong>Website:</strong> Ik heb een idee voor of probleem met de website.
                     <br>
-                    <br> Wanneer je alsnog niet weet wie je nodig hebt pak dan de groepsbegeleiding.
+                    <br> Wanneer je alsnog niet weet wie je nodig hebt pak dan de groepsbegeleiding.<br><br>
+                    <h3>Waar vind je ons?</h3>
+                    Dorshout 29<br>5462 GM Veghel<br>
+                    <div id="kaartje" class="map-box">
+                        <!-- placeholder -->
+                    </div>
                 </div>
             </div>
 		</span>
@@ -276,13 +281,13 @@
                         <!-- Datum -->
                         <span class="input-wrapper datum-wrapper">
                           <span class="wrapper-one-third">
-                            <label for="aankomst-dag" class="label-top"><i class="fa fa-chevron-up"></i></label>
-                                <input type="number" data-aankomst="true" id="aankomst-dag" name="aankomst-dag" class="inform inp btm" min="0" max="31" required>
-                            <label for="aankomst-dag" class="label-bottom"><i class="fa fa-chevron-down"></i></label>
+                            <label for="aankomst-dag" data-plus-it="true" class="label-top verhuur-label"><i class="fa fa-chevron-up"></i></label>
+                                <input type="number" data-aankomst="true" id="aankomst-dag" name="aankomst-dag" class="inform inp btm" min="1" max="31" required>
+                            <label for="aankomst-dag" class="label-bottom verhuur-label"><i class="fa fa-chevron-down"></i></label>
                           </span>
 
                           <span class="wrapper-one-third">
-                            <label for="aankomst-maand" class="label-top"><i class="fa fa-chevron-up"></i></label>
+                            <label for="aankomst-maand" data-plus-it="true" class="label-top verhuur-label"><i class="fa fa-chevron-up"></i></label>
                                 <select id="aankomst-maand" data-aankomst="true" name="aankomst-maand" class="inform inp btm" required>
                                   <option>Januari</option>
                                   <option>Februari</option>
@@ -297,13 +302,13 @@
                                   <option>November</option>
                                   <option>December</option>
                                 </select>
-                            <label for="aankomst-maand" class="label-bottom"><i class="fa fa-chevron-down"></i></label>
+                            <label for="aankomst-maand" class="label-bottom verhuur-label"><i class="fa fa-chevron-down"></i></label>
                           </span>
 
                           <span class="wrapper-one-third">
-                            <label for="aankomst-jaar" class="label-top"><i class="fa fa-chevron-up"></i></label>
+                            <label for="aankomst-jaar" data-plus-it="true" class="label-top verhuur-label"><i class="fa fa-chevron-up"></i></label>
                                 <input type="number" data-aankomst="true" id="aankomst-jaar" name="aankomst-jaar" class="inform inp btm" min="2016" max="2099" required>
-                            <label for="aankomst-jaar" class="label-bottom"><i class="fa fa-chevron-down"></i></label>
+                            <label for="aankomst-jaar" class="label-bottom verhuur-label"><i class="fa fa-chevron-down"></i></label>
                             </span>
                         </span>
 
@@ -311,15 +316,15 @@
                         <span class="input-wrapper tijd-wrapper">
 
                           <span class="wrapper-half">
-                            <label for="aankomst-uur" class="label-top"><i class="fa fa-chevron-up"></i></label>
+                            <label for="aankomst-uur" data-plus-it="true" class="label-top verhuur-label"><i class="fa fa-chevron-up"></i></label>
                                 <input type="number" data-aankomst="true" id="aankomst-uur" name="aankomst-uur" class="inform inp btm" min="0" max="23" required>
-                            <label for="aankomst-uur" class="label-bottom"><i class="fa fa-chevron-down"></i></label>
+                            <label for="aankomst-uur" class="label-bottom verhuur-label"><i class="fa fa-chevron-down"></i></label>
                             </span>
 
                           <span class="wrapper-half">
-                            <label for="aankomst-minuut" class="label-top"><i class="fa fa-chevron-up"></i></label>
+                            <label for="aankomst-minuut" data-plus-it="true" class="label-top verhuur-label"><i class="fa fa-chevron-up"></i></label>
                                 <input type="number" data-aankomst="true" id="aankomst-minuut" name="aankomst-minuut" class="inform inp btm" min="0" max="59" required>
-                            <label for="aankomst-minuut" class="label-bottom"><i class="fa fa-chevron-down"></i></label>
+                            <label for="aankomst-minuut" class="label-bottom verhuur-label"><i class="fa fa-chevron-down"></i></label>
                             </span>
                         </span>
 
@@ -334,12 +339,12 @@
                         <!-- Datum -->
                         <span class="input-wrapper datum-wrapper">
                           <span class="wrapper-one-third">
-                            <label for="vertrek-dag" class="label-top"><i class="fa fa-chevron-up"></i></label>
-                                <input type="number" id="vertrek-dag" name="vertrek-dag" class="inform inp btm" min="0" max="31" required>
-                            <label for="vertrek-dag" class="label-bottom"><i class="fa fa-chevron-down"></i></label>
+                            <label for="vertrek-dag" data-plus-it="true" class="label-top verhuur-label"><i class="fa fa-chevron-up"></i></label>
+                                <input type="number" id="vertrek-dag" name="vertrek-dag" class="inform inp btm" min="1" max="31" required>
+                            <label for="vertrek-dag" class="label-bottom verhuur-label"><i class="fa fa-chevron-down"></i></label>
                           </span>
                           <span class="wrapper-one-third">
-                            <label for="vertrek-maand" class="label-top"><i class="fa fa-chevron-up"></i></label>
+                            <label for="vertrek-maand" data-plus-it="true" class="label-top verhuur-label"><i class="fa fa-chevron-up"></i></label>
                                 <select id="vertrek-maand" name="vertrek-maand" class="inform inp btm" list="maanden" required>
                                   <option>Januari</option>
                                   <option>Februari</option>
@@ -354,12 +359,12 @@
                                   <option>November</option>
                                   <option>December</option>
                                 </select>
-                            <label for="vertrek-maand" class="label-bottom"><i class="fa fa-chevron-down"></i></label>
+                            <label for="vertrek-maand" class="label-bottom verhuur-label"><i class="fa fa-chevron-down"></i></label>
                           </span>
                           <span class="wrapper-one-third">
-                            <label for="vertrek-jaar" class="label-top"><i class="fa fa-chevron-up"></i></label>
-                                <input type="number" id="vertrek-jaar" name="vertrek-jaar" class="inform inp btm" min="2016" max="2019" required>
-                            <label for="vertrek-jaar" class="label-bottom"><i class="fa fa-chevron-down"></i></label>
+                            <label for="vertrek-jaar" data-plus-it="true" class="label-top verhuur-label"><i class="fa fa-chevron-up"></i></label>
+                                <input type="number" id="vertrek-jaar" name="vertrek-jaar" class="inform inp btm" min="2016" max="2099" required>
+                            <label for="vertrek-jaar" class="label-bottom verhuur-label"><i class="fa fa-chevron-down"></i></label>
                             </span>
                         </span>
 
@@ -367,15 +372,15 @@
                         <span class="input-wrapper tijd-wrapper">
 
                           <span class="wrapper-half">
-                            <label for="vertrek-uur" class="label-top"><i class="fa fa-chevron-up"></i></label>
+                            <label for="vertrek-uur" data-plus-it="true" class="label-top verhuur-label"><i class="fa fa-chevron-up"></i></label>
                                 <input type="number" id="vertrek-uur" name="vertrek-uur" class="inform inp btm" min="0" max="23" required>
-                            <label for="vertrek-uur" class="label-bottom"><i class="fa fa-chevron-down"></i></label>
+                            <label for="vertrek-uur" class="label-bottom verhuur-label"><i class="fa fa-chevron-down"></i></label>
                           </span>
 
                           <span class="wrapper-half">
-                            <label for="vertrek-minuut" class="label-top"><i class="fa fa-chevron-up"></i></label>
+                            <label for="vertrek-minuut" data-plus-it="true" class="label-top verhuur-label"><i class="fa fa-chevron-up"></i></label>
                                 <input type="number" id="vertrek-minuut" name="vertrek-minuut" class="inform inp btm" min="0" max="59" required>
-                            <label for="vertrek-minuut" class="label-bottom"><i class="fa fa-chevron-down"></i></label>
+                            <label for="vertrek-minuut" class="label-bottom verhuur-label"><i class="fa fa-chevron-down"></i></label>
                             </span>
                         </span>
                         
@@ -392,7 +397,7 @@
                         <input type="text" id="postcode" name="contactperson" class="inform inp btm inp-25" maxlength="7" placeholder="Postcode" required>
                         <input type="text" id="city" name="city" class="inform inp btm inp-75" maxlength="133" placeholder="Woonplaats" required>
 
-                        <br><input type="number" id="people" name="people" class="inform inp" min="20" max="150" placeholder="Aantal personen" required>
+                        <br><input type="number" id="people" name="people" class="inform inp" min="20" max="150" onchange="checkMinMax(this, this.value)" placeholder="Aantal personen" required>
 
                         <br><textarea class="inform inp" name="tArea" required placeholder="Beschrijving van de activiteit en eventuele wensen/vragen."></textarea>
                         <p>Onderstaand veld is alleen van toepassing voor groepen van Scouting Veghel.</p>
