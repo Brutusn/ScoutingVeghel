@@ -294,10 +294,11 @@ menu.onclick = function (evt) {
             $I("hb-menu-btn-click").classList.toggle("hb-menu-btn-open");
         }
 
-        location.hash = x;
-
         evt.target.classList.add("menu-active");
         scrollUp(x);
+
+        // Finally set the hash.
+        location.hash = x;
     }
 };
 
@@ -488,8 +489,6 @@ function verhuurDateTime () {
         // Fastforward to + 5 days!
         datum.setDate(datum.getDate() + 5);
 
-        console.info(datum);
-
         // Set eind days
         $einde.j.value = datum.getFullYear();
         $einde.m.selectedIndex = datum.getMonth();
@@ -585,14 +584,12 @@ isTodayHired = function(obj) {
     var hash = location.hash.replace("#", ""),
         elem;
 
-    console.info(hash);
     if (hash === "") {
         // No hash.. so stop.
         return;
     }
 
     elem = $I(hash);
-    console.info(elem);
 
     if (!elem) {
         // Hash is bogus.. return...
