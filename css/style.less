@@ -637,6 +637,21 @@ div.section {
       }
     }
   }
+  .groepen-container, .bestuur-container {
+    margin-top: 5em;
+  }
+  .groepen-container {
+    width: calc(~"300px * 10");
+  }
+  .bestuur-container {
+    width: calc(~"330px * 3");
+  }
+  .scrollable-y {
+    overflow-y: auto;
+    & > h2 {
+      position: absolute;
+    }
+  }
 }
 @media (max-width: 690px) {
   .contact-form {
