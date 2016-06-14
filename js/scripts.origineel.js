@@ -36,7 +36,7 @@ window.requestAnimFrame = (function(){
 })();
 function removeClass(c) {
     var x = document.getElementsByClassName(c), i;
-    
+
     for (i = 0; i < x.length; i++) {
         x[i].classList.remove(c);
     }
@@ -471,13 +471,14 @@ function verhuurDateTime () {
     }
 
     function toDouble(input) {
-        return input.length === 2 ? input : "0" + input;
+        return input.toString().length === 1 ? "0" + input : input;
     }
 
     returnObj.setEindDays = function () {
         // Parse begin days...
         var dataString = $begin.j.value + "-" + toDouble($begin.m.selectedIndex + 1) + "-" + toDouble($begin.d.value) + "T12:00",
             datum;
+
 
         // Parse the actual date..
         datum = new Date(dataString);
