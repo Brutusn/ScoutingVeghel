@@ -1,6 +1,21 @@
 // Yes! We use strict :)
 "use strict";
 
+// GLOBALS!
+var VERHUUR,
+    ajax,
+    navElem = $I("navigatie"),
+    groupElem = $I("groepen"),
+    actiElem = $I("activiteiten"),
+    stafElem = $I("staf"),
+    contElem = $I("contact"),
+    huurElem = $I("verhuur"),
+    scrollYpos = window.scrollY,
+    scrolling = false,
+    menu = $I("menu-links"),
+    menuClick = false,
+    isTodayHired;
+
 // Custom functions.
 function $I(elem) {
 	return document.getElementById(elem);
@@ -21,23 +36,14 @@ window.requestAnimFrame = (function(){
 })();
 function removeClass(c) {
     var x = document.getElementsByClassName(c), i;
-    if (x.length === 0) {
-        return;
-    }
-    if (x.length === 1) {
-        x[0].classList.remove(c);
-        return;
-    }
-    if (x.length > 1) {
-        for (i = 0; i < x.length; i++) {
-            x[i].classList.remove(c);
-        }
-        return;
+    
+    for (i = 0; i < x.length; i++) {
+        x[i].classList.remove(c);
     }
 }
 
 // Ajax call...
-var ajax = function(url, data, callback) {
+ajax = function(url, data, callback) {
     // Check if "ajax" is possible.
     var x = {};
     if (typeof XMLHttpRequest !== 'undefined') {
@@ -259,17 +265,6 @@ window.addEventListener("resize", resizeMap);
 /////// SCOUTING VEGHEL CODE!
 
 // Sticky navigation bar :)
-var navElem = $I("navigatie"),
-    groupElem = $I("groepen"),
-    actiElem = $I("activiteiten"),
-    stafElem = $I("staf"),
-    contElem = $I("contact"),
-    huurElem = $I("verhuur"),
-    scrollYpos = window.scrollY,
-    scrolling = false,
-    menu = $I("menu-links"),
-    menuClick = false;
-
 window.onscroll = function () {
     scrollYpos = window.scrollY;
     requestScroll();
@@ -345,6 +340,10 @@ $I("verhuur-tabs").addEventListener("click", function (evt) {
     evt.target.classList.add("tab-active");
 
     $I(evt.target.getAttribute("data-tab")).classList.add("tabpanel-active");
+
+    if (evt.target.getAttribute("data-tab") === "verhuur-stap-2") {
+        VERHUUR.setEindDays();
+    }
 });
 $I("verhuur-goto-2").addEventListener("click", function (evt) {
     evt.preventDefault();
@@ -353,6 +352,8 @@ $I("verhuur-goto-2").addEventListener("click", function (evt) {
 
     $I("verhuur-stap-2").classList.add("tabpanel-active");
     $I("verhuur-tabs").children[1].classList.add("tab-active");
+
+    VERHUUR.setEindDays();
     //return false;
 });
 $I("verhuur-goto-3").addEventListener("click", function (evt) {
@@ -419,7 +420,8 @@ function verhuurDateTime () {
         },
         $labels = document.getElementsByClassName("verhuur-label"),
         // De checkbox voor elle
-        $1dag = $I("EllenIkWil1DagHuren");
+        $1dag = $I("EllenIkWil1DagHuren"),
+        nu, dan, returnObj = {};
     
     function onNumberChange (val) {
         if (typeof val !== "number") {
@@ -449,8 +451,11 @@ function verhuurDateTime () {
 
     function onEllenChange () {
         // De 1 dag huren optie..
-        for (var x in $einde) {
-            var e = $einde[x], b = $begin[x];
+        var e, b, x;
+
+        for (x in $einde) {
+            e = $einde[x];
+            b = $begin[x];
             if (this.checked) {
                 if (e.nodeName !== "SELECT") {
                     e.value = b.value;
@@ -464,6 +469,33 @@ function verhuurDateTime () {
             e.disabled = $1dag.checked;
         }
     }
+
+    function toDouble(input) {
+        return input.length === 2 ? input : "0" + input;
+    }
+
+    returnObj.setEindDays = function () {
+        // Parse begin days...
+        var dataString = $begin.j.value + "-" + toDouble($begin.m.selectedIndex + 1) + "-" + toDouble($begin.d.value) + "T12:00",
+            datum;
+
+        // Parse the actual date..
+        datum = new Date(dataString);
+
+        // Fastforward to + 5 days!
+        datum.setDate(datum.getDate() + 5);
+
+        console.info(datum);
+
+        // Set eind days
+        $einde.j.value = datum.getFullYear();
+        $einde.m.selectedIndex = datum.getMonth();
+        $einde.d.value = datum.getDate();
+
+        // Set Time.
+        $einde.uu.value = $begin.uu.value < 12 ? $begin.uu.value + 8 : $begin.uu.value;
+        $einde.mm.value = $begin.mm.value;
+    };
 
     // Apply listeners..
     $1dag.onchange = onEllenChange;
@@ -488,9 +520,10 @@ function verhuurDateTime () {
     $einde.mm.onchange = onNumberChange;
     
     // Put default values
-    var nu = new Date();
-    var dan = new Date();
+    nu = new Date();
+    dan = new Date();
 
+    // 5 days ahead!
     dan.setDate(dan.getDate() + 5);
 
     // For the month..
@@ -505,15 +538,15 @@ function verhuurDateTime () {
 
     $begin.uu.value = $einde.uu.value = nu.getHours();
     $begin.mm.value = $einde.mm.value = nu.getMinutes();
-    
+
+    return returnObj;
 }
 
 // Activate functionality:
-verhuurDateTime();
+VERHUUR = verhuurDateTime();
 
 // Other default options...
-
-var isTodayHired = function(obj) {
+isTodayHired = function(obj) {
     var dayFrom, dayTo, checkDate = Date.now();
     //console.info(checkDate);
     if (obj) {
