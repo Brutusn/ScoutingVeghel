@@ -294,6 +294,8 @@ menu.onclick = function (evt) {
             $I("hb-menu-btn-click").classList.toggle("hb-menu-btn-open");
         }
 
+        location.hash = x;
+
         evt.target.classList.add("menu-active");
         scrollUp(x);
     }
@@ -566,7 +568,7 @@ isTodayHired = function(obj) {
 };
 
 // Get all the reserveringen..
-(function () {
+(function getReserveringen() {
     var currentDate = new Date();
     ajax("../php/Reservering.php", {d: currentDate.getDate(), m: currentDate.getMonth() + 1, y: currentDate.getFullYear()}, function (msg) {
         //console.info(JSON.parse(msg));
@@ -576,6 +578,28 @@ isTodayHired = function(obj) {
             console.warn("Er is iets mis gegaan met het ophalen van de reserveringen.", msg);
         }
     });
+})();
+
+// Process the location hash..
+(function locationHash() {
+    var hash = location.hash.replace("#", ""),
+        elem;
+
+    console.info(hash);
+    if (hash === "") {
+        // No hash.. so stop.
+        return;
+    }
+
+    elem = $I(hash);
+    console.info(elem);
+
+    if (!elem) {
+        // Hash is bogus.. return...
+        return;
+    }
+
+    scrollUp(hash);
 })();
 
 function processHired(msg) {
