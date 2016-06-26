@@ -43,7 +43,10 @@ function getReservations(DateTime $start, DateTime $end)
     $stmt = $mysqli->prepare("CALL GetReservations(?, ?)");
     $stmt->bind_param("ss", $startSTR, $endSTR);
     $stmt->execute();
-    $stmt->bind_result($begindate, $enddate, $groep);
+    //make sure the result is not empty
+    if($stmt->num_rows != 0) {
+        $stmt->bind_result($begindate, $enddate, $groep);
+    }
 
     $array = [];
     $i = 0;
