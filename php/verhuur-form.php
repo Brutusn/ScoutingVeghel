@@ -7,7 +7,7 @@ date_default_timezone_set('Europe/Paris');
 
 error_reporting(1);
 
-//check if all fields are fille din
+//check if all fields are filled in
 //TODO still need to add the dateFrom and the dateTo
 if (isset($_POST["name"]) && isset($_POST["contact"]) && isset($_POST["mailadr"]) && isset($_POST["telefoon"]) 
     && isset($_POST["adres"]) && isset($_POST["postcode"]) && isset($_POST["plaats"]) 
@@ -29,33 +29,62 @@ if (isset($_POST["name"]) && isset($_POST["contact"]) && isset($_POST["mailadr"]
         //Get information based on the group code and process the request
 
     }
-    else if ($naam != "" && $contact != "" && $mail != "" && $telefoon != "" && $adres != "" && $postcode != "" && $plaats != "" && $aantalPers != "" && $area) {
-        //Filled in by external party
+    else if ($naam != "" && $contact != "" && filter_var($mail, FILTER_VALIDATE_EMAIL) && $telefoon != "" && $adres != "" && $postcode != "" && $plaats != "" && $aantalPers != "" && $area) {
+        //Filled in by external party (not own group)
         
-        //First cehck if the party already exists
-
+        //First check if the party already exists
         $mysqli = databaseMYSQLi();
         $stmt = $mysqli->prepare("CALL GetHuurder(?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssssss", $naam, $contact, $mail, $telefoon, $adres, $postcode, $plaats);
+        $stmt->bind_param("sssssss", $naam, $contact, $mail, $telefoon, $postcode, $plaats, $adres);
         $stmt->execute();
-        $stmt->bind_result($hid);
-
-        //If the party does not exists, create it
-        if ($hid->fetchColumn())
-
-
+        if($stmt->num_rows != 0) {
+            //Since we always check if all fields are the same, we never get two Huurders with the same information
+            $stmt->bind_result($hid);
+        } else {
+            //Get IP from connecting party for the server perspective. Do not trust the user information
+            $ip = $_SERVER['REMOTE_ADDR'];
+            $stmt = $mysqli->prepare("CALL CreateHuurder(?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("ssssssss", $naam, $contact, $mail, $telefoon, $adres, $postcode, $plaats, $ip);
+            $stmt->execute();
+            $hid = $stmnt->mysql_insert_id();
+        }
 
         //Then create the reservation and do the real processing of the request
         $startSTR = $start->format("Y-m-d H:i:s");
         $endSTR = $end->format("Y-m-d H:i:s");
         //First create the Reservering
+        $stmt = $mysqli->prepare("CALL InsertReservering(?, ?, ?, ?)");
+        $stmt->bind_param("ssss", $area, $start, $end, $aantalPers);
+        $stmt->execute();
+        $rid = $stmnt->mysql_insert_id();
 
         //Then create the link between de verhuurder and the reservering (the actual verhuring)
         $today = time();
         $todaySTR = $today->format("Y-m-d H:i:s");
 
-        //Then send confirmation email to verhuurder with confirm string
+        $stmt = $mysqli->prepare("CALL InsertVerhuring(?, ?, ?)");
+        $stmt->bind_param("iis", $hid, $rid, 'NULL');
+        $stmt->execute();
+        $stmt = $mysqli->prepare("CALL GetConfirm(?, ?)");
+        $stmt->bind_param("ii", $hid, $rid);
+        $stmt->execute();
+        $stmt->bind_result($hash);
 
+        //Then send confirmation email to verhuurder with confirm string
+        $toMail = $mail;
+        $svmail = "verhuur@scoutingveghel.nl";
+        $subject = "Aanvraag huren blokhut Scouting Veghel";
+        //TODO improve messages
+        $message = htmlentities("Beste \"$naam\",\r\n\r\n
+            Hierbij de email om uw reservering te bevestigen. U bevestigt uw resevrering door op de onderstaande link te klikken: \r\n\r\n
+            <a href='link\"$hash\"'>link\"$hash\"</a>\r\n\r\n
+            Met vriendelijke groeten,\r\n
+            Verhuurder Scouting Veghel
+            ");
+        echo $message;
+        $headers = "From: Verhuur Scouting Veghel <" . $svmail . ">\r\n";
+        $headers .= "Reply-To: " . $svmail;
+        mail($toMail, $subject, $message, $headers);
     }
         
 }
