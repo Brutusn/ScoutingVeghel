@@ -4,23 +4,24 @@
 // GLOBALS!
 var VERHUUR,
     ajax,
-    navElem = $I("navigatie"),
-    groupElem = $I("groepen"),
-    actiElem = $I("activiteiten"),
-    stafElem = $I("staf"),
-    contElem = $I("contact"),
-    huurElem = $I("verhuur"),
+    navElem = $id("navigatie"),
+    groupElem = $id("groepen"),
+    actiElem = $id("activiteiten"),
+    stafElem = $id("staf"),
+    contElem = $id("contact"),
+    huurElem = $id("verhuur"),
     scrollYpos = window.scrollY,
-    scrolling = false,
-    menu = $I("menu-links"),
+    isScrolling = false,
+    menu = $id("menu-links"),
     menuClick = false,
-    isTodayHired;
+    isTodayHired,
+	setScroll;
 
 // Custom functions.
-function $I(elem) {
+function $id(elem) {
 	return document.getElementById(elem);
 }
-function $el(type) {
+function $elem(type) {
     return document.createElement(type);
 }
 // shim layer with setTimeout fallback
@@ -35,7 +36,8 @@ window.requestAnimFrame = (function(){
         };
 })();
 function removeClass(c) {
-    var x = document.getElementsByClassName(c), i;
+    var x = document.getElementsByClassName(c), 
+		i;
 
     for (i = 0; i < x.length; i++) {
         x[i].classList.remove(c);
@@ -45,7 +47,9 @@ function removeClass(c) {
 // Ajax call...
 ajax = function(url, data, callback) {
     // Check if "ajax" is possible.
-    var x = {};
+    var x = {},
+		query = [];
+
     if (typeof XMLHttpRequest !== 'undefined') {
         x = new XMLHttpRequest();
     } else {
@@ -54,7 +58,6 @@ ajax = function(url, data, callback) {
     }
 
     // Construct query.
-    var query = [];
     for (var key in data) {
         query.push(encodeURIComponent(key) + '=' + encodeURIComponent(data[key]));
     }
@@ -62,20 +65,50 @@ ajax = function(url, data, callback) {
     // Do stuff with the data.
     x.open("POST", url, true);
 
-    x.onreadystatechange = function() {
+    x.onreadystatechange = function () {
         if (x.readyState === 4 && x.status === 200) {
             // Success!
-            callback(x.responseText)
-        } //else {
-            // We reached our target server, but it returned an error
-            //showError("Er is iets mis gegaan. (Status: " + x.status + ")");
-        //}
+            callback(null, x.responseText)
+        } 
     };
+	
+	x.onerror = function () {
+		callback(true);
+	};
 
     x.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
     x.send(query.join("&"));
 };
+function getSetScrollFunction() {
+    if (window.scrollTo) {
+        //console.info("window.scrollTo()");
+        return function (to) {
+			window.scrollTo(0, to);
+		};
+    }
+    if (window.pageYOffset) {
+        //console.info("window.pageYOffset");
+        return function (to) {
+			window.pageYOffset = to;
+		};
+    }
+    if (document.documentElement.scrollTop) {
+        //console.info("document.documentElement.scrollTop");
+        return function () {
+			document.documentElement.scrollTop = to;
+		};
+    }
+    if (document.body.scrollTop) {
+        //console.info("document.body.scrollTop");
+        return function (to) {
+			document.body.scrollTop = to;
+		};
+    }
+    //console.warn("non of the above");
+}
+// Set the function once.. no need to check it everytime.
+setScroll = getSetScrollFunction();
 
 function onScrollEvt () {
     function _b (e) {
@@ -83,83 +116,63 @@ function onScrollEvt () {
     }
 
     var nav = _b(navElem),
-        gro = _b(groupElem);
+        groepen = _b(groupElem),
+		staf,
+		activiteiten,
+		contact,
+		huur;
 
-    // Only do this when normal scrolling is happening..
-    if (!menuClick) {
-        var sta = _b(stafElem),
-            act = _b(actiElem),
-            con = _b(contElem),
-            huu = _b(huurElem);
-    }
 
     // Sticky the navigation!
-    if (nav.top <= 0 && gro.top <= nav.height) {
+    if (nav.top <= 0 && groepen.top <= nav.height) {
         navElem.classList.add("nav-sticky-top");
     } else {
         //if (box2.top >= box.height) {
         navElem.classList.remove("nav-sticky-top");
     }
 
-    if (!menuClick) {
+    // Only do this when normal isScrolling is happening..
+    if (!menuClick) {		
+        staf = _b(stafElem);
+        activiteiten = _b(actiElem);
+        contact = _b(contElem);
+        huur = _b(huurElem);
+		
         // remove old active class.
         removeClass("menu-active");
 
         // Auto set navigation on where you are...
-        if (nav.height >= gro.top && nav.height < gro.bottom) {
+        if (nav.height >= groepen.top && nav.height < groepen.bottom) {
             menu.children[0].classList.add("menu-active");
         }
-        if (nav.height >= act.top && nav.height < act.bottom) {
+        if (nav.height >= activiteiten.top && nav.height < activiteiten.bottom) {
             menu.children[1].classList.add("menu-active");
         }
-        if (nav.height >= sta.top && nav.height < sta.bottom) {
+        if (nav.height >= staf.top && nav.height < staf.bottom) {
             menu.children[2].classList.add("menu-active");
         }
-        if (nav.height >= con.top && nav.height < con.bottom) {
+        if (nav.height >= contact.top && nav.height < contact.bottom) {
             menu.children[3].classList.add("menu-active");
         }
-        if (nav.height >= huu.top && nav.height < huu.bottom) {
+        if (nav.height >= huur.top && nav.height < huur.bottom) {
             menu.children[4].classList.add("menu-active");
         }
     }
 
-    // Set scrolling back to false
-    scrolling = false;
+    // Set isScrolling back to false
+    isScrolling = false;
 }
 function requestScroll () {
-    if (!scrolling) {
+    if (!isScrolling) {
         requestAnimFrame(onScrollEvt);
     }
-    scrolling = true;
+    isScrolling = true;
 }
-function setScroll(to) {
-    if (window.scrollTo) {
-        //console.info("window.scrollTo()");
-        window.scrollTo(0, to);
-        return;
-    }
-    if (window.pageYOffset) {
-        //console.info("window.pageYOffset");
-        window.pageYOffset = to;
-        return;
-    }
-    if (document.documentElement.scrollTop) {
-        //console.info("document.documentElement.scrollTop");
-        document.documentElement.scrollTop = to;
-        return;
-    }
-    if (document.body.scrollTop) {
-        //console.info("document.body.scrollTop");
-        document.body.scrollTop = to;
-        return;
-    }
-    //console.warn("non of the above");
-}
-function scrollUp(d){
-    var s = $I(d).offsetTop,
-	    b,//document.body.scrollTop;
+function scrollUp(toElement){
+    var elementOffset = $id(toElement).offsetTop,
+	    currentScroll,//document.body.scrollTop;
 	    pos,
-	    nav = $I("navigatie").clientHeight,
+	    nav = $id("navigatie").clientHeight,
         scrollTo = [],
         i = 0,
         scrollTime = 50,
@@ -189,14 +202,14 @@ function scrollUp(d){
                 return x >= rangeLarge && x <= rangeSmall;
             }
         };
-    b = scrollTop();
-    if (b < s) {
-        scrollTo[0] = (s - nav) - b;
-        scrollTo[1] = s - nav;
+    currentScroll = scrollTop();
+    if (currentScroll < elementOffset) {
+        scrollTo[0] = (elementOffset - nav) - currentScroll;
+        scrollTo[1] = elementOffset - nav;
         scrollTo[2] = true;
     } else {
-        scrollTo[0] = (b - (s - nav)) * -1;
-        scrollTo[1] = (s - nav) * -1;
+        scrollTo[0] = (currentScroll - (elementOffset - nav)) * -1;
+        scrollTo[1] = (elementOffset - nav) * -1;
         scrollTo[2] = false;
     }
 
@@ -204,7 +217,7 @@ function scrollUp(d){
     function animation() {
         //setTimeout(function (){},fps);
         if (i < scrollTime) {
-            pos = easeOutQuad(i, b, scrollTo[0], scrollTime);
+            pos = easeOutQuad(i, currentScroll, scrollTo[0], scrollTime);
             //console.info("position", pos);
             if (!inRange(pos, scrollTo)) {
                 requestAnimFrame(animateScroll);
@@ -221,41 +234,41 @@ function scrollUp(d){
 }
 
 function showError(msg, form) {
-    var elemPres = !!$I("errorMsg"),
+    var elemPres = !!$id("errorMsg"),
         elem = '';
     //console.info(elemPres, elem);
     if (!elemPres){
         elem = document.createElement('div');
     } else {
-        elem = $I("errorMsg");
+        elem = $id("errorMsg");
     }
     elem.className = "error-message";
     elem.id = "errorMsg";
     elem.innerHTML = '<i class="fa fa-times-circle"></i> ' + msg;
 
     if(form) {
-        $I(form).appendChild(elem);
+        $id(form).appendChild(elem);
     } else {
         console.error(msg);
     }
 }
 function removeError(){
-    if ($I("errorMsg")){
-        var elem = $I("errorMsg");
+	var elem = $id("errorMsg");
+    if (elem){
         elem.parentNode.removeChild(elem);
     }
 }
 function showSuccess(msg, form){
     showError("tmp", form);
-    $I("errorMsg").innerHTML = msg;
-    $I("errorMsg").className = "success-message";
+    $id("errorMsg").innerHTML = msg;
+    $id("errorMsg").className = "success-message";
 }
 
 // Kaartje
 function resizeMap() {
-    if ($I("map-size")){
-        var mapSize = $I("map-size").clientWidth;
-        $I("kaartje").innerHTML = '<img class="info-kaart" alt="Locatie blokhut veghel" src="//maps.googleapis.com/maps/api/staticmap?center=Dorshout+29,Veghel,NL&zoom=14&size='+mapSize+'x300&scale=2&markers=color:blue%7C51.626782,5.522947&key=AIzaSyCgVa8lEEM_4SaJqtlLgl8QtBytdSSrhlM&sensor=false" />';
+    if ($id("map-size")){
+        var mapSize = $id("map-size").clientWidth;
+        $id("kaartje").innerHTML = '<img class="info-kaart" alt="Locatie blokhut veghel" src="//maps.googleapis.com/maps/api/staticmap?center=Dorshout+29,Veghel,NL&zoom=14&size='+mapSize+'x300&scale=2&markers=color:blue%7C51.626782,5.522947&key=AIzaSyCgVa8lEEM_4SaJqtlLgl8QtBytdSSrhlM&sensor=false" />';
     }
 }
 resizeMap();
@@ -270,14 +283,14 @@ window.onscroll = function () {
     requestScroll();
 };
 
-$I("arrowDown").onclick = function () {
+$id("arrowDown").onclick = function () {
     menuClick = true;
     removeClass("menu-active");
-    $I("menu-links").children[0].classList.add("menu-active");
+    $id("menu-links").children[0].classList.add("menu-active");
     scrollUp("groepen");
 };
 
-$I("sv-logo").onclick = function () {
+$id("sv-logo").onclick = function () {
     removeClass("menu-active");
     scrollUp("landing-page");
 };
@@ -291,7 +304,7 @@ menu.onclick = function (evt) {
         // Closes the menu button..
         if (menu.classList.contains("hb-menu-open")) {
             menu.classList.toggle("hb-menu-open");
-            $I("hb-menu-btn-click").classList.toggle("hb-menu-btn-open");
+            $id("hb-menu-btn-click").classList.toggle("hb-menu-btn-open");
         }
 
         evt.target.classList.add("menu-active");
@@ -303,7 +316,7 @@ menu.onclick = function (evt) {
 };
 
 // Contact form submission.
-$I("contact-form").onsubmit = function () {
+$id("contact-form").onsubmit = function () {
     var data = {},
         re = /[^\s@]+@[^\s@]+\.[^\s@]+/, // Regex for email
         form = this.id,
@@ -325,9 +338,9 @@ $I("contact-form").onsubmit = function () {
 
         showSuccess("Aanmelding verstsuren...", form);
 
-        ajax("../php/contact-form.php", data, function (msg) {
+        ajax("../php/contact-form.php", data, function (err, msg) {
             // Reset form after succes.
-            $I(form).reset();
+            $id(form).reset();
             showSuccess(msg, form);
         });
     }
@@ -336,41 +349,41 @@ $I("contact-form").onsubmit = function () {
 };
 
 // Verhuur tab control
-$I("verhuur-tabs").addEventListener("click", function (evt) {
+$id("verhuur-tabs").addEventListener("click", function (evt) {
     //console.info(evt.target);
     removeClass("tab-active");
     removeClass("tabpanel-active");
     evt.target.classList.add("tab-active");
 
-    $I(evt.target.getAttribute("data-tab")).classList.add("tabpanel-active");
+    $id(evt.target.getAttribute("data-tab")).classList.add("tabpanel-active");
 
     if (evt.target.getAttribute("data-tab") === "verhuur-stap-2") {
         VERHUUR.setEindDays();
     }
 });
-$I("verhuur-goto-2").addEventListener("click", function (evt) {
+$id("verhuur-goto-2").addEventListener("click", function (evt) {
     evt.preventDefault();
     removeClass("tab-active");
     removeClass("tabpanel-active");
 
-    $I("verhuur-stap-2").classList.add("tabpanel-active");
-    $I("verhuur-tabs").children[1].classList.add("tab-active");
+    $id("verhuur-stap-2").classList.add("tabpanel-active");
+    $id("verhuur-tabs").children[1].classList.add("tab-active");
 
     VERHUUR.setEindDays();
     //return false;
 });
-$I("verhuur-goto-3").addEventListener("click", function (evt) {
+$id("verhuur-goto-3").addEventListener("click", function (evt) {
     evt.preventDefault();
     removeClass("tab-active");
     removeClass("tabpanel-active");
 
-    $I("verhuur-stap-3").classList.add("tabpanel-active");
-    $I("verhuur-tabs").children[2].classList.add("tab-active");
+    $id("verhuur-stap-3").classList.add("tabpanel-active");
+    $id("verhuur-tabs").children[2].classList.add("tab-active");
     //return false;
 });
 
-$I("hb-menu-btn-click").onclick = function () {
-    $I("menu-links").classList.toggle("hb-menu-open");
+$id("hb-menu-btn-click").onclick = function () {
+    $id("menu-links").classList.toggle("hb-menu-open");
     this.classList.toggle("hb-menu-btn-open");
 };
 
@@ -394,36 +407,36 @@ function checkMinMax (elem, newVal) {
 
 function verhuurDateTime () {
     // Private variables... actually all are..
-    var $begin = {
-            j: $I("aankomst-jaar"),
-            m: $I("aankomst-maand"),
-            d: $I("aankomst-dag"),
-            uu: $I("aankomst-uur"),
-            mm: $I("aankomst-minuut")
+    var begin = {
+            j: $id("aankomst-jaar"),
+            m: $id("aankomst-maand"),
+            d: $id("aankomst-dag"),
+            uu: $id("aankomst-uur"),
+            mm: $id("aankomst-minuut")
         },
-        $einde = {
-            j: $I("vertrek-jaar"),
-            m: $I("vertrek-maand"),
-            d: $I("vertrek-dag"),
-            uu: $I("vertrek-uur"),
-            mm: $I("vertrek-minuut")
+        einde = {
+            j: $id("vertrek-jaar"),
+            m: $id("vertrek-maand"),
+            d: $id("vertrek-dag"),
+            uu: $id("vertrek-uur"),
+            mm: $id("vertrek-minuut")
         },
         idElem = {
-            "aankomst-jaar":    $begin.j,
-            "aankomst-maand":   $begin.m,
-            "aankomst-dag":     $begin.d,
-            "aankomst-uur":     $begin.uu,
-            "aankomst-minuut":  $begin.mm,
+            "aankomst-jaar":    begin.j,
+            "aankomst-maand":   begin.m,
+            "aankomst-dag":     begin.d,
+            "aankomst-uur":     begin.uu,
+            "aankomst-minuut":  begin.mm,
 
-            "vertrek-jaar":    $einde.j,
-            "vertrek-maand":   $einde.m,
-            "vertrek-dag":     $einde.d,
-            "vertrek-uur":     $einde.uu,
-            "vertrek-minuut":  $einde.mm
+            "vertrek-jaar":    einde.j,
+            "vertrek-maand":   einde.m,
+            "vertrek-dag":     einde.d,
+            "vertrek-uur":     einde.uu,
+            "vertrek-minuut":  einde.mm
         },
         $labels = document.getElementsByClassName("verhuur-label"),
         // De checkbox voor elle
-        $1dag = $I("EllenIkWil1DagHuren"),
+        $1dag = $id("EllenIkWil1DagHuren"),
         nu, dan, returnObj = {};
     
     function onNumberChange (val) {
@@ -456,9 +469,9 @@ function verhuurDateTime () {
         // De 1 dag huren optie..
         var e, b, x;
 
-        for (x in $einde) {
-            e = $einde[x];
-            b = $begin[x];
+        for (x in einde) {
+            e = einde[x];
+            b = begin[x];
             if (this.checked) {
                 if (e.nodeName !== "SELECT") {
                     e.value = b.value;
@@ -479,9 +492,8 @@ function verhuurDateTime () {
 
     returnObj.setEindDays = function () {
         // Parse begin days...
-        var dataString = $begin.j.value + "-" + toDouble($begin.m.selectedIndex + 1) + "-" + toDouble($begin.d.value) + "T12:00",
+        var dataString = begin.j.value + "-" + toDouble(begin.m.selectedIndex + 1) + "-" + toDouble(begin.d.value) + "T12:00",
             datum;
-
 
         // Parse the actual date..
         datum = new Date(dataString);
@@ -490,13 +502,13 @@ function verhuurDateTime () {
         datum.setDate(datum.getDate() + 5);
 
         // Set eind days
-        $einde.j.value = datum.getFullYear();
-        $einde.m.selectedIndex = datum.getMonth();
-        $einde.d.value = datum.getDate();
+        einde.j.value = datum.getFullYear();
+        einde.m.selectedIndex = datum.getMonth();
+        einde.d.value = datum.getDate();
 
         // Set Time.
-        $einde.uu.value = $begin.uu.value < 12 ? $begin.uu.value + 8 : $begin.uu.value;
-        $einde.mm.value = $begin.mm.value;
+        einde.uu.value = begin.uu.value < 12 ? begin.uu.value + 8 : begin.uu.value;
+        einde.mm.value = begin.mm.value;
     };
 
     // Apply listeners..
@@ -508,18 +520,18 @@ function verhuurDateTime () {
     }
 
     // More things like to listen.
-    $begin.m.onchange = onMaandChange;
-    $einde.m.onchange = onMaandChange;
+    begin.m.onchange = onMaandChange;
+    einde.m.onchange = onMaandChange;
 
-    $begin.d.onchange = onNumberChange;
-    $begin.j.onchange = onNumberChange;
-    $begin.uu.onchange = onNumberChange;
-    $begin.mm.onchange = onNumberChange;
+    begin.d.onchange = onNumberChange;
+    begin.j.onchange = onNumberChange;
+    begin.uu.onchange = onNumberChange;
+    begin.mm.onchange = onNumberChange;
 
-    $einde.d.onchange = onNumberChange;
-    $einde.j.onchange = onNumberChange;
-    $einde.uu.onchange = onNumberChange;
-    $einde.mm.onchange = onNumberChange;
+    einde.d.onchange = onNumberChange;
+    einde.j.onchange = onNumberChange;
+    einde.uu.onchange = onNumberChange;
+    einde.mm.onchange = onNumberChange;
     
     // Put default values
     nu = new Date();
@@ -529,17 +541,17 @@ function verhuurDateTime () {
     dan.setDate(dan.getDate() + 5);
 
     // For the month..
-    $begin.m.selectedIndex = nu.getMonth();
-    $einde.m.selectedIndex = dan.getMonth();
+    begin.m.selectedIndex = nu.getMonth();
+    einde.m.selectedIndex = dan.getMonth();
     
     // The others..
-    $begin.d.value = nu.getDate();
-    $einde.d.value = dan.getDate();
-    $begin.j.value = nu.getFullYear();
-    $einde.j.value = dan.getFullYear();
+    begin.d.value = nu.getDate();
+    einde.d.value = dan.getDate();
+    begin.j.value = nu.getFullYear();
+    einde.j.value = dan.getFullYear();
 
-    $begin.uu.value = $einde.uu.value = nu.getHours();
-    $begin.mm.value = $einde.mm.value = nu.getMinutes();
+    begin.uu.value = einde.uu.value = nu.getHours();
+    begin.mm.value = einde.mm.value = nu.getMinutes();
 
     return returnObj;
 }
@@ -569,13 +581,19 @@ isTodayHired = function(obj) {
 // Get all the reserveringen..
 (function getReserveringen() {
     var currentDate = new Date();
-    ajax("../php/Reservering.php", {d: currentDate.getDate(), m: currentDate.getMonth() + 1, y: currentDate.getFullYear()}, function (msg) {
-        //console.info(JSON.parse(msg));
-        try {
-            processHired(JSON.parse(msg));
-        } catch(e) {
-            console.warn("Er is iets mis gegaan met het ophalen van de reserveringen.", msg);
-        }
+    ajax("../php/Reservering.php", {d: currentDate.getDate(), m: currentDate.getMonth() + 1, y: currentDate.getFullYear()}, function (err, msg) {
+		var tempErr = err;
+		if (!err) {
+			try {
+				processHired(JSON.parse(msg));
+			} catch(e) {
+				console.warn("Er is iets mis gegaan met het ophalen van de reserveringen.", msg);
+				tempErr = true;
+			}
+		}
+		if (tempErr) {
+			$id("mini-verhuur").innerHTML = '<p class="verhuur-status">Er is iets mis gegaan met het ophalen van de reserveringen.</p>';
+		}
     });
 })();
 
@@ -589,7 +607,7 @@ isTodayHired = function(obj) {
         return;
     }
 
-    elem = $I(hash);
+    elem = $id(hash);
 
     if (!elem) {
         // Hash is bogus.. return...
@@ -600,7 +618,7 @@ isTodayHired = function(obj) {
 })();
 
 function processHired(msg) {
-    var container = $I("mini-verhuur"),
+    var container = $id("mini-verhuur"),
         fragment = document.createDocumentFragment(),
         i,
         p, ul, li,
@@ -621,12 +639,12 @@ function processHired(msg) {
         today;
 
     // Make a list...
-    ul = $el("ul");
+    ul = $elem("ul");
     ul.classList.add("hide-mobile");
 
     // Reverse array loop :)
     for (i = 0; i < msg.length; i++) {
-        li = $el("li");
+        li = $elem("li");
         dateFrom = time(msg[i].dayFrom);
         dateTo = time(msg[i].dayTo);
 
@@ -638,7 +656,7 @@ function processHired(msg) {
     fragment.appendChild(ul);
 
     // Nice message... is today rented..
-    p = $el("p");
+    p = $elem("p");
     p.classList.add("verhuur-status");
     fragment.appendChild(p);
 
