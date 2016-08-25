@@ -1,3 +1,4 @@
 /.idea
 /node_modules
 /php/DB2.php
+*error_log*
