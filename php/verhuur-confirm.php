@@ -1,6 +1,8 @@
 <?php 
 
-require_once("DB2.php");
+require_once("db_layer.php");
+require_once("mail_layer.php");
+//require_once("debug_layer.php");
 
 session_start();
 date_default_timezone_set('Europe/Paris');
@@ -19,98 +21,13 @@ if(isset($_GET["key"])) {
 		//If so, update DB to confirmed and send email
 		if($updatable) {
 			reserveringConfirmed($rid);
-			sendConfirmEmail();
+			sendConfirmEmailEllen();
 			confirmAccept();
 		} else {
 			confirmAlready();
 		}
 		
 	}
-}
-
-
-/**
- * Get the id of the Reservering according to the confirm hash
- *
- * @param $key The confirmation key / hash
- * @return The id of the corresponding reservering or -1 if none present
- */
-function getVerhuringFromConfirm($key) {
-	$verhuringId = -1;
-    $mysqli = databaseMYSQLi();
-    if($stmt_gv = $mysqli->prepare("CALL GetVerhuringFromConfirm(?)")){
-        $stmt_gv->bind_param("s", $key);
-        $stmt_gv->execute();
-        $stmt_gv->bind_result($hid, $rid);
-        while ($stmt_gv->fetch()) {
-            $reservering_id = $rid;
-        }
-        $stmt_gv->close();
-    }
-    $mysqli->close();
-
-    return $reservering_id;
-}
-
-/**
- * Confirmes the Resevering
- *
- * @param $rid The id if the resevrering to be confirmed
- * @return void
- */
-function reserveringConfirmed($rid) {
-	$mysqli = databaseMYSQLi();
-	if($stmnt_cr = $mysqli->prepare("CALL ConfirmReservering(?)")){
-		$stmnt_cr->bind_param("i", $rid);
-		$stmnt_cr->execute();
-		$stmnt_cr->close();
-	}
-	$mysqli->close();
-}
-
-/**
- * Check whether the Reservering is confirmable
- *
- * @param $rid The id of the reservering
- * @return true when the reservering is confirmable and false otherwise (assuming that is was already confirmed earlier)
- */
-function isReserveringConfirmable($rid) {
-	$updatable = false;
-	$mysqli = databaseMYSQLi();
-	if($stmnt_rc = $mysqli->prepare("CALL ReserveringConfirmable(?)")){
-		$stmnt_rc->bind_param("i", $rid);
-		$stmnt_rc->execute();
-		$stmnt_rc->bind_result($one);
-        while ($stmnt_rc->fetch()) {
-            $updatable = true;
-        }
-        $stmnt_rc->close();
-    }
-	$mysqli->close();
-
-	return $updatable;
-}
-
-/**
- * Send the confirmation email to Ellen
- * 
- * @param $mail The mail address of the contact of the Huurder
- * @param $naam The name of the contact
- * @param $hashEmail The confirmation hash of the Verhuring
- * @return void
- */
-function sendConfirmEmail(){
-    $toMail = "website@scoutingveghel.nl";//verhuur@scoutingveghel.nl";
-    $svmail = "website@scoutingveghel.nl";
-    $subject = "Reservering blokhut Scouting Veghel Bevestigd";
-    //TODO improve messages
-    $message = "Beste Ellen,\r\n\r\n
-            Er is weer een reservering voor de blokhut bevestigd. 
-            Met vriendelijke groeten,\r\n
-            Website Scouting Veghel";
-    $headers = "From: Website Scouting Veghel <" . $svmail . ">\r\n";
-    $headers .= "Reply-To: " . $svmail;
-    mail($toMail, $subject, $message, $headers);
 }
 
 

@@ -1,10 +1,7 @@
 <?php
-
-//ini_set('display_startup_errors',1);
-//ini_set('display_errors',1);
-//error_reporting(-1);
-
-require_once("DB2.php");
+require_once("db_layer.php");
+require_once("date_layer.php");
+//require_once("debug_layer.php");
 
 $d = $_POST['d'];
 $m = $_POST['m'];
@@ -15,54 +12,10 @@ $m = filter_var($m, FILTER_VALIDATE_INT);
 $y = filter_var($y, FILTER_VALIDATE_INT);
 
 //TODO Add the possibility to specify an end date. If not set use the behaviour specified below and if set check for that specific interval
-
-if($d <= 31 && $d > 0 && $m >= 1 && $m <= 12 && $y > 0) {
-    //echo getReservationsMonth($m, $y);
+if(validDate($y, $m, $d, 0, 0)) {
 	echo json_encode(getReservationsNextDays($d, $m, $y));
 } else {
-	echo "fout";
-}
-
-/**
- * Returns all reservations that take place during the period from $start to $end.
- * A reservation is considered to take place in the period if it has an overlap
- * (the union of the reservation and the interval is not empty)
- *
- * @param DateTime $start The start date and time of the search interval
- * @param DateTime $end The end date and time of the search interval
- * @return array An associated array ('begin', 'end', 'isSV') with the reservations for this month
- */
-function getReservations(DateTime $start, DateTime $end)
-{
-
-
-    $startSTR = $start->format("Y-m-d H:i:s");
-    $endSTR = $end->format("Y-m-d H:i:s");
-
-    $mysqli = databaseMYSQLi();
-    $stmt = $mysqli->prepare("CALL GetReservations(?, ?)");
-    $stmt->bind_param("ss", $startSTR, $endSTR);
-    $stmt->execute();
-    //make sure the result is not empty
-    if($stmt->num_rows != 0) {
-        $stmt->bind_result($begindate, $enddate, $groep);
-    }
-
-    $array = [];
-    $i = 0;
-
-    while ($stmt->fetch()) {
-        $ar = [];//array('dayFrom', 'dayTo', 'bySV');
-        $begin = new DateTime($begindate);
-        $end = new DateTime($enddate);
-        $ar['dayFrom'] = $begin->format("Y-m-d");
-        $ar['dayTo'] = $end->format("Y-m-d");
-        $ar['bySV'] = ($groep == NULL) ? False : True;
-        $array[] = $ar;
-    }
-    $mysqli->close();
-
-    return $array;
+	echo "geen geldige datum opgegeven.";
 }
 
 /**

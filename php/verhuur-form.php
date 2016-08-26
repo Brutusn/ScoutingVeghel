@@ -1,12 +1,11 @@
 <?php
-require_once("DB2.php");
+require_once("db_layer.php");
+require_once("date_layer.php");
+require_once("mail_layer.php");
+//require_once("debug_layer.php");
 
 session_start();
 date_default_timezone_set('Europe/Paris');
-
-//ini_set('display_startup_errors',1);
-//ini_set('display_errors',1);
-//error_reporting(-1);
 
 //check if all parameters are present in the request
 //TODO make the names better for the inputs (not consitent with the actual site right now)
@@ -85,16 +84,16 @@ if (isset($_POST["name"]) && isset($_POST["contactperson"]) && isset($_POST["mai
 
         //First create Huurder
         $hid = getHuurder($naam, $contact, $mail, $telefoon, $adres, $postcode, $plaats);
-        if($hid === -1) {echo $errorString;}
+        if($hid === -1) {errorDatabase();}
 
         //Then create the Reservering
         $rid = getReservering($area, $startSTR, $endSTR, $aantalPers);
-        if($rid === -1) {echo $errorString;}
+        if($rid === -1) {errorDatabase();}
 
         //Then create the link between de verhuurder and the reservering (the actual verhuring)
         createVerhuring($hid, $rid,"NULL");
         $hashEmail = getConfirm($hid, $rid);
-        if($hashEmail === "error") {echo $errorString;}
+        if($hashEmail === "error") {errorDatabase();}
 
         //Then send confirmation email to verhuurder with confirm string
         sendConfirmEmail($mail, $naam, $hashEmail);
@@ -106,224 +105,6 @@ if (isset($_POST["name"]) && isset($_POST["contactperson"]) && isset($_POST["mai
     }
 } else {//one of the fields was not set in the POST request
     incompleteData();
-}
-
-/**
- * Gets the Huurder from the table, if not present it creates it. 
- * 
- * @param $naam The name of the Huurder or its organistation
- * @param $contact The name of the contacperson of the Huurder
- * @param $mail The email adres of the contact
- * @param $telefoon The phone of the contact
- * @param $adres The address of the contact
- * @param $postcode The postal code of the contact
- * @param $plaats The city of the contact
- * @return The id of the Huurder in the database, returns -1 if somehting goes wrong. 
- */
-function getHuurder($naam, $contact, $mail, $telefoon, $adres, $postcode, $plaats){
-    //First check if the party already exists
-    $found = false;
-    $huurderid = -1;
-    $mysqli = databaseMYSQLi();
-    
-    // Find the Huurder in the database
-    if($stmt_gh = $mysqli->prepare("CALL GetHuurder(?, ?, ?, ?, ?, ?, ?)")){
-        $stmt_gh->bind_param("sssssss", $naam, $contact, $mail, $telefoon, $adres, $postcode, $plaats);
-        $stmt_gh->execute();
-        $stmt_gh->bind_result($id);
-        while ($stmt_gh->fetch()) {
-            $huurderid = $id;
-            $found  = true;
-        }
-        $stmt_gh->close();
-    }
-
-    // If not found create and and fetch it again
-    if(!$found) {
-        //Get IP from connecting party for the server perspective. Do not trust the user information
-        $ip = $_SERVER['REMOTE_ADDR'];
-        if ($stmt_ch = $mysqli->prepare("CALL CreateHuurder(?, ?, ?, ?, ?, ?, ?, ?)")){
-            $stmt_ch->bind_param("ssssssss", $naam, $contact, $mail, $telefoon, $postcode, $plaats, $adres, $ip);
-            $stmt_ch->execute();
-            $stmt_ch->close();
-
-            //$hid = $mysqli->insert_id; Apparantly does not work
-            //and hence we get it with a the reexecution of the get query
-            if($stmt_gh = $mysqli->prepare("CALL GetHuurder(?, ?, ?, ?, ?, ?, ?)")){
-                $stmt_gh->bind_param("sssssss", $naam, $contact, $mail, $telefoon, $adres, $postcode, $plaats);
-                $stmt_gh->execute();
-                $stmt_gh->bind_result($id);
-                while ($$stmt_gh->fetch()) {
-                    $huurderid = $id;
-                }
-                $stmt_gh->close();
-            }
-        }
-    }
-    $mysqli->close();
-
-    return $huurderid;
-}
-
-/**
- * Gets the Reservering from the table, if not present it creates it (which is more likely). 
- * 
- * @param $area The description of the resevering
- * @param $startSTR The string representation of the starting date of the Reservering
- * @param $endSTR The string representation of the ending date of the Resevering
- * @param $aantalPers THe number of person for which the Resevering is made
- * @return The id of the Reservering in the database, returns -1 if somehting goes wrong. 
- */
-function getReservering($area, $startSTR, $endSTR, $aantalPers){
-    $reserveringid = -1;
-
-    $mysqli = databaseMYSQLi();
-    if($stmt_ir = $mysqli->prepare("CALL InsertReservering(?, ?, ?, ?)")){
-        $stmt_ir->bind_param("ssss", $area, $startSTR, $endSTR, $aantalPers);
-        $stmt_ir->execute();
-        $stmt_ir->close();
-
-        //$rid = $mysqli->insert_id; Apparantly does not work
-        //and hence we get it with a new query
-        if($stmt_gr = $mysqli->prepare("CALL GetReservering(?, ?, ?, ?)")){
-            $stmt_gr->bind_param("ssss", $area, $startSTR, $endSTR, $aantalPers);
-            $stmt_gr->execute();
-            $stmt_gr->bind_result($id);
-            while ($stmt_gr->fetch()) {
-                $reserveringid = $id;
-            }
-            $stmt_gr->close();
-        }
-    }
-
-    $mysqli->close();
-
-    return $reserveringid;
-}
-
-/**
- * Creates the Verhuring of the Resevering for the Huurder 
- * 
- * @param $hid The id of the Huurder in the database
- * @param $rid The id of the Reservering in the database
- * @return void
- */
-function createVerhuring($hid, $rid, $groepcode){
-    $mysqli = databaseMYSQLi();
-    if($stmt_iv = $mysqli->prepare("CALL InsertVerhuring(?, ?, ?)")){
-        $stmt_iv->bind_param("iis", $hid, $rid,  $groepcode);
-        $stmt_iv->execute();
-        $stmt_iv->close();
-    }
-    $mysqli->close();
-}
-
-/**
- * Gets the Confirm hash for the Verhuring that is needed to send to the Huurder
- * 
- * @param $hid The id of the Huurder in the database
- * @param $rid The id of the Reservering in the database
- * @return The hash for the Verhuring
- */
-function getConfirm($hid, $rid){
-    $hashEmail = "error";
-    $mysqli = databaseMYSQLi();
-    if($stmt_gc = $mysqli->prepare("CALL GetConfirm(?, ?)")){
-        $stmt_gc->bind_param("ii", $hid, $rid);
-        $stmt_gc->execute();
-        $stmt_gc->bind_result($hash);
-        while ($stmt_gc->fetch()) {
-            $hashEmail = $hash;
-        }
-        $stmt_gc->close();
-    }
-    $mysqli->close();
-
-    return $hashEmail;
-}
-
-/**
- * Send the confirmation email to the Huurder
- * 
- * @param $mail The mail address of the contact of the Huurder
- * @param $naam The name of the contact
- * @param $hashEmail The confirmation hash of the Verhuring
- * @return void
- */
-function sendConfirmEmail($mail, $naam, $hashEmail){
-    $toMail = $mail;
-    $svmail = "verhuur@scoutingveghel.nl";
-    $subject = "Aanvraag huren blokhut Scouting Veghel";
-    //TODO improve messages
-    $message = "Beste " . $naam . ",\r\n\r\n
-            Hierbij de email om uw reservering te bevestigen. U bevestigt uw resevrering door op de onderstaande link te klikken: \r\n\r\n
-            <a href='link" . $hashEmail . "'>link" . $hashEmail . "</a>\r\n\r\n
-            Met vriendelijke groeten,\r\n
-            Verhuurder Scouting Veghel";
-    $headers = "From: Verhuur Scouting Veghel <" . $svmail . ">\r\n";
-    $headers .= "Reply-To: " . $svmail;
-    mail($toMail, $subject, $message, $headers);
-}
-
-/**
- * Converts the month name to month number
- *
- * @param $monthName The string representation of the Month (Duthc names)
- * @return The number of the month from 1 to 12
- */
-function getMonthNumber($monthName){
-    switch ($monthName) {
-        case "Januari":
-            return 1;
-        case "Februari":
-            return 2;
-        case "Maart":
-            return 3;
-        case "April":
-            return 4;
-        case "Mei":
-            return 5;
-        case "Juni":
-            return 6;
-        case "July":
-            return 7;
-        case "Augustus":
-            return 8;
-        case "September":
-            return 9;
-        case "Oktober":
-            return 10;
-        case "November":
-            return 11;
-        case "December":
-            return 12;
-        default:
-            return -1;
-    }
-}
-
-/**
- * Check whether the date that is given is valid (basic checks)
- * 
- * @param $year The year number
- * @param $month The month number
- * @param $day The day number of the month
- * @param $hour The hour of the day (24h)
- * @param $minute The minute of the hour
- * @return true of valid, false otherwise
- */
-function validDate($year, $month, $day, $hour, $minute){
-    $y = filter_var($year, FILTER_VALIDATE_INT);
-    $m = filter_var($month, FILTER_VALIDATE_INT);
-    $d = filter_var($day, FILTER_VALIDATE_INT);
-    $h = filter_var($hour, FILTER_VALIDATE_INT);
-    $min = filter_var($minute, FILTER_VALIDATE_INT);
-
-    if($d <= 31 && $d > 0 && $m <= 12 && $m > 0 && $y > 0 && $h <= 24 && $h >= 0 && $m <= 60 && $m >= 0) {
-        return true;
-    } else {
-        return false;
-    }
 }
 
 /**

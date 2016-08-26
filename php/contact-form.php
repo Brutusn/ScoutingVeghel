@@ -1,8 +1,9 @@
 <?php
+
+//require_once("debug_layer.php");
+
 session_start();
 date_default_timezone_set('Europe/Paris');
-
-//error_reporting(1);
 
 if (isset($_POST["name"]) && isset($_POST["mailadr"]) && isset($_POST["whoTo"]) && isset($_POST["tArea"])) {
     $naam = trim(strip_tags($_POST["name"]), " \n");
