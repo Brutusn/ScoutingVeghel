@@ -2,3 +2,4 @@
 /node_modules
 /php/DB2.php
 *error_log*
+/db_export
