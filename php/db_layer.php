@@ -63,6 +63,56 @@ function getHuurder($naam, $contact, $mail, $telefoon, $adres, $postcode, $plaat
     return $huurderid;
 }
 
+/**
+ * Get HuurderID based on teh specified groepscode
+ *
+ * @param $code The groepscode that is given to the SV groepen
+ * @return The HuurderID that corresponds to a valid groepscode, -1 otherwise
+ */
+function getHuurderIDFromCode($code) {
+    $hid = -1;
+    $mysqli = databaseMYSQLi();
+    if($stmt_ghc = $mysqli->prepare("CALL HuurderIDGroepscode(?)")){
+        $stmt_ghc->bind_param("s", $code);
+        $stmt_ghc->execute();
+        $stmt_ghc->bind_result($huurder_id);
+            while ($stmt_ghc->fetch()) {
+                $hid = $huurder_id;
+            }
+        $stmt_ghc->close();
+    }
+    $mysqli->close();
+
+    return $hid;
+}
+
+/**
+ * Get the Name and Email form a Huurder based on its ID
+ *
+ * @param $hid The HuurderID in the database
+ * @return An array with [name, email] as they are stored in the database, or ["", ""] if it was an invalid HuurderID
+ */
+function getInfoFromHid($hid){
+    $info = ["", ""];
+    if($hid == -1) {
+        return $info;
+    } 
+
+    $mysqli = databaseMYSQLi();
+    if($stmt_ghi = $mysqli->prepare("CALL GetHuurderFromID(?)")){
+        $stmt_ghi->bind_param("i", $hid);
+        $stmt_ghi->execute();
+        $stmt_ghi->bind_result($naam, $mail);
+            while ($stmt_ghi->fetch()) {
+                $info[0] = $naam;
+                $info[1] = $mail;
+            }
+        $stmt_ghi->close();
+    }
+    $mysqli->close();
+
+    return $info;
+}
 
 
 

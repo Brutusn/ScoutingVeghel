@@ -365,28 +365,40 @@ $id("verhuur-form").onsubmit = function () {
     // Fill data object
     for (var i = 0; i < inputs.length; i++) {
         data[inputs[i].name] = inputs[i].value;
-        console
     }
 
-    if (!data.name) {
-        showError("Waarvoor is deze optie op de blokhut?", form);
-    }
-    if (!data.contactpersoon) {
-        showError("Wie wil deze optie op de blokhut nemen?", form);
-    }
-    if (!re.test(data.mailadr)){
-        showError("Vul een geldig email adres in.", form);
-    }
-    if (re.test(data.mailadr) && data.whoTo !== ""){
-        removeError();
+    // If there is a groepscode do not validate fields
+    if (data.groepcode !== "") {
+        if (data.people !== "" && data.tArea !== ""){
+            showSuccess("Aanvraag voor de optie verstsuren...", form);
 
-        showSuccess("Aanvraag voor de optie verstsuren...", form);
+            ajax("../php/verhuur-form.php", data, function (err, msg) {
+                // Reset form after succes.
+                $id(form).reset();
+                showSuccess(msg, form);
+            });
+        }
+    } else {// it is not from SV, so validate the most important data
+        if (!data.name) {
+            showError("Waarvoor is deze optie op de blokhut?", form);
+        }
+        if (!data.contactpersoon) {
+            showError("Wie wil deze optie op de blokhut nemen?", form);
+        }
+        if (!re.test(data.mailadr)){
+            showError("Vul een geldig email adres in.", form);
+        }
+        if (re.test(data.mailadr) && data.name !== "" && data.contactpersoon !== ""){
+            removeError();
 
-        ajax("../php/verhuur-form.php", data, function (err, msg) {
-            // Reset form after succes.
-            $id(form).reset();
-            showSuccess(msg, form);
-        });
+            showSuccess("Aanvraag voor de optie verstsuren...", form);
+
+            ajax("../php/verhuur-form.php", data, function (err, msg) {
+                // Reset form after succes.
+                $id(form).reset();
+                showSuccess(msg, form);
+            });
+        }
     }
     // Return false to prevent default form behaviour.
     return false;
@@ -440,6 +452,28 @@ $id("hb-menu-btn-click").onclick = function () {
 
 
 //======Functions for filling in =================================
+
+
+
+//If groepscode is filled in, the contact detaisla re not required
+$id("groepcode").onchange = function () {
+    //get groepcode input field
+    //groepcodeField = document.getElementById("groepcode");
+    //get all elems that posisbly need to be required or unrequired
+    var elems = document.getElementsByClassName("verhuur-groepcode");
+    var requiredValue = true;// just safe init
+
+    //if not empty make the contact details not required
+    if (this.value !== "") {
+        requiredValue = false;
+
+    } 
+    //change the actual attribute
+    for(var i = 0; i < elems.length; i++) {
+        elems[i].required = requiredValue;
+    }
+};
+
 
 
 
@@ -614,6 +648,16 @@ function verhuurDateTime () {
 
 // Activate functionality:
 VERHUUR = verhuurDateTime();
+
+
+
+
+
+//=====Reserveringen=============================================
+
+
+
+
 
 // Other default options...
 isTodayHired = function(obj) {

@@ -237,7 +237,7 @@
                             <option value="sponsor">Sponsoring</option>
                             <option value="site">Website</option>
                         </select>
-                        <br><textarea class="inform inp" name="tArea" required placeholder="Vul hier je vraag of opmerking in..."></textarea>
+                        <br><textarea class="inform inp" name="tArea"  id="tArea-contact" required placeholder="Vul hier je vraag of opmerking in..."></textarea>
                         <br><input type="submit" value="Stel de vraag" id="subm" name="subm" class="inform button">
                         <br><span>Alle velden zijn verplicht</span>
                     </form>
@@ -389,17 +389,17 @@
                     </span>
                     <span id="verhuur-stap-3" role="tabpanel" class="tabpanel">
                         <p>Stap 3: Vul uw gegevens in:</p>
-                        <input type="text" id="name" name="name" class="inform inp btm" maxlength="133" placeholder="Naam" required>
-                        <input type="text" id="contactperson" name="contactperson" class="inform inp btm" maxlength="133" placeholder="Contactpersoon" required>
-                        <br><input type="email" id="mail" name="mailadr" class="inform inp" placeholder="E-mail adres" required>
-                        <br><input type="number" id="phone" name="phone" class="inform inp" placeholder="Telefoon nummer" required>
-                        <input type="text" id="adress" name="adress" class="inform inp btm" maxlength="133" placeholder="Straat + huisnummer" required>
-                        <input type="text" id="postcode" name="postcode" class="inform inp btm inp-25" maxlength="7" placeholder="Postcode" required>
-                        <input type="text" id="city" name="city" class="inform inp btm inp-75" maxlength="133" placeholder="Woonplaats" required>
+                        <input type="text" id="name" name="name" class="inform inp btm verhuur-groepcode" maxlength="133" placeholder="Naam" required>
+                        <input type="text" id="contactperson" name="contactperson" class="inform inp btm verhuur-groepcode" maxlength="133" placeholder="Contactpersoon" required>
+                        <br><input type="email" id="mail" name="mailadr" class="inform inp verhuur-groepcode" placeholder="E-mail adres" required>
+                        <br><input type="number" id="phone" name="phone" class="inform inp verhuur-groepcode" placeholder="Telefoon nummer" required>
+                        <input type="text" id="adress" name="adress" class="inform inp btm verhuur-groepcode" maxlength="133" placeholder="Straat + huisnummer" required>
+                        <input type="text" id="postcode verhuur-groepcode" name="postcode" class="inform inp btm inp-25 verhuur-groepcode" maxlength="7" placeholder="Postcode" required>
+                        <input type="text" id="city verhuur-groepcode" name="city" class="inform inp btm inp-75 verhuur-groepcode" maxlength="133" placeholder="Woonplaats" required>
 
                         <br><input type="number" id="people" name="people" class="inform inp" min="20" max="150" onchange="checkMinMax(this, this.value)" placeholder="Aantal personen" required>
 
-                        <br><textarea class="inform inp" name="tArea" required placeholder="Beschrijving van de activiteit en eventuele wensen/vragen."></textarea>
+                        <br><textarea class="inform inp" name="tArea" id="tArea-verhuur" required placeholder="Beschrijving van de activiteit en eventuele wensen/vragen."></textarea>
                         <p>Onderstaand veld is alleen van toepassing voor groepen van Scouting Veghel.</p>
                         <input type="text" id="groepcode" name="groepcode" class="inform inp btm" maxlength="255" placeholder="Groepcode">
                         <br><input type="submit" value="Neem optie" id="subm" name="subm" class="inform button">

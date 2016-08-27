@@ -47,12 +47,12 @@ if (isset($_POST["name"]) && isset($_POST["contactperson"]) && isset($_POST["mai
     $aankomstmaandNummer = getMonthNumber($aankomstmaand);
     $vertrekmaandNummer = getMonthNumber($vertrekmaand);
     if($aankomstmaandNummer === -1 || $vertrekmaandNummer === -1) {
-        incompleteData("aankomsts- of vertrekmaand");
+        incompleteData("aankomsts- en/of vertrekmaand");
     }
     if (!validDate($aankomstjaar, $aankomstmaandNummer, $aankomstdag, $aankomstuur, $aankomstminuut) 
         || !validDate($vertrekjaar, $vertrekmaandNummer, $vertrekdag, $vertrekuur, $vertrekminuut)) {
         //Wrong dates, so indicate that
-        incompleteData("aankomst- of vertrekdatum");
+        incompleteData("aankomst- en/of vertrekdatum");
     }
 
     //Dates valid, so create the actual string
@@ -70,39 +70,43 @@ if (isset($_POST["name"]) && isset($_POST["contactperson"]) && isset($_POST["mai
         incompleteData("aanmkomstdatum is na de vertrekdatum");
     }
 
-    //First check if either the groepscode is filled in (so made by one of our own groups) or if it is filled in by an external party
-    if ($groepscode != "" && $area != "") {
+    //First create Huurder
+    $hid = -1;
+    $groep = "NULL";
+    //Check if either the groepscode is filled in (so made by one of our own groups) or if it is filled in by an external party
+    if ($groepscode != "" && $area != "" && $aantalPers != "") {
         //Get information based on the group code and process the request
-        //TODO implement
-        echo "The functionaliteit om met de groepscode in te loggen is nog niet geimplementeerd.";
-        header('HTTP/1.1 200 Ok');
-        exit;
+        $hid = getHuurderIDFromCode($groepscode);
+        $info = getInfoFromHid($hid);
+        $naam = $info[0];
+        $mail = $info[1];
+        $groep = $naam;
     } elseif ($naam != "" && $contact != "" && filter_var($mail, FILTER_VALIDATE_EMAIL) 
         && $telefoon != "" && $adres != "" && $postcode != "" && $plaats != "" 
-        && $aantalPers != "" && $area) {
+        && $aantalPers != "" && $area != "") {
         //Filled in by external party (not own group)
-
-        //First create Huurder
         $hid = getHuurder($naam, $contact, $mail, $telefoon, $adres, $postcode, $plaats);
-        if($hid === -1) {errorDatabase();}
-
-        //Then create the Reservering
-        $rid = getReservering($area, $startSTR, $endSTR, $aantalPers);
-        if($rid === -1) {errorDatabase();}
-
-        //Then create the link between de verhuurder and the reservering (the actual verhuring)
-        createVerhuring($hid, $rid,"NULL");
-        $hashEmail = getConfirm($hid, $rid);
-        if($hashEmail === "error") {errorDatabase();}
-
-        //Then send confirmation email to verhuurder with confirm string
-        sendConfirmEmail($mail, $naam, $hashEmail);
-
-        //Indicate succes
-        succesfullReservation();
-    } else { //No groepscode and all empty fields
-        incompleteData("groepscode");
+    } else { //Some empty fields
+        missingData();
     }
+
+    //Validate huurderID that was fetched
+    if($hid === -1) {errorDatabase();}
+
+    //Then create the Reservering
+    $rid = getReservering($area, $startSTR, $endSTR, $aantalPers);
+    if($rid === -1) {errorDatabase();}
+
+    //Then create the link between de verhuurder and the reservering (the actual verhuring)
+    createVerhuring($hid, $rid, $groep);
+    $hashEmail = getConfirm($hid, $rid);
+    if($hashEmail === "error") {errorDatabase();}
+
+    //Then send confirmation email to verhuurder with confirm string
+    sendConfirmEmail($mail, $naam, $hashEmail);
+
+    //Indicate succes
+    succesfullReservation();
 } else {//one of the fields was not set in the POST request
     missingData();
 }
