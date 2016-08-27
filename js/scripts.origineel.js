@@ -315,6 +315,13 @@ menu.onclick = function (evt) {
     }
 };
 
+
+
+//=====Submits for Forms=========================================
+
+
+
+
 // Contact form submission.
 $id("contact-form").onsubmit = function () {
     var data = {},
@@ -336,7 +343,7 @@ $id("contact-form").onsubmit = function () {
     if (re.test(data.mailadr) && data.whoTo !== ""){
         removeError();
 
-        showSuccess("Aanmelding verstsuren...", form);
+        showSuccess("Vraag/opmerking verstsuren...", form);
 
         ajax("../php/contact-form.php", data, function (err, msg) {
             // Reset form after succes.
@@ -347,6 +354,47 @@ $id("contact-form").onsubmit = function () {
     // Return false to prevent default form behaviour.
     return false;
 };
+
+// Verhuur form submission.
+$id("verhuur-form").onsubmit = function () {
+    var data = {},
+        re = /[^\s@]+@[^\s@]+\.[^\s@]+/, // Regex for email
+        form = this.id,
+        inputs = this.getElementsByClassName("inp");
+
+    // Fill data object
+    for (var i = 0; i < inputs.length; i++) {
+        data[inputs[i].name] = inputs[i].value;
+        console
+    }
+
+    if (!data.name) {
+        showError("Waarvoor is deze optie op de blokhut?", form);
+    }
+    if (!data.contactpersoon) {
+        showError("Wie wil deze optie op de blokhut nemen?", form);
+    }
+    if (!re.test(data.mailadr)){
+        showError("Vul een geldig email adres in.", form);
+    }
+    if (re.test(data.mailadr) && data.whoTo !== ""){
+        removeError();
+
+        showSuccess("Aanvraag voor de optie verstsuren...", form);
+
+        ajax("../php/verhuur-form.php", data, function (err, msg) {
+            // Reset form after succes.
+            $id(form).reset();
+            showSuccess(msg, form);
+        });
+    }
+    // Return false to prevent default form behaviour.
+    return false;
+};
+
+
+//=====Tab control==============================================
+
 
 // Verhuur tab control
 $id("verhuur-tabs").addEventListener("click", function (evt) {
@@ -386,6 +434,14 @@ $id("hb-menu-btn-click").onclick = function () {
     $id("menu-links").classList.toggle("hb-menu-open");
     this.classList.toggle("hb-menu-btn-open");
 };
+
+
+
+
+
+//======Functions for filling in =================================
+
+
 
 //======== Some cool function to do stuf with the verhuur date time picker...
 // Check if the number is in range or not.. and send the correct number back..

@@ -47,12 +47,12 @@ if (isset($_POST["name"]) && isset($_POST["contactperson"]) && isset($_POST["mai
     $aankomstmaandNummer = getMonthNumber($aankomstmaand);
     $vertrekmaandNummer = getMonthNumber($vertrekmaand);
     if($aankomstmaandNummer === -1 || $vertrekmaandNummer === -1) {
-        incompleteData();
+        incompleteData("aankomsts- of vertrekmaand");
     }
     if (!validDate($aankomstjaar, $aankomstmaandNummer, $aankomstdag, $aankomstuur, $aankomstminuut) 
         || !validDate($vertrekjaar, $vertrekmaandNummer, $vertrekdag, $vertrekuur, $vertrekminuut)) {
         //Wrong dates, so indicate that
-        incompleteData();
+        incompleteData("aankomst- of vertrekdatum");
     }
 
     //Dates valid, so create the actual string
@@ -67,7 +67,7 @@ if (isset($_POST["name"]) && isset($_POST["contactperson"]) && isset($_POST["mai
 
     // Make sure the start is before the end
     if ($start > $end){
-        incompleteData();
+        incompleteData("aanmkomstdatum is na de vertrekdatum");
     }
 
     //First check if either the groepscode is filled in (so made by one of our own groups) or if it is filled in by an external party
@@ -101,17 +101,26 @@ if (isset($_POST["name"]) && isset($_POST["contactperson"]) && isset($_POST["mai
         //Indicate succes
         succesfullReservation();
     } else { //No groepscode and all empty fields
-        incompleteData();
+        incompleteData("groepscode");
     }
 } else {//one of the fields was not set in the POST request
-    incompleteData();
+    missingData();
 }
 
 /**
  * Shows the incomplete message and exits this script
  */
-function incompleteData(){
-    echo "Niet alle velden zijn (correct) ingevuld.";
+function incompleteData($invalidData){
+    echo "Niet alle velden zijn correct ingevuld. Specifiek de velden voor de $invalidData.";
+    header('HTTP/1.1 400 Bad Request');
+    exit;
+}
+
+/**
+ * Shows the missing data message and exits this script
+ */
+function missingData(){
+    echo "Niet alle velden zijn ingevuld.";
     header('HTTP/1.1 400 Bad Request');
     exit;
 }
@@ -129,7 +138,7 @@ function errorDatabase(){
  * Shows the succes message and exits this scripts
  */
 function succesfullReservation(){
-    echo "We hebben uw aanvraag ontvangen. U heeft een bevestigings-email gehad met instructies hoe u uw aanvraag kan bevestigen.";
+    echo "We hebben uw aanvraag ontvangen. U heeft een bevestigingsemail gehad met instructies hoe u uw aanvraag kan bevestigen.";
     header('HTTP/1.1 200 Ok');
     exit;
 }
