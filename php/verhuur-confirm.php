@@ -35,25 +35,33 @@ if(isset($_GET["key"])) {
  * Shows the message that indicates the Verhuring is confirmed
  */
 function confirmAccept() {
-	echo "Uw reservering is bevestigd, u hoort zo speodig mogelijk van ons.";
-	header('HTTP/1.1 200 Ok');
-    exit;
+	redirect("Uw reservering is bevestigd, u hoort zo speodig mogelijk van ons.");
 }
 
 /**
  * Shows the message that indicates the Verhuring is already confirmed
  */
 function confirmAlready() {
-	echo "Uw reservering is reeds bevestigd, u hoort zo speodig mogelijk van ons.";
-	header('HTTP/1.1 200 Ok');
-    exit;
+	redirect("Uw reservering is reeds bevestigd, u hoort zo speodig mogelijk van ons.");
 }
 
 /**
  * Shows the messages that indicates that the verhuring could not be found
  */
 function confirmDecline() {
-	echo "Uw reservering kon niet bevestigd worden, controleer of de link wel goed is.";
+	redirect("Uw reservering kon niet bevestigd worden, controleer of de link wel goed is.");
+}
+
+function redirect($msg) {
+	echo ("<SCRIPT LANGUAGE='JavaScript'>
+			window.alert('$msg')
+           	window.location.href='http://nieuw.scoutingveghel.nl';
+       </SCRIPT>
+       <NOSCRIPT>
+       $msg
+       <br>
+           <a href='http://nieuw.scoutingveghel.nl'>Click here if you are not redirected.</a>
+       </NOSCRIPT>");
 	header('HTTP/1.1 200 Ok');
     exit;
 }

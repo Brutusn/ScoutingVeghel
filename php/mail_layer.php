@@ -35,11 +35,11 @@ function sendConfirmEmail($mail, $naam, $hashEmail){
     $svmail = "verhuur@scoutingveghel.nl";
     $subject = "Aanvraag huren blokhut Scouting Veghel";
     //TODO improve messages
-    $message = "Beste " . $naam . ",\r\n\r\n
-            Hierbij de email om uw reservering te bevestigen. U bevestigt uw resevrering door op de onderstaande link te klikken: \r\n\r\n
-            <a href='http://nieuw.scoutingveghel.nl/php/verhuur-confirm.php?key=" . $hashEmail . "'>http://nieuw.scoutingveghel.nl/php/verhuur-confirm.php?key=" . $hashEmail . "</a>\r\n\r\n
+    $message = htmlentities("Beste " . $naam . ",\r\n
+            Hierbij de email om uw reservering te bevestigen. U bevestigt uw resevering door op de onderstaande link te klikken: \r\n
+            http://nieuw.scoutingveghel.nl/php/verhuur-confirm.php?key=" . $hashEmail . "\r\n
             Met vriendelijke groeten,\r\n
-            Verhuurder Scouting Veghel";
+            Verhuurder Scouting Veghel");
     $headers = "From: Verhuur Scouting Veghel <" . $svmail . ">\r\n";
     $headers .= "Reply-To: " . $svmail;
     mail($toMail, $subject, $message, $headers);
