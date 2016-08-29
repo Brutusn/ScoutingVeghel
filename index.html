@@ -66,7 +66,7 @@
         </ul>
 	</div>
   
-      <header class="section aanmeld" id="landing-page">
+      <header class="section aanmeld fixed-background" id="landing-page">
 	  <h1>Scouting Veghel</h1>
 	  
 	  <div id="quick-info" class="header-info header-box">
@@ -152,7 +152,7 @@
 		</span>
       </div>
 	  
-      <div class="section activiteiten" id="activiteiten">
+      <div class="section activiteiten fixed-background" id="activiteiten">
 		<span class="size-limit-small">
         <h2>Activiteiten:</h2>
 
@@ -221,13 +221,13 @@
         </span>
     </div>
 	  
-	  <div class="section contact" id="contact">
+	  <div class="section contact fixed-background" id="contact">
 	  
 		<span class="size-limit">
             <h2>Contact en vragen</h2>
             <div class="contact-container">
                 <div class="contact-form contact-left">
-                    <form id="contact-form" action="" method="POST">
+                    <form id="contact-form" action="./php/contact-form.php" method="POST">
                         <input type="text" id="name" name="name" class="inform inp btm" maxlength="33" placeholder="Naam" required>
                         <br><input type="email" id="mail" name="mailadr" class="inform inp" placeholder="E-mail adres" required>
                         <br><select class="inform inp" name="whoTo" required="">
@@ -273,7 +273,7 @@
                         <li role="tab" data-tab="verhuur-stap-3" title="Gegevens">Gegegevens</li>
                     </ul>
 
-                    <form id="verhuur-form" action="" method="POST">
+                    <form id="verhuur-form" action="./php/verhuur-form.php" method="POST">
                         <!-- One form to rule them all -->
                     <span id="verhuur-stap-1" role="tabpanel" class="tabpanel tabpanel-active">
                         <p>Stap 1: Kies een aankomst datum en tijd:</p>
@@ -428,7 +428,7 @@
 		</span>
       </div>
 
-      <footer class="section">
+      <footer class="section fixed-background">
 	    <h2>Volg ons:</h2>
 		<p><a href="https://www.facebook.com/ScoutingVeghel" target="_BLANK"><i class="fa fa-facebook-square"></i> /ScoutingVeghel</a></p>
 		<p><a href="https://twitter.com/scoutingveghel" target="_BLANK"><i class="fa fa-twitter-square"></i> @ScoutingVeghel</a></p>

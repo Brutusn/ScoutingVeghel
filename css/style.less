@@ -32,14 +32,16 @@ a {
 }
 footer {
   background-color: @col-text;
-  color: @col-background2;
+  color: @col-text-light;
+  .text-shadow;
   position: relative;
   z-index: 100;
   & a {
     .transition;
-    color: @col-background2;
     text-decoration: none;
+    color: inherit;
     &:hover {
+      text-decoration: underline;
       color: @col-text-light;
     }
   }
@@ -474,13 +476,13 @@ div.section {
   background-image: linear-gradient(to bottom, fade(@col-text-light, 10%) 25%, fade(@col-text-light, 90%) 45%, @col-text-light), url("../images/stam.jpg");
 }
 #leiders {
-
+  background-image: linear-gradient(to bottom, fade(@col-text-light, 10%) 25%, fade(@col-text-light, 90%) 45%, @col-text-light), url("../images/stam.jpg");
 }
 #gebe {
-
+  background-image: linear-gradient(to bottom, fade(@col-text-light, 10%) 25%, fade(@col-text-light, 90%) 45%, @col-text-light), url("../images/stam.jpg");
 }
 #bestuur {
-
+  background-image: linear-gradient(to bottom, fade(@col-text-light, 10%) 25%, fade(@col-text-light, 90%) 45%, @col-text-light), url("../images/stam.jpg");
 }
 
 
@@ -491,18 +493,10 @@ div.section {
 .staf {
   background-color: @col-background3;
 }
-.activiteiten {
+.activiteiten, .contact {
   .inner-shadow;
-  background: @col-background4 url("../images/jota.jpg") center center;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  .text-shadow;
   color: @col-text-light;
-  & h3 {
-    border-bottom: 1px solid fade(@col-text-light, 75%);
-    padding-bottom: .5em;
-    margin-bottom: 0;
-  }
   & a {
     color: darken(@col-text-light, 10%);
     &:hover {
@@ -510,7 +504,18 @@ div.section {
     }
   }
 }
+
+.activiteiten {
+  .inner-shadow;
+  background-image: url("../images/jota.jpg");
+ & h3 {
+    border-bottom: 1px solid fade(@col-text-light, 75%);
+    padding-bottom: .5em;
+    margin-bottom: 0;
+  }
+}
 .contact {
+  background-image: url("../images/background-contact.jpg");
   background-color: @col-background4;
 }
 .verhuur {
@@ -522,6 +527,7 @@ div.section {
   width: 100%;
   height: 300px;
   border: @quarter solid @col-text-light;
+  background-color: @col-text-light;
 }
 .map-box {
   display: block;
@@ -710,15 +716,13 @@ div.section {
 }
 
 @media (min-width: 480px) {
-  header:before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    will-change: transform;
-    background: @col-text url(../images/background.jpg) center center;
+  .aanmeld, footer {
+    background-image: url(../images/background.jpg);
+  }
+  .fixed-background {
+    background-attachment: fixed;
+    background-color: @col-text;
+    background-position: center center;
     background-size: cover;
   }
 }
