@@ -36,7 +36,7 @@ window.requestAnimFrame = (function(){
         };
 })();
 function removeClass(c) {
-    var x = document.getElementsByClassName(c), 
+    var x = document.getElementsByClassName(c),
 		i;
 
     for (i = 0; i < x.length; i++) {
@@ -69,9 +69,9 @@ ajax = function(url, data, callback) {
         if (x.readyState === 4 && x.status === 200) {
             // Success!
             callback(null, x.responseText)
-        } 
+        }
     };
-	
+
 	x.onerror = function () {
 		callback(true);
 	};
@@ -132,12 +132,12 @@ function onScrollEvt () {
     }
 
     // Only do this when normal isScrolling is happening..
-    if (!menuClick) {		
+    if (!menuClick) {
         staf = _b(stafElem);
         activiteiten = _b(actiElem);
         contact = _b(contElem);
         huur = _b(huurElem);
-		
+
         // remove old active class.
         removeClass("menu-active");
 
@@ -466,11 +466,11 @@ $id("groepcode").onchange = function () {
     //if not empty make the contact details not required
     if (this.value !== "") {
         requiredValue = false;
-
-    } 
+    }
     //change the actual attribute
     for(var i = 0; i < elems.length; i++) {
         elems[i].required = requiredValue;
+        elems[i].disabled = !requiredValue;
     }
 };
 
@@ -528,7 +528,7 @@ function verhuurDateTime () {
         // De checkbox voor elle
         $1dag = $id("EllenIkWil1DagHuren"),
         nu, dan, returnObj = {};
-    
+
     function onNumberChange (val) {
         if (typeof val !== "number") {
             return;
@@ -622,7 +622,7 @@ function verhuurDateTime () {
     einde.j.onchange = onNumberChange;
     einde.uu.onchange = onNumberChange;
     einde.mm.onchange = onNumberChange;
-    
+
     // Put default values
     nu = new Date();
     dan = new Date();
@@ -633,7 +633,7 @@ function verhuurDateTime () {
     // For the month..
     begin.m.selectedIndex = nu.getMonth();
     einde.m.selectedIndex = dan.getMonth();
-    
+
     // The others..
     begin.d.value = nu.getDate();
     einde.d.value = dan.getDate();
