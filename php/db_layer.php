@@ -5,8 +5,8 @@ require_once("DB2.php");
 //==========Huurder========================================================================================
 
 /**
- * Gets the Huurder from the table, if not present it creates it. 
- * 
+ * Gets the Huurder from the table, if not present it creates it.
+ *
  * @param $naam The name of the Huurder or its organistation
  * @param $contact The name of the contacperson of the Huurder
  * @param $mail The email adres of the contact
@@ -14,14 +14,14 @@ require_once("DB2.php");
  * @param $adres The address of the contact
  * @param $postcode The postal code of the contact
  * @param $plaats The city of the contact
- * @return The id of the Huurder in the database, returns -1 if somehting goes wrong. 
+ * @return The id of the Huurder in the database, returns -1 if somehting goes wrong.
  */
 function getHuurder($naam, $contact, $mail, $telefoon, $adres, $postcode, $plaats){
     //First check if the party already exists
     $found = false;
     $huurderid = -1;
     $mysqli = databaseMYSQLi();
-    
+
     // Find the Huurder in the database
     if($stmt_gh = $mysqli->prepare("CALL GetHuurder(?, ?, ?, ?, ?, ?, ?)")){
         $stmt_gh->bind_param("sssssss", $naam, $contact, $mail, $telefoon, $adres, $postcode, $plaats);
@@ -96,7 +96,7 @@ function getInfoFromHid($hid){
     $info = ["", ""];
     if($hid == -1) {
         return $info;
-    } 
+    }
 
     $mysqli = databaseMYSQLi();
     if($stmt_ghi = $mysqli->prepare("CALL GetHuurderFromID(?)")){
@@ -119,13 +119,13 @@ function getInfoFromHid($hid){
 //==========Reservering====================================================================================
 
 /**
- * Gets the Reservering from the table, if not present it creates it (which is more likely). 
- * 
+ * Gets the Reservering from the table, if not present it creates it (which is more likely).
+ *
  * @param $area The description of the resevering
  * @param $startSTR The string representation of the starting date of the Reservering
  * @param $endSTR The string representation of the ending date of the Resevering
  * @param $aantalPers THe number of person for which the Resevering is made
- * @return The id of the Reservering in the database, returns -1 if somehting goes wrong. 
+ * @return The id of the Reservering in the database, returns -1 if somehting goes wrong.
  */
 function getReservering($area, $startSTR, $endSTR, $aantalPers){
     $reserveringid = -1;
@@ -262,10 +262,11 @@ function getVerhuringFromConfirm($key) {
 }
 
 /**
- * Creates the Verhuring of the Resevering for the Huurder 
- * 
+ * Creates the Verhuring of the Resevering for the Huurder
+ *
  * @param $hid The id of the Huurder in the database
  * @param $rid The id of the Reservering in the database
+ * @param $groepcode The groepscode of a reservering of a group of SV
  * @return void
  */
 function createVerhuring($hid, $rid, $groepcode){
@@ -280,7 +281,7 @@ function createVerhuring($hid, $rid, $groepcode){
 
 /**
  * Gets the Confirm hash for the Verhuring that is needed to send to the Huurder
- * 
+ *
  * @param $hid The id of the Huurder in the database
  * @param $rid The id of the Reservering in the database
  * @return The hash for the Verhuring
