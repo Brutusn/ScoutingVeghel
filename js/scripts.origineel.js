@@ -456,7 +456,7 @@ $id("hb-menu-btn-click").onclick = function () {
 
 
 //If groepscode is filled in, the contact detaisla re not required
-$id("groepcode").onchange = function () {
+$id("groepcode").oninput = function () {
     //get groepcode input field
     //groepcodeField = document.getElementById("groepcode");
     //get all elems that posisbly need to be required or unrequired
