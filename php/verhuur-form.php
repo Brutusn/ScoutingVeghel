@@ -112,6 +112,7 @@ if (isset($_POST["name"]) && isset($_POST["contactperson"]) && isset($_POST["mai
     if($hashEmail === "error") {errorDatabase();}
 
     //Then send confirmation email to verhuurder with confirm string
+    //TODO add other information from the option
     sendConfirmEmail($mail, $naam, $hashEmail);
 
     //Indicate succes
@@ -146,7 +147,7 @@ function missingData(){
  * Shows the error messages and exits this script
  */
 function errorDatabase(){
-    echo "Er is iets fout gegaan, probeer het alsutblieft opnieuw. Als de fout aanhoudt, neem dan contact op met de webmaster.";
+    echo "Er is iets fout gegaan, probeer het alsutblieft opnieuw. Als de fout zich blijft voordoen, neem dan contact op met de webmaster.";
     header('HTTP/1.1 400 Bad Request');
     exit;
 }

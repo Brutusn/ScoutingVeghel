@@ -7,30 +7,31 @@
  * @return The number of the month from 1 to 12
  */
 function getMonthNumber($monthName){
+    $monthName = strtolower($monthName);
     switch ($monthName) {
-        case "Januari":
+        case "januari":
             return 1;
-        case "Februari":
+        case "februari":
             return 2;
-        case "Maart":
+        case "maart":
             return 3;
-        case "April":
+        case "april":
             return 4;
-        case "Mei":
+        case "mei":
             return 5;
-        case "Juni":
+        case "juni":
             return 6;
-        case "July":
+        case "juli":
             return 7;
-        case "Augustus":
+        case "augustus":
             return 8;
-        case "September":
+        case "september":
             return 9;
-        case "Oktober":
+        case "oktober":
             return 10;
-        case "November":
+        case "november":
             return 11;
-        case "December":
+        case "december":
             return 12;
         default:
             return -1;
@@ -39,7 +40,7 @@ function getMonthNumber($monthName){
 
 /**
  * Check whether the date that is given is valid (basic checks)
- * 
+ *
  * @param $year The year number
  * @param $month The month number
  * @param $day The day number of the month

@@ -2,7 +2,7 @@
 
 /**
  * Send the confirmation email to Ellen
- * 
+ *
  * @param $mail The mail address of the contact of the Huurder
  * @param $naam The name of the contact
  * @param $hashEmail The confirmation hash of the Verhuring
@@ -11,10 +11,10 @@
 function sendConfirmEmailEllen(){
     $toMail = "website@scoutingveghel.nl";//verhuur@scoutingveghel.nl";
     $svmail = "website@scoutingveghel.nl";
-    $subject = "Reservering blokhut Scouting Veghel Bevestigd";
+    $subject = "Reservering blokhut Scouting Veghel bevestigd.";
     //TODO improve messages
     $message = "Beste Ellen,\r\n\r\n
-            Er is weer een reservering voor de blokhut bevestigd. 
+            Er is weer een reservering voor de blokhut bevestigd.
             Met vriendelijke groeten,\r\n
             Website Scouting Veghel";
     $headers = "From: Website Scouting Veghel <" . $svmail . ">\r\n";
@@ -24,7 +24,7 @@ function sendConfirmEmailEllen(){
 
 /**
  * Send the confirmation email to the Huurder
- * 
+ *
  * @param $mail The mail address of the contact of the Huurder
  * @param $naam The name of the contact
  * @param $hashEmail The confirmation hash of the Verhuring
@@ -38,6 +38,8 @@ function sendConfirmEmail($mail, $naam, $hashEmail){
     $message = htmlentities("Beste " . $naam . ",\r\n
             Hierbij de email om uw reservering te bevestigen. U bevestigt uw resevering door op de onderstaande link te klikken: \r\n
             http://nieuw.scoutingveghel.nl/php/verhuur-confirm.php?key=" . $hashEmail . "\r\n
+            Als deze mail verkeerd geaddresseerd is, of wanneer je de optie niet om wilt zetten naar een reservering, hoef je niets te doen. Binnen 2 weken zal deze komen te vervallen. \r\n
+            Voor meer informatie kunt u reageren op deze e-mail.\r\n\r\n
             Met vriendelijke groeten,\r\n
             Verhuurder Scouting Veghel");
     $headers = "From: Verhuur Scouting Veghel <" . $svmail . ">\r\n";

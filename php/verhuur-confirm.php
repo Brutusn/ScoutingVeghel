@@ -21,6 +21,7 @@ if(isset($_GET["key"])) {
 		//If so, update DB to confirmed and send email
 		if($updatable) {
 			reserveringConfirmed($rid);
+			//TODO add naame from huurder to email from Ellen
 			sendConfirmEmailEllen();
 			//TODO send email with huurcontract and voorwaarden
 			confirmAccept();
@@ -89,7 +90,7 @@ function redirect($msg) {
 
 					<meta name="theme-color" content="#dddac4">
 
-					<meta http-equiv="refresh" content="10; url=http://nieuw.scoutingveghel.nl/" />
+					<meta http-equiv="refresh" content="10; url=http://scoutingveghel.nl/" />
 				</head>
 				<body>
 				<div class="activiteiten fixed-background" style="padding: 15vh 0 15vh 0; height: 100vh; color: #202020;">
@@ -97,7 +98,7 @@ function redirect($msg) {
 					<span class="size-limit">
 						<h2>Status bevestiging genomen optie:</h2>
 						<p><strong>' . $msg . '</strong></p>
-						<a href="http://nieuw.scoutingveghel.nl" style="color: inherit; font-size: 75%;">Klik hier als u niet teruggestuurd wordt naar de begin pagina.</a>
+						<a href="http://scoutingveghel.nl" style="color: inherit; font-size: 75%;">Klik hier als u niet teruggestuurd wordt naar de startpagina.</a>
 					</span>
 					</div>
 				</div>

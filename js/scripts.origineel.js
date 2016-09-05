@@ -53,7 +53,7 @@ ajax = function(url, data, callback) {
     if (typeof XMLHttpRequest !== 'undefined') {
         x = new XMLHttpRequest();
     } else {
-        showError("Dingen zijn niet ondersteund.. update je browser...");
+        showError("Dingen zijn niet ondersteund... update je browser...");
         return;
     }
 
@@ -68,7 +68,10 @@ ajax = function(url, data, callback) {
     x.onreadystatechange = function () {
         if (x.readyState === 4 && x.status === 200) {
             // Success!
-            callback(null, x.responseText)
+            callback(null, x.responseText);
+        } else if (x.readyState === 4 && x.status !== 200) {
+            // failure
+            callback(true);
         }
     };
 
@@ -105,7 +108,6 @@ function getSetScrollFunction() {
 			document.body.scrollTop = to;
 		};
     }
-    //console.warn("non of the above");
 }
 // Set the function once.. no need to check it everytime.
 setScroll = getSetScrollFunction();
@@ -268,14 +270,12 @@ function showSuccess(msg, form){
 function resizeMap() {
     if ($id("map-size")){
         var mapSize = $id("map-size").clientWidth;
-        $id("kaartje").innerHTML = '<img class="info-kaart" alt="Locatie blokhut veghel" src="//maps.googleapis.com/maps/api/staticmap?center=Dorshout+29,Veghel,NL&zoom=14&size='+mapSize+'x300&scale=2&markers=color:blue%7C51.626782,5.522947&key=AIzaSyCgVa8lEEM_4SaJqtlLgl8QtBytdSSrhlM&sensor=false" />';
+        $id("kaartje").innerHTML = '<img class="info-kaart" alt="Locatie blokhut Scouting Veghel" src="//maps.googleapis.com/maps/api/staticmap?center=Dorshout+29,Veghel,NL&zoom=14&size='+mapSize+'x300&scale=2&markers=color:blue%7C51.626782,5.522947&maptype=terrain&key=AIzaSyCgVa8lEEM_4SaJqtlLgl8QtBytdSSrhlM&sensor=false" />';
     }
 }
 resizeMap();
 window.addEventListener("resize", resizeMap);
 
-
-/////// SCOUTING VEGHEL CODE!
 
 // Sticky navigation bar :)
 window.onscroll = function () {
@@ -335,15 +335,15 @@ $id("contact-form").onsubmit = function () {
     }
 
     if (!data.whoTo) {
-        showError("Aan wie moet je vraag/opmerking verstuurd worden?", form);
+        showError("Aan wie moet de vraag of opmerking verstuurd worden?", form);
     }
     if (!re.test(data.mailadr)){
-        showError("Vul een geldig email adres in.", form);
+        showError("Vul een geldig e-mailadres in.", form);
     }
     if (re.test(data.mailadr) && data.whoTo !== ""){
         removeError();
 
-        showSuccess("Vraag/opmerking verstsuren...", form);
+        showSuccess("Vraag of opmerking aan het versturen...", form);
 
         ajax("../php/contact-form.php", data, function (err, msg) {
             // Reset form after succes.
@@ -370,7 +370,7 @@ $id("verhuur-form").onsubmit = function () {
     // If there is a groepscode do not validate fields
     if (data.groepcode !== "") {
         if (data.people !== "" && data.tArea !== ""){
-            showSuccess("Aanvraag voor de optie verstsuren...", form);
+            showSuccess("Aanvraag voor de optie versturen...", form);
 
             ajax("../php/verhuur-form.php", data, function (err, msg) {
                 // Reset form after succes.
@@ -386,12 +386,12 @@ $id("verhuur-form").onsubmit = function () {
             showError("Wie wil deze optie op de blokhut nemen?", form);
         }
         if (!re.test(data.mailadr)){
-            showError("Vul een geldig email adres in.", form);
+            showError("Vul een geldig e-mailadres in.", form);
         }
         if (re.test(data.mailadr) && data.name !== "" && data.contactpersoon !== ""){
             removeError();
 
-            showSuccess("Aanvraag voor de optie verstsuren...", form);
+            showSuccess("Aanvraag voor de optie versturen...", form);
 
             ajax("../php/verhuur-form.php", data, function (err, msg) {
                 // Reset form after succes.
@@ -734,15 +734,15 @@ function processHired(msg) {
         time = function (input) {
             var t = new Date(input),
                 weekdays = {
-                    shorthand: ['Zo', 'Ma', 'Di', 'Wo', 'Do', 'Vr', 'Za'],
-                    longhand: ['Zondag', 'Maandag', 'Dinsdag', 'Woensdag', 'Donderdag', 'Vrijdag', 'Zaterdag']
+                    shorthand: ['zo', 'ma', 'di', 'wo', 'do', 'vr', 'za'],
+                    longhand: ['zondag', 'maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag']
                 },
                 months = {
-                    shorthand: ['Jan', 'Feb', 'Mrt', 'Apr', 'Mei', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec'],
-                    longhand: ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November', 'December']
+                    shorthand: ['jan', 'feb', 'mrt', 'apr', 'mei', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec'],
+                    longhand: ['januari', 'februari', 'maart', 'april', 'mei', 'juni', 'juli', 'augustus', 'september', 'oktober', 'november', 'december']
                 };
 
-            return weekdays.shorthand[t.getDay()] + " " + t.getDate() + " " + months.shorthand[t.getMonth()] /*+ " " + t.getFullYear() *//*+ ", " + t.getHours() +  ":00"*/;
+            return weekdays.shorthand[t.getDay()] + ". " + t.getDate() + " " + months.shorthand[t.getMonth()] + "." /*+ " " + t.getFullYear() *//*+ ", " + t.getHours() +  ":00"*/;
         },
         today;
 
@@ -756,7 +756,7 @@ function processHired(msg) {
         dateFrom = time(msg[i].dayFrom);
         dateTo = time(msg[i].dayTo);
 
-        li.textContent = ((dateTo === dateFrom) ? ("Op: " + dateFrom) : ("Van: " + dateFrom + " tot: " + dateTo));
+        li.textContent = ((dateTo === dateFrom) ? ("Op " + dateFrom) : ("Van " + dateFrom + " tot " + dateTo));
 
         ul.appendChild(li);
     }

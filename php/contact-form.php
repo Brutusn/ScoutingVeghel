@@ -39,12 +39,12 @@ if (isset($_POST["name"]) && isset($_POST["mailadr"]) && isset($_POST["whoTo"]) 
     $message = htmlentities($area);
 
     if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
-        echo "Fout: Email adres ongeldig.";
+        echo "Fout: E-mailadres ongeldig.";
         header('HTTP/1.1 400 Bad Request');
         exit;
     }
     else if (!mail($toMail, $subject, $message, $headers)) {
-        echo "Fout: Verzenden email mislukt.";
+        echo "Fout: Verzenden e-mail mislukt.";
         header('HTTP/1.1 400 Bad Request');
         exit;
     } else {
