@@ -224,11 +224,13 @@ button, .button {
   }
 }
 .error-message, .success-message {
-  padding: .75em;
+  padding: .75em @normal;
+  color: @col-text-light;
   border-radius: 5px;
   width: 100%;
-  max-width: 400px;
-  margin: 0 auto;
+  margin: @normal auto 0 auto;
+  .no-text-shadow;
+  .shadow(1);
   .transition;
 }
 .error-message {
