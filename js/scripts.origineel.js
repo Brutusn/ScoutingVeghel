@@ -563,11 +563,13 @@ function verhuurDateTime () {
             e = einde[x];
             b = begin[x];
             if (this.checked) {
-                if (e.nodeName !== "SELECT") {
-                    e.value = b.value;
-                } else {
+                if (e.nodeName === "SELECT") {
                     // It's the selectbox..
                     e.selectedIndex = b.selectedIndex;
+                } else if (x === "uu" || x === "mm") {
+                    e.value = x === "uu" ? 23 : 59;
+                } else {
+                    e.value = b.value;
                 }
             }
             // Turn on or off disabled and required.
@@ -588,17 +590,23 @@ function verhuurDateTime () {
         // Parse the actual date..
         datum = new Date(dataString);
 
-        // Fastforward to + 5 days!
-        datum.setDate(datum.getDate() + 5);
+        if (!$1dag.checked) {
+            // Fastforward to + 5 days!
+            datum.setDate(datum.getDate() + 5);
+
+            // Set Time.
+            einde.uu.value = begin.uu.value < 12 ? begin.uu.value + 8 : begin.uu.value;
+            einde.mm.value = begin.mm.value;
+        } else {
+            // Set Time, but with a fixed end time.
+            einde.uu.value = 23;
+            einde.mm.value = 59;
+        }
 
         // Set eind days
         einde.j.value = datum.getFullYear();
         einde.m.selectedIndex = datum.getMonth();
         einde.d.value = datum.getDate();
-
-        // Set Time.
-        einde.uu.value = begin.uu.value < 12 ? begin.uu.value + 8 : begin.uu.value;
-        einde.mm.value = begin.mm.value;
     };
 
     // Apply listeners..
