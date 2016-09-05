@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 require_once("db_layer.php");
 require_once("mail_layer.php");
@@ -22,11 +22,12 @@ if(isset($_GET["key"])) {
 		if($updatable) {
 			reserveringConfirmed($rid);
 			sendConfirmEmailEllen();
+			//TODO send email with huurcontract and voorwaarden
 			confirmAccept();
 		} else {
 			confirmAlready();
 		}
-		
+
 	}
 }
 

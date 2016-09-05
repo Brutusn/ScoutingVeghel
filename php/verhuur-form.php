@@ -9,8 +9,8 @@ date_default_timezone_set('Europe/Paris');
 
 //check if all parameters are present in the request
 //TODO make the names better for the inputs (not consitent with the actual site right now)
-if (isset($_POST["name"]) && isset($_POST["contactperson"]) && isset($_POST["mailadr"]) && isset($_POST["phone"]) 
-    && isset($_POST["adress"]) && isset($_POST["postcode"]) && isset($_POST["city"]) 
+if (isset($_POST["name"]) && isset($_POST["contactperson"]) && isset($_POST["mailadr"]) && isset($_POST["phone"])
+    && isset($_POST["adress"]) && isset($_POST["postcode"]) && isset($_POST["city"])
     && isset($_POST["people"]) && isset($_POST["tArea"]) && isset($_POST["groepcode"])
     && isset($_POST["aankomst-dag"]) && isset($_POST["aankomst-maand"]) && isset($_POST["aankomst-jaar"])
     && isset($_POST["aankomst-uur"]) && isset($_POST["aankomst-minuut"])
@@ -43,13 +43,14 @@ if (isset($_POST["name"]) && isset($_POST["contactperson"]) && isset($_POST["mai
     // First check if dates are ok and valid, if so build the proper string
     $startSTR = "";
     $endSTR = "";
+    $alreadyReserved = False;
     //Convert the month name to month number
     $aankomstmaandNummer = getMonthNumber($aankomstmaand);
     $vertrekmaandNummer = getMonthNumber($vertrekmaand);
     if($aankomstmaandNummer === -1 || $vertrekmaandNummer === -1) {
         incompleteData("aankomsts- en/of vertrekmaand");
     }
-    if (!validDate($aankomstjaar, $aankomstmaandNummer, $aankomstdag, $aankomstuur, $aankomstminuut) 
+    if (!validDate($aankomstjaar, $aankomstmaandNummer, $aankomstdag, $aankomstuur, $aankomstminuut)
         || !validDate($vertrekjaar, $vertrekmaandNummer, $vertrekdag, $vertrekuur, $vertrekminuut)) {
         //Wrong dates, so indicate that
         incompleteData("aankomst- en/of vertrekdatum");
@@ -67,7 +68,12 @@ if (isset($_POST["name"]) && isset($_POST["contactperson"]) && isset($_POST["mai
 
     // Make sure the start is before the end
     if ($start > $end){
-        incompleteData("aanmkomstdatum is na de vertrekdatum");
+        incompleteData("aankomstdatum is na de vertrekdatum");
+    }
+
+    // Check if there are already Reservations during the time frame and if so indicate this for the success message
+    if (alreadyReserved($start, $end) == True) {
+        $alreadyReserved = True;
     }
 
     //First create Huurder
@@ -77,12 +83,15 @@ if (isset($_POST["name"]) && isset($_POST["contactperson"]) && isset($_POST["mai
     if ($groepscode != "" && $area != "" && $aantalPers != "") {
         //Get information based on the group code and process the request
         $hid = getHuurderIDFromCode($groepscode);
+        if ($hid == -1){
+          incompleteData("de groepscode is incorrect");
+        }
         $info = getInfoFromHid($hid);
         $naam = $info[0];
         $mail = $info[1];
         $groep = $naam;
-    } elseif ($naam != "" && $contact != "" && filter_var($mail, FILTER_VALIDATE_EMAIL) 
-        && $telefoon != "" && $adres != "" && $postcode != "" && $plaats != "" 
+    } elseif ($naam != "" && $contact != "" && filter_var($mail, FILTER_VALIDATE_EMAIL)
+        && $telefoon != "" && $adres != "" && $postcode != "" && $plaats != ""
         && $aantalPers != "" && $area != "") {
         //Filled in by external party (not own group)
         $hid = getHuurder($naam, $contact, $mail, $telefoon, $adres, $postcode, $plaats);
@@ -106,7 +115,11 @@ if (isset($_POST["name"]) && isset($_POST["contactperson"]) && isset($_POST["mai
     sendConfirmEmail($mail, $naam, $hashEmail);
 
     //Indicate succes
-    succesfullReservation();
+    if (!$alreadyReserved) {
+      succesfullReservation();
+    } else {
+      succesfullReservationAlreadyReserved();
+    }
 } else {//one of the fields was not set in the POST request
     missingData();
 }
@@ -115,7 +128,7 @@ if (isset($_POST["name"]) && isset($_POST["contactperson"]) && isset($_POST["mai
  * Shows the incomplete message and exits this script
  */
 function incompleteData($invalidData){
-    echo "Niet alle velden zijn correct ingevuld. Specifiek de velden voor de $invalidData.";
+    echo "Niet alle velden zijn correct ingevuld. Specifiek de velden: $invalidData.";
     header('HTTP/1.1 400 Bad Request');
     exit;
 }
@@ -135,6 +148,15 @@ function missingData(){
 function errorDatabase(){
     echo "Er is iets fout gegaan, probeer het alsutblieft opnieuw. Als de fout aanhoudt, neem dan contact op met de webmaster.";
     header('HTTP/1.1 400 Bad Request');
+    exit;
+}
+
+/**
+ * Shows the messages that the blokhut is already reserved in that time frame and exits this script
+ */
+function succesfullReservationAlreadyReserved(){
+    echo "Er is al een optie op de blokhut tijdens de gewenste periode. Uw optie wordt geregisteerd, maar neemt u alstublieft contact op met de verhuurder. U heeft een bevestigingsemail gehad met instructies hoe u uw aanvraag kan bevestigen.";
+    header('HTTP/1.1 200 Ok');
     exit;
 }
 

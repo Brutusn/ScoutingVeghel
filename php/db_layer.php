@@ -165,12 +165,10 @@ function getReservering($area, $startSTR, $endSTR, $aantalPers){
  */
 function getReservations(DateTime $start, DateTime $end)
 {
-
-
     $startSTR = $start->format("Y-m-d H:i:s");
     $endSTR = $end->format("Y-m-d H:i:s");
 
-	$array = [];
+    $array = [];
 
     $mysqli = databaseMYSQLi();
     if($stmt = $mysqli->prepare("CALL GetReservations(?, ?)")){
@@ -231,6 +229,23 @@ function isReserveringConfirmable($rid) {
 
 	return $updatable;
 }
+
+/**
+ * Checks whether there is already a reservation durign the specified time frame
+ *
+ * @param $startSTR The start time of the specified time frame
+ * @param $endSTR The end time fo the specified time frame
+ * @return True if there is a reservation in that time frame and false otherwise
+ */
+function alreadyReserved(DateTime $start, DateTime $end){
+  $reservations = getReservations($start, $end);
+  if (count($reservations) == 0){
+    return true;
+  } else {
+    return false;
+  }
+}
+
 
 
 
