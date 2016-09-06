@@ -112,7 +112,6 @@ if (isset($_POST["name"]) && isset($_POST["contactperson"]) && isset($_POST["mai
     if($hashEmail === "error") {errorDatabase();}
 
     //Then send confirmation email to verhuurder with confirm string
-    //TODO add other information from the option
     sendConfirmEmail($mail, $contact, $hashEmail, $naam, $startSTR, $endSTR, $aantalPers);
 
     //Indicate succes

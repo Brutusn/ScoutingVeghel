@@ -11,9 +11,8 @@ function sendConfirmEmailEllen($name, $email){
     $toMail = "website@scoutingveghel.nl";//verhuur@scoutingveghel.nl";
     $svmail = "website@scoutingveghel.nl";
     $subject = "Reservering blokhut Scouting Veghel bevestigd.";
-    //TODO improve messages
     $message = "Beste Ellen,\r\n\r\n
-            Er is weer een reservering voor de blokhut bevestigd. De resevering is van " . $name . " (" . $email . ").\r\n
+            Er is weer een reservering voor de blokhut bevestigd. De resevering is van: " . $name . " (" . $email . ").\r\n
             Met vriendelijke groeten,\r\n
             Website Scouting Veghel";
     $headers = "From: Website Scouting Veghel <" . $svmail . ">\r\n";
@@ -37,13 +36,12 @@ function sendConfirmEmail($mail, $naam, $hashEmail, $activity, $startSTR, $endST
     $toMail = $mail;
     $svmail = "verhuur@scoutingveghel.nl";
     $subject = "Aanvraag huren blokhut Scouting Veghel";
-    //TODO improve messages
     $message = htmlentities("Beste " . $naam . ",\r\n
             Hierbij de email om uw reservering te bevestigen. U bevestigt uw resevering door op de onderstaande link te klikken: \r\n
             http://nieuw.scoutingveghel.nl/php/verhuur-confirm.php?key=" . $hashEmail . "\r\n\r\n
-            De activiteit waavoor u een optie op de blokhut genomen heeft is " . $activity .
+            De activiteit waavoor u een optie op de blokhut genomen heeft is: " . $activity . ", " .
             (($endSTR != "") ? " van " . $startSTR . " tot " . $endSTR  : " op " . $startSTR)
-             . " voor " . $aantalPers . " personen.\r\n\r\n
+             . " en voor " . $aantalPers . " personen.\r\n\r\n
             Als deze mail verkeerd geaddresseerd is, of wanneer je de optie niet om wilt zetten naar een reservering, hoef je niets te doen. Binnen 2 weken zal deze komen te vervallen. \r\n
             Voor meer informatie kunt u reageren op deze e-mail.\r\n\r\n
             Met vriendelijke groeten,\r\n
@@ -53,9 +51,29 @@ function sendConfirmEmail($mail, $naam, $hashEmail, $activity, $startSTR, $endST
     mail($toMail, $subject, $message, $headers);
 }
 
-
+/**
+ * Send the email after the confirmation link is clicked with the documents
+ *
+ * @param $name The name of the huurder
+ * @param $email The email fo the huurder
+ * @param $verhuring_id The id of the verhuring this option is about
+ * @return void
+ */
 function sendDocuments($name, $email, $verhuring_id){
   //STUB so far
   //TODO implement
+
+  $toMail = $mail;
+  $svmail = "verhuur@scoutingveghel.nl";
+  $subject = "Bevestiging optie blokhut Scouting Veghel";
+  $message = htmlentities("Beste " . $naam . ",\r\n
+          Hierbij de bevestiging van uw reservering.
+          De huurvoorwaarden en de huurovereenkomst zijn als bijlage toegevoegd.
+          De huurovereenkomst graag doorlezen en ondertekenen.\r\n\r\n
+          Met vriendelijke groeten,\r\n
+          Verhuurder Scouting Veghel");
+  $headers = "From: Verhuur Scouting Veghel <" . $svmail . ">\r\n";
+  $headers .= "Reply-To: " . $svmail;
+  mail($toMail, $subject, $message, $headers);
 }
 ?>
