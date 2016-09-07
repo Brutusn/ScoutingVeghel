@@ -65,7 +65,7 @@ function sendDocuments($name, $email, $verhuring_id){
 
   $toMail = $email;
   $subject = "Bevestiging optie blokhut Scouting Veghel";
-  $message = htmlentities("Beste " . $naam . ",\r\n
+  $message = htmlentities("Beste " . $name . ",\r\n
   Hierbij de bevestiging van uw reservering.".
   //De huurvoorwaarden en de huurovereenkomst zijn als bijlage toegevoegd.
   "U kunt de huurvoorwaarden vinden op onze site: http://nieuw.scoutingveghel.nl/docs/huurvoorwaarden.pdf \r\n

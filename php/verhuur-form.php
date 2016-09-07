@@ -90,6 +90,7 @@ if (isset($_POST["name"]) && isset($_POST["contactperson"]) && isset($_POST["mai
         $naam = $info[0];
         $mail = $info[1];
         $groep = $naam;
+        $contact = $naam;
     } elseif ($naam != "" && $contact != "" && filter_var($mail, FILTER_VALIDATE_EMAIL)
         && $telefoon != "" && $adres != "" && $postcode != "" && $plaats != ""
         && $aantalPers != "" && $area != "") {
