@@ -56,10 +56,10 @@ function sendConfirmEmail($mail, $naam, $hashEmail, $activity, $startSTR, $endST
 *
 * @param $name The name of the huurder
 * @param $email The email fo the huurder
-* @param $verhuring_id The id of the verhuring this option is about
+* @param $confirm_key The id of the verhuring this option is about
 * @return void
 */
-function sendDocuments($name, $email, $verhuring_id){
+function sendDocuments($name, $email, $confirm_key){
   //STUB so far
   //TODO implement
 
@@ -69,7 +69,7 @@ function sendDocuments($name, $email, $verhuring_id){
   Hierbij de bevestiging van uw reservering.".
   //De huurvoorwaarden en de huurovereenkomst zijn als bijlage toegevoegd.
   "U kunt de huurvoorwaarden vinden op onze site: http://nieuw.scoutingveghel.nl/docs/huurvoorwaarden.pdf \r\n
-  De huurovereenkomst is te hier te vinden: http://nieuw.scoutingveghel.nl/php/huurovereenkomst.php?verhuring_id=" . $verhuring_id . "\r\n".
+  De huurovereenkomst is te hier te vinden: http://nieuw.scoutingveghel.nl/php/huurovereenkomst.php?key=" . $confirm_key . "\r\n".
   "De huurovereenkomst graag doorlezen en ondertekenen.\r\n\r\n
   Met vriendelijke groeten,\r\n
   Verhuurder Scouting Veghel");
