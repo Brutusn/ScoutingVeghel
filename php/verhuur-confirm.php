@@ -101,7 +101,7 @@ function redirect($msg) {
 	<body>
 	<div class="activiteiten fixed-background" style="padding: 15vh 0 15vh 0; height: 100vh; color: #202020;">
 	<div class="section verhuur">
-	<span class="size-limit">
+	<span class="size-limit no-text-shadow">
 	<h2>Status bevestiging genomen optie:</h2>
 	<p><strong>' . $msg . '</strong></p>
 	<a href="http://scoutingveghel.nl" style="color: inherit; font-size: 75%;">Klik hier als u niet teruggestuurd wordt naar de startpagina.</a>
