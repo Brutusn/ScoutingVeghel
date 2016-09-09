@@ -1,7 +1,5 @@
 <?php
 
-//require_once("debug_layer.php");
-
 session_start();
 date_default_timezone_set('Europe/Paris');
 
@@ -17,13 +15,13 @@ if (isset($_POST["name"]) && isset($_POST["mailadr"]) && isset($_POST["whoTo"]) 
 
         switch ($who) {
             case "gebe":
-                $toMail = "website@scoutingveghel.nl";// "groepsbegeleiding@scoutingveghel.nl";
+                $toMail = "groepsbegeleiding@scoutingveghel.nl";
                 break;
             case "verhuur":
-                $toMail = "website@scoutingveghel.nl";// "verhuur@scoutingveghel.nl";
+                $toMail = "verhuur@scoutingveghel.nl";
                 break;
             case "sponsor":
-                $toMail = "website@scoutingveghel.nl";// "bestuur@scoutingveghel.nl";
+                $toMail = "bestuur@scoutingveghel.nl";
                 break;
             case "site":
                 $toMail = "website@scoutingveghel.nl";

@@ -8,7 +8,7 @@
 * @return void
 */
 function sendConfirmEmailEllen($name, $email){
-  $toMail = "website@scoutingveghel.nl";//verhuur@scoutingveghel.nl";
+  $toMail = "verhuur@scoutingveghel.nl";
   $svmail = "website@scoutingveghel.nl";
   $subject = "Reservering blokhut Scouting Veghel bevestigd.";
   $message = "Beste Ellen,\r\n\r\n
@@ -60,10 +60,8 @@ function sendConfirmEmail($mail, $naam, $hashEmail, $activity, $startSTR, $endST
 * @return void
 */
 function sendDocuments($name, $email, $confirm_key){
-  //STUB so far
-  //TODO implement
-
   $toMail = $email;
+  $svmail = "verhuur@scoutingveghel.nl";
   $subject = "Bevestiging optie blokhut Scouting Veghel";
   $message = htmlentities("Beste " . $name . ",\r\n
   Hierbij de bevestiging van uw reservering.".
@@ -76,60 +74,5 @@ function sendDocuments($name, $email, $confirm_key){
   $headers = "From: Verhuur Scouting Veghel <" . $svmail . ">\r\n";
   $headers .= "Reply-To: " . $svmail;
   mail($toMail, $subject, $message, $headers);
-  //attachmentEmail($toMail, $subject, $message, "../docs/", "huurvoorwaarden.pdf");
-}
-
-/**
- *
- *
- *
- *
- *
- *
- *
- * @see http://stackoverflow.com/questions/12301358/send-attachments-with-php-mail
- */
-function attachmentEmail($mailto, $subject, $message, $path, $filename){
-  $namefrom = "Verhuur Scouting Veghel";
-  $mailfrom = "verhuur@scoutingveghel.nl";
-
-  $file = $path . "/" . $filename;
-  $content = file_get_contents($file);
-  $content = chunk_split(base64_encode($content));
-
-  // a random hash will be necessary to send mixed content
-  $separator = md5(time());
-
-  // carriage return type (we use a PHP end of line constant)
-  $eol = PHP_EOL;
-
-  // main header (multipart mandatory)
-  $headers = "From: " . $namefrom . " <" . $mailfrom . ">" . $eol;
-  $headers .= "MIME-Version: 1.0" . $eol;
-  $headers .= "Content-Type: multipart/mixed; boundary=\"" . $separator . "\"" . $eol;
-  $headers .= "Content-Transfer-Encoding: 7bit" . $eol;
-  $headers .= "This is a MIME encoded message." . $eol;
-
-  // message
-  $headers .= "--" . $separator . $eol;
-  $headers .= "Content-Type: text/plain; charset=\"iso-8859-1\"" . $eol;
-  $headers .= "Content-Transfer-Encoding: 8bit" . $eol;
-  $headers .= $message . $eol;
-
-  // attachment
-  $headers .= "--" . $separator . $eol;
-  $headers .= "Content-Type: application/octet-stream; name=\"" . $filename . "\"" . $eol;
-  $headers .= "Content-Transfer-Encoding: base64" . $eol;
-  $headers .= "Content-Disposition: attachment" . $eol;
-  $headers .= $content . $eol;
-  $headers .= "--" . $separator . "--";
-
-  mail($mailto, $subject, "", $headers);
-  //SEND Mail
-  //if (mail($mailto, $subject, "", $headers)) {
-    //echo "mail send ... OK"; // or use booleans here
-  //} else {
-    //echo "mail send ... ERROR!";
-  //}
 }
 ?>

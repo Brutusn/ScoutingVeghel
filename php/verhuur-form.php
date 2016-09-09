@@ -2,7 +2,6 @@
 require_once("db_layer.php");
 require_once("date_layer.php");
 require_once("mail_layer.php");
-//require_once("debug_layer.php");
 
 session_start();
 date_default_timezone_set('Europe/Paris');
