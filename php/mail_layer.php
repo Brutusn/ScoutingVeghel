@@ -67,8 +67,8 @@ function sendDocuments($name, $email, $confirm_key){
   Hierbij de bevestiging van uw reservering.".
   //De huurvoorwaarden en de huurovereenkomst zijn als bijlage toegevoegd.
   "U kunt de huurvoorwaarden vinden op onze site: http://nieuw.scoutingveghel.nl/docs/huurvoorwaarden.pdf \r\n
-  De huurovereenkomst is te hier te vinden: http://nieuw.scoutingveghel.nl/php/huurovereenkomst.php?key=" . $confirm_key . "\r\n".
-  "De huurovereenkomst graag doorlezen en ondertekenen.\r\n\r\n
+  De huurovereenkomst is hier te vinden: http://nieuw.scoutingveghel.nl/php/huurovereenkomst.php?key=" . $confirm_key . "\r\n\r\n
+  De huurovereenkomst graag doorlezen en ondertekenen.\r\n\r\n
   Met vriendelijke groeten,\r\n
   Verhuurder Scouting Veghel");
   $headers = "From: Verhuur Scouting Veghel <" . $svmail . ">\r\n";

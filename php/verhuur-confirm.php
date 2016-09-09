@@ -29,7 +29,7 @@ if(isset($_GET["key"])) {
 			$mail = $huurder[1];
 			sendConfirmEmailEllen($name, $mail);
 			//TODO send email with huurcontract and voorwaarden
-			sendDocuments($name, $mail, $confirm_key);
+			sendDocuments($name, $mail, $key);
 			confirmAccept();
 		} else {
 			confirmAlready();
