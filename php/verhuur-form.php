@@ -164,7 +164,6 @@ function missingData(){
 * Shows the invalid dates messages and exits the script
 */
 function invalidDates(){
-  //TODO fix this constant issue
   echo "De duur van de optie mag maximaal " . MAX_AANTAL_OVERNACHTINGEN  . " overnachtingen zijn. Mocht u langer willen huren, stuur dan een vraag m.b.v. het bovenstaande formulier.";
   header('HTTP/1.1 400 Bad Request');
   exit;
@@ -174,7 +173,6 @@ function invalidDates(){
 * Shows the invalid number of people mesasges and exits script
 */
 function invalidNumberOfPersons(){
-  //TODO fix this constant issue
   echo "Het aantal personen moet tussen " . MIN_AANTAL_PERSONEN . " en " . MAX_AANTAL_PERSONEN  . " liggen. Mocht u met meer personen willen gaan, stuur dan een vraag m.b.v. het bovenstaande formulier.";
   header('HTTP/1.1 400 Bad Request');
   exit;
