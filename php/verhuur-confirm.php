@@ -1,11 +1,12 @@
 <?php
 
+require_once("settings.php");
 require_once("db_layer.php");
 require_once("mail_layer.php");
-//require_once("debug_layer.php");
+
 
 session_start();
-date_default_timezone_set('Europe/Paris');
+date_default_timezone_set(TIME_ZONE);
 
 if(isset($_GET["key"])) {
 	$key = trim(strip_tags($_GET["key"]), " \n");
@@ -96,7 +97,7 @@ function redirect($msg) {
 
 	<meta name="theme-color" content="#dddac4">
 
-	<meta http-equiv="refresh" content="10; url=http://scoutingveghel.nl/" />
+	<meta http-equiv="refresh" content="10; url="' . BASE_URL . '/>
 	</head>
 	<body>
 	<div class="activiteiten fixed-background" style="padding: 15vh 0 15vh 0; height: 100vh; color: #202020;">
@@ -104,7 +105,7 @@ function redirect($msg) {
 	<span class="size-limit no-text-shadow">
 	<h2>Status bevestiging genomen optie:</h2>
 	<p><strong>' . $msg . '</strong></p>
-	<a href="http://scoutingveghel.nl" style="color: inherit; font-size: 75%;">Klik hier als u niet teruggestuurd wordt naar de startpagina.</a>
+	<a href="' . BASE_URL . '" style="color: inherit; font-size: 75%;">Klik hier als u niet teruggestuurd wordt naar de startpagina.</a>
 	</span>
 	</div>
 	</div>

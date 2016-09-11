@@ -1,13 +1,14 @@
 <?php
+
+require_once("settings.php");
 require_once("db_layer.php");
 require_once("date_layer.php");
 require_once("mail_layer.php");
 
 session_start();
-date_default_timezone_set('Europe/Paris');
+date_default_timezone_set(TIME_ZONE);
 
 //check if all parameters are present in the request
-//TODO make the names better for the inputs (not consitent with the actual site right now)
 if (isset($_POST["name"]) && isset($_POST["contactperson"]) && isset($_POST["mailadr"]) && isset($_POST["phone"])
     && isset($_POST["adress"]) && isset($_POST["postcode"]) && isset($_POST["city"])
     && isset($_POST["people"]) && isset($_POST["tArea"]) && isset($_POST["groepcode"])
@@ -59,11 +60,11 @@ if (isset($_POST["name"]) && isset($_POST["contactperson"]) && isset($_POST["mai
     $start = new DateTime();
     $start->setDate($aankomstjaar, $aankomstmaandNummer, $aankomstdag);
     $start->setTime($aankomstuur, $aankomstminuut);
-    $startSTR = $start->format("Y-m-d H:i:s");
+    $startSTR = $start->format(DATE_TIME_FORMAT);
     $end = new DateTime();
     $end->setDate($vertrekjaar, $vertrekmaandNummer, $vertrekdag);
     $end->setTime($vertrekuur, $vertrekminuut);
-    $endSTR = $end->format("Y-m-d H:i:s");
+    $endSTR = $end->format(DATE_TIME_FORMAT);
 
     // Make sure the start is before the end
     if ($start > $end){

@@ -1,7 +1,9 @@
 <?php
 
+require_once("settings.php");
+
 session_start();
-date_default_timezone_set('Europe/Paris');
+date_default_timezone_set(TIME_ZONE);
 
 if (isset($_POST["name"]) && isset($_POST["mailadr"]) && isset($_POST["whoTo"]) && isset($_POST["tArea"])) {
     $naam = trim(strip_tags($_POST["name"]), " \n");
@@ -15,16 +17,16 @@ if (isset($_POST["name"]) && isset($_POST["mailadr"]) && isset($_POST["whoTo"]) 
 
         switch ($who) {
             case "gebe":
-                $toMail = "groepsbegeleiding@scoutingveghel.nl";
+                $toMail = MAIL_ADDRESS_GEBE;
                 break;
             case "verhuur":
-                $toMail = "verhuur@scoutingveghel.nl";
+                $toMail = MAIL_ADDRESS_VERHUUR;
                 break;
             case "sponsor":
-                $toMail = "bestuur@scoutingveghel.nl";
+                $toMail = MAIL_ADDRESS_BESTUUR;
                 break;
             case "site":
-                $toMail = "website@scoutingveghel.nl";
+                $toMail = MAIL_ADDRESS_WEBSITE;
                 break;
             default:
                 $toMail = "";

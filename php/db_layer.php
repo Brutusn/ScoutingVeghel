@@ -1,5 +1,6 @@
 <?php
 
+require_once("settings.php");
 require_once("DB2.php");
 
 //==========Huurder========================================================================================
@@ -56,7 +57,7 @@ function getHuurder($naam, $contact, $mail, $telefoon, $adres, $postcode, $plaat
       }
     }
   }
-  
+
   $mysqli->close();
 
   return $huurderid;
@@ -164,8 +165,8 @@ function getReservering($area, $startSTR, $endSTR, $aantalPers){
 */
 function getReservations(DateTime $start, DateTime $end)
 {
-  $startSTR = $start->format("Y-m-d H:i:s");
-  $endSTR = $end->format("Y-m-d H:i:s");
+  $startSTR = $start->format(DATE_TIME_FORMAT);
+  $endSTR = $end->format(DATE_TIME_FORMAT);
 
   $array = [];
 
@@ -179,8 +180,8 @@ function getReservations(DateTime $start, DateTime $end)
       $ar = [];//array('dayFrom', 'dayTo', 'bySV');
       $begin = new DateTime($begindate);
       $end = new DateTime($enddate);
-      $ar['dayFrom'] = $begin->format("Y-m-d");
-      $ar['dayTo'] = $end->format("Y-m-d");
+      $ar['dayFrom'] = $begin->format(DATE_FORMAT);
+      $ar['dayTo'] = $end->format(DATE_FORMAT);
       $ar['bySV'] = ($groep == NULL) ? False : True;
       $array[] = $ar;
     }
@@ -319,6 +320,39 @@ function getConfirm($hid, $rid){
   $mysqli->close();
 
   return $hashEmail;
+}
+
+/**
+ * Returns all data needed for the huurovereenkomst corresponding the id
+ *
+ * @param $verhuring_id The id to fetch all the data for
+ * @return An array with all the data from the fetched row, if there was no row fetched then the array is empty
+ */
+function getHuurovereenkomstData($verhuring_id){
+  $data = array();
+  $mysqli = databaseMYSQLi();
+  if($stmt_gc = $mysqli->prepare("CALL GetHuurovereenkomstData(?)")){
+    $stmt_gc->bind_param("i", $verhuring_id);
+    $stmt_gc->execute();
+    $stmt_gc->bind_result($h_name, $h_phone, $h_address, $h_postal, $h_city, $start, $end, $people, $borg_limit, $pay_limit, $date);
+    while ($stmt_gc->fetch()) {
+      $data['huurder_naam'] = $h_name;
+      $data['huurder_telefoon']  = $h_phone;
+      $data['huurder_adres']  = $h_address;
+      $data['huurder_postcode']  = $h_postal;
+      $data['huurder_plaats']  = $h_city;
+      $data['begindatum']  = $start;
+      $data['einddatum']  = $end;
+      $data['verhuring_aantal_personen']  = $people;
+      $data['verhuring_borg_limiet']  = $borg_limit;
+      $data['verhuring_huurprijs_limiet']  = $pay_limit;
+      $data['datum']  = $date;
+    }
+    $stmt_gc->close();
+  }
+  $mysqli->close();
+
+  return $data;
 }
 
 ?>
