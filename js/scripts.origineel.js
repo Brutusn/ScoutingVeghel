@@ -293,6 +293,7 @@ $id("arrowDown").onclick = function () {
 $id("sv-logo").onclick = function () {
     removeClass("menu-active");
     scrollUp("landing-page");
+    window.location.hash="";
 };
 
 menu.onclick = function (evt) {
