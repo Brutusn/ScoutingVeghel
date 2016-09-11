@@ -1,5 +1,19 @@
+# for PHP Storm
 /.idea
+
+# for node modules thingies
 /node_modules
+
+# db settings (user and password)
 /php/DB2.php
-*error_log*
+/php/database.php
+
+# private sensitive settings
+/privateSettings
+
+# DB backup and export
+/backup
 /db_export
+
+# error log for php
+*error_log*
