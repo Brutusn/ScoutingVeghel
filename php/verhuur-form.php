@@ -65,10 +65,20 @@ if (isset($_POST["name"]) && isset($_POST["contactperson"]) && isset($_POST["mai
     $end->setDate($vertrekjaar, $vertrekmaandNummer, $vertrekdag);
     $end->setTime($vertrekuur, $vertrekminuut);
     $endSTR = $end->format(DATE_TIME_FORMAT);
+    //create max end date of reservation
+    $maxEndDate = new DateTime();
+    $maxEndDate->setDate($aankomstjaar, $aankomstmaandNummer, $aankomstdag);
+    $maxEndDate->setTime($aankomstuur, $aankomstminuut);
+    date_add($maxEndDate, date_interval_create_from_date_string(MAX_AANTAL_OVERNACHTINGEN . ' days'));
 
     // Make sure the start is before the end
     if ($start > $end){
         incompleteData("aankomstdatum is na de vertrekdatum");
+    }
+
+    // check if the number of days the reservation is is more than the max number of days (if more than one day reservation)
+    if ($end > $maxEndDate){
+      invalidDates();
     }
 
     // Check if there are already Reservations during the time frame and if so indicate this for the success message
@@ -81,6 +91,10 @@ if (isset($_POST["name"]) && isset($_POST["contactperson"]) && isset($_POST["mai
     $groep = "NULL";
     //Check if either the groepscode is filled in (so made by one of our own groups) or if it is filled in by an external party
     if ($groepscode != "" && $area != "" && $aantalPers != "") {
+      //check if the #perople is valid
+      //TODO fix this constant issue
+      if ($aantalPers >= 20//MIN_AANTAL_PERSONEN
+      && $aantalPers <= 60){//MAX_AANTAL_PERSONEN) {
         //Get information based on the group code and process the request
         $hid = getHuurderIDFromCode($groepscode);
         if ($hid == -1){
@@ -91,6 +105,9 @@ if (isset($_POST["name"]) && isset($_POST["contactperson"]) && isset($_POST["mai
         $mail = $info[1];
         $groep = $naam;
         $contact = $naam;
+      } else { //invlaid number of persons
+        invalidNumberOfPersons();
+      }
     } elseif ($naam != "" && $contact != "" && filter_var($mail, FILTER_VALIDATE_EMAIL)
         && $telefoon != "" && $adres != "" && $postcode != "" && $plaats != ""
         && $aantalPers != "" && $area != "") {
@@ -141,6 +158,29 @@ function missingData(){
     echo "Niet alle velden zijn ingevuld.";
     header('HTTP/1.1 400 Bad Request');
     exit;
+}
+
+/**
+ * Shows the invalid dates messages and exits the script
+ */
+function invalidDates(){
+  //TODO fix this constant issue
+  echo "De duur van de optie mag maximaal " . 14//MAX_AANTAL_OVERNACHTINGEN
+  . " overnachtingen zijn. Mocht u meer willen, stuur dan een vraag m.b.v. het bovenstaande formulier.";
+  header('HTTP/1.1 400 Bad Request');
+  exit;
+}
+
+/**
+ * Shows the invalid number of people mesasges and exits script
+ */
+function invalidNumberOfPersons(){
+  //TODO fix this constant issue
+  echo "Het aantal personen moet tussen " . 20// MIN_AANTAL_PERSONEN
+  . " en " . 60//MAX_AANTAL_PERSONEN
+  . " liggen. Mocht u het anders willen, stuur dan een vraag m.b.v. het bovenstaande formulier.";
+  header('HTTP/1.1 400 Bad Request');
+  exit;
 }
 
 /**
