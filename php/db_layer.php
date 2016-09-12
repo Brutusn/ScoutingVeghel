@@ -239,7 +239,7 @@ function isReserveringConfirmable($rid) {
 */
 function alreadyReserved(DateTime $start, DateTime $end){
   $reservations = getReservations($start, $end);
-  if (count($reservations) == 0){
+  if (count($reservations) != 0){
     return true;
   } else {
     return false;
