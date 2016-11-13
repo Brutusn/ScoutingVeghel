@@ -146,8 +146,8 @@ if (isset($_POST["name"]) && isset($_POST["contactperson"]) && isset($_POST["mai
 * Shows the incomplete message and exits this script
 */
 function incompleteData($invalidData){
-  echo "Niet alle velden zijn correct ingevuld. Specifiek de velden: $invalidData.";
   header('HTTP/1.1 400 Bad Request');
+  echo "Niet alle velden zijn correct ingevuld. Specifiek de velden: $invalidData.";
   exit;
 }
 
@@ -155,8 +155,8 @@ function incompleteData($invalidData){
 * Shows the missing data message and exits this script
 */
 function missingData(){
-  echo "Niet alle velden zijn ingevuld.";
   header('HTTP/1.1 400 Bad Request');
+  echo "Niet alle velden zijn ingevuld.";
   exit;
 }
 
@@ -164,8 +164,8 @@ function missingData(){
 * Shows the invalid dates messages and exits the script
 */
 function invalidDates(){
-  echo "De duur van de optie mag maximaal " . MAX_AANTAL_OVERNACHTINGEN  . " overnachtingen zijn. Mocht u langer willen huren, stuur dan een vraag m.b.v. het bovenstaande formulier.";
   header('HTTP/1.1 400 Bad Request');
+  echo "De duur van de optie mag maximaal " . MAX_AANTAL_OVERNACHTINGEN  . " overnachtingen zijn. Mocht u langer willen huren, stuur dan een vraag m.b.v. het bovenstaande formulier.";
   exit;
 }
 
@@ -173,8 +173,8 @@ function invalidDates(){
 * Shows the invalid number of people mesasges and exits script
 */
 function invalidNumberOfPersons(){
-  echo "Het aantal personen moet tussen " . MIN_AANTAL_PERSONEN . " en " . MAX_AANTAL_PERSONEN  . " liggen. Mocht u met meer personen willen gaan, stuur dan een vraag m.b.v. het bovenstaande formulier.";
   header('HTTP/1.1 400 Bad Request');
+  echo "Het aantal personen moet tussen " . MIN_AANTAL_PERSONEN . " en " . MAX_AANTAL_PERSONEN  . " liggen. Mocht u met meer personen willen gaan, stuur dan een vraag m.b.v. het bovenstaande formulier.";
   exit;
 }
 
@@ -182,8 +182,8 @@ function invalidNumberOfPersons(){
 * Shows the error messages and exits this script
 */
 function errorDatabase(){
-  echo "Er is iets fout gegaan, probeer het alsutblieft opnieuw. Als de fout zich blijft voordoen, neem dan contact op met de webmaster.";
   header('HTTP/1.1 400 Bad Request');
+  echo "Er is iets fout gegaan, probeer het alsutblieft opnieuw. Als de fout zich blijft voordoen, neem dan contact op met de webmaster.";
   exit;
 }
 
@@ -191,8 +191,8 @@ function errorDatabase(){
 * Shows the messages that the blokhut is already reserved in that time frame and exits this script
 */
 function succesfullReservationAlreadyReserved(){
-  echo "Er is al een optie op de blokhut tijdens de gewenste periode. Uw optie wordt geregisteerd, maar neemt u alstublieft contact op met de verhuurder. U heeft een bevestigingsemail gehad met instructies hoe u uw aanvraag kan bevestigen.";
   header('HTTP/1.1 200 Ok');
+  echo "Er is al een optie op de blokhut tijdens de gewenste periode. Uw optie wordt geregisteerd, maar neemt u alstublieft contact op met de verhuurder. U heeft een bevestigingsemail gehad met instructies hoe u uw aanvraag kan bevestigen.";
   exit;
 }
 
@@ -200,8 +200,8 @@ function succesfullReservationAlreadyReserved(){
 * Shows the succes message and exits this scripts
 */
 function succesfullReservation(){
-  echo "We hebben uw aanvraag ontvangen. U heeft een bevestigingsemail gehad met instructies hoe u uw aanvraag kan bevestigen.";
   header('HTTP/1.1 200 Ok');
+  echo "We hebben uw aanvraag ontvangen. U heeft een bevestigingsemail gehad met instructies hoe u uw aanvraag kan bevestigen.";
   exit;
 }
 ?>

@@ -13,12 +13,12 @@ $y = filter_var($y, FILTER_VALIDATE_INT);
 
 //TODO Add the possibility to specify an end date. If not set use the behaviour specified below and if set check for that specific interval
 if(validDate($y, $m, $d, 0, 0)) {
-	echo json_encode(getReservationsNextDays($d, $m, $y));
 	header('HTTP/1.1 200 OK');
+	echo json_encode(getReservationsNextDays($d, $m, $y));
     exit;
 } else {
-	echo "Geen geldige datum opgegeven.";
 	header('HTTP/1.1 400 Bad Request');
+	echo "Geen geldige datum opgegeven.";
     exit;
 }
 

@@ -40,6 +40,7 @@ function getHuurder($naam, $contact, $mail, $telefoon, $adres, $postcode, $plaat
     //Get IP from connecting party for the server perspective. Do not trust the user information
     $ip = $_SERVER['REMOTE_ADDR'];
     if ($stmt_ch = $mysqli->prepare("CALL CreateHuurder(?, ?, ?, ?, ?, ?, ?, ?)")){
+      //TODO Apparently there is an error on this which prevents the prepare stement. The error is Command out of sync and is caused by the previous call to get huurder
       $stmt_ch->bind_param("ssssssss", $naam, $contact, $mail, $telefoon, $postcode, $plaats, $adres, $ip);
       $stmt_ch->execute();
       $stmt_ch->close();

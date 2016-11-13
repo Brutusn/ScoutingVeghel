@@ -33,23 +33,24 @@ if (isset($_POST["name"]) && isset($_POST["mailadr"]) && isset($_POST["whoTo"]) 
                 break;
         }
         $headers .= "Reply-To: " . $mail;
+        //TODO looks like the defines do not work as expected
     }
 
     $subject = "[SV-Contact]: Vraag/opmerking van: \"$naam\"";
     $message = htmlentities($area);
 
     if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
-        echo "Fout: E-mailadres ongeldig.";
         header('HTTP/1.1 400 Bad Request');
+        echo "Fout: E-mailadres ongeldig.";
         exit;
     }
     else if (!mail($toMail, $subject, $message, $headers)) {
-        echo "Fout: Verzenden e-mail mislukt.";
         header('HTTP/1.1 400 Bad Request');
+        echo "Fout: Verzenden e-mail mislukt.";
         exit;
     } else {
-        echo 'Hallo ' . $naam . ', je vraag of opmerking is verstuurd. Er zal zo spoedig mogelijk een antwoord gegeven worden.';
         header('HTTP/1.1 200 Ok');
+        echo 'Hallo ' . $naam . ', je vraag of opmerking is verstuurd. Er zal zo spoedig mogelijk een antwoord gegeven worden.';
         exit;
     }
 }

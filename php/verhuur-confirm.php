@@ -62,6 +62,7 @@ function confirmDecline() {
 }
 
 function redirect($msg) {
+	header('HTTP/1.1 200 Ok');
 	echo ('<!DOCTYPE html>
 	<html>
 	<head>
@@ -111,7 +112,6 @@ function redirect($msg) {
 	</div>
 	</body>
 	</html>');
-	header('HTTP/1.1 200 Ok');
 	exit;
 }
 ?>
