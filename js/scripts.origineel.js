@@ -443,6 +443,37 @@ $id("verhuur-goto-3").addEventListener("click", function (evt) {
     //return false;
 });
 
+$id("verhuur-confirm-avail").addEventListener("click", function (evt) {
+    evt.preventDefault();
+    var form = $id("verhuur-form").id;
+    var day1 = $id("aankomst-dag").value;
+    var month1 = $id("aankomst-maand").value;
+    var year1 = $id("aankomst-jaar").value;
+    var day2 = $id("vertrek-dag").value;
+    var month2 = $id("vertrek-maand").value;
+    var year2 = $id("vertrek-jaar").value;
+    showSuccess("Beschikbaarheid aan het controleren...", form);
+    ajax("../php/ReserveringVerification.php", {d1: day1, m1: month1, y1: year1, d2: day2, m2: month2, y2: year2}, function (err, msg) {
+		var tempErr = err;
+		if (!err) {
+			try {
+				var results = JSON.parse(msg);
+        if(results.length === 0){
+          showSuccess('Er zijn geen reserveringen gevonden tijdens de gewenste periode.', form);
+        } else {
+          showError('Er zijn reserveringen gevonden tijdens de gewenste periode. U kunt een optie nemen, maar neem alstublieft contact op met de beheerder.', form);
+        }
+			} catch(e) {
+				console.warn("Er is iets mis gegaan met het ophalen van de reserveringen.", msg);
+				tempErr = true;
+			}
+		}
+		if (tempErr) {
+			showError('Er is iets mis gegaan met het ophalen van de reserveringen.', form);
+		}
+    });
+});
+
 $id("hb-menu-btn-click").onclick = function () {
     $id("menu-links").classList.toggle("hb-menu-open");
     this.classList.toggle("hb-menu-btn-open");
