@@ -10,6 +10,7 @@
 
 # private sensitive settings
 /privateSettings
+/CurrentSVSite
 
 # DB backup and export
 /backup
