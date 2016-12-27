@@ -1,7 +1,6 @@
 <?php
 require_once("db_layer.php");
 require_once("date_layer.php");
-require_once("settings.php");
 
 $d1 = $_POST['d1'];
 $m1 = getMonthNumber($_POST['m1']);
@@ -41,8 +40,8 @@ if(validDate($y1, $m1, $d1, 0, 0) && validDate($y2, $m2, $d2, 0, 0)) {
  */
 function getReservationsDates($d1, $m1, $y1, $d2, $m2, $y2)
 {
-    return getReservations(DateTime::createFromFormat(DATE_TIME_FORMAT, "" . $y1 . "-" . $m1 . "-" . $d1 . " 00:00:00"),
-        DateTime::createFromFormat(DATE_TIME_FORMAT, "" . $y2 . "-" . $m2 . "-" . $d2 . " 00:00:00"));
+    return getReservations(DateTime::createFromFormat('Y-m-d H:i:s', "" . $y1 . "-" . $m1 . "-" . $d1 . " 00:00:00"),
+        DateTime::createFromFormat('Y-m-d H:i:s', "" . $y2 . "-" . $m2 . "-" . $d2 . " 00:00:00"));
 }
 
 ?>

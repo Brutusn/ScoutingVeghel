@@ -1,13 +1,12 @@
 <?php
 
-require_once("settings.php");
 require_once("verhuur_settings.php");
 require_once("db_layer.php");
 require_once("date_layer.php");
 require_once("mail_layer.php");
 
 session_start();
-date_default_timezone_set(TIME_ZONE);
+date_default_timezone_set('Europe/Paris');
 
 //check if all parameters are present in the request
 if (isset($_POST["name"]) && isset($_POST["contactperson"]) && isset($_POST["mailadr"]) && isset($_POST["phone"])
@@ -61,11 +60,11 @@ if (isset($_POST["name"]) && isset($_POST["contactperson"]) && isset($_POST["mai
   $start = new DateTime();
   $start->setDate($aankomstjaar, $aankomstmaandNummer, $aankomstdag);
   $start->setTime($aankomstuur, $aankomstminuut);
-  $startSTR = $start->format(DATE_TIME_FORMAT);
+  $startSTR = $start->format('Y-n-d H:i:s');
   $end = new DateTime();
   $end->setDate($vertrekjaar, $vertrekmaandNummer, $vertrekdag);
   $end->setTime($vertrekuur, $vertrekminuut);
-  $endSTR = $end->format(DATE_TIME_FORMAT);
+  $endSTR = $end->format('Y-n-d H:i:s');
   //create max end date of reservation
   $maxEndDate = new DateTime();
   $maxEndDate->setDate($aankomstjaar, $aankomstmaandNummer, $aankomstdag);

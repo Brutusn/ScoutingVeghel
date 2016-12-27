@@ -2,12 +2,13 @@
 
 require_once("db_layer.php");
 require_once('templateParser.php');
-require_once('settings.php');
 require_once("verhuur_settings.php");
 require_once('kostenberekening.php');
 
+$HUUROVEREENKOMST_TEMPLATE_URL = 'templates/huurovereenkomst.tpl';
+
 session_start();
-date_default_timezone_set(TIME_ZONE);
+date_default_timezone_set('Europe/Paris');
 
 //get verhuringID from provided key
 $key = trim(strip_tags($_GET["key"]), " \n");
@@ -18,7 +19,7 @@ $verhuring_id = $verhuring[0];
 if ($verhuring_id != -1) {
 
 	//make template parser initilize
-	$template = new templateParser(HUUROVEREENKOMST_TEMPLATE_URL);
+	$template = new templateParser($HUUROVEREENKOMST_TEMPLATE_URL);
 
 	// Load all data into huurovereenkomst.
 	$tags = array(
@@ -38,10 +39,10 @@ if ($verhuring_id != -1) {
 		$tags = array_merge($tags, $data_array);
 		$tags['verhuring_kenmerk_borg'] = 'WVB/'.$verhuring_id;
 		$tags['verhuring_kenmerk_huur'] = 'WVH/'.$verhuring_id;
-		$tags['verhuring_borg'] = '<strong>'.getBorg(getDifferenceInDays($tags['begindatum'], $tags['einddatum'])).'</strong>';
+		$tags['verhuring_borg'] = '<strong>'.getBorg(getDifferenceInDays($tags['verhuring_begin_datum'], $tags['verhuring_eind_datum'])).'</strong>';
 		$tags['verhuring_prijs']  = '<strong>' .
-			(getKostenByDate($tags['begindatum'], $tags['einddatum'], $tags['verhuring_aantal_personen'])-
-			getBorg(getDifferenceInDays($tags['begindatum'], $tags['einddatum']))).'</strong>';
+			(getKostenByDate($tags['verhuring_begin_datum'], $tags['verhuring_eind_datum'], $tags['verhuring_aantal_personen'])-
+			getBorg(getDifferenceInDays($tags['verhuring_begin_datum'], $tags['verhuring_eind_datum']))).'</strong>';
 		//parse template and show result
 		$template->parseTemplate($tags);
 		echo $template->display();

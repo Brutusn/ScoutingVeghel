@@ -2,18 +2,18 @@
 
 //Settings for poetsrooster
 $POETS_ROOSTER = [
-  1 => ["website@scoutingveghel.nl"],//[MAIL_ADDRESS_SCOUTS],
-  2 => ["website@scoutingveghel.nl"],//[MAIL_ADDRESS_WELPEN],
-  3 => ["website@scoutingveghel.nl"],//[MAIL_ADDRESS_VERKENNERS],
-  4 => ["website@scoutingveghel.nl"],//[MAIL_ADDRESS_PLUSSCOUTS],
-  5 => ["website@scoutingveghel.nl"],//[MAIL_ADDRESS_BEVERS],
-  6 => ["website@scoutingveghel.nl"],//[MAIL_ADDRESS_NISHAANI],
-  7 => ["website@scoutingveghel.nl"],//[MAIL_ADDRESS_BESTUUR, MAIL_ADDRESS_GEBE],
+  1 => ["website@scoutingveghel.nl"],
+  2 => ["website@scoutingveghel.nl"],
+  3 => ["website@scoutingveghel.nl"],
+  4 => ["website@scoutingveghel.nl"],
+  5 => ["website@scoutingveghel.nl"],
+  6 => ["website@scoutingveghel.nl"],
+  7 => ["website@scoutingveghel.nl"],
   8 => [],
-  9 => ["website@scoutingveghel.nl"],//[MAIL_ADDRESS_EXPLORERS],
+  9 => ["website@scoutingveghel.nl"],
   10 => [],
-  11 => ["website@scoutingveghel.nl"],//[MAIL_ADDRESS_KLAVERTJE4],
-  12 => ["website@scoutingveghel.nl"],//[MAIL_ADDRESS_STAM]
+  11 => ["website@scoutingveghel.nl"],
+  12 => ["website@scoutingveghel.nl"],
 ];
 
 $POETS_TASKS = [

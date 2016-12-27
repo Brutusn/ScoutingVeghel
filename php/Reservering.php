@@ -1,7 +1,6 @@
 <?php
 require_once("db_layer.php");
 require_once("date_layer.php");
-require_once("settings.php");
 
 $d = $_POST['d'];
 $m = $_POST['m'];
@@ -39,8 +38,8 @@ function getReservationsMonth($m, $y)
     //month 13 does not exist so count modulo
     $m2 = ($m == 12 ) ? 1 : ($m + 1) ;
 
-    return getReservations(DateTime::createFromFormat(DATE_TIME_FORMAT, "" . $y . "-" . $m . "-01 00:00:00"),
-        DateTime::createFromFormat(DATE_TIME_FORMAT, "" . $y2 . "-" . $m2 . "-01 00:00:00"));
+    return getReservations(DateTime::createFromFormat('Y-m-d H:i:s', "" . $y . "-" . $m . "-01 00:00:00"),
+        DateTime::createFromFormat('Y-m-d H:i:s', "" . $y2 . "-" . $m2 . "-01 00:00:00"));
 }
 
 /**
@@ -60,9 +59,11 @@ function getReservationsNextDays($d, $m, $y)
     $y2 = ($m == 12) ? $y + 1 : $y;
     //month 13 does not exist so count modulo
     $m2 = ($m == 12 ) ? 1 : ($m + 1) ;
+		//catch the error in case the day does not exist in the new month
+		$d2 = ($d > 28 && $m2 == 2) ? 28 : ($d > 30 && ($m2 == 4 || $m2 == 6 || $m2 == 9 || $m2 == 11) ? 30 : $d);
 
-    return getReservations(DateTime::createFromFormat(DATE_TIME_FORMAT, "" . $y . "-" . $m . "-" . $d . " 00:00:00"),
-        DateTime::createFromFormat(DATE_TIME_FORMAT, "" . $y2 . "-" . $m2 . "-" . $d . " 00:00:00"));
+    return getReservations(DateTime::createFromFormat('Y-m-d H:i:s', "" . $y . "-" . $m . "-" . $d . " 00:00:00"),
+        DateTime::createFromFormat('Y-m-d H:i:s', "" . $y2 . "-" . $m2 . "-" . $d2 . " 00:00:00"));
 }
 
 ?>

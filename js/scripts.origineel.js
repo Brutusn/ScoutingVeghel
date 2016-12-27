@@ -461,7 +461,7 @@ $id("verhuur-confirm-avail").addEventListener("click", function (evt) {
         if(results.length === 0){
           showSuccess('Er zijn geen reserveringen gevonden tijdens de gewenste periode.', form);
         } else {
-          showError('Er zijn reserveringen gevonden tijdens de gewenste periode. U kunt een optie nemen, maar neem alstublieft contact op met de beheerder.', form);
+          showError('Er zijn reserveringen gevonden tijdens de gewenste periode. U kunt een optie nemen, maar neem alstublieft ook contact op met de beheerder.', form);
         }
 			} catch(e) {
 				console.warn("Er is iets mis gegaan met het ophalen van de reserveringen.", msg);

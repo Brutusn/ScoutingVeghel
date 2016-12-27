@@ -1,6 +1,5 @@
 <?php
 
-require_once("settings.php");
 require_once("DB2.php");
 
 //==========Huurder========================================================================================
@@ -166,8 +165,8 @@ function getReservering($area, $startSTR, $endSTR, $aantalPers){
 */
 function getReservations(DateTime $start, DateTime $end)
 {
-  $startSTR = $start->format(DATE_TIME_FORMAT);
-  $endSTR = $end->format(DATE_TIME_FORMAT);
+  $startSTR = $start->format('Y-m-d H:i:s');
+  $endSTR = $end->format('Y-m-d H:i:s');
 
   $array = [];
 
@@ -181,8 +180,8 @@ function getReservations(DateTime $start, DateTime $end)
       $ar = [];//array('dayFrom', 'dayTo', 'bySV');
       $begin = new DateTime($begindate);
       $end = new DateTime($enddate);
-      $ar['dayFrom'] = $begin->format(DATE_FORMAT);
-      $ar['dayTo'] = $end->format(DATE_FORMAT);
+      $ar['dayFrom'] = $begin->format('Y-m-d');
+      $ar['dayTo'] = $end->format('Y-m-d');
       $ar['bySV'] = ($groep == NULL) ? False : True;
       $array[] = $ar;
     }
@@ -342,8 +341,8 @@ function getHuurovereenkomstData($verhuring_id){
       $data['huurder_adres']  = $h_address;
       $data['huurder_postcode']  = $h_postal;
       $data['huurder_plaats']  = $h_city;
-      $data['begindatum']  = $start;
-      $data['einddatum']  = $end;
+      $data['verhuring_begin_datum']  = $start;
+      $data['verhuring_eind_datum']  = $end;
       $data['verhuring_aantal_personen']  = $people;
       $data['verhuring_borg_limiet']  = $borg_limit;
       $data['verhuring_huurprijs_limiet']  = $pay_limit;
