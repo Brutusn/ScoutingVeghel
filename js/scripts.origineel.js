@@ -472,6 +472,13 @@ $id("verhuur-confirm-avail").addEventListener("click", function (evt) {
 			showError('Er is iets mis gegaan met het ophalen van de reserveringen.', form);
 		}
     });
+
+    $id("aankomst-dag").onchange = removeError;
+    $id("aankomst-maand").onchange = removeError;
+    $id("aankomst-jaar").onchange = removeError;
+    $id("vertrek-dag").onchange = removeError;
+    $id("vertrek-maand").onchange = removeError;
+    $id("vertrek-jaar").onchange = removeError;
 });
 
 $id("hb-menu-btn-click").onclick = function () {
