@@ -54,14 +54,14 @@ function sendPoetsEmail($toMail, $task){
   $subject = "Poetsers van de maand";
   $message = htmlentities("Beste poetsers van de maand,\r\n
   Hierbij een herrinnering dat jullie moeten poetsen deze maand. De taak die deze week extra op de planning staat is: " . $task . ".\r\n
-  De checklist is te vinden op onze website: http://nieuw.scoutingveghel.nl/docs/poets_checklist.docx \r\n
+  De checklist is te vinden op onze website: http://scoutingveghel.nl/docs/poets_checklist.docx \r\n
   Met vriendelijke groeten,\r\n
   Scouting Veghel\r\n\r\n
   Dit is een automatisch verstuurd bericht en je kunt dus niet reageren op deze email.
   ");
   $headers = "From: Scouting Veghel <noreply@scoutingveghel.nl>\r\n";
   $headers .= "Reply-To: noreply@scoutingveghel.nl\r\n";
-  $headers .= "Cc: website@scoutingveghel.nl";
+  $headers .= "Cc: beheer@scoutingveghel.nl";
   mail($toMail, $subject, $message, $headers);
 }
 
