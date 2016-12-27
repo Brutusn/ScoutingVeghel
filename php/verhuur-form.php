@@ -60,11 +60,11 @@ if (isset($_POST["name"]) && isset($_POST["contactperson"]) && isset($_POST["mai
   $start = new DateTime();
   $start->setDate($aankomstjaar, $aankomstmaandNummer, $aankomstdag);
   $start->setTime($aankomstuur, $aankomstminuut);
-  $startSTR = $start->format('Y-n-d H:i:s');
+  $startSTR = $start->format('Y-m-d H:i:s');
   $end = new DateTime();
   $end->setDate($vertrekjaar, $vertrekmaandNummer, $vertrekdag);
   $end->setTime($vertrekuur, $vertrekminuut);
-  $endSTR = $end->format('Y-n-d H:i:s');
+  $endSTR = $end->format('Y-m-d H:i:s');
   //create max end date of reservation
   $maxEndDate = new DateTime();
   $maxEndDate->setDate($aankomstjaar, $aankomstmaandNummer, $aankomstdag);

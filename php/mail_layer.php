@@ -19,6 +19,10 @@ $FROM_HEADER_NO_REPLY = 'Scouting Veghel <noreply@scoutingveghel.nl>';
 * @return void
 */
 function sendConfirmEmailEllen($name, $email){
+  global $FROM_HEADER_WEBSITE;
+  global $MAIL_ADDRESS_WEBSITE;
+  global $MAIL_ADDRESS_VERHUUR;
+
   $subject = "Reservering blokhut Scouting Veghel bevestigd.";
   $message = "Beste Ellen,\r\n\r\n
   Er is weer een reservering voor de blokhut bevestigd. De resevering is van: " . $name . " (" . $email . ").\r\n
@@ -42,6 +46,10 @@ function sendConfirmEmailEllen($name, $email){
 * @return void
 */
 function sendConfirmEmail($toMail, $naam, $hashEmail, $activity, $startSTR, $endSTR, $aantalPers){
+  global $FROM_HEADER_VERHUUR;
+  global $MAIL_ADDRESS_VERHUUR;
+  global $VERIFY_BASE_URL;
+
   $subject = "Aanvraag huren blokhut Scouting Veghel";
   $message = htmlentities("Beste " . $naam . ",\r\n
   Hierbij de email om uw reservering te bevestigen. U bevestigt uw resevering door op de onderstaande link te klikken: \r\n
@@ -67,6 +75,11 @@ function sendConfirmEmail($toMail, $naam, $hashEmail, $activity, $startSTR, $end
 * @return void
 */
 function sendDocuments($name, $toMail, $confirm_key){
+  global $FROM_HEADER_VERHUUR;
+  global $MAIL_ADDRESS_VERHUUR;
+  global $HUURVOOORWAARDEN_URL;
+  global $HUUROVEREENKOMST_BASE_URL;
+
   $subject = "Bevestiging optie blokhut Scouting Veghel";
   $message = htmlentities("Beste " . $name . ",\r\n
   Hierbij de bevestiging van uw reservering.".

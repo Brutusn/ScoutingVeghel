@@ -62,6 +62,7 @@ function confirmDecline() {
 }
 
 function redirect($msg) {
+	global $BASE_URL;
 	header('HTTP/1.1 200 Ok');
 	echo ('<!DOCTYPE html>
 	<html>
