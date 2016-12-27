@@ -26,6 +26,8 @@ require_once('../php/includes/settings.php');
   */
   function Delete_Expired_Options(){
   	global $database;
+    global $MAIL_ADDRESS_VERHUUR;
+    global $FROM_HEADER_VERHUUR;
   	//first, retrieve all (relevant) id's:
 
   	$query = 	"SELECT `verhuur_reservering`.`id`, `verhuur_huurder`.`contactpersoon`, `verhuur_huurder`.`email`
@@ -58,8 +60,8 @@ require_once('../php/includes/settings.php');
        Verhuurder Scouting Veghel\r\n\r\n
       P.S. U krijgt deze mail ook indien uw reservering een ongeldige datum (vaak: 00:00 00-00-0000) bevat.
       Wij willen u dan waarschuwen dat u waarschijnlijk de 'terug'-knop van uw browser hebt gebruikt, waardoor de ingevulde datum is komen te vervallen!";
-      $headers = "From: " . $FROM_HEADER_WEBSITE ."\r\n";
-      $headers .= "Reply-To: " . $MAIL_ADDRESS_WEBSITE;
+      $headers = "From: " . $FROM_HEADER_VERHUUR ."\r\n";
+      $headers .= "Reply-To: " . $MAIL_ADDRESS_VERHUUR;
   		if( mail($rw['email'], $subject, $message, $headers)){
   				logEvent($rw['id'], 'HUURDER GEMAILD','none','system');
   			} else {
