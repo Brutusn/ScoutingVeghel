@@ -59,15 +59,47 @@ function processReservations(reservations, month, year) {
     var start_mark = start.getDate();
     var end_mark = end.getDate();
     if (start.getMonth() === end.getMonth()) {
-      //do nothing as dates are already set
-    } else {
+      //do nothing as dates are already set and this is the normal case
+    } else {//this is the case where reservations start ot end in another month
       if (end.getMonth() === month){//starts in a previous month
         //so set starting mark as first of the month
         start_mark = 1;
+
+        //actually mark the dates from previous month
+        for (var d = start.getDate(); d <= 31; d++) {
+              var elem = getId('prev'+d);
+              if (elem != null){
+                elem.classList.add(res_class)
+              }
+        }//end for marking
       } else if (start.getMonth() === month) {//ends in a next month
         //so set the end mark at the end of the month
         //(31 is safe, since there are no other ids if there are less days than 31 days in a month)
         end_mark = 31;
+        //actually mark the dates from previous month
+        for (var d = 1; d <= end.getDate(); d++) {
+          var elem = getId('next'+d);
+          if (elem != null){
+            elem.classList.add(res_class)
+          }
+        }//end for marking
+      } else if (start.getMonth() != month && end.getMonth() != month) {//cover th entire month with a reservation
+        start_mark = 1;
+        end_mark = 31;
+        //actually mark the dates from previous month
+        for (var d = start.getDate(); d <= 31; d++) {
+              var elem = getId('prev'+d);
+              if (elem != null){
+                elem.classList.add(res_class)
+              }
+        }//end for marking
+        //actually mark the dates from previous month
+        for (var d = 1; d <= end.getDate(); d++) {
+          var elem = getId('next'+d);
+          if (elem != null){
+            elem.classList.add(res_class)
+          }
+        }//end for marking
       }
     }//end else months equal
 
@@ -204,7 +236,7 @@ Cal.prototype.showMonth = function(y, m) {
       html += '<tr>';
       var k = lastDayOfLastMonth - firstDayOfMonth+1;
       for(var j=0; j < firstDayOfMonth; j++) {
-        html += '<td class="not-current">' + k + '</td>';
+        html += '<td class="not-current" id="prev' + k + '">' + k + '</td>';
         k++;
       }
     }
@@ -227,7 +259,7 @@ Cal.prototype.showMonth = function(y, m) {
     else if ( i == lastDateOfMonth ) {
       var k=1;
       for(dow; dow < 6; dow++) {
-        html += '<td class="not-current">' + k + '</td>';
+        html += '<td class="not-current" id="next' + k + '">' + k + '</td>';
         k++;
       }
     }
