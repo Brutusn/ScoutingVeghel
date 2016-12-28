@@ -2,7 +2,8 @@
 require_once('../php/includes/class/database.php');
 require_once('../php/includes/settings.php');
 
-  $MAIL_ADDRESS_VERHUUR = 'verhuur@scoutingveghel.nl';
+  $BASE_VERHUUR_URL = 'http://nieuw.scoutingveghel.nl/#verhuur';
+  $MAIL_ADDRESS_VERHUUR = 'website@scoutingveghel.nl';
   $FROM_HEADER_VERHUUR = 'Scouting Veghel Verhuur <' . $MAIL_ADDRESS_VERHUUR . '>';
 
   $database = new database();
@@ -54,7 +55,7 @@ require_once('../php/includes/settings.php');
        NUMBER_OF_DAYS_OPTION_IS_VALID." dagen geleden heeft u een optie genomen op onze blokhut.
        Omdat u die tot op heden niet bevestigd hebt, is deze komen te vervallen.
        Indien u de blokhut wel wilt gebruiken op de door u opgegeven data, dient deze opnieuw gereserveerd te worden!\r\n
-       Dit kan op onze webpagina: http://www.scoutingveghel.nl/#verhuur. \r\n
+       Dit kan op onze webpagina: ". $BASE_VERHUUR_URL.". \r\n
        Indien u nog vragen heeft, kunt u deze mailen naar ". $MAIL_ADDRESS_VERHUUR .", wij proberen dan zo spoedig mogelijk antwoord te geven! \r\n\r\n
        Met vriendelijke groeten,\r\n
        Verhuurder Scouting Veghel\r\n\r\n
