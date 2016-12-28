@@ -45,19 +45,37 @@ ajax = function(url, data, callback) {
 /**
 * Function that processes the reservations for this month and makrs them on the calendar
 */
-function processReservations(reservations) {
+function processReservations(reservations, month, year) {
   for (var i in reservations) {
     var res = reservations[i];
     var start = new Date(res['dayFrom']);
     var end = new Date(res['dayTo']);
-    for (var d = start.getDate(); d <= end.getDate(); d++) {
-      if(res['bySV']){
-          getId(d).classList.add('bySV');
-      } else {
-          getId(d).classList.add('reserved');
-      }
+    var res_class = 'reserved';
+    //set the class of this reservation
+    if(res['bySV']){
+      res_class = 'bySV';
     }
-  }
+    //check whether it is in the same month or that it overflows
+    var start_mark = start.getDate();
+    var end_mark = end.getDate();
+    if (start.getMonth() === end.getMonth()) {
+      //do nothing as dates are already set
+    } else {
+      if (end.getMonth() === month){//starts in a previous month
+        //so set starting mark as first of the month
+        start_mark = 1;
+      } else if (start.getMonth() === month) {//ends in a next month
+        //so set the end mark at the end of the month
+        //(31 is safe, since there are no other ids if there are less days than 31 days in a month)
+        end_mark = 31;
+      }
+    }//end else months equal
+
+    //actually mark the dates
+    for (var d = start_mark; d <= end_mark; d++) {
+          getId(d).classList.add(res_class);
+    }//end for marking
+  }//end for reservations
 }
 
 /**
@@ -69,7 +87,7 @@ function getReservationsMonth(month, year) {
   var tempErr = err;
   if (!err) {
     try {
-      processReservations(JSON.parse(msg));
+      processReservations(JSON.parse(msg), month, year);
       getId("msg-calendar").innerHTML = '<p class="verhuur-status">Reserveringen opgehaald.</p>';
     } catch(e) {
       console.warn("Er is iets mis gegaan met het ophalen van de reserveringen.", msg);

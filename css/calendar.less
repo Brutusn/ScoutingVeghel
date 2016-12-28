@@ -6,12 +6,15 @@
 @calendar-standout:rgb(40,40,59);
 @calendar-color:#444;
 @calendar-fade-color:#c0c0c0;
+@calendar-button-color:#202020;
 @body-color:#444;
 
 @reserved-bg-color:#629760;
 @reserved-font-color:#ffffff;
+@reserved-bg-fade-color:#b5c5b4;
 @bySV-bg-color:#03400c;
 @bySV-font-color:#ffffff;
+@bySV-bg-fade-color:#5a6f5d;
 
 
 html, body {
@@ -91,14 +94,14 @@ td {
 td.not-current {
   color:@calendar-fade-color;;
 }
-td.normal {}
-td.today {
-  font-weight:700;
-  color:@calendar-standout;
-  font-size:1.5em;
+td.not-current.reserved {
+  background-color: @reserved-bg-fade-color;
+}
+td.not-current.bySV {
+  background-color: @bySV-bg-fade-color;
 }
 
-
+td.normal {}
 td.reserved {
   background-color: @reserved-bg-color;
   color: @reserved-font-color;
@@ -106,6 +109,12 @@ td.reserved {
 td.bySV {
   background-color: @bySV-bg-color;
   color: @bySV-font-color;
+}
+
+td.today {
+  font-weight:700;
+  //color:@calendar-standout;
+  font-size:1.5em;
 }
 
 
@@ -140,7 +149,7 @@ thead td {
   border:none;
   outline:none;
   font-size:1em;
-  color:@calendar-fade-color;
+  color:@calendar-button-color;
   cursor:pointer;
   font-family:"Roboto Condensed", sans-serif;
   text-transform:uppercase;

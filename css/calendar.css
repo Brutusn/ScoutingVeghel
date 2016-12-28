@@ -258,10 +258,11 @@ td {
 td.not-current {
   color: #c0c0c0;
 }
-td.today {
-  font-weight: 700;
-  color: #28283b;
-  font-size: 1.5em;
+td.not-current.reserved {
+  background-color: #b5c5b4;
+}
+td.not-current.bySV {
+  background-color: #5a6f5d;
 }
 td.reserved {
   background-color: #629760;
@@ -270,6 +271,10 @@ td.reserved {
 td.bySV {
   background-color: #03400c;
   color: #ffffff;
+}
+td.today {
+  font-weight: 700;
+  font-size: 1.5em;
 }
 thead td {
   border: none;
@@ -301,7 +306,7 @@ thead td {
   border: none;
   outline: none;
   font-size: 1em;
-  color: #c0c0c0;
+  color: #202020;
   cursor: pointer;
   font-family: "Roboto Condensed", sans-serif;
   text-transform: uppercase;
