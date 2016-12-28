@@ -11,6 +11,7 @@
 //@body-color:#444;
 @main-bg:@col-background;
 @calendar-border:@col-text;
+@calendar-td-bg: fade(white, 75%);
 @calendar-bg:@col-background;
 
 @calendar-bg-header:lighten(@col-text, 20%);
@@ -23,7 +24,7 @@
 @calendar-button-bg-color:@col-link;
 //@calendar-button-color-hover:@col-link-hover;
 
-@calendar-bg-fade-color:lighten(@main-bg, 10%);
+@calendar-bg-fade-color:darken(@calendar-td-bg, 10%);
 @reserved-bg-color:#629760;
 @reserved-font-color:@col-text-light;
 @reserved-bg-fade-color:lighten(@reserved-bg-color, 10%);
@@ -106,6 +107,7 @@ td {
   border-right:1px solid @calendar-border;
   border-top:1px solid @calendar-border;
   width:100% / 7;
+  background-color: @calendar-td-bg;
 }
 td.not-current {
   color:@calendar-fade-color;
@@ -134,7 +136,7 @@ td.today {
   font-size:1.5em;
 }
 
-tr.days{
+td.days{
   background-color: @calendar-bg-header;
   color: @calendar-header;
 }

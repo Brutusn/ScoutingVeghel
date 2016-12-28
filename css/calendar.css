@@ -282,10 +282,11 @@ td {
   border-right: 1px solid #2E2F2A;
   border-top: 1px solid #2E2F2A;
   width: 14.28571429%;
+  background-color: rgba(255, 255, 255, 0.75);
 }
 td.not-current {
   color: #7d8072;
-  background-color: #dddac4;
+  background-color: rgba(230, 230, 230, 0.75);
 }
 td.not-current.reserved {
   background-color: #7fad7d;
@@ -305,7 +306,7 @@ td.today {
   font-weight: 700;
   font-size: 1.5em;
 }
-tr.days {
+td.days {
   background-color: #63655a;
   color: #ECF0F1;
 }

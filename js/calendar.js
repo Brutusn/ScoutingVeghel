@@ -105,7 +105,10 @@ function processReservations(reservations, month, year) {
 
     //actually mark the dates
     for (var d = start_mark; d <= end_mark; d++) {
-          getId(d).classList.add(res_class);
+      var elem =   getId(d);
+      if (elem != null){
+        elem.classList.add(res_class);
+      }
     }//end for marking
   }//end for reservations
 }
@@ -216,7 +219,7 @@ Cal.prototype.showMonth = function(y, m) {
   // Write the header of the days of the week
   html += '<tr class="days">';
   for(var i=0; i < this.DaysOfWeek.length;i++) {
-    html += '<td>' + this.DaysOfWeek[i] + '</td>';
+    html += '<td class="days">' + this.DaysOfWeek[i] + '</td>';
   }
   html += '</tr>';
 
