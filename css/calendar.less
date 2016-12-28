@@ -1,20 +1,35 @@
 @import "fa/font-awesome.less";
+@import "config.less";
 
-@main-bg:rgb(40,40,59);
-@calendar-border:rgb(220,220,255);
-@calendar-bg:#fff;
-@calendar-standout:rgb(40,40,59);
-@calendar-color:#444;
-@calendar-fade-color:#c0c0c0;
-@calendar-button-color:#202020;
-@body-color:#444;
+//@main-bg:rgb(40,40,59);
+//@calendar-border:rgb(220,220,255);
+//@calendar-bg:#fff;
+//@calendar-standout:rgb(40,40,59);
+//@calendar-color:#444;
+//@calendar-fade-color:#c0c0c0;
+//@calendar-button-color:#202020;
+//@body-color:#444;
+@main-bg:@col-background;
+@calendar-border:@col-text;
+@calendar-bg:@col-background;
 
+@calendar-bg-header:lighten(@col-text, 20%);
+@calendar-header:@col-text-light;
+
+@calendar-standout:@col-text;
+@calendar-fade-color:@col-text-lighter;
+
+@calendar-button-color:@col-text;
+@calendar-button-bg-color:@col-link;
+//@calendar-button-color-hover:@col-link-hover;
+
+@calendar-bg-fade-color:lighten(@main-bg, 10%);
 @reserved-bg-color:#629760;
-@reserved-font-color:#ffffff;
-@reserved-bg-fade-color:#b5c5b4;
+@reserved-font-color:@col-text-light;
+@reserved-bg-fade-color:lighten(@reserved-bg-color, 10%);
 @bySV-bg-color:#03400c;
-@bySV-font-color:#ffffff;
-@bySV-bg-fade-color:#5a6f5d;
+@bySV-font-color:@col-text-light;
+@bySV-bg-fade-color:lighten(@bySV-bg-color, 5%);
 
 
 html, body {
@@ -25,8 +40,9 @@ body {
   line-height:1.5;
   font-family: "Roboto Condensed", sans-serif;
   background:@main-bg;
-  background-image:linear-gradient(@main-bg 0%, darken(@main-bg,12%) 100%);
-  color:@body-color;
+  //background-image:linear-gradient(@main-bg 0%, darken(@main-bg,12%) 100%);
+  background-image: url("../images/background-contact.jpg");
+  //color:@body-color;
 }
 
 *, *:before, *:after {
@@ -81,7 +97,7 @@ table {
   border:1px solid @calendar-border;
   border-radius:3px;
   border-collapse:collapse;
-  color:@calendar-color;
+  //color:@calendar-color;
 }
 td {
   height:48px;
@@ -92,7 +108,8 @@ td {
   width:100% / 7;
 }
 td.not-current {
-  color:@calendar-fade-color;;
+  color:@calendar-fade-color;
+  background-color:@calendar-bg-fade-color;
 }
 td.not-current.reserved {
   background-color: @reserved-bg-fade-color;
@@ -117,14 +134,18 @@ td.today {
   font-size:1.5em;
 }
 
-
+tr.days{
+  background-color: @calendar-bg-header;
+  color: @calendar-header;
+}
 
 
 thead td {
   border:none;
-  color:@calendar-standout;
+  color:@calendar-header;
   text-transform:uppercase;
   font-size:1.5em;
+  background-color: @calendar-bg-header;
 }
 #btnPrev {
   float:left;
@@ -159,3 +180,28 @@ thead td {
     font-weight:bold;
   }
 }
+
+// button, .button {
+//   background-color: @calendar-button-bg-color;
+//   color: @calendar-button-color;
+//   border: 0;
+//   cursor: pointer;
+//   .shadow(1);
+//   &:hover {
+//     background-color: @calendar-button-color-hover;
+//   }
+//   &:focus {
+//     outline: none;
+//     background-color: @calendar-button-color-hover;
+//   }
+//   &:active {
+//    background-color: @calendar-button-color;
+//   }
+//
+//   font-size: 1.25em;
+//   padding: .5em;
+//   border-radius: 5px;
+//   //width: calc(~"100% - .5em");
+//   width: 47.5%;
+//   margin: 0 0 .5em 0;
+// }

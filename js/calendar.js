@@ -143,13 +143,13 @@ var Cal = function(divId) {
 
   // Days of week, starting on Sunday
   this.DaysOfWeek = [
-    'Zon',
-    'Maa',
-    'Din',
-    'Woe',
-    'Don',
-    'Vri',
-    'Zat'
+    'Zo',
+    'Ma',
+    'Di',
+    'Wo',
+    'Do',
+    'Vr',
+    'Za'
   ];
 
   // Months, stating on January
