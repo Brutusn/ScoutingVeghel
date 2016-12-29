@@ -25,12 +25,16 @@
 //@calendar-button-color-hover:@col-link-hover;
 
 @calendar-bg-fade-color:darken(@calendar-td-bg, 10%);
-@reserved-bg-color:#629760;
-@reserved-font-color:@col-text-light;
+//@reserved-bg-color:#629760;
+@reserved-bg-color:#eaa927;
+@reserved-font-color:@col-text;
 @reserved-bg-fade-color:lighten(@reserved-bg-color, 10%);
 @bySV-bg-color:#03400c;
 @bySV-font-color:@col-text-light;
 @bySV-bg-fade-color:lighten(@bySV-bg-color, 5%);
+
+@calendar-error-bg-color: @col-error;
+@calendar-error-color: @col-text-light;
 
 
 html, body {
@@ -82,6 +86,30 @@ a {
     }
   }
 
+.verhuur-error {
+  background-color: @calendar-error-bg-color;
+  color: @calendar-error-color;
+  font-size: 1.25em;
+  padding: .5em;
+  border-radius: 5px;
+  // //width: calc(~"100% - .5em");
+  // width: 100%;
+  // margin: 0 0 .5em 0;
+  // .transition;
+  border: 0;
+  cursor: pointer;
+  .shadow(1);
+  &:hover {
+    background-color: darken(@calendar-error-bg-color, 10%);
+  }
+  &:focus {
+    outline: none;
+    background-color: darken(@calendar-error-bg-color, 10%);
+  }
+  &:active {
+    background-color: darken(@calendar-error-bg-color, 20%);
+  }
+}
 
 .calendar-wrapper {
   width:360px;
@@ -167,7 +195,10 @@ thead td {
     padding-left:4px;
   }
 }
-#btnPrev, #btnNext {
+#btnToday{
+  margin-bottom:20px;
+}
+#btnPrev, #btnNext, #btnToday {
   background:transparent;
   border:none;
   outline:none;

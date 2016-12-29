@@ -1,4 +1,6 @@
 //Functions coppied from script.origineel.js
+var ajax_running = 0;
+var ajax_error = false;
 // Ajax call...
 ajax = function(url, data, callback) {
     // Check if "ajax" is possible.
@@ -67,7 +69,7 @@ function processReservations(reservations, month, year) {
 
         //actually mark the dates from previous month
         for (var d = start.getDate(); d <= 31; d++) {
-              var elem = getId('prev'+d);
+              var elem = getId('prev.'+d+'.'+(month+1)+'-'+year);
               if (elem != null){
                 elem.classList.add(res_class)
               }
@@ -78,7 +80,7 @@ function processReservations(reservations, month, year) {
         end_mark = 31;
         //actually mark the dates from previous month
         for (var d = 1; d <= end.getDate(); d++) {
-          var elem = getId('next'+d);
+          var elem = getId('next.'+d+'.'+(month+1)+'-'+year);
           if (elem != null){
             elem.classList.add(res_class)
           }
@@ -88,14 +90,14 @@ function processReservations(reservations, month, year) {
         end_mark = 31;
         //actually mark the dates from previous month
         for (var d = start.getDate(); d <= 31; d++) {
-              var elem = getId('prev'+d);
+              var elem = getId('prev.'+d+'.'+(month+1)+'-'+year);
               if (elem != null){
                 elem.classList.add(res_class)
               }
         }//end for marking
         //actually mark the dates from previous month
         for (var d = 1; d <= end.getDate(); d++) {
-          var elem = getId('next'+d);
+          var elem = getId('next.'+d+'.'+(month+1)+'-'+year);
           if (elem != null){
             elem.classList.add(res_class)
           }
@@ -105,7 +107,7 @@ function processReservations(reservations, month, year) {
 
     //actually mark the dates
     for (var d = start_mark; d <= end_mark; d++) {
-      var elem =   getId(d);
+      var elem =   getId(d+'.'+(month+1)+'-'+year);
       if (elem != null){
         elem.classList.add(res_class);
       }
@@ -117,22 +119,40 @@ function processReservations(reservations, month, year) {
 * Get all reservations for the blokhut for a specific month and year
 */
 function getReservationsMonth(month, year) {
-  getId("msg-calendar").innerHTML = '<p class="verhuur-status">Ophalen van de reserveringen.</p>';
-  ajax("../php/ReserveringMonth.php", {m: month + 1, y: year}, function (err, msg) {
-  var tempErr = err;
-  if (!err) {
-    try {
-      processReservations(JSON.parse(msg), month, year);
-      getId("msg-calendar").innerHTML = '<p class="verhuur-status">Reserveringen opgehaald.</p>';
-    } catch(e) {
-      console.warn("Er is iets mis gegaan met het ophalen van de reserveringen.", msg);
-      tempErr = true;
+  if(ajax_running > 0){
+    ajax_error = true;
+    getId("msg-calendar").innerHTML = '<p></p>';
+    getId("error-calendar").innerHTML = '<p><button id="error-msg" class="verhuur-error">U klikt te snel, klik hier om te verversen.</button></p>';
+    getId("error-msg").onclick = function() {
+      ajax_running = 0;
+      ajax_error = false;
+      getId("error-calendar").innerHTML = "<p></p>";
+      getReservationsMonth(month, year);
     }
+  } else {
+    ajax_running += 1;
+    if (ajax_error === false) {
+      getId("msg-calendar").innerHTML = '<p class="verhuur-status">Ophalen van de reserveringen.</p>';
+    }
+    ajax("../php/ReserveringMonth.php", {m: month + 1, y: year}, function (err, msg) {
+      var tempErr = err;
+      if (!err) {
+        try {
+          if (ajax_error === false) {
+            processReservations(JSON.parse(msg), month, year);
+            getId("msg-calendar").innerHTML = '<p class="verhuur-status">Reserveringen opgehaald.</p>';
+          }
+        } catch(e) {
+          console.warn("Er is iets mis gegaan met het ophalen van de reserveringen.", msg);
+          tempErr = true;
+        }
+      }
+      if (tempErr) {
+        getId("msg-calendar").innerHTML = '<p class="verhuur-status">Er is iets mis gegaan met het ophalen van de reserveringen.</p>';
+      }
+      ajax_running -= 1;
+    });
   }
-  if (tempErr) {
-    getId("msg-calendar").innerHTML = '<p class="verhuur-status">Er is iets mis gegaan met het ophalen van de reserveringen.</p>';
-  }
-  });
 }
 
 //Here starts the downloaded code from http://codepen.io/anon/pen/woLZog
@@ -239,7 +259,7 @@ Cal.prototype.showMonth = function(y, m) {
       html += '<tr>';
       var k = lastDayOfLastMonth - firstDayOfMonth+1;
       for(var j=0; j < firstDayOfMonth; j++) {
-        html += '<td class="not-current" id="prev' + k + '">' + k + '</td>';
+        html += '<td class="not-current" id="prev.' + k+'.'+(this.currMonth+1)+'-'+this.currYear + '">' + k + '</td>';
         k++;
       }
     }
@@ -249,9 +269,9 @@ Cal.prototype.showMonth = function(y, m) {
     var chkY = chk.getFullYear();
     var chkM = chk.getMonth();
     if (chkY == this.currYear && chkM == this.currMonth && i == this.currDay) {
-      html += '<td class="today" id="' + i + '">' + i + '</td>';
+      html += '<td class="today" id="' + i+'.'+(this.currMonth+1)+'-'+this.currYear + '">' + i + '</td>';
     } else {
-      html += '<td class="normal" id="' + i + '">' + i + '</td>';
+      html += '<td class="normal" id="' + i+'.'+(this.currMonth+1)+'-'+this.currYear + '">' + i + '</td>';
     }
     // If Saturday, closes the row
     if ( dow == 6 ) {
@@ -262,7 +282,7 @@ Cal.prototype.showMonth = function(y, m) {
     else if ( i == lastDateOfMonth ) {
       var k=1;
       for(dow; dow < 6; dow++) {
-        html += '<td class="not-current" id="next' + k + '">' + k + '</td>';
+        html += '<td class="not-current" id="next.' + k+'.'+(this.currMonth+1)+'-'+this.currYear + '">' + k + '</td>';
         k++;
       }
     }
@@ -283,17 +303,24 @@ window.onload = function() {
   // Start calendar
   var c = new Cal("divCal");
   c.showcurr();
-  var reservations = getReservationsMonth(c.currMonth, c.currYear);
+  getReservationsMonth(c.currMonth, c.currYear);
 
   // Bind next and previous button clicks
   getId('btnNext').onclick = function() {
     c.nextMonth();
-    var reservations = getReservationsMonth(c.currMonth, c.currYear);
+    getReservationsMonth(c.currMonth, c.currYear);
   };
   getId('btnPrev').onclick = function() {
     c.previousMonth();
-    var reservations = getReservationsMonth(c.currMonth, c.currYear);
+    getReservationsMonth(c.currMonth, c.currYear);
   };
+  // getId('btnToday').onclick = function() {
+  //   var d = new Date();
+  //   c.currMonth = d.getMonth();
+  //   c.currYear = d.getFullYear();
+  //   c.currDay = d.getDate();
+  //   getReservationsMonth(c.currMonth, c.currYear);
+  // };
 }
 
 // Get element by id
