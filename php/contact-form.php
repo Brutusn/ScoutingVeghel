@@ -1,7 +1,7 @@
 <?php
 
 $MAIL_ADDRESS_VERHUUR = 'website@scoutingveghel.nl';
-$MAIL_ADDRESS_WEBSTIE = 'website@scoutingveghel.nl';
+$MAIL_ADDRESS_WEBSITE = 'website@scoutingveghel.nl';
 $MAIL_ADDRESS_GEBE = 'website@scoutingveghel.nl';
 $MAIL_ADDRESS_BESTUUR = 'website@scoutingveghel.nl';
 
