@@ -41,7 +41,7 @@ if(validDate($y1, $m1, $d1, 0, 0) && validDate($y2, $m2, $d2, 0, 0)) {
 function getReservationsDates($d1, $m1, $y1, $d2, $m2, $y2)
 {
     return getReservations(DateTime::createFromFormat('Y-m-d H:i:s', "" . $y1 . "-" . $m1 . "-" . $d1 . " 00:00:00"),
-        DateTime::createFromFormat('Y-m-d H:i:s', "" . $y2 . "-" . $m2 . "-" . $d2 . " 00:00:00"));
+        DateTime::createFromFormat('Y-m-d H:i:s', "" . $y2 . "-" . $m2 . "-" . $d2 . " 23:59:59"));
 }
 
 ?>
