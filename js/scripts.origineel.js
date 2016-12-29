@@ -473,12 +473,13 @@ $id("verhuur-confirm-avail").addEventListener("click", function (evt) {
 		}
     });
 
-    $id("aankomst-dag").onchange = removeError;
+    //Cannot do this, since it causes an overwrite on the onchange events of the correpsonding items. (Labels will no longer react to clicks)
+    /*$id("aankomst-dag").onchange = removeError;
     $id("aankomst-maand").onchange = removeError;
     $id("aankomst-jaar").onchange = removeError;
     $id("vertrek-dag").onchange = removeError;
     $id("vertrek-maand").onchange = removeError;
-    $id("vertrek-jaar").onchange = removeError;
+    $id("vertrek-jaar").onchange = removeError;*/
 });
 
 $id("hb-menu-btn-click").onclick = function () {
