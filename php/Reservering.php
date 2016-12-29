@@ -63,7 +63,7 @@ function getReservationsNextDays($d, $m, $y)
 		$d2 = ($d > 28 && $m2 == 2) ? 28 : ($d > 30 && ($m2 == 4 || $m2 == 6 || $m2 == 9 || $m2 == 11) ? 30 : $d);
 
     return getReservations(DateTime::createFromFormat('Y-m-d H:i:s', "" . $y . "-" . $m . "-" . $d . " 00:00:00"),
-        DateTime::createFromFormat('Y-m-d H:i:s', "" . $y2 . "-" . $m2 . "-" . $d2 . " 00:00:00"));
+        DateTime::createFromFormat('Y-m-d H:i:s', "" . $y2 . "-" . $m2 . "-" . $d2 . " 23:59:59"));
 }
 
 ?>
