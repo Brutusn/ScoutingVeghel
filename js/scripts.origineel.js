@@ -449,11 +449,18 @@ $id("verhuur-confirm-avail").addEventListener("click", function (evt) {
     var day1 = $id("aankomst-dag").value;
     var month1 = $id("aankomst-maand").value;
     var year1 = $id("aankomst-jaar").value;
+    var hour1 = $id("aankomst-uur").value;
+    var minute1 = $id("aankomst-minuut").value;
     var day2 = $id("vertrek-dag").value;
     var month2 = $id("vertrek-maand").value;
     var year2 = $id("vertrek-jaar").value;
+    var hour2 = $id("vertrek-uur").value;
+    var minute2 = $id("vertrek-minuut").value;
     showSuccess("Beschikbaarheid aan het controleren...", form);
-    ajax("../php/ReserveringVerification.php", {d1: day1, m1: month1, y1: year1, d2: day2, m2: month2, y2: year2}, function (err, msg) {
+    ajax("../php/ReserveringVerification.php", {
+      d1: day1, m1: month1, y1: year1, h1: hour1, min1: minute1,
+      d2: day2, m2: month2, y2: year2, h2: hour2, min2: minute2
+    }, function (err, msg) {
 		var tempErr = err;
 		if (!err) {
 			try {
@@ -461,7 +468,7 @@ $id("verhuur-confirm-avail").addEventListener("click", function (evt) {
         if(results.length === 0){
           showSuccess('Er zijn geen reserveringen gevonden tijdens de gewenste periode.', form);
         } else {
-          showError('Er zijn reserveringen gevonden tijdens de gewenste periode. Advies: Neem een optie en neem contact op met de beheerder.', form);
+          showError('Er zijn reserveringen gevonden tijdens de gewenste periode. <b>Advies: Neem een optie en neem contact op met de beheerder.</b>', form);
         }
 			} catch(e) {
 				console.warn("Er is iets mis gegaan met het ophalen van de reserveringen.", msg);
