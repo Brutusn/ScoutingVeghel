@@ -16,7 +16,7 @@ CALL build/dir_structure_release.cmd
 ::echo substitutin CSS references
 ::CALL build/substitute_css_references.cmd
 
-echo substitutin CSS references
+echo substitutin JS references
 CALL build/substitute_js_references.cmd
 
 echo Substituting PHP settings
