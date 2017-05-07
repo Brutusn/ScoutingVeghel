@@ -1,6 +1,6 @@
 <?php
-require_once('../php/includes/class/database.php');
-require_once('../php/includes/settings.php');
+require_once('../php/database.php');
+require_once('../php/settings.php');
 
   $BASE_VERHUUR_URL = 'http://nieuw.scoutingveghel.nl/#verhuur';
   $MAIL_ADDRESS_VERHUUR = 'website@scoutingveghel.nl';
