@@ -25,6 +25,9 @@ if (isset($_POST["name"]) && isset($_POST["mailadr"]) && isset($_POST["whoTo"]) 
             case "verhuur":
                 $toMail = $MAIL_ADDRESS_VERHUUR;
                 break;
+            case "bestuur":
+                $toMail = $MAIL_ADDRESS_BESTUUR;
+                break;
             case "sponsor":
                 $toMail = $MAIL_ADDRESS_BESTUUR;
                 break;
