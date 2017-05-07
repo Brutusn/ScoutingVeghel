@@ -55,6 +55,9 @@ sendPoetsEmail($toMail, $task);
 * @return void
 */
 function sendPoetsEmail($toMail, $task){
+  global $POETS_CHECKLIST_URL;
+  global $MAIL_ADDRESS_BEHEER;
+  
   $subject = "Poetsers van de maand";
   $message = htmlentities("Beste poetsers van de maand,\r\n
   Hierbij een herrinnering dat jullie moeten poetsen deze maand. De taak die deze week extra op de planning staat is: " . $task . ".\r\n
