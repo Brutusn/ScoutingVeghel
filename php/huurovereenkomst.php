@@ -3,7 +3,7 @@
 require_once("db_layer.php");
 require_once('templateParser.php');
 require_once("verhuur_settings.php");
-require_once('kostenberekening.php');
+require_once('kostenberekening_nieuw.php');
 
 $HUUROVEREENKOMST_TEMPLATE_URL = 'templates/huurovereenkomst.tpl';
 
