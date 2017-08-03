@@ -17,9 +17,7 @@ ga('send', 'pageview');
 
 
 // GLOBALS!
-var VERHUUR,
-    ajax,
-    navElem = $id("navigatie"),
+var navElem = $id("navigatie"),
     groupElem = $id("groepen"),
     actiElem = $id("activiteiten"),
     stafElem = $id("staf"),
@@ -60,10 +58,10 @@ function removeClass(c) {
 }
 
 // Ajax call...
-ajax = function(url, data, callback) {
+const ajax = function(url, data, callback) {
     // Check if "ajax" is possible.
-    var x = {},
-		query = [];
+    let x = {};
+	let	query = [];
 
     if (typeof XMLHttpRequest !== 'undefined') {
         x = new XMLHttpRequest();
@@ -73,7 +71,7 @@ ajax = function(url, data, callback) {
     }
 
     // Construct query.
-    for (var key in data) {
+    for (let key in data) {
         query.push(encodeURIComponent(key) + '=' + encodeURIComponent(data[key]));
     }
 
@@ -94,7 +92,7 @@ ajax = function(url, data, callback) {
 		callback(true);
 	};
 
-    x.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    x.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
     x.send(query.join("&"));
 };
@@ -383,14 +381,22 @@ function contactSubmit (token) {
 
 // Verhuur form submission.
 $id("verhuur-form").onsubmit = function () {
-    var data = {},
-        re = /[^\s@]+@[^\s@]+\.[^\s@]+/, // Regex for email
-        form = this.id,
-        inputs = this.getElementsByClassName("inp");
+    const data = {};
+    const re = /[^\s@]+@[^\s@]+\.[^\s@]+/; // Regex for email
+    const form = this.id;
+    const inputs = this.getElementsByClassName("inp");
+
+    // Precheck the length
+    if (VERHUUR.verhuurtijd() > 14) {
+        showError("De duur van de optie mag maximaal 14 overnachtingen zijn. Mocht u langer willen huren, stuur dan een vraag m.b.v. het bovenstaande formulier.", form);
+
+        // Stop it.
+        return false;
+    }
 
     // Fill data object
-    for (var i = 0; i < inputs.length; i++) {
-        data[inputs[i].name] = inputs[i].value;
+    for (const input of inputs) {
+        data[input.name] = input.value;
     }
 
     // If there is a groepscode do not validate fields
@@ -422,6 +428,7 @@ $id("verhuur-form").onsubmit = function () {
             ajax("../php/verhuur-form.php", data, function (err, msg) {
                 // Reset form after succes.
                 $id(form).reset();
+                VERHUUR.reset();
                 showSuccess(msg, form);
             });
         }
@@ -470,17 +477,17 @@ $id("verhuur-goto-3").addEventListener("click", function (evt) {
 
 $id("verhuur-confirm-avail").addEventListener("click", function (evt) {
     evt.preventDefault();
-    var form = $id("verhuur-form").id;
-    var day1 = $id("aankomst-dag").value;
-    var month1 = $id("aankomst-maand").value;
-    var year1 = $id("aankomst-jaar").value;
-    var hour1 = $id("aankomst-uur").value;
-    var minute1 = $id("aankomst-minuut").value;
-    var day2 = $id("vertrek-dag").value;
-    var month2 = $id("vertrek-maand").value;
-    var year2 = $id("vertrek-jaar").value;
-    var hour2 = $id("vertrek-uur").value;
-    var minute2 = $id("vertrek-minuut").value;
+    const form = $id("verhuur-form").id;
+    const day1 = $id("aankomst-dag").value;
+    const month1 = $id("aankomst-maand").value;
+    const year1 = $id("aankomst-jaar").value;
+    const hour1 = $id("aankomst-uur").value;
+    const minute1 = $id("aankomst-minuut").value;
+    const day2 = $id("vertrek-dag").value;
+    const month2 = $id("vertrek-maand").value;
+    const year2 = $id("vertrek-jaar").value;
+    const hour2 = $id("vertrek-uur").value;
+    const minute2 = $id("vertrek-minuut").value;
     showSuccess("Beschikbaarheid aan het controleren...", form);
     ajax("../php/ReserveringVerification.php", {
       d1: day1, m1: month1, y1: year1, h1: hour1, min1: minute1,
@@ -567,6 +574,7 @@ function checkMinMax (elem, newVal) {
     return false;
 }
 
+// TODO: Refactor this thing.
 function verhuurDateTime () {
     // Private variables... actually all are..
     var begin = {
@@ -599,6 +607,7 @@ function verhuurDateTime () {
         $labels = document.getElementsByClassName("verhuur-label"),
         // De checkbox voor elle
         $1dag = $id("EllenIkWil1DagHuren"),
+        tabs = $id("verhuur-tabs"),
         nu, dan, returnObj = {};
 
     function onNumberChange (val) {
@@ -654,13 +663,19 @@ function verhuurDateTime () {
         return input.toString().length === 1 ? "0" + input : input;
     }
 
-    returnObj.setEindDays = function () {
-        // Parse begin days...
-        var dataString = begin.j.value + "-" + toDouble(begin.m.selectedIndex + 1) + "-" + toDouble(begin.d.value) + "T12:00",
-            datum;
+    returnObj.setEindDays = () => {
+        // First check if we didn't got to this stage before.
+        if (tabs.getAttribute("data-first-time")) {
+            // stop the presses...
+            return;
+        } else {
+            tabs.setAttribute("data-first-time", true);
+        }
 
+        // Parse begin days...
+        const dataString = begin.j.value + "-" + toDouble(begin.m.selectedIndex + 1) + "-" + toDouble(begin.d.value) + "T12:00";
         // Parse the actual date..
-        datum = new Date(dataString);
+        const datum = new Date(dataString);
 
         if (!$1dag.checked) {
             // Fastforward to + 5 days!
@@ -681,12 +696,30 @@ function verhuurDateTime () {
         einde.d.value = datum.getDate();
     };
 
+    // Returns the verhuurtijd in days.
+    returnObj.verhuurtijd = () => {
+        const msPerDay = 1000 * 60 * 60 * 24;
+        const parsed = (obj) => {
+            return new Date(`${obj.j.value}-${toDouble(obj.m.selectedIndex + 1)}-${toDouble(obj.d.value)}T${toDouble(obj.uu.value)}:${toDouble(obj.mm.value)}`);
+        }
+
+        const b = parsed(begin);
+        const e = parsed(einde);
+
+        return (e - b) / msPerDay;
+    }
+
+    // Resetting state te create a new verhuur (if needed).
+    returnObj.reset = () => {
+        tabs.setAttribute("data-first-time", false);
+    };
+
     // Apply listeners..
     $1dag.onchange = onEllenChange;
 
     // Clicks for labels
-    for (var i = 0; i < $labels.length; i++) {
-        $labels[i].addEventListener("click", labelClick);
+    for (const label of $labels) {
+        label.addEventListener("click", labelClick);
     }
 
     // More things like to listen.
@@ -727,7 +760,7 @@ function verhuurDateTime () {
 }
 
 // Activate functionality:
-VERHUUR = verhuurDateTime();
+const VERHUUR = verhuurDateTime();
 
 
 
