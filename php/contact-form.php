@@ -9,6 +9,27 @@ session_start();
 date_default_timezone_set('Europe/Paris');
 
 if (isset($_POST["name"]) && isset($_POST["mailadr"]) && isset($_POST["whoTo"]) && isset($_POST["tArea"])) {
+    // Now check the captcha.
+    $robot = "Fout: Google denkt dat je een robot bent.";
+    if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])) {
+        // To see out public and private key see: https://www.google.com/recaptcha
+        // Public key (front-end): 6LdOoSsUAAAAAJzkLaGujoiw3qZ3NIZ5HYhGuDjK
+        // The invisible option is chosen.
+        $secret = "6LdOoSsUAAAAAIEV87V6a835sWQ77o9Fz6FsjxcU";
+
+        //get verify response data
+        $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$_POST['g-recaptcha-response']);
+        $responseData = json_decode($verifyResponse);
+
+        if (!$responseData->success) {
+            echo $robot;
+            exit;
+        }
+    } else {
+        echo $robot;
+        exit;
+    }
+
     $naam = trim(strip_tags($_POST["name"]), " \n");
     $mail = trim(strip_tags($_POST["mailadr"]), " \n");
     $who = trim(strip_tags($_POST["whoTo"]), " \n");

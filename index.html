@@ -12,27 +12,31 @@
     <title>Scouting Veghel</title>
     <link href="css/style.min.css" type="text/css" rel="stylesheet">
 
-      <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
-      <link rel="apple-touch-icon" sizes="60x60" href="/images/favicons/apple-touch-icon-60x60.png">
-      <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
-      <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
-      <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
-      <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
-      <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
-      <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
-      <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
-      <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
-      <link rel="icon" type="image/png" href="/images/favicons/android-chrome-192x192.png" sizes="192x192">
-      <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
-      <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
-      <link rel="manifest" href="/images/favicons/manifest.json">
-      <link rel="mask-icon" href="/images/favicons/safari-pinned-tab.svg" color="#5bbad5">
-      <link rel="shortcut icon" href="/images/favicons/favicon.ico">
-      <meta name="msapplication-TileColor" content="#da532c">
-      <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
-      <meta name="msapplication-config" content="/images/favicons/browserconfig.xml">
-      <meta name="theme-color" content="#dddac4">
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/images/favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/images/favicons/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/images/favicons/manifest.json">
+    <link rel="mask-icon" href="/images/favicons/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+    <meta name="msapplication-config" content="/images/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#dddac4">
 
+    <script src="https://www.google.com/recaptcha/api.js" defer></script>
+
+    <!--<script src="js/datepickr.js"></script>-->
+    <script src="js/scripts.origineel.js" defer></script>
   </head>
   <body>
 	<div class="navigatie" id="navigatie">
@@ -238,14 +242,16 @@
                             <option value="site">Website</option>
                         </select>
                         <br><textarea class="inform inp" name="tArea"  id="tArea-contact" required placeholder="Vul hier je vraag of opmerking in..."></textarea>
-                        <br><input type="submit" value="Stel de vraag" id="subm" name="subm" class="inform button">
+                        <br><button class="inform button g-recaptcha" data-sitekey="6LdOoSsUAAAAAJzkLaGujoiw3qZ3NIZ5HYhGuDjK" data-callback="contactSubmit">
+                            Stel de vraag
+                        </button>
                         <br><span>Alle velden zijn verplicht.</span>
                     </form>
                 </div>
 
                 <div class="contact-form contact-right" id="map-size">
                     <h3>Wie moet ik hebben?</h3>
-                    <strong>Groepsbegeleiding:</strong> Ik wil graag mijn kind aanmelden of ik wil graag het leidingteam versterken. Verder is de groepsbegeleiding ook het aanspreekpunt voor ouders. 
+                    <strong>Groepsbegeleiding:</strong> Ik wil graag mijn kind aanmelden of ik wil graag het leidingteam versterken. Verder is de groepsbegeleiding ook het aanspreekpunt voor ouders.
                     <br><strong>Verhuur:</strong> Ik wil iets weten over het verhuur van de blokhut.
                     <br><strong>Sponsoring:</strong> Ik kan een financiele of materiele bijdrage leveren aan Scouting Veghel.
                     <br><strong>Website:</strong> Ik heb een idee voor of probleem met de website.
@@ -451,9 +457,4 @@
         <p class="small">&copy; Scouting Veghel - <span id="copy-year">2016</span></p>
       </footer>
   </body>
-  <!--<script src="js/datepickr.js"></script>-->
-  <script src="js/scripts.origineel.js"></script>
-  <script>
-    $id("copy-year").textContent = new Date().getFullYear();
-  </script>
 </html>

@@ -324,16 +324,19 @@ menu.onclick = function (evt) {
 
 
 // Contact form submission.
-$id("contact-form").onsubmit = function () {
-    var data = {},
-        re = /[^\s@]+@[^\s@]+\.[^\s@]+/, // Regex for email
-        form = this.id,
-        inputs = this.getElementsByClassName("inp");
+$id("contact-form").onsubmit = function (token) {
+    const data = {};
+    const re = /[^\s@]+@[^\s@]+\.[^\s@]+/; // Regex for email
+    const form = this.id;
+    const inputs = this.getElementsByClassName("inp");
 
     // Fill data object
-    for (var i = 0; i < inputs.length; i++) {
-        data[inputs[i].name] = inputs[i].value;
+    for (let input of inputs) {
+        data[input.name] = input.value;
     }
+
+    // Enter the captcha token.
+    data["g-recaptcha-response"] = token;
 
     if (!data.whoTo) {
         showError("Aan wie moet de vraag of opmerking verstuurd worden?", form);
@@ -346,15 +349,22 @@ $id("contact-form").onsubmit = function () {
 
         showSuccess("Vraag of opmerking aan het versturen...", form);
 
-        ajax("../php/contact-form.php", data, function (err, msg) {
+        ajax("../php/contact-form.php", data, (err, msg) => {
             // Reset form after succes.
             $id(form).reset();
+            grecaptcha.reset();
             showSuccess(msg, form);
         });
     }
-    // Return false to prevent default form behaviour.
+
     return false;
 };
+
+// Sepperate function for the google captcha thing.
+function contactSubmit (token) {
+    $id("contact-form").onsubmit(token);
+}
+
 
 // Verhuur form submission.
 $id("verhuur-form").onsubmit = function () {
@@ -715,7 +725,7 @@ VERHUUR = verhuurDateTime();
 
 
 // Other default options...
-isTodayHired = function(obj) {
+function isTodayHired (obj) {
     var dayFrom, dayTo, checkDate = Date.now();
     //console.info(checkDate);
     if (obj) {
@@ -830,3 +840,5 @@ function processHired(msg) {
     container.innerHTML = "";
     container.appendChild(fragment);
 }
+
+$id("copy-year").textContent = new Date().getFullYear();
