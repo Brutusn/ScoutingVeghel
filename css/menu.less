@@ -70,6 +70,7 @@
   .hb-menu {
     text-align: center;
     margin-top: @tripple;
+    display: none;
     & li {
       width: 100%;
       opacity: 0;
@@ -80,12 +81,15 @@
         border-width: 0;
       }
     }
-    &.hb-menu-open li {
-      display: block;
-      opacity: 1;
-      &.menu-active {
-        border-bottom: (@menu-border-width * 6) solid @col-link;
-      }
+    &.hb-menu-open {
+        display: initial;
+        & li {
+          display: block;
+          opacity: 1;
+          &.menu-active {
+            border-bottom: (@menu-border-width * 6) solid @col-link;
+          }
+        }
     }
   }
 }
