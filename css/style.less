@@ -312,27 +312,6 @@ div.section {
   position: relative;
 }
 
-.navigatie {
-  position: absolute;
-  background-color: @col-text-light;
-  z-index: 150;
-  .shadow(1);
-  top: calc(~"100vh - "@tripple);
-  height: @tripple;
-  width: 100%;
-  svg {
-    position: absolute;
-    left: .5em;
-    top: .45em;
-    & g {
-      & path, & polygon {
-        fill: @col-text-lighter;
-        .transition;
-      }
-    }
-  }
-}
-
 .groepen-container {
   display: flex;
   flex-wrap: wrap;
@@ -538,6 +517,7 @@ div.section {
 
 // Jup, an ID... well this is so specific, it's not problem.
 #arrowDown {
+  cursor: pointer;
   position: absolute;
   left: calc(~"50vw - 22px");
   top: calc(~"100vh - 88px - "@tripple);

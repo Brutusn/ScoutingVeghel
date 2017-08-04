@@ -2,6 +2,42 @@
 
 @menu-border-width: 1px;
 
+.navigatie {
+  position: absolute;
+  background-color: @col-text-light;
+  z-index: 150;
+  .shadow(1);
+  top: calc(~"100vh - "@tripple);
+  height: @tripple;
+  width: 100%;
+  svg {
+    cursor: pointer;
+    position: absolute;
+    left: .5em;
+    top: .45em;
+    & g {
+      & path, & polygon {
+        fill: @col-text-lighter;
+        .transition;
+      }
+    }
+  }
+}
+.nav-sticky-top {
+  top: 0;
+  position: fixed;
+  svg {
+    & g {
+      & path, & polygon {
+        fill: @col-text;
+      }
+    }
+  }
+  .hb-menu-btn {
+    color: @col-text;
+  }
+}
+
 .hb-menu-btn {
   display: none;
   height: inherit;
@@ -10,6 +46,7 @@
   margin-right: @half;
   float: right;
   color: @col-text-lighter;
+  cursor: pointer;
 }
 .hb-menu {
   margin: 0 auto;
@@ -36,20 +73,6 @@
       .transition;
       border-bottom: (@menu-border-width * 6) solid @col-link;
     }
-  }
-}
-.nav-sticky-top {
-  top: 0;
-  position: fixed;
-  svg {
-    & g {
-      & path, & polygon {
-        fill: @col-text;
-      }
-    }
-  }
-  .hb-menu-btn {
-    color: @col-text;
   }
 }
 
