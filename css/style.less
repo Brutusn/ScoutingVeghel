@@ -329,60 +329,7 @@ div.section {
     }
   }
 }
-.hb-menu-btn {
-  display: none;
-  height: inherit;
-  font-size: 200%;
-  line-height: 1.5;
-  margin-right: @half;
-  float: right;
-  color: @col-text-lighter;
-}
-@menu-item-height: @tripple;
-@menu-border-width: 2px;
-.hb-menu {
-  margin: 0 auto;
-  padding: 0;
-  height: inherit;
-  width: auto;
-  & li {
-    display: inline-block;
-    border-bottom: @menu-border-width solid @col-text;
-    color: @col-text;
-    padding: 0 @double;
-    margin: 0;
-    line-height: @menu-item-height;
-    height: @menu-item-height;
-    width: auto;
-    overflow: hidden;
 
-    .transition;
-    &:hover {
-      border-bottom: 4px solid @col-hover;
-      background-color: @col-text-light;
-      cursor: pointer;
-    }
-    &.menu-active {
-      .transition;
-      border-bottom: (@menu-border-width * 3) solid @col-link;
-    }
-  }
-}
-.nav-sticky-top {
-  top: 0;
-  position: fixed;
-  will-change: transform;
-  svg {
-    & g {
-      & path, & polygon {
-        fill: @col-text;
-      }
-    }
-  }
-  .hb-menu-btn {
-    color: @col-text;
-  }
-}
 .groepen-container {
   display: flex;
   flex-wrap: wrap;
@@ -617,45 +564,9 @@ div.section {
     font-size: 1.1em;
   }
 }
-// Normal menu but right aligned
-@media (max-width: 825px) {
-  .hb-menu {
-    text-align: right;
-  }
-}
+
 // Hamburger menu
 @media (max-width: 720px) {
-  .hb-menu-btn {
-    display: inline;
-  }
-  .hb-menu-btn-open:before {
-    content: @fa-var-times;
-  }
-  .hb-menu {
-    text-align: center;
-    margin-top: @tripple;
-    max-width: 360px;
-    & li {
-      width: 100%;
-      padding: 0;
-      background-color: fade(@col-text-light, 95%);
-
-      // Forcing element to hide anyway... unless open is available
-      height: 0;
-      border-width: 0;
-      &.menu-active {
-        border-width: 0;
-      }
-    }
-    &.hb-menu-open li {
-      display: block;
-      height: @menu-item-height;
-      border-width: @menu-border-width;
-      &.menu-active {
-        border-bottom: (@menu-border-width * 3) solid @col-link;
-      }
-    }
-  }
   .groepen-container, .bestuur-container {
     margin-top: 5em;
     margin-left: -@normal;
@@ -673,6 +584,7 @@ div.section {
     }
   }
 }
+
 @media (max-width: 690px) {
   .contact-form {
     width: 80vw;
@@ -713,15 +625,6 @@ div.section {
 }
 
 // MINIMAL WIDTH
-@media (min-width: 720px) {
-  .hb-menu {
-    //TODO: Force the menu to show, no matter what the lastest button press was.
-    & li {
-      height: @menu-item-height;
-      border-width: @menu-border-width;
-    }
-  }
-}
 @media (min-width: 700px) {
   .info-kaart {
     border-radius: 3px 3px 0 0;
@@ -742,3 +645,7 @@ div.section {
     background-size: cover;
   }
 }
+
+
+// "Modules" the styles for the modules.
+@import "menu.less";

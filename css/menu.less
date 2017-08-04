@@ -1,0 +1,101 @@
+@import "config.less";
+
+@menu-border-width: 1px;
+
+.hb-menu-btn {
+  display: none;
+  height: inherit;
+  font-size: 200%;
+  line-height: 1.5;
+  margin-right: @half;
+  float: right;
+  color: @col-text-lighter;
+}
+.hb-menu {
+  margin: 0 auto;
+  padding: 0;
+  height: inherit;
+  width: auto;
+  & li {
+    display: inline-block;
+    border-bottom: @menu-border-width solid @col-text;
+    color: @col-text;
+    padding: 0 @double;
+    margin: 0;
+    line-height: 3em;
+    width: auto;
+    overflow: hidden;
+
+    .transition;
+    &:hover {
+      border-bottom: 4px solid @col-hover;
+      background-color: @col-text-light;
+      cursor: pointer;
+    }
+    &.menu-active {
+      .transition;
+      border-bottom: (@menu-border-width * 6) solid @col-link;
+    }
+  }
+}
+.nav-sticky-top {
+  top: 0;
+  position: fixed;
+  svg {
+    & g {
+      & path, & polygon {
+        fill: @col-text;
+      }
+    }
+  }
+  .hb-menu-btn {
+    color: @col-text;
+  }
+}
+
+// Normal menu but right aligned
+@media (max-width: 825px) {
+  .hb-menu {
+    text-align: right;
+  }
+}
+
+@media (max-width: 720px) {
+  .hb-menu-btn {
+    display: inline;
+  }
+  .hb-menu-btn-open:before {
+    content: @fa-var-times;
+  }
+  .hb-menu {
+    text-align: center;
+    margin-top: @tripple;
+    & li {
+      width: 100%;
+      opacity: 0;
+      padding: @normal;
+      background-color: @col-text-light;
+
+      &.menu-active {
+        border-width: 0;
+      }
+    }
+    &.hb-menu-open li {
+      display: block;
+      opacity: 1;
+      &.menu-active {
+        border-bottom: (@menu-border-width * 6) solid @col-link;
+      }
+    }
+  }
+}
+
+@media (min-width: 720px) {
+  .hb-menu {
+    //TODO: Force the menu to show, no matter what the lastest button press was.
+    & li {
+      height: inherit;
+      border-width: @menu-border-width * 2;
+    }
+  }
+}
