@@ -539,7 +539,7 @@ div.section {
   width: 100%;
   max-width: inherit;
   height: 300px;
-  margin: 1em auto 0 auto;
+  margin: 1em auto 2.5em auto;
   padding: 0;
   .shadow(1);
 }
@@ -596,6 +596,13 @@ div.section {
 //.high-margin {
 //  margin-top: 100vh;
 //}
+
+// Place the google badge.
+.grecaptcha-badge {
+    position: absolute;
+    bottom: @normal;
+    left: @normal;
+}
 
 //Media querries
 // MAXIMUM WIDTH
@@ -704,6 +711,7 @@ div.section {
     float: none;
   }
 }
+
 // MINIMAL WIDTH
 @media (min-width: 720px) {
   .hb-menu {
@@ -717,6 +725,9 @@ div.section {
 @media (min-width: 700px) {
   .info-kaart {
     border-radius: 3px 3px 0 0;
+  }
+  .map-box {
+      margin-bottom: 0;
   }
 }
 
