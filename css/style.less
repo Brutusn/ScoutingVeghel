@@ -378,45 +378,55 @@ div.section {
   content: @fa-var-mars;
 }
 
-// ID's only used for adding images
+.base-bg-groepen (@img: "../images/stam.jpg") {
+    background-image: linear-gradient(to bottom, fade(@col-text-light, 10%) 25%, fade(@col-text-light, 90%) 45%, @col-text-light), url( @img );
+}
+
+// TODO: Get new picture for stam!
+.groepen-container div {
+    .base-bg-groepen();
+}
+
+// ID's only used for adding specific images!
 #bevers {
-  background-image: linear-gradient(to bottom, fade(@col-text-light, 10%) 25%, fade(@col-text-light, 90%) 45%, @col-text-light), url("../images/bevers.jpg");
+    .base-bg-groepen("../images/bevers.jpg");
 }
 #nepwelpen {
-  background-image: linear-gradient(to bottom, fade(@col-text-light, 10%) 25%, fade(@col-text-light, 90%) 45%, @col-text-light), url("../images/kl4.jpg");
+    .base-bg-groepen("../images/kl4.jpg");
 }
 #sionie {
-  background-image: linear-gradient(to bottom, fade(@col-text-light, 10%) 25%, fade(@col-text-light, 90%) 45%, @col-text-light), url("../images/welpen.jpg");
+    .base-bg-groepen("../images/welpen.jpg");
 }
 #doorstartwelpen {
-  background-image: linear-gradient(to bottom, fade(@col-text-light, 10%) 25%, fade(@col-text-light, 90%) 45%, @col-text-light), url("../images/nishaani.jpg");
+    .base-bg-groepen("../images/nishaani.jpg");
 }
 #scouts {
-  background-image: linear-gradient(to bottom, fade(@col-text-light, 10%) 25%, fade(@col-text-light, 90%) 45%, @col-text-light), url("../images/scouts.jpg");
+    .base-bg-groepen("../images/scouts.jpg");
 }
 #verkenners {
-  background-image: linear-gradient(to bottom, fade(@col-text-light, 10%) 25%, fade(@col-text-light, 90%) 45%, @col-text-light), url("../images/verkenners.jpg");
+    .base-bg-groepen("../images/verkenners.jpg");
 }
 #explo {
-  background-image: linear-gradient(to bottom, fade(@col-text-light, 10%) 25%, fade(@col-text-light, 90%) 45%, @col-text-light), url("../images/explo.jpg");
+    .base-bg-groepen("../images/explo.jpg");
 }
 #stam {
-  background-image: linear-gradient(to bottom, fade(@col-text-light, 10%) 25%, fade(@col-text-light, 90%) 45%, @col-text-light), url("../images/stam.jpg");
+    .base-bg-groepen("../images/stam.jpg");
 }
 #plus {
-  background-image: linear-gradient(to bottom, fade(@col-text-light, 10%) 25%, fade(@col-text-light, 90%) 45%, @col-text-light), url("../images/plus.jpg");
+    .base-bg-groepen("../images/plus.jpg");
 }
 #leiders {
-  background-image: linear-gradient(to bottom, fade(@col-text-light, 10%) 25%, fade(@col-text-light, 90%) 45%, @col-text-light), url("../images/stam.jpg");
+    //.base-bg-groepen();
 }
 #gebe {
-  background-image: linear-gradient(to bottom, fade(@col-text-light, 10%) 25%, fade(@col-text-light, 90%) 45%, @col-text-light), url("../images/stam.jpg");
+    //.base-bg-groepen();
+}
+#praktijkbegeleider {
+    //.base-bg-groepen();
 }
 #bestuur {
-  background-image: linear-gradient(to bottom, fade(@col-text-light, 10%) 25%, fade(@col-text-light, 90%) 45%, @col-text-light), url("../images/stam.jpg");
+    //.base-bg-groepen();
 }
-
-
 
 .groepen {
   background-color: @col-background2;
