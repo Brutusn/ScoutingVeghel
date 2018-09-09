@@ -294,7 +294,7 @@ Cal.prototype.showMonth = function(y, m) {
     // it will write the next few days from the next month
     else if ( i === lastDateOfMonth ) {
       var k=1;
-      for(dow; dow <= 6; dow++) {
+      for(var l; dow <= 6; dow++) {
         html += '<td class="not-current" id="next.' + k+'.'+(this.currMonth+1)+'-'+this.currYear + '">' + k + '</td>';
         k++;
       }
