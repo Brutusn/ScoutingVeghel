@@ -31,6 +31,8 @@ function getHuurder($naam, $contact, $mail, $telefoon, $adres, $postcode, $plaat
       $huurderid = $id;
       $found  = true;
     }
+    //Fetch the next result set (as part of the MYSQL protocol of stored procedures)
+    mysqli_next_result($mysqli);
     $stmt_gh->close();
   }
 
@@ -39,21 +41,24 @@ function getHuurder($naam, $contact, $mail, $telefoon, $adres, $postcode, $plaat
     //Get IP from connecting party for the server perspective. Do not trust the user information
     $ip = $_SERVER['REMOTE_ADDR'];
     if ($stmt_ch = $mysqli->prepare("CALL CreateHuurder(?, ?, ?, ?, ?, ?, ?, ?)")){
-      //TODO Apparently there is an error on this which prevents the prepare stement. The error is Command out of sync and is caused by the previous call to get huurder
       $stmt_ch->bind_param("ssssssss", $naam, $contact, $mail, $telefoon, $postcode, $plaats, $adres, $ip);
       $stmt_ch->execute();
+      //Fetch the next result set (as part of the MYSQL protocol of stored procedures)
+      mysqli_next_result($mysqli);
       $stmt_ch->close();
 
       //$hid = $mysqli->insert_id; Apparantly does not work
       //and hence we get it with a the reexecution of the get query
-      if($stmt_gh = $mysqli->prepare("CALL GetHuurder(?, ?, ?, ?, ?, ?, ?)")){
-        $stmt_gh->bind_param("sssssss", $naam, $contact, $mail, $telefoon, $adres, $postcode, $plaats);
-        $stmt_gh->execute();
-        $stmt_gh->bind_result($id);
-        while ($stmt_gh->fetch()) {
+      if($stmt_gh2 = $mysqli->prepare("CALL GetHuurder(?, ?, ?, ?, ?, ?, ?)")){
+        $stmt_gh2->bind_param("sssssss", $naam, $contact, $mail, $telefoon, $adres, $postcode, $plaats);
+        $stmt_gh2->execute();
+        $stmt_gh2->bind_result($id);
+        while ($stmt_gh2->fetch()) {
           $huurderid = $id;
         }
-        $stmt_gh->close();
+        //Fetch the next result set (as part of the MYSQL protocol of stored procedures)
+        mysqli_next_result($mysqli);
+        $stmt_gh2->close();
       }
     }
   }
@@ -79,6 +84,8 @@ function getHuurderIDFromCode($code) {
     while ($stmt_ghc->fetch()) {
       $hid = $huurder_id;
     }
+    //Fetch the next result set (as part of the MYSQL protocol of stored procedures)
+    mysqli_next_result($mysqli);
     $stmt_ghc->close();
   }
   $mysqli->close();
@@ -107,6 +114,8 @@ function getInfoFromHid($hid){
       $info[0] = $naam;
       $info[1] = $mail;
     }
+    //Fetch the next result set (as part of the MYSQL protocol of stored procedures)
+    mysqli_next_result($mysqli);
     $stmt_ghi->close();
   }
   $mysqli->close();
@@ -145,6 +154,8 @@ function getReservering($area, $startSTR, $endSTR, $aantalPers){
       while ($stmt_gr->fetch()) {
         $reserveringid = $id;
       }
+      //Fetch the next result set (as part of the MYSQL protocol of stored procedures)
+      mysqli_next_result($mysqli);
       $stmt_gr->close();
     }
   }
@@ -185,6 +196,10 @@ function getReservations(DateTime $start, DateTime $end)
       $ar['bySV'] = ($groep == NULL) ? False : True;
       $array[] = $ar;
     }
+    //Fetch the next result set (as part of the MYSQL protocol of stored procedures)
+    mysqli_next_result($mysqli);
+    $stmt.close();
+    
     $mysqli->close();
   }
 
@@ -202,6 +217,8 @@ function reserveringConfirmed($rid) {
   if($stmnt_cr = $mysqli->prepare("CALL ConfirmReservering(?)")){
     $stmnt_cr->bind_param("i", $rid);
     $stmnt_cr->execute();
+    //Fetch the next result set (as part of the MYSQL protocol of stored procedures)
+    mysqli_next_result($mysqli);
     $stmnt_cr->close();
   }
   $mysqli->close();
@@ -223,6 +240,8 @@ function isReserveringConfirmable($rid) {
     while ($stmnt_rc->fetch()) {
       $updatable = true;
     }
+    //Fetch the next result set (as part of the MYSQL protocol of stored procedures)
+    mysqli_next_result($mysqli);
     $stmnt_rc->close();
   }
   $mysqli->close();
@@ -273,6 +292,8 @@ function getVerhuringFromConfirm($key) {
       $reservering_id = $rid;
       $huurder_id = $hid;
     }
+    //Fetch the next result set (as part of the MYSQL protocol of stored procedures)
+    mysqli_next_result($mysqli);
     $stmt_gv->close();
   }
   $mysqli->close();
@@ -293,6 +314,8 @@ function createVerhuring($hid, $rid, $groepcode){
   if($stmt_iv = $mysqli->prepare("CALL InsertVerhuring(?, ?, ?)")){
     $stmt_iv->bind_param("iis", $hid, $rid,  $groepcode);
     $stmt_iv->execute();
+    //Fetch the next result set (as part of the MYSQL protocol of stored procedures)
+    mysqli_next_result($mysqli);
     $stmt_iv->close();
   }
   $mysqli->close();
@@ -315,6 +338,8 @@ function getConfirm($hid, $rid){
     while ($stmt_gc->fetch()) {
       $hashEmail = $hash;
     }
+    //Fetch the next result set (as part of the MYSQL protocol of stored procedures)
+    mysqli_next_result($mysqli);
     $stmt_gc->close();
   }
   $mysqli->close();
@@ -348,6 +373,8 @@ function getHuurovereenkomstData($verhuring_id){
       $data['verhuring_huurprijs_limiet']  = $pay_limit;
       $data['datum']  = $date;
     }
+    //Fetch the next result set (as part of the MYSQL protocol of stored procedures)
+    mysqli_next_result($mysqli);
     $stmt_gc->close();
   }
   $mysqli->close();
