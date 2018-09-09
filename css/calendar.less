@@ -177,9 +177,23 @@ thead td {
   font-size:1.5em;
   background-color: @calendar-bg-header;
 }
+
+#btnContainer {
+  text-align: justify;
+  -ms-text-justify: distribute-all-lines;
+  text-justify: distribute-all-lines;
+}
+
+.btnDiv1,
+.btnDiv2,
+.btnDiv3 {
+  vertical-align: top;
+  display: inline-block;
+  *display: inline;
+}
+
 #btnPrev {
   float:left;
-  margin-bottom:20px;
   &:before {
     content: '\f104';
     font-family:FontAwesome;
@@ -188,7 +202,6 @@ thead td {
 }
 #btnNext {
   float:right;
-  margin-bottom:20px;
   &:after {
     content:'\f105';
     font-family:FontAwesome;
@@ -196,13 +209,24 @@ thead td {
   }
 }
 #btnToday{
-  margin-bottom:20px;
+  float:center;
+  &:before {
+    content: '\f073 ';
+    font-family:FontAwesome;
+    padding-right:4px;
+  }
+  &:after {
+    content:'\f073 ';
+    font-family:FontAwesome;
+    padding-left:4px;
+  }
 }
 #btnPrev, #btnNext, #btnToday {
+  margin-bottom:20px;
   background:transparent;
   border:none;
   outline:none;
-  font-size:1em;
+  font-size:0.95em;
   color:@calendar-button-color;
   cursor:pointer;
   font-family:"Roboto Condensed", sans-serif;
@@ -213,28 +237,3 @@ thead td {
     font-weight:bold;
   }
 }
-
-// button, .button {
-//   background-color: @calendar-button-bg-color;
-//   color: @calendar-button-color;
-//   border: 0;
-//   cursor: pointer;
-//   .shadow(1);
-//   &:hover {
-//     background-color: @calendar-button-color-hover;
-//   }
-//   &:focus {
-//     outline: none;
-//     background-color: @calendar-button-color-hover;
-//   }
-//   &:active {
-//    background-color: @calendar-button-color;
-//   }
-//
-//   font-size: 1.25em;
-//   padding: .5em;
-//   border-radius: 5px;
-//   //width: calc(~"100% - .5em");
-//   width: 47.5%;
-//   margin: 0 0 .5em 0;
-// }

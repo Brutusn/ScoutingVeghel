@@ -70,8 +70,8 @@ function processReservations(reservations, month, year) {
         //actually mark the dates from previous month
         for (var d = start.getDate(); d <= 31; d++) {
               var elem = getId('prev.'+d+'.'+(month+1)+'-'+year);
-              if (elem != null){
-                elem.classList.add(res_class)
+              if (elem !== null){
+                elem.classList.add(res_class);
               }
         }//end for marking
       } else if (start.getMonth() === month) {//ends in a next month
@@ -81,25 +81,25 @@ function processReservations(reservations, month, year) {
         //actually mark the dates from previous month
         for (var d = 1; d <= end.getDate(); d++) {
           var elem = getId('next.'+d+'.'+(month+1)+'-'+year);
-          if (elem != null){
-            elem.classList.add(res_class)
+          if (elem !== null){
+            elem.classList.add(res_class);
           }
         }//end for marking
-      } else if (start.getMonth() != month && end.getMonth() != month) {//cover th entire month with a reservation
+      } else if (start.getMonth() !== month && end.getMonth() !== month) {//cover th entire month with a reservation
         start_mark = 1;
         end_mark = 31;
         //actually mark the dates from previous month
         for (var d = start.getDate(); d <= 31; d++) {
               var elem = getId('prev.'+d+'.'+(month+1)+'-'+year);
-              if (elem != null){
-                elem.classList.add(res_class)
+              if (elem !== null){
+                elem.classList.add(res_class);
               }
         }//end for marking
         //actually mark the dates from previous month
         for (var d = 1; d <= end.getDate(); d++) {
           var elem = getId('next.'+d+'.'+(month+1)+'-'+year);
-          if (elem != null){
-            elem.classList.add(res_class)
+          if (elem !== null){
+            elem.classList.add(res_class);
           }
         }//end for marking
       }
@@ -108,7 +108,7 @@ function processReservations(reservations, month, year) {
     //actually mark the dates
     for (var d = start_mark; d <= end_mark; d++) {
       var elem =   getId(d+'.'+(month+1)+'-'+year);
-      if (elem != null){
+      if (elem !== null){
         elem.classList.add(res_class);
       }
     }//end for marking
@@ -128,7 +128,7 @@ function getReservationsMonth(month, year) {
       ajax_error = false;
       getId("error-calendar").innerHTML = "<p></p>";
       getReservationsMonth(month, year);
-    }
+    };
   } else {
     ajax_running += 1;
     if (ajax_error === false) {
@@ -189,7 +189,7 @@ var Cal = function(divId) {
 
 // Goes to next month
 Cal.prototype.nextMonth = function() {
-  if ( this.currMonth == 11 ) {
+  if ( this.currMonth === 11 ) {
     this.currMonth = 0;
     this.currYear = this.currYear + 1;
   }
@@ -201,13 +201,21 @@ Cal.prototype.nextMonth = function() {
 
 // Goes to previous month
 Cal.prototype.previousMonth = function() {
-  if ( this.currMonth == 0 ) {
+  if ( this.currMonth === 0 ) {
     this.currMonth = 11;
     this.currYear = this.currYear - 1;
   }
   else {
     this.currMonth = this.currMonth - 1;
   }
+  this.showcurr();
+};
+
+Cal.prototype.thisMonth = function() {
+  var d = new Date();
+  this.currMonth = d.getMonth();
+  this.currYear = d.getFullYear();
+  
   this.showcurr();
 };
 
@@ -225,7 +233,7 @@ Cal.prototype.showMonth = function(y, m) {
   // Last day of the selected month
   , lastDateOfMonth =  new Date(y, m+1, 0).getDate()
   // Last day of the previous month
-  , lastDayOfLastMonth = m == 0 ? new Date(y-1, 11, 0).getDate() : new Date(y, m, 0).getDate();
+  , lastDayOfLastMonth = m === 0 ? new Date(y-1, 11, 0).getDate() : new Date(y, m, 0).getDate();
 
 
   var html = '<table>';
@@ -273,18 +281,18 @@ Cal.prototype.showMonth = function(y, m) {
     var chk = new Date();
     var chkY = chk.getFullYear();
     var chkM = chk.getMonth();
-    if (chkY == this.currYear && chkM == this.currMonth && i == this.currDay) {
+    if (chkY === this.currYear && chkM === this.currMonth && i === this.currDay) {
       html += '<td class="today" id="' + i+'.'+(this.currMonth+1)+'-'+this.currYear + '">' + i + '</td>';
     } else {
       html += '<td class="normal" id="' + i+'.'+(this.currMonth+1)+'-'+this.currYear + '">' + i + '</td>';
     }
     // If Sunday, closes the row
-    if ( dow == 0 ) {
+    if ( dow === 0 ) {
       html += '</tr>';
     }
     // If not Saturday, but last day of the selected month
     // it will write the next few days from the next month
-    else if ( i == lastDateOfMonth ) {
+    else if ( i === lastDateOfMonth ) {
       var k=1;
       for(dow; dow <= 6; dow++) {
         html += '<td class="not-current" id="next.' + k+'.'+(this.currMonth+1)+'-'+this.currYear + '">' + k + '</td>';
@@ -319,14 +327,11 @@ window.onload = function() {
     c.previousMonth();
     getReservationsMonth(c.currMonth, c.currYear);
   };
-  // getId('btnToday').onclick = function() {
-  //   var d = new Date();
-  //   c.currMonth = d.getMonth();
-  //   c.currYear = d.getFullYear();
-  //   c.currDay = d.getDate();
-  //   getReservationsMonth(c.currMonth, c.currYear);
-  // };
-}
+  getId('btnToday').onclick = function() {
+    c.thisMonth();
+    getReservationsMonth(c.currMonth, c.currYear);
+  };
+};
 
 // Get element by id
 function getId(id) {
