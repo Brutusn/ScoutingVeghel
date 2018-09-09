@@ -2,7 +2,7 @@
 var ajax_running = 0;
 var ajax_error = false;
 // Ajax call...
-ajax = function(url, data, callback) {
+const ajax = function(url, data, callback) {
     // Check if "ajax" is possible.
     var x = {},
 		query = [];
