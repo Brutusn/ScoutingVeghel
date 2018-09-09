@@ -714,6 +714,33 @@ function verhuurDateTime () {
     // Resetting state te create a new verhuur (if needed).
     returnObj.reset = () => {
         tabs.setAttribute("data-first-time", false);
+        $1dag.checked = false;
+        for (var x in einde) {
+            var e = einde[x];
+            // Turn on or off disabled and required.
+            e.required = !$1dag.checked;
+            e.disabled = $1dag.checked;
+        }
+        
+        // Put default values
+        nu = new Date();
+        dan = new Date();
+
+        // 5 days ahead!
+        dan.setDate(dan.getDate() + 5);
+
+        // For the month..
+        begin.m.selectedIndex = nu.getMonth();
+        einde.m.selectedIndex = dan.getMonth();
+
+        // The others..
+        begin.d.value = nu.getDate();
+        einde.d.value = dan.getDate();
+        begin.j.value = nu.getFullYear();
+        einde.j.value = dan.getFullYear();
+
+        begin.uu.value = einde.uu.value = nu.getHours();
+        begin.mm.value = einde.mm.value = nu.getMinutes();
     };
 
     // Apply listeners..
@@ -738,26 +765,9 @@ function verhuurDateTime () {
     einde.uu.onchange = onNumberChange;
     einde.mm.onchange = onNumberChange;
 
-    // Put default values
-    nu = new Date();
-    dan = new Date();
-
-    // 5 days ahead!
-    dan.setDate(dan.getDate() + 5);
-
-    // For the month..
-    begin.m.selectedIndex = nu.getMonth();
-    einde.m.selectedIndex = dan.getMonth();
-
-    // The others..
-    begin.d.value = nu.getDate();
-    einde.d.value = dan.getDate();
-    begin.j.value = nu.getFullYear();
-    einde.j.value = dan.getFullYear();
-
-    begin.uu.value = einde.uu.value = nu.getHours();
-    begin.mm.value = einde.mm.value = nu.getMinutes();
-
+    //Reset the date to today
+    returnObj.reset();
+    
     return returnObj;
 }
 
