@@ -411,16 +411,18 @@ $id("verhuur-form").onsubmit = function () {
             });
         }
     } else {// it is not from SV, so validate the most important data
-        if (!data.name) {
+        if (!data.name || data.name === "" || 
+                data.name === null || data.name === undefined) {
             showError("Waarvoor is deze optie op de blokhut?", form);
         }
-        if (!data.contactpersoon) {
+        else if (!data.contactperson || data.contactperson === "" || 
+                data.contactperson === null ||data.contactperson === undefined) {
             showError("Wie wil deze optie op de blokhut nemen?", form);
         }
-        if (!re.test(data.mailadr)){
+        else if (!re.test(data.mailadr)){
             showError("Vul een geldig e-mailadres in.", form);
         }
-        if (re.test(data.mailadr) && data.name !== "" && data.contactpersoon !== ""){
+        else if (re.test(data.mailadr)){
             removeError();
 
             showSuccess("Aanvraag voor de optie versturen...", form);
