@@ -166,13 +166,13 @@ var Cal = function(divId) {
 
   // Days of week, starting on Sunday
   this.DaysOfWeek = [
-    'Zo',
     'Ma',
     'Di',
     'Wo',
     'Do',
     'Vr',
-    'Za'
+    'Za',
+    'Zo'
   ];
 
   // Months, stating on January
@@ -249,17 +249,22 @@ Cal.prototype.showMonth = function(y, m) {
 
     var dow = new Date(y, m, i).getDay();
 
-    // If Sunday, start new row
-    if ( dow == 0 ) {
+    // If Monday, start new row
+    if ( dow === 1 ) {
       html += '<tr>';
     }
-    // If not Sunday but first day of the month
+    // If not Monday but first day of the month
     // it will write the last days from the previous month
-    else if ( i == 1 ) {
+    else if ( i === 1) {
       html += '<tr>';
-      var k = lastDayOfLastMonth - firstDayOfMonth+1;
-      for(var j=0; j < firstDayOfMonth; j++) {
-        html += '<td class="not-current" id="prev.' + k+'.'+(this.currMonth+1)+'-'+this.currYear + '">' + k + '</td>';
+      var startDay = dow;
+      //In case the first day is on a Sunday we need all days before it
+      if(dow === 0) {
+          startDay = 7;
+      }
+      var k = lastDayOfLastMonth - startDay + 2;
+      for(var j=1; j < startDay; j++) {
+        html += '<td class="not-current" id="prev.' + k +'.'+(this.currMonth+1)+'-'+this.currYear + '">' + k + '</td>';
         k++;
       }
     }
@@ -273,15 +278,15 @@ Cal.prototype.showMonth = function(y, m) {
     } else {
       html += '<td class="normal" id="' + i+'.'+(this.currMonth+1)+'-'+this.currYear + '">' + i + '</td>';
     }
-    // If Saturday, closes the row
-    if ( dow == 6 ) {
+    // If Sunday, closes the row
+    if ( dow == 0 ) {
       html += '</tr>';
     }
     // If not Saturday, but last day of the selected month
     // it will write the next few days from the next month
     else if ( i == lastDateOfMonth ) {
       var k=1;
-      for(dow; dow < 6; dow++) {
+      for(dow; dow <= 6; dow++) {
         html += '<td class="not-current" id="next.' + k+'.'+(this.currMonth+1)+'-'+this.currYear + '">' + k + '</td>';
         k++;
       }
