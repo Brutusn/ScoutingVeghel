@@ -428,8 +428,8 @@ $id("verhuur-form").onsubmit = function () {
             showSuccess("Aanvraag voor de optie versturen...", form);
 
             ajax("../php/verhuur-form.php", data, function (err, msg) {
-                // Reset form after succes.
-                $id(form).reset();
+                // Only reset underlying data, but not the form after succes.
+                //$id(form).reset();
                 VERHUUR.reset();
                 showSuccess(msg, form);
             });
