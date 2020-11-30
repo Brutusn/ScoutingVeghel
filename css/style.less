@@ -434,7 +434,7 @@ div.section {
 .staf {
   background-color: @col-background3;
 }
-.activiteiten, .contact {
+.activiteiten, .contact, .ouders {
   .inner-shadow;
   .text-shadow;
   color: @col-text-light;
@@ -450,6 +450,14 @@ div.section {
   .inner-shadow;
   background-image: url("../images/jota.jpg");
  & h3 {
+    border-bottom: 1px solid fade(@col-text-light, 75%);
+    padding-bottom: .5em;
+    margin-bottom: 0;
+  }
+}
+.ouders {
+  background-color: @col-background4;
+  & h3 {
     border-bottom: 1px solid fade(@col-text-light, 75%);
     padding-bottom: .5em;
     margin-bottom: 0;

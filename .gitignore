@@ -4,8 +4,14 @@
 # for NetBeans
 /NetBeans/
 
+# for VSCode
+/.vscode/
+
 # for node modules thingies
 /node_modules
+
+# for compile hero
+/css/dist/
 
 # db settings (user and password)
 /php/DB2.php
