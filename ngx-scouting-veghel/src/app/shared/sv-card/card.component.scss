@@ -1,0 +1,30 @@
+.sv-card {
+  display: inline-block;
+  position: relative;
+  padding: 0.5rem;
+  border-radius: 5px;
+
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  background-color: var(--background-menu);
+
+  max-width: 350px;
+
+  color: var(--text-primary);
+
+  & .sv-card {
+    &-title {
+      font-size: 150%;
+      font-weight: bold;
+    }
+    &-image {
+      margin: 0 -0.5rem;
+
+      max-height: 250px;
+      overflow: hidden;
+
+      & img {
+        max-width: 100%;
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+sv-footer {
+  display: block;
+  padding: 1em;
+
+  text-align: center;
+
+  position: fixed;
+  bottom: 0;
+  right: 0;
+
+  font-size: 80%;
+
+  color: var(--text-primary);
+
+  z-index: -1;
+}

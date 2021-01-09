@@ -1,0 +1,43 @@
+.card-grid {
+  padding: max(2rem, 3vw);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 350px));
+  gap: 1em;
+  justify-content: center;
+}
+
+.group-card-title {
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  color: var(--col-accent);
+
+  margin-top: -.5rem;
+
+  padding: .75em .25em;
+
+  & h1 {
+    font-size: inherit;
+    margin: 0;
+  }
+}
+
+.group-card-content {
+  margin-bottom: 2em;
+}
+
+.group-card-actions {
+  position: absolute;
+  bottom: 0;
+
+  font-size: 90%;
+
+  margin: .5em 0;
+
+  & * {
+    vertical-align: middle;
+  }
+}

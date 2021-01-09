@@ -3,10 +3,10 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SvSharedModule } from './shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { svRoutes } from './app.routes';
 import { HomeModule } from './pages/home/home.module';
+import { SvHeaderModule } from './shared/sv-header/sv-header.module';
 
 // TODO: Create routes
 
@@ -18,7 +18,7 @@ import { HomeModule } from './pages/home/home.module';
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(svRoutes),
-    SvSharedModule,
+    SvHeaderModule,
     HomeModule,
   ],
   providers: [],

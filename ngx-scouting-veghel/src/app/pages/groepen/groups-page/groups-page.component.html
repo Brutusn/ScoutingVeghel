@@ -1,1 +1,19 @@
-<p>groups-page works!</p>
+<div class="card-grid">
+  <sv-card *ngFor="let card of groupConfiguration">
+    <div class="group-card-title" card-title>
+      <h1>{{ card.title }}</h1>
+      <mat-icon inline="true">{{ card.genderIcon }}</mat-icon>
+    </div>
+
+    <img card-image [alt]="card.title" [src]="card.img" />
+
+    <p class="group-card-content" card-content>{{ card.content }}</p>
+
+    <div class="group-card-actions" card-actions>
+      <mat-icon inline="true">cake</mat-icon>&nbsp;<span>{{ card.age }},</span
+      >&nbsp;<mat-icon inline="true">schedule</mat-icon>&nbsp;<span>{{
+        card.meetingTime
+      }}</span>
+    </div>
+  </sv-card>
+</div>
