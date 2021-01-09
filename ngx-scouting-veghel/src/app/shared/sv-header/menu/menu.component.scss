@@ -1,0 +1,23 @@
+nav {
+  display: flex;
+}
+
+a {
+  padding: .5em 1em;
+  margin: 0;
+  display: inline-block;
+  border-bottom: 3px solid transparent;
+  color: var(--text-primary);
+  text-decoration: none;
+
+  transition: all .2s ease-in-out;
+
+  &.link-active {
+    border-bottom: 3px solid var(--col-accent);
+  }
+
+  &:hover {
+    border-bottom: 3px solid var(--col-accent-active);
+    background-color: var(--background-menu);
+  }
+}

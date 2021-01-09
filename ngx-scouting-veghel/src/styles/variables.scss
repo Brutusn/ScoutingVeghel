@@ -1,0 +1,20 @@
+$col-accent: #568096;
+
+:root {
+  --text-primary-color: 0, 0, 0;
+  --text-primary-alpha: 0.87;
+
+  --text-primary: rgba(
+    var(--text-primary-color),
+    var(--text-primary-alpha)
+  );
+
+  --background-body: #cbc5a3;
+  --background-menu: rgba(255, 255, 255, 0.8);
+
+  --col-accent: #{$col-accent};
+  --col-accent-active: #{darken($col-accent, 10%)};
+
+  --col-error: #c0392b;
+  --col-success: #2ecc71;
+}
