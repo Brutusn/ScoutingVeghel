@@ -12,7 +12,7 @@ import { SvHeaderModule } from './shared/sv-header/sv-header.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,

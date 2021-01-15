@@ -13,8 +13,21 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   font-size: 16px;
+  color: var(--text-primary);
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
+}
+
+a {
+  color: var(--col-accent);
+
+  &:hover,
+  &:active,
+  &:visited {
+    color: var(--col-accent-active);
+  }
 }
