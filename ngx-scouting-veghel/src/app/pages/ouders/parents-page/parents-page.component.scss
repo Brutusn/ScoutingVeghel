@@ -1,0 +1,9 @@
+.contribution-table {
+  & tr th {
+    text-align: left;
+  }
+
+  & tr td:last-of-type {
+    text-align: center;
+  }
+}

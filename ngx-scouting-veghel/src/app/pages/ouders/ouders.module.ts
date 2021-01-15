@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ParentsPageComponent } from './parents-page/parents-page.component';
 import { Routes, RouterModule } from '@angular/router';
+import { SvContentBlockModule } from '../../shared/sv-content-block/content-block.module';
 
 const routes: Routes = [
   {
@@ -14,7 +15,8 @@ const routes: Routes = [
   declarations: [ParentsPageComponent],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    SvContentBlockModule,
   ]
 })
 export class OudersModule { }
