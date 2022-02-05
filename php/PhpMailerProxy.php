@@ -21,7 +21,7 @@ require_once("MAIL2.php");
 function sendMail($toMail, $subject, $message, $replyToMail = ""){
     global $SMTP_MAIL_FROM;
      // Must be the one configured at the SMTP server (e.g. Office365 mailbox) that is authenticated to sent mails
-     sendMailWithFrom($toMail, $subject, $message, $SMTP_MAIL_FROM, $replyToMail);
+     return sendMailWithFrom($toMail, $subject, $message, $SMTP_MAIL_FROM, $replyToMail);
 }
 
 /**
