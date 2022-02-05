@@ -1,5 +1,7 @@
 <?php
 
+require_once("PhpMailerProxy.php");
+
 $MAIL_ADDRESS_VERHUUR = 'website@scoutingveghel.nl';
 $MAIL_ADDRESS_WEBSITE = 'website@scoutingveghel.nl';
 $MAIL_ADDRESS_GEBE = 'website@scoutingveghel.nl';
@@ -59,8 +61,6 @@ if (isset($_POST["name"]) && isset($_POST["mailadr"]) && isset($_POST["whoTo"]) 
                 $toMail = "";
                 break;
         }
-        $headers .= "Reply-To: " . $mail;
-        //TODO looks like the defines do not work as expected
     }
 
     $subject = "[SV-Contact]: Vraag/opmerking van: \"$naam\"";
@@ -71,7 +71,7 @@ if (isset($_POST["name"]) && isset($_POST["mailadr"]) && isset($_POST["whoTo"]) 
         echo "Fout: E-mailadres ongeldig.";
         exit;
     }
-    else if (!mail($toMail, $subject, $message, $headers)) {
+    else if (!sendMail($toMail, $subject, $message, $mail)[0]) {
         header('HTTP/1.1 400 Bad Request');
         echo "Fout: Verzenden e-mail mislukt.";
         exit;

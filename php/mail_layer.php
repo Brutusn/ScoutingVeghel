@@ -1,15 +1,13 @@
 <?php
 
+require_once("PhpMailerProxy.php");
+
 $MAIL_ADDRESS_VERHUUR = 'website@scoutingveghel.nl';
-$MAIL_ADDRESS_WEBSTIE = 'website@scoutingveghel.nl';
+$MAIL_ADDRESS_WEBSITE = 'website@scoutingveghel.nl';
 
 $VERIFY_BASE_URL = 'http://nieuw.scoutingveghel.nl/php/verhuur-confirm.php?key=';
 $HUURVOOORWAARDEN_URL = 'http://nieuw.scoutingveghel.nl/docs/huurvoorwaarden.pdf';
 $HUUROVEREENKOMST_BASE_URL = 'http://nieuw.scoutingveghel.nl/php/huurovereenkomst.php?key=';
-
-$FROM_HEADER_VERHUUR = 'Scouting Veghel Verhuur <' . $MAIL_ADDRESS_VERHUUR . '>';
-$FROM_HEADER_WEBSITE = 'Scouting Veghel Website <' . $MAIL_ADDRESS_WEBSTIE . '>';
-$FROM_HEADER_NO_REPLY = 'Scouting Veghel <noreply@scoutingveghel.nl>';
 
 /**
 * Send the confirmation email to Ellen
@@ -19,7 +17,7 @@ $FROM_HEADER_NO_REPLY = 'Scouting Veghel <noreply@scoutingveghel.nl>';
 * @return void
 */
 function sendConfirmEmailEllen($name, $email){
-  global $FROM_HEADER_WEBSITE;
+  global $MAIL_ADDRESS_WEBSITE;
   global $MAIL_ADDRESS_WEBSITE;
   global $MAIL_ADDRESS_VERHUUR;
 
@@ -28,9 +26,8 @@ function sendConfirmEmailEllen($name, $email){
   Er is weer een reservering voor de blokhut bevestigd. De resevering is van: " . $name . " (" . $email . ").\r\n
   Met vriendelijke groeten,\r\n
   Website Scouting Veghel";
-  $headers = "From: " . $FROM_HEADER_WEBSITE ."\r\n";
-  $headers .= "Reply-To: " . $MAIL_ADDRESS_WEBSITE;
-  mail($MAIL_ADDRESS_VERHUUR, $subject, $message, $headers);
+
+  sendMail($MAIL_ADDRESS_VERHUUR, $subject, $message, $MAIL_ADDRESS_WEBSITE, $MAIL_ADDRESS_WEBSITE);
 }
 
 /**
@@ -46,7 +43,7 @@ function sendConfirmEmailEllen($name, $email){
 * @return void
 */
 function sendConfirmEmail($toMail, $naam, $hashEmail, $activity, $startSTR, $endSTR, $aantalPers){
-  global $FROM_HEADER_VERHUUR;
+  global $MAIL_ADDRESS_WEBSITE;
   global $MAIL_ADDRESS_VERHUUR;
   global $VERIFY_BASE_URL;
 
@@ -61,9 +58,8 @@ function sendConfirmEmail($toMail, $naam, $hashEmail, $activity, $startSTR, $end
   Voor meer informatie kunt u reageren op deze e-mail.\r\n\r\n
   Met vriendelijke groeten,\r\n
   Verhuurder Scouting Veghel");
-  $headers = "From: " . $FROM_HEADER_VERHUUR . "\r\n";
-  $headers .= "Reply-To: " . $MAIL_ADDRESS_VERHUUR;
-  mail($toMail, $subject, $message, $headers);
+
+  sendMail($toMail, $subject, $message, $MAIL_ADDRESS_WEBSITE, $MAIL_ADDRESS_VERHUUR);
 }
 
 /**
@@ -75,7 +71,7 @@ function sendConfirmEmail($toMail, $naam, $hashEmail, $activity, $startSTR, $end
 * @return void
 */
 function sendDocuments($name, $toMail, $confirm_key){
-  global $FROM_HEADER_VERHUUR;
+  global $MAIL_ADDRESS_WEBSITE;
   global $MAIL_ADDRESS_VERHUUR;
   global $HUURVOOORWAARDEN_URL;
   global $HUUROVEREENKOMST_BASE_URL;
@@ -89,8 +85,7 @@ function sendDocuments($name, $toMail, $confirm_key){
   De huurovereenkomst graag doorlezen en ondertekenen.\r\n\r\n
   Met vriendelijke groeten,\r\n
   Verhuurder Scouting Veghel");
-  $headers = "From: " . $FROM_HEADER_VERHUUR . "\r\n";
-  $headers .= "Reply-To: " . $MAIL_ADDRESS_VERHUUR;
-  mail($toMail, $subject, $message, $headers);
+
+  sendMail($toMail, $subject, $message, $MAIL_ADDRESS_WEBSITE, $MAIL_ADDRESS_VERHUUR);
 }
 ?>
