@@ -16,6 +16,7 @@
 # db settings (user and password)
 /php/DB2.php
 /php/database.php
+/php/MAIL2.php
 
 # private sensitive settings
 /privateSettings
