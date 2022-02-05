@@ -3,7 +3,7 @@
 require_once("db_layer.php");
 require_once("mail_layer.php");
 
-$BASE_URL = 'http://nieuw.scoutingveghel.nl/';
+$BASE_URL = 'https://test.scoutingveghel.nl/';
 
 session_start();
 date_default_timezone_set('Europe/Paris');

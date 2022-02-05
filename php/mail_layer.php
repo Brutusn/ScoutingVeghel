@@ -5,9 +5,9 @@ require_once("PhpMailerProxy.php");
 $MAIL_ADDRESS_VERHUUR = 'website@scoutingveghel.nl';
 $MAIL_ADDRESS_WEBSITE = 'website@scoutingveghel.nl';
 
-$VERIFY_BASE_URL = 'http://nieuw.scoutingveghel.nl/php/verhuur-confirm.php?key=';
-$HUURVOOORWAARDEN_URL = 'http://nieuw.scoutingveghel.nl/docs/huurvoorwaarden.pdf';
-$HUUROVEREENKOMST_BASE_URL = 'http://nieuw.scoutingveghel.nl/php/huurovereenkomst.php?key=';
+$VERIFY_BASE_URL = 'https://test.scoutingveghel.nl/php/verhuur-confirm.php?key=';
+$HUURVOOORWAARDEN_URL = 'https://test.scoutingveghel.nl/docs/huurvoorwaarden.pdf';
+$HUUROVEREENKOMST_BASE_URL = 'https://test.scoutingveghel.nl/php/huurovereenkomst.php?key=';
 
 /**
 * Send the confirmation email to Ellen
