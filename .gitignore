@@ -13,7 +13,7 @@
 # for compile hero
 /css/dist/
 
-# db settings (user and password)
+# config secrets
 /php/DB2.php
 /php/database.php
 /php/MAIL2.php
