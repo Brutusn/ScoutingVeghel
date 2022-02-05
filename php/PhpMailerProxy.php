@@ -55,7 +55,7 @@ function sendMailWithFrom($toMail, $subject, $message, $fromMail, $replyToMail){
         $mail->Password = $SMTP_PASSWORD;
 
         // Must be the one configured at the SMTP server (e.g. Office365 mailbox) that is authenticated to sent mails
-        $mail->setFrom($mail);
+        $mail->setFrom($fromMail);
 
         //Mail addresses
         $mail->addAddress($toMail);
