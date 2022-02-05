@@ -27,7 +27,7 @@ function sendConfirmEmailEllen($name, $email){
   Met vriendelijke groeten,\r\n
   Website Scouting Veghel";
 
-  sendMail($MAIL_ADDRESS_VERHUUR, $subject, $message, $MAIL_ADDRESS_WEBSITE, $MAIL_ADDRESS_WEBSITE);
+  sendMail($MAIL_ADDRESS_VERHUUR, $subject, $message, $MAIL_ADDRESS_WEBSITE);
 }
 
 /**
@@ -43,7 +43,6 @@ function sendConfirmEmailEllen($name, $email){
 * @return void
 */
 function sendConfirmEmail($toMail, $naam, $hashEmail, $activity, $startSTR, $endSTR, $aantalPers){
-  global $MAIL_ADDRESS_WEBSITE;
   global $MAIL_ADDRESS_VERHUUR;
   global $VERIFY_BASE_URL;
 
@@ -59,7 +58,7 @@ function sendConfirmEmail($toMail, $naam, $hashEmail, $activity, $startSTR, $end
   Met vriendelijke groeten,\r\n
   Verhuurder Scouting Veghel");
 
-  sendMail($toMail, $subject, $message, $MAIL_ADDRESS_WEBSITE, $MAIL_ADDRESS_VERHUUR);
+  sendMail($toMail, $subject, $message, $MAIL_ADDRESS_VERHUUR);
 }
 
 /**
@@ -71,7 +70,6 @@ function sendConfirmEmail($toMail, $naam, $hashEmail, $activity, $startSTR, $end
 * @return void
 */
 function sendDocuments($name, $toMail, $confirm_key){
-  global $MAIL_ADDRESS_WEBSITE;
   global $MAIL_ADDRESS_VERHUUR;
   global $HUURVOOORWAARDEN_URL;
   global $HUUROVEREENKOMST_BASE_URL;
@@ -86,6 +84,6 @@ function sendDocuments($name, $toMail, $confirm_key){
   Met vriendelijke groeten,\r\n
   Verhuurder Scouting Veghel");
 
-  sendMail($toMail, $subject, $message, $MAIL_ADDRESS_WEBSITE, $MAIL_ADDRESS_VERHUUR);
+  sendMail($toMail, $subject, $message, $MAIL_ADDRESS_VERHUUR);
 }
 ?>
