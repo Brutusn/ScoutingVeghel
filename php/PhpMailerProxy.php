@@ -19,11 +19,26 @@ require_once("MAIL2.php");
 * @return [bool, message]
 */
 function sendMail($toMail, $subject, $message, $replyToMail = ""){
+    global $SMTP_MAIL_FROM;
+     // Must be the one configured at the SMTP server (e.g. Office365 mailbox) that is authenticated to sent mails
+     sendMailWithFrom($toMail, $subject, $message, $SMTP_MAIL_FROM, $replyToMail);
+}
+
+/**
+* INTERNAL use only, due to the authorized fromMail parameter
+*
+* @param $toMail The mail address to send it to
+* @param $subject The subject of the mail
+* @param $message The message content of the mail
+* @param $fromMail THe mail address from which to send it. Note that this must be an authorized address.
+* @param $replyToMail The mail address to reply to
+* @return [bool, message]
+*/
+function sendMailWithFrom($toMail, $subject, $message, $fromMail, $replyToMail){
   global $SMTP_SERVER;
   global $SMTP_PORT;
   global $SMTP_USER;
   global $SMTP_PASSWORD;
-  global $SMTP_MAIL_FROM;
 
     //Create an instance; passing `true` enables exceptions
     $mail = new PHPMailer(true);
@@ -38,8 +53,9 @@ function sendMail($toMail, $subject, $message, $replyToMail = ""){
         $mail->Port = $SMTP_PORT;
         $mail->Username = $SMTP_USER;
         $mail->Password = $SMTP_PASSWORD;
+
         // Must be the one configured at the SMTP server (e.g. Office365 mailbox) that is authenticated to sent mails
-        $mail->setFrom($SMTP_MAIL_FROM);
+        $mail->setFrom($mail);
 
         //Mail addresses
         $mail->addAddress($toMail);

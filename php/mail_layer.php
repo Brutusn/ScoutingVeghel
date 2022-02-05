@@ -27,7 +27,7 @@ function sendConfirmEmailEllen($name, $email){
   Met vriendelijke groeten,\r\n
   Website Scouting Veghel";
 
-  sendMail($MAIL_ADDRESS_VERHUUR, $subject, $message, $MAIL_ADDRESS_WEBSITE);
+  sendMailWithFrom($MAIL_ADDRESS_VERHUUR, $subject, $message, $MAIL_ADDRESS_WEBSITE, $MAIL_ADDRESS_WEBSITE);
 }
 
 /**
@@ -58,7 +58,7 @@ function sendConfirmEmail($toMail, $naam, $hashEmail, $activity, $startSTR, $end
   Met vriendelijke groeten,\r\n
   Verhuurder Scouting Veghel");
 
-  sendMail($toMail, $subject, $message, $MAIL_ADDRESS_VERHUUR);
+  sendMailWithFrom($toMail, $subject, $message, $MAIL_ADDRESS_VERHUUR, $MAIL_ADDRESS_VERHUUR);
 }
 
 /**
@@ -84,6 +84,6 @@ function sendDocuments($name, $toMail, $confirm_key){
   Met vriendelijke groeten,\r\n
   Verhuurder Scouting Veghel");
 
-  sendMail($toMail, $subject, $message, $MAIL_ADDRESS_VERHUUR);
+  sendMailWithFrom($toMail, $subject, $message, $MAIL_ADDRESS_VERHUUR, $MAIL_ADDRESS_VERHUUR);
 }
 ?>
