@@ -793,9 +793,9 @@ function isTodayHired (obj) {
             dayFrom = Date.parse(obj[i].dayFrom);
             dayTo = Date.parse(obj[i].dayTo);
             //Because of the removel of the time we need to add 24 hours minus 1 millisecond to make sure the entire day is actually hired.
-            dayTo = (dayTo === dayFrom) ? dayTo + 86399999 : dayTo;
+            var endOfDayTo = dayTo + 86399999;
             //console.info(dayFrom, dayTo, (checkDate <= dayTo && checkDate >= dayFrom));
-            if ((checkDate <= dayTo && checkDate >= dayFrom)) {
+            if ((checkDate <= endOfDayTo && checkDate >= dayFrom)) {
                 return obj[i].bySV ? "sv": "other";
             }
         }
