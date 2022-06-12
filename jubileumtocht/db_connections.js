@@ -72,7 +72,7 @@ function processTimeslots(msg) {
         fragment = document.createDocumentFragment(),
         i,
         ul, li,
-        timeslot, distance, isAvailable;
+        timeslot, distance, amountAvailable;
 
     // Make a list...
     ul = $elem("ul");
@@ -82,9 +82,9 @@ function processTimeslots(msg) {
         li = $elem("li");
         timeslot = msg[i].timeslot;
         distance = msg[i].distance;
-        isAvailable = msg[i].isAvailable
+        amountAvailable = msg[i].available
 
-        li.textContent = "Om " + timeslot + " starten met " + distance + " km " + "[" + (isAvailable ? "beschikbaar" : "niet beschikbaar") + "]";
+        li.textContent = "Om " + timeslot + " starten met " + distance + " km " + "[nog " + amountAvailable + " beschikbaar" + "]";
 
         ul.appendChild(li);
     }

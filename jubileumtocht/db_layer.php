@@ -18,7 +18,7 @@ function getTimeslots()
             $ar = [];//array('dayFrom', 'dayTo', 'bySV');
             $ar['timeslot'] = $time;
             $ar['distance'] = $distance;
-            $ar['isAvailable'] = $available;
+            $ar['available'] = $available;
             $array[] = $ar;
         }
         
