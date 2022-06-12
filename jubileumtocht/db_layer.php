@@ -71,7 +71,7 @@ function getAmountOfAvailableWalkers($slotid)
     }
 
     // Expect only one result (return the last added result or if none were added, the default result)
-    return $array[count($array) - 1];
+    return $array[count($array) - 1]['available'];
 }
 
 function createParticipant($name, $mail)
