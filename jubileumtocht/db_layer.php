@@ -26,6 +26,29 @@ function getTimeslots()
     return $array;
 }
 
+function getSlotData($slotid)
+{
+    $array = [];
+
+    $mysqli = databaseMYSQLi();
+    if ($stmt = $mysqli->prepare("CALL GetSlotData(?)")) {
+        $stmt->bind_param("i", $slotid);
+        $stmt->execute();
+        $stmt->bind_result($time, $distance);
+
+        while ($stmt->fetch()) {
+            $ar = [];
+            $ar['timeslot'] = $time;
+            $ar['distance'] = $distance;
+            $array[] = $ar;
+        }
+
+        $mysqli->close();
+    }
+
+    return $array[0];
+}
+
 function getAmountOfAvailableWalkers($slotid)
 {
     $array = [];
@@ -33,7 +56,7 @@ function getAmountOfAvailableWalkers($slotid)
     $array[0] = 0;
 
     $mysqli = databaseMYSQLi();
-    if ($stmt = $mysqli->prepare("CALL GetAmountOfWalkers(?)")) {
+    if ($stmt = $mysqli->prepare("CALL GetAvailableWalkers(?)")) {
         $stmt->bind_param("i", $slotid);
         $stmt->execute();
         $stmt->bind_result($available);

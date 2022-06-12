@@ -26,7 +26,7 @@ if (
     if ($amountOfWalkers == "") {
         incompleteData("Aantal deelnemers");
     }
-    if ($slotid == "") {
+    if ($slotid == "" || $slotid < 0 || $slotid > 23) {
         incompleteData("Tijdslot");
     }
 
@@ -42,6 +42,11 @@ if (
     }
 
     createRegistration($participantId, $slotid, $amountOfWalkers);
+
+    $slotData = getSlotData($slotid);
+    $time = $slotData['timeslot'];
+    $distance = $slotData['distance'];
+
     sendConfirmEmail($mail, $name, $time, $distance, $amountOfWalkers);
     successfulRegistration();
 } else { //one of the fields was not set in the POST request
