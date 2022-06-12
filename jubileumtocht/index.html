@@ -11,7 +11,8 @@
     <meta name="viewport" content="width=device-width, minimum-scale=1.0">
 
     <title>Jubileumtocht Scouting Veghel</title>
-    <link href="../css/style.min.css" type="text/css" rel="stylesheet">
+    <link href="./form-1.css" type="text/css" rel="stylesheet">
+    <link href="./form-2.css" type="text/css" rel="stylesheet">
 
     <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/images/favicons/apple-touch-icon-60x60.png">
@@ -40,8 +41,58 @@
 </head>
 
 <body>
-    <p id="message">Nothing</p>
-    <div id="timeslots">Nothing</div>
+    <div>
+        <h1> Some nice header</h1>
+        <p>and some information</p>
+    </div>
+    <div>
+        <form id="registration-form" action="./registrationform.php" method="POST">
+            <div class="rendered-form">
+                <div class="formbuilder-text form-group field-form-name">
+                    <label for="form-name" class="formbuilder-text-label">Naam<span
+                            class="formbuilder-required">*</span><span class="tooltip-element"
+                            tooltip="Vul hier je naam in zodat we weten wie de registratie gedaan heeft">?</span></label>
+                    <input type="text" class="form-control" name="name" access="false" id="form-name"
+                        title="Vul hier je naam in zodat we weten wie de registratie gedaan heeft" required="required"
+                        aria-required="true">
+                </div>
+                <div class="formbuilder-text form-group field-form-mail">
+                    <label for="form-mail" class="formbuilder-text-label">E-mail<span
+                            class="formbuilder-required">*</span><span class="tooltip-element"
+                            tooltip="Vul je e-mail in zodat we een bevestigingsmail en nadere informatie kunnen sturen">?</span></label>
+                    <input type="email" class="form-control" name="mail" access="false" id="form-mail"
+                        title="Vul je e-mail in zodat we een bevestigingsmail en nadere informatie kunnen sturen"
+                        required="required" aria-required="true">
+                </div>
+                <div class="formbuilder-select form-group field-form-slot">
+                    <label for="form-slot" class="formbuilder-select-label">Welke tijd wil je starten
+                        <br><span class="formbuilder-required">*</span><span class="tooltip-element"
+                            tooltip="Selecteer de tijd dat je wilt starten met de tocht">?</span></label>
+                    <select class="form-control" name="slot" id="form-slot" required="required"
+                        aria-required="true">
+                        <!-- Options will be generated based on data from DB-->
+                        <!-- <option value="option-1" selected="true" id="form-slot-0">Option 1</option>
+                        <option value="option-2" id="form-slot-1">Option 2</option>
+                        <option value="option-3" id="form-slot-2">Option 3</option> -->
+                    </select>
+                </div>
+                <div class="formbuilder-number form-group field-form-walkers">
+                    <label for="form-walkers" class="formbuilder-number-label">Aantal deelnemers
+                        <br><span class="formbuilder-required">*</span><span class="tooltip-element"
+                            tooltip="Vul hier in het aantal deelenemers dat mee loopt">?</span></label>
+                    <input type="number" class="form-control" name="walkers" access="false" min="1" max="25"
+                        step="1" id="form-walkers" title="Vul hier in het aantal deelenemers dat mee loopt"
+                        required="required" aria-required="true">
+                </div>
+                <div class="formbuilder-button form-group field-form-submit">
+                    <button type="submit" class="btn-default btn" name="form-submit" access="false" style="default"
+                        id="form-submit">Aanmelden
+                        <br>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
 </body>
 
 </html>

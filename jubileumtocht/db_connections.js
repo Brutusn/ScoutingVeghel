@@ -49,48 +49,127 @@ const ajax = function (url, data, callback) {
     x.send(query.join("&"));
 };
 
+function showError(msg, form) {
+    var elemPres = !!$id("errorMsg"),
+        elem = '';
+    //console.info(elemPres, elem);
+    if (!elemPres) {
+        elem = document.createElement('div');
+    } else {
+        elem = $id("errorMsg");
+    }
+    elem.className = "error-message";
+    elem.id = "errorMsg";
+    elem.innerHTML = '<i class="fa fa-times-circle"></i> ' + msg;
 
-(function getTimeslots() {
+    if (form) {
+        $id(form).appendChild(elem);
+    } else {
+        console.error(msg);
+    }
+}
+function removeError() {
+    var elem = $id("errorMsg");
+    if (elem) {
+        elem.parentNode.removeChild(elem);
+    }
+}
+function showSuccess(msg, form) {
+    showError("tmp", form);
+    $id("errorMsg").innerHTML = msg;
+    $id("errorMsg").className = "success-message";
+}
+
+
+function getTimeslots() {
     ajax("./Timeslots.php", {}, function (err, msg) {
         var tempErr = err;
         if (!err) {
             try {
-                processTimeslots(JSON.parse(msg));
+                var slotData = processTimeslots(JSON.parse(msg));
+                updateForm(slotData)
             } catch (e) {
                 console.warn("Er is iets mis gegaan met het ophalen van de tijdssloten.", msg, e);
                 tempErr = true;
             }
         }
         if (tempErr) {
-            $id("message").innerHTML = '<p class="verhuur-status">Er is iets mis gegaan met het ophalen van de tijdsloten.</p>';
+            showError('Er is iets mis gegaan met het ophalen van de tijdsloten.');
         }
     });
-})();
+}
+
 
 function processTimeslots(msg) {
-    var container = $id("timeslots"),
-        fragment = document.createDocumentFragment(),
-        i,
-        ul, li,
-        timeslot, distance, amountAvailable;
-
-    // Make a list...
-    ul = $elem("ul");
+    var i, slotid, timeslot, distance, amountAvailable,
+        slotData = [];
 
     // Reverse array loop :)
     for (i = 0; i < msg.length; i++) {
-        li = $elem("li");
+        slotid = msg[i].slotid
         timeslot = msg[i].timeslot;
         distance = msg[i].distance;
-        amountAvailable = msg[i].available
+        amountAvailable = msg[i].available;
 
-        li.textContent = "Om " + timeslot + " starten met " + distance + " km " + "[nog " + amountAvailable + " beschikbaar" + "]";
-
-        ul.appendChild(li);
+        slotData[i] = { "slotid": slotid, "time": timeslot, "distance": distance, "available": amountAvailable };
     }
 
-    fragment.appendChild(ul);
-
-    container.innerHTML = "";
-    container.appendChild(fragment);
+    return slotData;
 }
+
+function updateForm(slotData) {
+    var i, formSlotSelector = $id("form-slot");
+
+    formSlotSelector.innerHTML = "";
+
+    for (i = 0; i < slotData.length; i++) {
+        var fragment = document.createDocumentFragment(), option = $elem("option");
+        option.value = slotData[i].slotid;
+        option.id = "form-slot-" + i;
+        var walkersAvailable = slotData[i].available <= 0 ? "geen plaatsen beschikbaar" : "nog " + slotData[i].available + " plaatsen beschikbaar";
+        option.innerHTML = "" + slotData[i].time + "  -  " + slotData[i].distance + " km" + "   -   " + walkersAvailable;
+
+        fragment.appendChild(option);
+        formSlotSelector.appendChild(fragment);
+    }
+}
+
+$id("registration-form").onsubmit = function () {
+    const data = {};
+    const re = /[^\s@]+@[^\s@]+\.[^\s@]+/; // Regex for email
+    const form = this.id;
+    const inputs = this.getElementsByClassName("form-control");
+    removeError();
+
+    // Fill data object
+    for (const input of inputs) {
+        data[input.name] = input.value;
+    }
+
+    console.debug(data)
+
+    if (!data.name || data.name === "" ||
+        data.name === null || data.name === undefined) {
+        showError("Voor wie is deze registratie? Vul een naam in", form);
+    }
+    else if (!re.test(data.mail)) {
+        showError("Vul een geldig e-mailadres in.", form);
+    }
+    else if (re.test(data.mail)) {
+        removeError();
+
+        showSuccess("Aanmelding versturen...", form);
+
+        ajax("./registrationform.php", data, function (err, msg) {
+            // Only reset underlying data, but not the form after success.
+            //$id(form).reset();
+            showSuccess(msg, form);
+        });
+    }
+
+    getTimeslots();
+    // Return false to prevent default form behavior.
+    return false;
+};
+
+getTimeslots();

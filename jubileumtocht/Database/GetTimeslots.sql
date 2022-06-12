@@ -1,6 +1,6 @@
 DELIMITER $$
 CREATE PROCEDURE `GetTimeslots`()
-SELECT `Times`.`Time`, `Distances`.`Distance`, (`Distances`.`MaxWalkersPerSlot` - `A`.`TotalRegistrations`) AS `AmountAvailable`
+SELECT `Slots`.`ID` AS `SlotID`, `Times`.`Time`, `Distances`.`Distance`, (`Distances`.`MaxWalkersPerSlot` - `A`.`TotalRegistrations`) AS `AmountAvailable`
 FROM `Slots`
 JOIN `Times` ON `Slots`.`Time` = `Times`.`ID`
 JOIN `Distances` ON `Slots`.`Distance` = `Distances`.`ID`
