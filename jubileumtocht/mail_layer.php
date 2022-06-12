@@ -6,6 +6,7 @@ require_once("config.php");
 function sendConfirmEmail($toMail, $name, $time, $distance, $amountOfWalkers)
 {
     global $REPLY_ADDRESS;
+    global $FROM_ADDRESS;
 
     $subject = "Aanmelding Jubileumtocht Scouting Veghel";
     $message = nl2br(htmlentities("Beste " . $name . ",
@@ -22,5 +23,5 @@ Voor meer informatie kunt u reageren op deze e-mail.
 Met vriendelijke groeten,
 Scouting Veghel"));
 
-    sendMailWithFrom($toMail, $subject, $message, $REPLY_ADDRESS, $REPLY_ADDRESS);
+    sendMailWithFrom($toMail, $subject, $message, $FROM_ADDRESS, $REPLY_ADDRESS);
 }
