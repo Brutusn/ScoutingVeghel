@@ -8,13 +8,14 @@ function sendConfirmEmail($toMail, $name, $time, $distance, $amountOfWalkers)
     global $REPLY_ADDRESS;
 
     $subject = "Aanmelding Jubileumtocht Scouting Veghel";
-    $message = htmlentities("Beste " . $name . ",\r\n
-    Hierbij de email om jouw aanmelding te bevestigen.\r\n
-    Het gekozen tijdslot is " . $time . " voor de " . $distance . " km met " . $amountOfWalkers . " deelnemers.\r\n
-
-    Voor meer informatie kunt u reageren op deze e-mail.\r\n\r\n
-    Met vriendelijke groeten,\r\n
-    Scouting Veghel");
+    $message = nl2br(htmlentities("Beste " . $name . ",
+    
+    Hierbij de email om jouw aanmelding te bevestigen.
+    Het gekozen tijdslot is " . $time . " voor de " . $distance . " km met " . $amountOfWalkers . " deelnemers.
+    Voor meer informatie kunt u reageren op deze e-mail.
+    
+    Met vriendelijke groeten,
+    Scouting Veghel"));
 
     sendMailWithFrom($toMail, $subject, $message, $REPLY_ADDRESS, $REPLY_ADDRESS);
 }
