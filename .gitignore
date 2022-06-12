@@ -17,6 +17,7 @@
 /php/DB2.php
 /php/database.php
 /php/MAIL2.php
+/jubileumtocht/DB2.php
 
 # private sensitive settings
 /privateSettings
