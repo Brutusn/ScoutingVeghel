@@ -13,6 +13,7 @@
     <title>Jubileumtocht Scouting Veghel</title>
     <link href="./form-1.css" type="text/css" rel="stylesheet">
     <link href="./form-2.css" type="text/css" rel="stylesheet">
+    <link href="./styles.css" type="text/css" rel="stylesheet">
 
     <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/images/favicons/apple-touch-icon-60x60.png">
@@ -42,6 +43,9 @@
 
 <body>
     <div>
+        <img src="Header aanmeldpagina.svg" />
+    </div>
+    <div>
         <h1> Some nice header</h1>
         <p>and some information</p>
     </div>
@@ -68,8 +72,7 @@
                     <label for="form-slot" class="formbuilder-select-label">Welke tijd wil je starten
                         <br><span class="formbuilder-required">*</span><span class="tooltip-element"
                             tooltip="Selecteer de tijd dat je wilt starten met de tocht">?</span></label>
-                    <select class="form-control" name="slot" id="form-slot" required="required"
-                        aria-required="true">
+                    <select class="form-control" name="slot" id="form-slot" required="required" aria-required="true">
                         <!-- Options will be generated based on data from DB-->
                         <!-- <option value="option-1" selected="true" id="form-slot-0">Option 1</option>
                         <option value="option-2" id="form-slot-1">Option 2</option>
@@ -80,9 +83,9 @@
                     <label for="form-walkers" class="formbuilder-number-label">Aantal deelnemers
                         <br><span class="formbuilder-required">*</span><span class="tooltip-element"
                             tooltip="Vul hier in het aantal deelenemers dat mee loopt">?</span></label>
-                    <input type="number" class="form-control" name="walkers" access="false" min="1" max="25"
-                        step="1" id="form-walkers" title="Vul hier in het aantal deelenemers dat mee loopt"
-                        required="required" aria-required="true">
+                    <input type="number" class="form-control" name="walkers" access="false" min="1" max="25" step="1"
+                        id="form-walkers" title="Vul hier in het aantal deelenemers dat mee loopt" required="required"
+                        aria-required="true">
                 </div>
                 <div class="formbuilder-button form-group field-form-submit">
                     <button type="submit" class="btn-default btn" name="form-submit" access="false" style="default"
@@ -92,6 +95,9 @@
                 </div>
             </div>
         </form>
+    </div>
+    <div>
+        <img src="Footer aanmeldpagina.svg" />
     </div>
 </body>
 
