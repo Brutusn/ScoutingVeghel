@@ -79,6 +79,10 @@ function errorDatabase($property)
 
 function successfulRegistration()
 {
-    echo "We hebben uw aanmelding ontvangen en u heeft een bevestigingsemail gehad.";
+    echo "We hebben je aanmelding ontvangen.<br>
+    Wat leuk dat je meeloopt met de 11-Spelentocht!<br>
+    We hebben een bevestiging gestuurd naar je e-mailadres.<br>
+    Zorg dat je je precies in het tijdvak aanmeld bij de startlocatie naast de silo's op de Noordkade.<br>
+    LET OP: Kinderen die nog op de basisschool zitten kunnen alleen deelnemen onder begeleiding.";
     exit;
 }
