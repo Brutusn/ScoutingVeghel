@@ -1,7 +1,21 @@
-body {
+body,
+html {
+    max-height: 100%;
+    max-width: 100%;
     background-color: #cfe8aa;
     overflow-y: auto;
     overflow-x: hidden;
+}
+
+body {
+    font-family: Segoe UI, Helvetica, Verdana, Arial, sans-serif;
+    text-align: justify;
+    font-size: 1em;
+}
+
+.intro {
+    margin: 25;
+    padding: 25;
 }
 
 .full-screen-width {
