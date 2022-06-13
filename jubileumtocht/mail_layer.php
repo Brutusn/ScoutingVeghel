@@ -8,7 +8,7 @@ function sendConfirmEmail($toMail, $name, $time, $distance, $amountOfWalkers)
     global $REPLY_ADDRESS;
     global $FROM_ADDRESS;
 
-    $subject = "Aanmelding Jubileumtocht Scouting Veghel";
+    $subject = "Aanmelding 11-Spelentocht Scouting Veghel";
     $message = nl2br(htmlentities("Beste " . $name . ",
 
 Hierbij de email om jouw aanmelding te bevestigen. 
