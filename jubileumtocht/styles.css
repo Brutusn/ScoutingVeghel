@@ -29,9 +29,9 @@ body {
 }
 
 .right-align-on-top {
-    position: relative;
+    position: right;
     float: right;
     margin-top: 10%;
-    max-width: 200px;
+    max-width: 800px;
     width: 30vw;
 }
