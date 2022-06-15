@@ -27,7 +27,7 @@ if (
         incompleteData("Aantal deelnemers");
     }
     if ($slotid == "" || $slotid < 0 || $slotid > 23) {
-        incompleteData("Tijdslot");
+        incompleteData("Tijdsvak");
     }
 
     $availableWalkers = getAmountOfAvailableWalkers($slotid);
@@ -67,7 +67,7 @@ function missingData()
 
 function tooManyWalkers($walkers, $available)
 {
-    echo "De aanmelding is voor meer deelnemers (" . $walkers . ") dan er beschikbaar zijn (" . $available . ")";
+    echo "De aanmelding is voor meer deelnemers (" . $walkers . ") dan er plaatsen beschikbaar zijn (" . $available . ")";
     exit;
 }
 

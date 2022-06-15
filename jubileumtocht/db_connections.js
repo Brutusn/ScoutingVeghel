@@ -89,12 +89,12 @@ function getTimeslots() {
                 var slotData = processTimeslots(JSON.parse(msg));
                 updateForm(slotData)
             } catch (e) {
-                console.warn("Er is iets mis gegaan met het ophalen van de tijdssloten.", msg, e);
+                console.warn("Er is iets mis gegaan met het ophalen van de tijdvakken.", msg, e);
                 tempErr = true;
             }
         }
         if (tempErr) {
-            showError('Er is iets mis gegaan met het ophalen van de tijdsloten.');
+            showError('Er is iets mis gegaan met het ophalen van de tijdvakken.');
         }
     });
 }
@@ -131,7 +131,7 @@ function updateForm(slotData) {
             header.id = "form-slot-header-" + currentDistance;
             header.setAttribute('disabled', true);
             header.className='option-header'
-            header.innerHTML = "" + currentDistance + " km tocht start-tijdvakken";
+            header.innerHTML = "" + currentDistance + " km tocht tijdvakken";
             headerFragment.appendChild(header);
             formSlotSelector.appendChild(headerFragment);
         }
