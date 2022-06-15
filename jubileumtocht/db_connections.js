@@ -118,15 +118,31 @@ function processTimeslots(msg) {
 }
 
 function updateForm(slotData) {
-    var i, formSlotSelector = $id("form-slot");
+    var i, currentDistance = -1.0, formSlotSelector = $id("form-slot");
 
     formSlotSelector.innerHTML = "";
 
     for (i = 0; i < slotData.length; i++) {
+        // if the current distance group is different add a header in the dropdown
+        if(currentDistance != slotData[i].distance) {
+            currentDistance = slotData[i].distance;
+            var headerFragment = document.createDocumentFragment(), header = $elem("option");
+            header.value = -1;
+            header.id = "form-slot-header-" + currentDistance;
+            header.setAttribute('disabled', true);
+            header.innerHTML = "" + currentDistance + " km tocht start-tijdvakken";
+            headerFragment.appendChild(header);
+            formSlotSelector.appendChild(headerFragment);
+        }
+
         var fragment = document.createDocumentFragment(), option = $elem("option");
         option.value = slotData[i].slotid;
         option.id = "form-slot-" + i;
-        var walkersAvailable = slotData[i].available <= 0 ? "geen plaatsen beschikbaar" : "nog " + slotData[i].available + " plaatsen beschikbaar";
+        var isUnavailable = slotData[i].available <= 0
+        if(isUnavailable) {
+            option.setAttribute('disabled', true)
+        }
+        var walkersAvailable = isUnavailable ? "geen plaatsen beschikbaar" : "nog " + slotData[i].available + " plaatsen beschikbaar";
         option.innerHTML = "" + slotData[i].time + "  -  " + slotData[i].distance + " km" + "   -   " + walkersAvailable;
 
         fragment.appendChild(option);
