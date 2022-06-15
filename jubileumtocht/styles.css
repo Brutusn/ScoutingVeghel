@@ -35,3 +35,23 @@ body {
     max-width: 800px;
     width: 30vw;
 }
+
+.option-header {
+    font-weight: bold;
+}
+
+/* Only for mobile devices */
+@media all and (max-width: 600px)
+{
+    .form-control {
+        width: 100%;
+    }
+}
+
+/* Only for other devices */
+@media all and (min-width: 600px)
+{
+    .form-control {
+        width: 500px;
+    }
+}

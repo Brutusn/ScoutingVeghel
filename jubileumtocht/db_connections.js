@@ -130,6 +130,7 @@ function updateForm(slotData) {
             header.value = -1;
             header.id = "form-slot-header-" + currentDistance;
             header.setAttribute('disabled', true);
+            header.className='option-header'
             header.innerHTML = "" + currentDistance + " km tocht start-tijdvakken";
             headerFragment.appendChild(header);
             formSlotSelector.appendChild(headerFragment);
