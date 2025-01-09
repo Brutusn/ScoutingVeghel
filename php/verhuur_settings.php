@@ -7,12 +7,12 @@ define('MIN_AANTAL_UREN','0');
 define('MAX_AANTAL_UREN','8');
 define('MIN_AANTAL_OVERNACHTINGEN', '0');
 define('MAX_AANTAL_OVERNACHTINGEN', '14');
-define('KOSTEN_PPPN','3.95');
+define('KOSTEN_PPPN','5.00');
 define('KOSTEN_PER_UUR','10');
 define('NUMBER_OF_DAYS_OPTION_IS_VALID','14');
-define('BEDRAG_BORG_DAGDEEL','30');
-define('BEDRAG_BORG_NACHT','60');
-define('BEDRAG_BORG_LANGER','150');
+define('BEDRAG_BORG_DAGDEEL','50');
+define('BEDRAG_BORG_NACHT','75');
+define('BEDRAG_BORG_LANGER','300');
 
 //settings Huurovereenkosmt
 define('HV_VERHUURDER_NAME','Scouting Veghel');
