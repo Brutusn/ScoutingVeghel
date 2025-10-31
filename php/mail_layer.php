@@ -1,6 +1,9 @@
 <?php
 
-require_once("PhpMailerProxy.php");
+$proxyPath = defined('PHPMAILER_PROXY_PATH')
+  ? PHPMAILER_PROXY_PATH
+  : __DIR__ . '/PhpMailerProxy.php';
+require_once $proxyPath;
 
 $MAIL_ADDRESS_VERHUUR = 'website@scoutingveghel.nl';
 $MAIL_ADDRESS_WEBSITE = 'website@scoutingveghel.nl';

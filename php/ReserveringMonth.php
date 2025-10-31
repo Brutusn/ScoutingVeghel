@@ -1,21 +1,31 @@
 <?php
-require_once("db_layer.php");
-require_once("date_layer.php");
+require_once __DIR__ . '/db_layer.php';
+require_once __DIR__ . '/date_layer.php';
 
-$m = $_POST['m'];
-$y = $_POST['y'];
+function handleReserveringMonthRequest(array $input): array
+{
+    $m = filter_var($input['m'] ?? null, FILTER_VALIDATE_INT);
+    $y = filter_var($input['y'] ?? null, FILTER_VALIDATE_INT);
 
-$m = filter_var($m, FILTER_VALIDATE_INT);
-$y = filter_var($y, FILTER_VALIDATE_INT);
+    if (validDate($y, $m, 1, 0, 0)) {
+        return [200, getReservationsMonth($m, $y)];
+    }
 
-//TODO Add the possibility to specify an end date. If not set use the behaviour specified below and if set check for that specific interval
-if(validDate($y, $m, 1, 0, 0)) {
-	header('HTTP/1.1 200 OK');
-	echo json_encode(getReservationsMonth($m, $y));
-    exit;
-} else {
-	header('HTTP/1.1 400 Bad Request');
-	echo "Geen geldige datum opgegeven.";
+    return [400, 'Geen geldige datum opgegeven.'];
+}
+
+if (php_sapi_name() !== 'cli' && isset($_SERVER['SCRIPT_FILENAME']) && realpath(__FILE__) === realpath($_SERVER['SCRIPT_FILENAME'])) {
+    [$status, $payload] = handleReserveringMonthRequest($_POST);
+
+    if ($status === 200) {
+        header('Content-Type: application/json');
+        http_response_code(200);
+        echo json_encode($payload);
+    } else {
+        header('Content-Type: text/plain; charset=utf-8');
+        http_response_code(400);
+        echo $payload;
+    }
     exit;
 }
 

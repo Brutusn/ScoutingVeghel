@@ -3,11 +3,14 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require "subm/PHPMailer/src/Exception.php";
-require "subm/PHPMailer/src/PHPMailer.php";
-require 'subm/PHPMailer/src/SMTP.php';
+require __DIR__ . "/subm/PHPMailer/src/Exception.php";
+require __DIR__ . "/subm/PHPMailer/src/PHPMailer.php";
+require __DIR__ . '/subm/PHPMailer/src/SMTP.php';
 
-require_once("MAIL2.php");
+$mailConfigPath = defined('MAIL_CONFIG_PATH')
+    ? MAIL_CONFIG_PATH
+    : __DIR__ . '/MAIL2.php';
+require_once $mailConfigPath;
 
 /**
 * Send the mail using the environment configured SMTP settings using PHP Mailer
