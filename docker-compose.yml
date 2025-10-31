@@ -1,0 +1,45 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html:delegated
+    environment:
+      SV_DB_HOST: db
+      SV_DB_PORT: 3306
+      SV_DB_USER: sv_user
+      SV_DB_PASSWORD: sv_password
+      SV_DB_NAME: sv_database
+      SV_SMTP_HOST: mailhog
+      SV_SMTP_PORT: 1025
+      SV_SMTP_FROM: website@example.test
+    depends_on:
+      - db
+      - mailhog
+
+  db:
+    image: mariadb:10.6
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: sv_database
+      MYSQL_USER: sv_user
+      MYSQL_PASSWORD: sv_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./database:/docker-entrypoint-initdb.d:ro
+
+  mailhog:
+    image: mailhog/mailhog:v1.0.1
+    restart: unless-stopped
+    ports:
+      - "8025:8025"
+      - "1025:1025"
+
+volumes:
+  db_data:

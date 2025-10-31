@@ -10,6 +10,9 @@
 # for node modules thingies
 /node_modules
 
+# composer dependencies
+/vendor/
+
 # for compile hero
 /css/dist/
 
@@ -17,6 +20,9 @@
 /php/DB2.php
 /php/database.php
 /php/MAIL2.php
+
+# temp files
+.phpunit*
 
 # private sensitive settings
 /privateSettings
@@ -30,6 +36,6 @@
 *error_log*
 *.log
 
-# release direcotry
+# release directory
 /Release
 /docs
