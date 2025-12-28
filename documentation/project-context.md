@@ -49,8 +49,8 @@
 - Docker Compose (`docker-compose.yml`) orchestrates:
   - **web**: PHP 8.2 + Apache (built from `docker/php/Dockerfile`) mounting the repository; uses env vars to resolve DB + SMTP.
   - **db**: MariaDB 10.6 seeded automatically from `database/` via the init directory; replace stubbed procedures or add `seed_data.sql` as needed.
-  - **mailhog**: captures SMTP traffic on port `1025` with a web UI at `http://localhost:8025` that lists outgoing messages.
-- Workflow: copy the example config files (or export the `SV_DB_*`/`SV_SMTP_*` variables), then run `docker compose up --build` to start the stack. The site is available on `http://localhost:8080`; MariaDB is exposed on `localhost:3306` for external clients.
+  - **mailhog**: captures SMTP traffic on port `1025` with a web UI at `http://localhost:18025` that lists outgoing messages.
+- Workflow: copy the example config files (or export the `SV_DB_*`/`SV_SMTP_*` variables), then run `docker compose up --build` to start the stack. The site is available on `http://localhost:8080`; MariaDB is exposed on `localhost:13306` for external clients.
 - Next steps: provide optional seed data for realistic fixtures and script helpers to run LESS compilation or PHPUnit inside the containers.
 
 ## Testing Strategy

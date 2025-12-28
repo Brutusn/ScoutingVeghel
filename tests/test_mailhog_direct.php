@@ -4,8 +4,10 @@
  * This verifies MailHog is accessible and accepting SMTP connections
  */
 
-$host = getenv('SV_SMTP_HOST') ?: 'mailhog';
-$port = (int) (getenv('SV_SMTP_PORT') ?: 1025);
+require __DIR__ . '/../php/MAIL2.php';
+
+$host = $SMTP_SERVER;
+$port = $SMTP_PORT;
 
 echo "Testing direct connection to MailHog at {$host}:{$port}\n\n";
 
@@ -71,4 +73,4 @@ echo "QUIT response: " . $response;
 
 fclose($socket);
 echo "\nSUCCESS: All tests passed! MailHog is working correctly.\n";
-echo "Check MailHog web interface at http://localhost:8025 to see the test message.\n";
+echo "Check MailHog web interface at http://localhost:18025 to see the test message.\n";

@@ -59,11 +59,11 @@ jobs:
           cat > php/DB2.php << 'EOF'
           <?php
           function databaseMYSQLi() {
-              $host = getenv('DB_HOST') ?: '127.0.0.1';
-              $user = getenv('DB_USERNAME') ?: 'root';
-              $password = getenv('DB_PASSWORD') ?: 'root';
-              $database = getenv('DB_DATABASE') ?: 'test_database';
-              $port = (int) (getenv('DB_PORT') ?: 3306);
+              $host = '127.0.0.1';
+              $user = 'root';
+              $password = 'root';
+              $database = 'test_database';
+              $port = 3306;
 
               $mysqli = new mysqli($host, $user, $password, $database, $port);
 

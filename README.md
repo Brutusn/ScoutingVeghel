@@ -19,11 +19,11 @@ One needs the `DB2.php` file with the following content:
 // Example configuration for local development.
 
 function databaseMYSQLi() {
-    $host = getenv('SV_DB_HOST');
-    $user = getenv('SV_DB_USER');
-    $password = getenv('SV_DB_PASSWORD');
-    $database = getenv('SV_DB_NAME');
-    $port = (int) (getenv('SV_DB_PORT'));
+    $host = "db";
+    $user = "sv_user";
+    $password = "sv_password";
+    $database = "sv_database";
+    $port = 13306;
 
     $mysqli = new mysqli($host, $user, $password, $database, $port);
 
@@ -39,7 +39,7 @@ function databaseMYSQLi() {
 ?>
 ```
 
-And the `MAIL2.php` file with either the variables directly or as loaded from the environment:
+And the `MAIL2.php` file with the following content:
 
 ```php
 <?php
@@ -57,7 +57,7 @@ global $MAIL_ADDRESS_WEBSITE;
 global $MAIL_ADDRESS_VERHUUR;
 
 $SMTP_SERVER = "mailhog";
-$SMTP_PORT= 1025;
+$SMTP_PORT= 11025;
 $SMTP_USER= "testuser";
 $SMTP_PASSWORD= "testpass";
 $SMTP_MAIL_FROM= "website@example.test";
@@ -66,26 +66,6 @@ $SMTP_AUTO_TLS= false;
 $PHPMAILER_DEBUG= 0;
 $MAIL_ADDRESS_WEBSITE= "website@example.test";
 $MAIL_ADDRESS_VERHUUR= "verhuur@example.test";
-?>
-```
-
-or
-
-```php
-<?php
-// Example SMTP configuration for local development.
-$SMTP_SERVER = getenv('SV_SMTP_HOST');
-$SMTP_PORT = (int) (getenv('SV_SMTP_PORT'));
-$SMTP_USER = getenv('SV_SMTP_USER');
-$SMTP_PASSWORD = getenv('SV_SMTP_PASSWORD');
-$SMTP_MAIL_FROM = getenv('SV_SMTP_FROM');
-
-// Parse boolean values properly from environment
-$smtpSecure = getenv('SV_SMTP_SECURE');
-$SMTP_SECURE = ($smtpSecure === 'false' || $smtpSecure === '0' || $smtpSecure === '') ? false : $smtpSecure;
-
-$smtpAutoTls = getenv('SV_SMTP_AUTO_TLS');
-$SMTP_AUTO_TLS = ($smtpAutoTls === 'false' || $smtpAutoTls === '0' || $smtpAutoTls === '') ? false : (bool)$smtpAutoTls;
 ?>
 ```
 
@@ -153,4 +133,8 @@ To debug the local setup, one can use the following commands to verify if the se
     ```bash
     docker compose exec web php tests/test_phpmailer_direct.php
     ```
+
+- To access the MailHog web interface:
+
+    Open <http://localhost:18025> in your browser to view captured emails.
 

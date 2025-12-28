@@ -7,12 +7,6 @@ services:
       - "8080:80"
     volumes:
       - .:/var/www/html:delegated
-    environment:
-      SV_DB_HOST: db
-      SV_DB_PORT: 3306
-      SV_DB_USER: sv_user
-      SV_DB_PASSWORD: sv_password
-      SV_DB_NAME: sv_database
     depends_on:
       - db
       - mailhog
@@ -26,7 +20,7 @@ services:
       MYSQL_USER: sv_user
       MYSQL_PASSWORD: sv_password
     ports:
-      - "3306:3306"
+      - "13306:3306"
     volumes:
       - db_data:/var/lib/mysql
       - ./database:/docker-entrypoint-initdb.d:ro
@@ -35,8 +29,8 @@ services:
     image: mailhog/mailhog:v1.0.1
     restart: unless-stopped
     ports:
-      - "8025:8025"
-      - "1025:1025"
+      - "18025:8025"
+      - "11025:1025"
 
 volumes:
   db_data:

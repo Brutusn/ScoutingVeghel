@@ -11,21 +11,18 @@ require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . "/../php/subm/PHPMailer/src/Exception.php";
 require __DIR__ . "/../php/subm/PHPMailer/src/PHPMailer.php";
 require __DIR__ . '/../php/subm/PHPMailer/src/SMTP.php';
+require __DIR__ . '/../php/MAIL2.php';
 
-echo "Testing PHPMailer with MailHog using environment settings\n\n";
+echo "Testing PHPMailer with MailHog using MAIL2.php settings\n\n";
 
-// Get settings from environment
-$host = getenv('SV_SMTP_HOST') ?: 'mailhog';
-$port = (int) (getenv('SV_SMTP_PORT') ?: 1025);
-$user = getenv('SV_SMTP_USER') ?: 'testuser';
-$password = getenv('SV_SMTP_PASSWORD') ?: 'testpass';
-$from = getenv('SV_SMTP_FROM') ?: 'website@example.test';
-
-$smtpSecure = getenv('SV_SMTP_SECURE');
-$secure = ($smtpSecure === 'false' || $smtpSecure === '0' || $smtpSecure === '') ? false : $smtpSecure;
-
-$smtpAutoTls = getenv('SV_SMTP_AUTO_TLS');
-$autoTls = ($smtpAutoTls === 'false' || $smtpAutoTls === '0' || $smtpAutoTls === '') ? false : (bool)$smtpAutoTls;
+// Get settings from MAIL2.php
+$host = $SMTP_SERVER;
+$port = $SMTP_PORT;
+$user = $SMTP_USER;
+$password = $SMTP_PASSWORD;
+$from = $SMTP_MAIL_FROM;
+$secure = $SMTP_SECURE;
+$autoTls = $SMTP_AUTO_TLS;
 
 echo "Configuration:\n";
 echo "  Host: {$host}\n";
@@ -78,7 +75,7 @@ try {
     $result = $mail->send();
     
     echo "\n\nSUCCESS! Mail sent successfully.\n";
-    echo "Check MailHog at http://localhost:8025\n";
+    echo "Check MailHog at http://localhost:18025\n";
 
 } catch (Exception $e) {
     echo "\n\nFAILED! Error: {$mail->ErrorInfo}\n";
