@@ -1,7 +1,5 @@
 <?php
 
-use DateTime;
-
 require_once __DIR__ . '/DatabaseTestCase.php';
 require_once __DIR__ . '/../php/kostenberekening_nieuw.php';
 
