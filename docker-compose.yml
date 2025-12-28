@@ -13,9 +13,6 @@ services:
       SV_DB_USER: sv_user
       SV_DB_PASSWORD: sv_password
       SV_DB_NAME: sv_database
-      SV_SMTP_HOST: mailhog
-      SV_SMTP_PORT: 1025
-      SV_SMTP_FROM: website@example.test
     depends_on:
       - db
       - mailhog
