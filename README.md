@@ -112,6 +112,14 @@ The second command creates the `vendor/` directory (ignored by Git) and generate
 
 > ℹ️ Ensure the Docker stack (particularly MariaDB and MailHog) is running before executing the test suite, as several tests exercise database procedures and send emails captured by MailHog.
 
+### Testing the workflow
+
+We can test the workflow by using [ACT](https://github.com/nektos/act) (already installed via ASDF) and then running:
+
+```bash
+act pull_request --job test
+```
+
 ### Debugging
 
 To debug the local setup, one can use the following commands to verify if the services are running as expected.
