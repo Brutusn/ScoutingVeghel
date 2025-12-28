@@ -61,8 +61,17 @@ if (php_sapi_name() !== 'cli' && isset($_SERVER['SCRIPT_FILENAME']) && realpath(
  */
 function getReservationsDates($d1, $m1, $y1, $h1, $min1, $d2, $m2, $y2, $h2, $min2)
 {
-    return getReservations(DateTime::createFromFormat('Y-m-d H:i:s', "" . $y1 . "-" . $m1 . "-" . $d1 . " " . $h1 . ":" . $min1 . ":00"),
-        DateTime::createFromFormat('Y-m-d H:i:s', "" . $y2 . "-" . $m2 . "-" . $d2 . " " . $h2 . ":" . $min2 . ":59"));
+    $startStr = sprintf('%04d-%02d-%02d %02d:%02d:00', $y1, $m1, $d1, $h1, $min1);
+    $endStr = sprintf('%04d-%02d-%02d %02d:%02d:59', $y2, $m2, $d2, $h2, $min2);
+    
+    $start = DateTime::createFromFormat('Y-m-d H:i:s', $startStr);
+    $end = DateTime::createFromFormat('Y-m-d H:i:s', $endStr);
+    
+    if ($start === false || $end === false) {
+        return [];
+    }
+    
+    return getReservations($start, $end);
 }
 
 ?>
