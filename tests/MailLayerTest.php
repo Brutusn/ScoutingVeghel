@@ -2,6 +2,7 @@
 
 use PHPUnit\Framework\TestCase;
 
+require_once __DIR__ . '/../php/MAIL2.php';
 define('PHPMAILER_PROXY_PATH', __DIR__ . '/../php/PhpMailerProxy.php');
 require_once __DIR__ . '/../php/mail_layer.php';
 
@@ -14,8 +15,9 @@ final class MailLayerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->host = 'mailhog';
-        $this->smtpPort = 1025;
+        global $SMTP_SERVER, $SMTP_PORT;
+        $this->host = $SMTP_SERVER;
+        $this->smtpPort = $SMTP_PORT;
         $this->httpPort = 8025;
 
         $connection = @fsockopen($this->host, $this->smtpPort, $errno, $errstr, 1.0);
