@@ -10,7 +10,7 @@ CREATE TABLE `verhuur_mutaties` (
   `hoort_bij` int(11) NOT NULL DEFAULT 0,
   `naam` tinytext NOT NULL,
   `actie` tinytext NOT NULL,
-  `datum` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `datum` datetime NOT NULL,
   `query` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
