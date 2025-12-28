@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="tests/bootstrap.php" colors="true">
+    <testsuites>
+        <testsuite name="Unit">
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
+    <source>
+        <include>
+            <directory suffix=".php">php</directory>
+        </include>
+        <exclude>
+            <file>php/DB2.php</file>
+            <file>php/MAIL2.php</file>
+            <directory>php/subm</directory>
+        </exclude>
+    </source>
+</phpunit>
