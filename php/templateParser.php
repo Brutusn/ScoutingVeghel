@@ -7,7 +7,7 @@
 class templateParser {
         var $output;
 
-		function templateParser($templateFile='default_template.htm'){
+		function __construct($templateFile='default_template.htm'){
               (file_exists($templateFile))?$this->output=file_get_contents($templateFile):die('Error:Template file '.$templateFile.' not found');
         }
 
