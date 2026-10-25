@@ -1,0 +1,2 @@
+# Preserve newspaper PDFs as binary files, including PDFs with long XML headers.
+jota/krant/*.pdf binary
