@@ -16,6 +16,8 @@ echo Copying HTML
 copy /y index.html Release\index.html
 copy /y favicon.ico Release\favicon.ico
 copy /y calendar.html Release\calendar.html
+:: JOTA page, newspapers, previews and its scoped security policy
+xcopy /y /e /i /h jota Release\jota
 ::copy /y blokhut_impressie.html Release\blokhut_impressie.html
 
 echo Copying JavaScript
@@ -24,6 +26,7 @@ copy /y js\scripts.js Release\js\scripts.js
 copy /y js\calendar.js Release\js\calendar.js
 
 echo Copying CSS
+copy /y css\site-theme.css Release\css\site-theme.css
 ::copy css files
 copy /y css\style.min.css Release\css\style.min.css
 copy /y css\calendar.min.css Release\css\calendar.min.css

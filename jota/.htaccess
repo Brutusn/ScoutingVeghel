@@ -1,0 +1,5 @@
+# JOTA-only CSP; leave the rest of the website unchanged. JavaScript must load from allowed external files.
+# Inline styles remain required by the existing page layouts.
+# Keep external sources restricted; do not add unsafe-eval or wildcard hosts.
+# Require mod_headers: fail visibly rather than silently omit the policy.
+Header always set Content-Security-Policy "default-src 'self'; script-src 'self' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/ https://www.google-analytics.com; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://i.ytimg.com https://www.google-analytics.com https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; font-src 'self' data:; connect-src 'self' https://www.google.com/recaptcha/ https://www.google-analytics.com https://stats.g.doubleclick.net; frame-src 'self' https://www.youtube-nocookie.com https://www.google.com/recaptcha/ https://recaptcha.google.com/recaptcha/; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'"
