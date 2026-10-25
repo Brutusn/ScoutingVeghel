@@ -2,6 +2,9 @@
 
 De pagina is lokaal en op https://test.scoutingveghel.nl/jota/ gecontroleerd.
 De nieuwste editie is 2026. De jaarkeuze toont ook eerdere edities.
+`jota.scoutingveghel.nl` verwijst naar `https://www.scoutingveghel.nl/jota/`,
+met behoud van pad en query. Zo werken de gedeelde afbeeldingen en stijlen ook
+voor bezoekers die via het subdomein binnenkomen.
 
 ## Publiceren
 

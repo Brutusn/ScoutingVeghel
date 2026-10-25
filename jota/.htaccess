@@ -1,3 +1,8 @@
+# Use the main-site URL so shared images, styles and navigation resolve correctly.
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^jota\.scoutingveghel\.nl(?::[0-9]+)?$ [NC]
+RewriteRule ^(.*)$ https://www.scoutingveghel.nl/jota/$1 [R=301,L]
+
 # JOTA-only CSP; leave the rest of the website unchanged. JavaScript must load from allowed external files.
 # Inline styles remain required by the existing page layouts.
 # Keep external sources restricted; do not add unsafe-eval or wildcard hosts.
