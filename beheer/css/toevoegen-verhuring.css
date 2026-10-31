@@ -1,0 +1,13 @@
+input,
+select {
+  border: 1px solid black;
+}
+th {
+  width: 30px;
+}
+input {
+  width: 25px;
+}
+.first {
+  width: 100px;
+}

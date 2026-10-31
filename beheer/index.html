@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Beheer | Scouting Veghel</title>
+    <link rel="stylesheet" href="style.css?v=20261029-groups" />
+  </head>
+  <body class="admin-shell">
+    <header class="admin-header">
+      <a class="admin-brand" href="index.html"
+        ><img src="logo.svg" alt="Scouting Veghel" /><span>Beheer</span></a
+      >
+      <nav aria-label="Beheernavigatie" hidden>
+        <a href="manage.php?m=inbox" target="body" data-route="reserveringen" aria-current="page"
+          >Reserveringen</a
+        ><a href="manage.php?m=kalender" target="body" data-route="kalender">Kalender</a
+        ><a href="manage.php?m=search" target="body" data-route="zoeken">Zoeken</a
+        ><a href="manage.php?m=toevoegen" target="body" data-route="toevoegen">Toevoegen</a
+        ><a href="maillog.php" target="body" data-route="maillog">Maillog</a
+        ><a href="onderhoud.php" target="body" data-route="onderhoud">Onderhoud</a
+        ><a href="eigen-groepen.php" target="body" data-route="eigen-groepen">Eigen groepen</a
+        ><a href="mailsjablonen.php" target="body" data-route="mailsjablonen">Mailsjablonen</a
+        ><a href="accounts.php" target="body" data-route="accounts">Groepen en beheerders</a
+        ><a href="mfa.php" target="body" data-route="mfa">Tweestapsverificatie</a
+        ><a href="../index.html" target="_top">Naar website</a
+        ><a class="admin-exit" href="logout.php" target="body" data-route="uitloggen">Uitloggen</a>
+      </nav>
+    </header>
+    <main class="admin-shell-main">
+      <iframe src="about:blank" name="body" title="Beheerwerkruimte" id="admin-content"></iframe>
+    </main>
+    <footer class="admin-footer">Scouting Veghel · Verhuur en reserveringen</footer>
+    <script src="navigation.js?v=20261029-groups"></script>
+  </body>
+</html>
