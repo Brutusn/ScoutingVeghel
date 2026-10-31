@@ -1,206 +1,245 @@
 <?php
+require_once __DIR__ . '/rental-settings.php';
+require_once __DIR__ . '/bookings.php';
+require_once __DIR__ . '/dates.php';
+require_once __DIR__ . '/rental-mail.php';
+date_default_timezone_set('Europe/Amsterdam');
 
-require_once("verhuur_settings.php");
-require_once("db_layer.php");
-require_once("date_layer.php");
-require_once("mail_layer.php");
-
-session_start();
-date_default_timezone_set('Europe/Paris');
-
-//check if all parameters are present in the request
-if (isset($_POST["name"]) && isset($_POST["contactperson"]) && isset($_POST["mailadr"]) && isset($_POST["phone"])
-&& isset($_POST["adress"]) && isset($_POST["postcode"]) && isset($_POST["city"])
-&& isset($_POST["people"]) && isset($_POST["tArea"]) && isset($_POST["groepcode"])
-&& isset($_POST["aankomst-dag"]) && isset($_POST["aankomst-maand"]) && isset($_POST["aankomst-jaar"])
-&& isset($_POST["aankomst-uur"]) && isset($_POST["aankomst-minuut"])
-&& isset($_POST["vertrek-dag"]) && isset($_POST["vertrek-maand"]) && isset($_POST["vertrek-jaar"])
-&& isset($_POST["vertrek-uur"]) && isset($_POST["vertrek-minuut"])
-) {
-
-  //Store all variables and trim them
-  $naam = trim(strip_tags($_POST["name"]), " \n");
-  $contact = trim(strip_tags($_POST["contactperson"]), " \n");
-  $mail = trim(strip_tags($_POST["mailadr"]), " \n");
-  $telefoon = trim(strip_tags($_POST["phone"]), " \n");
-  $adres = trim(strip_tags($_POST["adress"]), " \n");
-  $postcode = trim(strip_tags($_POST["postcode"]), " \n");
-  $plaats = trim(strip_tags($_POST["city"]), " \n");
-  $aantalPers = trim(strip_tags($_POST["people"]), " \n");
-  $area = trim(strip_tags($_POST["tArea"]), " \n");
-  $groepscode = trim(strip_tags($_POST["groepcode"]), " \n");
-  $aankomstdag = trim(strip_tags($_POST["aankomst-dag"]), " \n");
-  $aankomstmaand = trim(strip_tags($_POST["aankomst-maand"]), " \n");
-  $aankomstjaar = trim(strip_tags($_POST["aankomst-jaar"]), " \n");
-  $aankomstuur = trim(strip_tags($_POST["aankomst-uur"]), " \n");
-  $aankomstminuut = trim(strip_tags($_POST["aankomst-minuut"]), " \n");
-  $vertrekdag = trim(strip_tags($_POST["vertrek-dag"]), " \n");
-  $vertrekmaand = trim(strip_tags($_POST["vertrek-maand"]), " \n");
-  $vertrekjaar = trim(strip_tags($_POST["vertrek-jaar"]), " \n");
-  $vertrekuur = trim(strip_tags($_POST["vertrek-uur"]), " \n");
-  $vertrekminuut = trim(strip_tags($_POST["vertrek-minuut"]), " \n");
-  
-  // First check if dates are ok and valid, if so build the proper string
-  $startSTR = "";
-  $endSTR = "";
-  $alreadyReserved = False;
-  //Convert the month name to month number
-  $aankomstmaandNummer = getMonthNumber($aankomstmaand);
-  $vertrekmaandNummer = getMonthNumber($vertrekmaand);
-  if($aankomstmaandNummer === -1 || $vertrekmaandNummer === -1) {
-    incompleteData("aankomsts- en/of vertrekmaand");
-  }
-  if (!validDate($aankomstjaar, $aankomstmaandNummer, $aankomstdag, $aankomstuur, $aankomstminuut)
-  || !validDate($vertrekjaar, $vertrekmaandNummer, $vertrekdag, $vertrekuur, $vertrekminuut)) {
-    //Wrong dates, so indicate that
-    incompleteData("aankomst- en/of vertrekdatum");
-  }
-
-  //Dates valid, so create the actual string
-  $start = new DateTime();
-  $start->setDate($aankomstjaar, $aankomstmaandNummer, $aankomstdag);
-  $start->setTime($aankomstuur, $aankomstminuut);
-  $startSTR = $start->format('Y-m-d H:i:s');
-  $end = new DateTime();
-  $end->setDate($vertrekjaar, $vertrekmaandNummer, $vertrekdag);
-  $end->setTime($vertrekuur, $vertrekminuut);
-  $endSTR = $end->format('Y-m-d H:i:s');
-  //create max end date of reservation
-  $maxEndDate = new DateTime();
-  $maxEndDate->setDate($aankomstjaar, $aankomstmaandNummer, $aankomstdag);
-  $maxEndDate->setTime($aankomstuur, $aankomstminuut);
-  date_add($maxEndDate, date_interval_create_from_date_string(MAX_AANTAL_OVERNACHTINGEN . ' days'));
-  $maxEndDateSTR = $maxEndDate->format('Y-m-d H:i:s');
-
-  // Make sure the start is before the end
-  if ($start > $end){
-    incompleteData("aankomstdatum is na de vertrekdatum");
-  }
-
-  // check if the number of days the reservation is is more than the max number of days (if more than one day reservation)
-  if ($end > $maxEndDate){
-    invalidDates();
-  }
-
-  // Check if the numbers of persons is avlid
-  if ($aantalPers < MIN_AANTAL_PERSONEN || $aantalPers > MAX_AANTAL_PERSONEN) {
-    invalidNumberOfPersons();
-  }
-
-  // Check if there are already Reservations during the time frame and if so indicate this for the success message
-  if (alreadyReserved($start, $end) == True) {
-    $alreadyReserved = True;
-  }
-
-  //First create Huurder
-  $hid = -1;
-  $groep = "NULL";
-  //Check if either the groepscode is filled in (so made by one of our own groups) or if it is filled in by an external party
-  if ($groepscode != "" && $area != "" && $aantalPers != "") {
-    //Get information based on the group code and process the request
-    $hid = getHuurderIDFromCode($groepscode);
-    if ($hid == -1){
-      incompleteData("de groepscode is incorrect");
+function rentalFormText($field) {
+    $value = $_POST[$field] ?? null;
+    return is_string($value) ? trim(strip_tags($value)) : null;
+}
+function rentalFormDate($prefix) {
+    $parts = [];
+    foreach (['jaar', 'maand', 'dag', 'uur', 'minuut'] as $part) {
+        $parts[] = rentalFormText($prefix . '-' . $part);
     }
-    $info = getInfoFromHid($hid);
-    $naam = $info[0];
-    $mail = $info[1];
-    $groep = $naam;
-    $contact = $naam;
-
-  } elseif ($naam != "" && $contact != "" && filter_var($mail, FILTER_VALIDATE_EMAIL)
-  && $telefoon != "" && $adres != "" && $postcode != "" && $plaats != ""
-  && $aantalPers != "" && $area != "") {
-    //Filled in by external party (not own group)
-    $hid = getHuurder($naam, $contact, $mail, $telefoon, $adres, $postcode, $plaats);
-  } else { //Some empty fields
-    missingData();
-  }
-
-  //Validate huurderID that was fetched
-  if($hid === -1) {
-    errorDatabase("huurder");
-  }
-
-  //Then create the Reservering
-  $rid = getReservering($area, $startSTR, $endSTR, $aantalPers);
-  if($rid === -1) {
-    errorDatabase("reservering");
-  }
-
-  //Then create the link between the verhuurder and the reservering (the actual verhuring)
-  createVerhuring($hid, $rid, $groep);
-  $hashEmail = getConfirm($hid, $rid);
-  if($hashEmail === "error") {
-    errorDatabase("hash");
-  }
-
-  //Then send confirmation email to verhuurder with confirm string
-  sendConfirmEmail($mail, $contact, $hashEmail, $naam, $startSTR, $endSTR, $aantalPers);
-
-  //Indicate succes
-  if (!$alreadyReserved) {
-    succesfullReservation();
-  } else {
-    succesfullReservationAlreadyReserved();
-  }
-} else {//one of the fields was not set in the POST request
-  missingData();
+    $parts[1] = getMonthNumber($parts[1]);
+    if (!validDate(...$parts)) {
+        reservationStatus(
+            'Controleer je gegevens',
+            'Niet alle velden zijn correct ingevuld. Specifiek: aankomst- en/of vertrekdatum.'
+        );
+    }
+    return new DateTime(sprintf('%04d-%02d-%02d %02d:%02d:00', ...$parts));
 }
 
-/**
-* Shows the incomplete message and exits this script
-*/
-function incompleteData($invalidData){
-  echo "Niet alle velden zijn correct ingevuld. Specifiek de velden: $invalidData.";
-  exit;
+$groupCode = rentalFormText('groepcode');
+$people = rentalFormText('people');
+$description = rentalFormText('tArea');
+if ($groupCode === null || $people === null || $description === null || $description === '') {
+    reservationStatus(
+        'Aanvraag niet verstuurd',
+        'Niet alle velden zijn ingevuld. Ga terug naar het formulier en controleer je invoer.'
+    );
 }
+$fields = [
+    'naam' => 'name',
+    'contactpersoon' => 'contactperson',
+    'email' => 'mailadr',
+    'telefoon' => 'phone',
+    'adres' => 'adress',
+    'postcode' => 'postcode',
+    'plaats' => 'city'
+];
+$contact = [];
+foreach ($fields as $key => $field) {
+    $contact[$key] = rentalFormText($field) ?? '';
+}
+$contact['ip'] = $_SERVER['REMOTE_ADDR'] ?? '';
+if (
+    $groupCode === '' &&
+    (in_array('', array_intersect_key($contact, $fields), true) ||
+        !filter_var($contact['email'], FILTER_VALIDATE_EMAIL))
+) {
+    reservationStatus(
+        'Aanvraag niet verstuurd',
+        'Niet alle velden zijn ingevuld. Ga terug naar het formulier en controleer je invoer.'
+    );
+}
+$start = rentalFormDate('aankomst');
+$end = rentalFormDate('vertrek');
+if ($start >= $end) {
+    reservationStatus(
+        'Controleer je gegevens',
+        'Niet alle velden zijn correct ingevuld. Specifiek: aankomstdatum is na de vertrekdatum.'
+    );
+}
+if ($end > (clone $start)->modify('+' . MAX_AANTAL_OVERNACHTINGEN . ' days')) {
+    reservationStatus(
+        'Periode te lang',
+        'De duur van een optie mag maximaal ' .
+            MAX_AANTAL_OVERNACHTINGEN .
+            ' overnachtingen zijn. Voor een langere huurperiode kun je contact met ons opnemen.'
+    );
+}
+if (
+    !ctype_digit($people) ||
+    (int) $people < MIN_AANTAL_PERSONEN ||
+    (int) $people > MAX_AANTAL_PERSONEN
+) {
+    reservationStatus(
+        'Aantal personen controleren',
+        'Het aantal personen moet tussen ' .
+            MIN_AANTAL_PERSONEN .
+            ' en ' .
+            MAX_AANTAL_PERSONEN .
+            ' liggen. Neem contact met ons op voor een grotere groep.'
+    );
+}
+$startText = $start->format('Y-m-d H:i:s');
+$endText = $end->format('Y-m-d H:i:s');
+try {
+    $overlap = alreadyReserved($start, $end);
+    $groupId = 0;
+    if ($groupCode !== '') {
+        $groupId = getHuurderIDFromCode($groupCode);
+        if ($groupId < 1) {
+            reservationStatus(
+                'Controleer je gegevens',
+                'Niet alle velden zijn correct ingevuld. Specifiek: de groepscode is incorrect.'
+            );
+        }
+        [$contact['naam'], $contact['email']] = getInfoFromHid($groupId);
+        $contact['contactpersoon'] = $contact['naam'];
+    }
+    if (privacyEnabled()) {
+        $database = siteDatabaseConnection();
+        try {
+            $booking = privacyCreate(
+                $database,
+                $contact,
+                $startText,
+                $endText,
+                (int) $people,
+                $description,
+                $groupId,
+                0
+            );
+            $id = (int) $booking['id'];
+            $token = $booking['confirm'];
+        } finally {
+            $database->close();
+        }
+    } else {
+        $tenant =
+            $groupId ?:
+            getHuurder(
+                $contact['naam'],
+                $contact['contactpersoon'],
+                $contact['email'],
+                $contact['telefoon'],
+                $contact['adres'],
+                $contact['postcode'],
+                $contact['plaats']
+            );
+        if ($tenant < 1) {
+            throw new RuntimeException('Huurder ontbreekt');
+        }
+        $reservation = getReservering($description, $startText, $endText, (int) $people);
+        if ($reservation < 1) {
+            throw new RuntimeException('Reservering ontbreekt');
+        }
+        $id = createVerhuring($tenant, $reservation, $groupId ? $contact['naam'] : 'NULL');
+        $token = getConfirm($tenant, $reservation);
+        if ($id < 1 || $token === 'error') {
+            throw new RuntimeException('Verhuring ontbreekt');
+        }
+    }
+} catch (Throwable $error) {
+    error_log('Scouting Veghel: booking creation failed.');
+    reservationStatus(
+        'Aanvraag tijdelijk niet verwerkt',
+        'Er ging iets mis bij het verwerken van je aanvraag. Probeer het later opnieuw of neem contact met ons op.'
+    );
+}
+// The booking is already saved. A mail failure must not invite a duplicate.
+try {
+    if (
+        !sendNewBookingEmail(
+            $id,
+            $contact['naam'],
+            $contact['contactpersoon'],
+            $contact['email'],
+            $contact['telefoon'],
+            $startText,
+            $endText,
+            $people,
+            $description,
+            $groupId > 0,
+            $overlap
+        )
+    ) {
+        error_log('New booking notification could not be sent.');
+    }
+} catch (Throwable $error) {
+    error_log('New booking notification could not be sent.');
+}
+try {
+    sendConfirmEmail(
+        $contact['email'],
+        $contact['contactpersoon'],
+        $token,
+        $contact['naam'],
+        $startText,
+        $endText,
+        $people
+    );
+} catch (Throwable $error) {
+    error_log('Booking mail could not be sent.');
+}
+if ($overlap) {
+    reservationStatus(
+        'Aanvraag ontvangen',
+        'Er staat al een optie in deze periode. Je aanvraag is wel geregistreerd. Neem contact met ons op; de bevestigingsinstructies zijn naar je e-mailadres gestuurd.',
+        'warning'
+    );
+}
+reservationStatus(
+    'Aanvraag ontvangen',
+    'Je ontvangt een e-mail met een link om je optie te bevestigen. Controleer ook je map met ongewenste e-mail.',
+    'success'
+);
 
-/**
-* Shows the missing data message and exits this script
-*/
-function missingData(){
-  echo "Niet alle velden zijn ingevuld.";
-  exit;
-}
+function reservationStatus($title, $message, $kind = 'error') {
+    $isAjax =
+        isset($_SERVER['HTTP_X_REQUESTED_WITH']) &&
+        strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
+    if (!$isAjax && isset($_SERVER['HTTP_SEC_FETCH_MODE'], $_SERVER['HTTP_SEC_FETCH_DEST'])) {
+        $isAjax =
+            strtolower($_SERVER['HTTP_SEC_FETCH_MODE']) === 'cors' &&
+            $_SERVER['HTTP_SEC_FETCH_DEST'] === 'empty';
+    }
+    if ($isAjax) {
+        echo $message;
+        exit();
+    }
 
-/**
-* Shows the invalid dates messages and exits the script
-*/
-function invalidDates(){
-  echo "De duur van de optie mag maximaal " . MAX_AANTAL_OVERNACHTINGEN  . " overnachtingen zijn. Mocht u langer willen huren, stuur dan een vraag m.b.v. het bovenstaande formulier.";
-  exit;
-}
+    $safeTitle = htmlspecialchars($title, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+    $safeMessage = htmlspecialchars($message, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+    $safeKind = in_array($kind, ['success', 'warning'], true) ? $kind : 'error';
+    $role = $safeKind === 'success' ? 'status' : 'alert';
 
-/**
-* Shows the invalid number of people mesasges and exits script
-*/
-function invalidNumberOfPersons(){
-  echo "Het aantal personen moet tussen " . MIN_AANTAL_PERSONEN . " en " . MAX_AANTAL_PERSONEN  . " liggen. Mocht u met meer personen willen gaan, stuur dan een vraag m.b.v. het bovenstaande formulier.";
-  exit;
+    header('Content-Type: text/html; charset=UTF-8');
+    echo '<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">' .
+        '<title>' .
+        $safeTitle .
+        ' | Scouting Veghel verhuur</title>' .
+        '<link rel="stylesheet" href="../css/style.min.css"><link rel="stylesheet" href="../css/status.css"></head>' .
+        '<body class="booking-status-page"><main class="booking-status booking-status--' .
+        $safeKind .
+        '">' .
+        '<p class="booking-status__eyebrow">Scouting Veghel · Verhuur</p>' .
+        '<h1>' .
+        $safeTitle .
+        '</h1><p class="booking-status__message" role="' .
+        $role .
+        '">' .
+        $safeMessage .
+        '</p>' .
+        '<nav class="booking-status__actions" aria-label="Vervolgacties">' .
+        '<a class="booking-status__primary" href="../calendar.html#boeken">Terug naar verhuurkalender</a>' .
+        '<a class="booking-status__secondary" href="../index.html">Naar de website</a>' .
+        '</nav></main></body></html>';
+    exit();
 }
-
-/**
-* Shows the error messages and exits this script
-*/
-function errorDatabase($property){
-  echo "Er is iets fout gegaan (" . $property . "), probeer het alsutblieft opnieuw. Als de fout zich blijft voordoen, neem dan contact op met de webmaster.";
-  exit;
-}
-
-/**
-* Shows the messages that the blokhut is already reserved in that time frame and exits this script
-*/
-function succesfullReservationAlreadyReserved(){
-  echo "Er is al een optie op de blokhut tijdens de gewenste periode. Uw optie wordt geregisteerd, maar neemt u alstublieft contact op met de verhuurder. U heeft een bevestigingsemail gehad met instructies hoe u uw aanvraag kan bevestigen.";
-  exit;
-}
-
-/**
-* Shows the succes message and exits this scripts
-*/
-function succesfullReservation(){
-  echo "We hebben uw aanvraag ontvangen. U heeft een bevestigingsemail gehad met instructies hoe u uw aanvraag kan bevestigen.";
-  exit;
-}
-?>

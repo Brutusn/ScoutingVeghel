@@ -1,0 +1,121 @@
+/* Same full-width photo/color rhythm as the homepage. */
+main.hut-page {
+  max-width: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+.hut-page > .hut-photo-section,
+.hut-page > .hut-color-section {
+  padding: clamp(3.5rem, 6vw, 5.5rem) 1.25rem;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+}
+.hut-section-inner,
+.hut-hero-inner {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+.hut-page .hut-hero {
+  display: block;
+  background-color: var(--home-green-dark);
+  background-image: linear-gradient(#14231b99, #14231bb8), url('../images/background-3-web.webp');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #fff;
+}
+.hut-hero-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+  gap: 3rem;
+  align-items: center;
+}
+.hut-hero h1 {
+  font-size: clamp(2.5rem, 4.5vw, 4rem);
+  letter-spacing: -0.035em;
+}
+.hut-hero img {
+  height: 420px;
+  border: 1px solid #ffffff55;
+  box-shadow: 6px 6px 0 #ffffff22;
+  border-radius: var(--home-card-radius);
+}
+.hut-hero a.hut-button {
+  background: var(--home-warm);
+  border-color: var(--home-warm);
+  color: var(--home-text);
+  box-shadow: 0 3px 0 #b89953;
+}
+.hut-hero a.hut-button.secondary {
+  background: #172b2280;
+  border-color: #fff;
+  color: #fff;
+  box-shadow: none;
+}
+.hut-details {
+  background: var(--home-sage);
+}
+.hut-page > .hut-cta {
+  background-color: var(--home-green-dark);
+  background-image: linear-gradient(#14231b99, #14231bb8), url('../images/background-2-web.webp');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #fff;
+  text-align: center;
+}
+.hut-cta .hut-section-inner {
+  max-width: 850px;
+}
+.hut-cta h2,
+.hut-page #rondkijken h2 {
+  font-size: clamp(1.9rem, 3.2vw, 2.6rem);
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  margin: 0 0 1.25rem;
+}
+.hut-cta h2::after,
+.hut-page #rondkijken h2::after {
+  content: '';
+  display: block;
+  width: 58px;
+  height: 5px;
+  background: var(--home-warm);
+  border-radius: 99px;
+  margin: 1rem auto 0;
+}
+.hut-page #rondkijken {
+  background: var(--home-paper);
+  padding: clamp(3.5rem, 6vw, 5.5rem) 1.25rem;
+  margin: 0;
+  border-radius: 0;
+}
+.hut-page #rondkijken h2::after {
+  margin-left: 0;
+}
+.hut-gallery {
+  margin-bottom: 0;
+}
+@media (min-width: 961px) and (prefers-reduced-motion: no-preference) {
+  .hut-page > .hut-photo-section {
+    background-attachment: fixed;
+  }
+}
+@media (max-width: 760px) {
+  .hut-hero-inner {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .hut-page > .hut-photo-section,
+  .hut-page > .hut-color-section,
+  .hut-page #rondkijken {
+    padding: 3rem 1.25rem;
+  }
+  .hut-hero img {
+    height: auto;
+    aspect-ratio: 4/3;
+  }
+}

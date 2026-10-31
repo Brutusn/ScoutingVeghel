@@ -1,0 +1,12 @@
+/* Shared public-site colors and playful card shape. */
+:root {
+  --home-green: #294d33;
+  --home-green-dark: #1c3523;
+  --home-text: #243428;
+  --home-paper: #e8e2d3;
+  --home-sage: #d7e0ca;
+  --home-warm: #e9c474;
+  --home-border: #c4cfb7;
+  --home-card-radius: 18px 6px 18px 6px;
+  --home-card-shadow: 0 4px 0 #283a2e0a, 0 8px 24px #283a2e08;
+}

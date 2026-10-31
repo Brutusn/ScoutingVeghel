@@ -1,0 +1,87 @@
+/* Embedded calendar keeps the complete booking flow without a second page header. */
+.calendar-embedded body.booking-page {
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  font-family: 'Segoe UI', Helvetica, Verdana, Arial, sans-serif;
+  color: #283a2e;
+}
+.calendar-embedded .site-nav,
+.calendar-embedded .booking-header {
+  display: none;
+}
+.calendar-embedded #calendar-content {
+  display: flow-root;
+}
+.calendar-embedded .booking-layout {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  gap: 1.5rem;
+}
+.calendar-embedded .calendar-panel,
+.calendar-embedded .booking-panel {
+  border-radius: 18px 6px 18px 6px;
+  box-shadow:
+    0 4px 0 #283a2e0a,
+    0 8px 24px #283a2e08;
+}
+.calendar-embedded .rental-info {
+  max-width: none;
+  padding: 0;
+  margin: 2rem 0 0;
+  background: transparent;
+  background-image: none;
+  color: #283a2e;
+  text-align: left;
+}
+.calendar-embedded .rental-info-card {
+  border-radius: 18px 6px 18px 6px;
+}
+@media (max-width: 480px) {
+  .calendar-embedded .booking-layout {
+    padding: 0;
+  }
+  .calendar-embedded .calendar-panel,
+  .calendar-embedded .booking-panel {
+    padding: 1rem;
+  }
+}
+
+.calendar-embedded .booking-layout {
+  text-align: left;
+}
+.calendar-embedded .rental-info > h2 {
+  color: #283a2e;
+  text-shadow: none;
+  text-align: left;
+}
+
+/* Match the deeper green and warm tones of the homepage. */
+.calendar-embedded .calendar-panel {
+  background: #e6d9ac;
+  border-top-color: #c4a14d;
+}
+.calendar-embedded .booking-panel {
+  background: #d7e0ca;
+  border-top-color: #839a6d;
+}
+.calendar-embedded .rental-info-card:nth-child(4n + 1) {
+  background: #d7e0ca;
+}
+.calendar-embedded .rental-info-card:nth-child(4n + 2) {
+  background: #eedac1;
+}
+.calendar-embedded .rental-info-card:nth-child(4n + 3) {
+  background: #d6dfd7;
+}
+.calendar-embedded .rental-info-card:nth-child(4n + 4) {
+  background: #e6d9ac;
+}
+.calendar-embedded .booking-panel button,
+.calendar-embedded .booking-panel input[type='submit'],
+.calendar-embedded .booking-panel .tab-list li.tab-active,
+.calendar-embedded .calendar-panel #divCal thead td,
+.calendar-embedded .calendar-panel #divCal td.days {
+  background: #294d33;
+}

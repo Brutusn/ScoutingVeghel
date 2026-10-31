@@ -1,0 +1,1232 @@
+/* Public homepage: green scouting palette and recurring playful components. */
+
+html {
+  scroll-padding-top: 5rem;
+}
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+.inp:focus-visible {
+  outline: 3px solid #bd6424;
+  outline-offset: 4px;
+}
+#landing-page {
+  min-height: 100vh;
+  padding: 6rem 1.25rem 8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-content {
+  max-width: 850px;
+}
+.hero-eyebrow {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+#landing-page h1 {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  padding: 0;
+  line-height: 1.08;
+}
+.hero-intro {
+  font-size: 1.25rem;
+  line-height: 1.65;
+}
+.home-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin: 2rem 0;
+}
+a.home-button {
+  display: inline-block;
+  background: var(--home-green);
+  color: #fff;
+  padding: 0.85rem 1.3rem;
+  border: 2px solid var(--home-green);
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 700;
+  line-height: 1.4;
+}
+a.home-button:hover {
+  background: var(--home-green-dark);
+  border-color: var(--home-green-dark);
+}
+#landing-page .home-button {
+  background: var(--home-warm);
+  color: #202e24;
+  border-color: var(--home-warm);
+}
+#landing-page .home-button-secondary {
+  background: transparent;
+  color: #fff;
+  border-color: #fff;
+}
+#landing-page .hero-rental {
+  color: #fff;
+  text-underline-offset: 0.25em;
+}
+#arrowDown {
+  top: auto;
+  bottom: 5rem;
+}
+.kennismaken {
+  background: var(--home-paper);
+  color: var(--home-text);
+}
+.intro-steps {
+  text-align: left;
+  line-height: 1.7;
+  padding-left: 1.5rem;
+  margin: 2rem auto;
+  max-width: 650px;
+}
+.intro-steps li {
+  margin-bottom: 1rem;
+}
+#groepen .scrollable-y {
+  overflow: visible;
+}
+#groepen .scrollable-y > h2 {
+  position: static;
+}
+#groepen .groepen-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr));
+  width: 100%;
+  margin: 2rem 0 0;
+  gap: 1.5rem;
+}
+#groepen .groepen-container > div {
+  width: auto;
+  min-width: 0;
+  margin: 0;
+  padding: 1.25rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px #0001;
+}
+#groepen .groepen-container h2 {
+  font-size: 1.35rem;
+}
+.group-contact {
+  display: inline-block;
+  font-weight: 600;
+  padding: 0.5rem 0;
+}
+.parent-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+.parent-grid > div {
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 6px;
+}
+.contributie-tabel {
+  width: 100%;
+  max-width: 600px;
+  border-collapse: collapse;
+}
+.contributie-tabel th,
+.contributie-tabel td {
+  padding: 0.6rem;
+  text-align: left;
+  border-bottom: 1px solid #ffffff55;
+}
+.verhuur-overzicht {
+  padding: 1rem;
+  margin: 1.5rem 0;
+  border: 1px solid #a6a38e;
+  border-radius: 6px;
+}
+.verhuur-overzicht ul {
+  list-style: none;
+  padding: 0;
+}
+#contact-form label {
+  display: block;
+  text-align: left;
+  font-weight: 600;
+  margin: 0.5rem 0;
+}
+#staf .scrollable-y {
+  overflow: visible;
+}
+#staf .scrollable-y > h2 {
+  position: static;
+}
+#staf .bestuur-container {
+  display: grid;
+  align-items: stretch;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: 100%;
+  margin: 2rem 0 0;
+  gap: 1.5rem;
+}
+#staf .bestuur-container > div {
+  width: auto;
+  min-width: 0;
+  height: auto;
+  min-height: 320px;
+  margin: 0;
+}
+#staf .bestuur-container > div p {
+  position: static;
+  margin: 1.5rem 0 0;
+}
+#staf #leiders {
+  grid-column: span 2;
+}
+#staf .bestuur-container > :is(#leiders, #plus, #gebe, #praktijkbegeleider, #bestuur) {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-image:
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.18),
+      transparent 90px,
+      rgba(255, 255, 255, 0.88) 200px,
+      #fff 95%
+    ),
+    url('../images/algemeen.jpg');
+}
+#staf .bestuur-container > :is(#leiders, #plus, #gebe, #praktijkbegeleider, #bestuur) h2 {
+  position: relative;
+  margin: -1rem -1rem 100px;
+  padding: 1rem;
+  color: #fff;
+  background: none;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.85);
+}
+#staf .bestuur-container > :is(#leiders, #plus, #gebe, #praktijkbegeleider, #bestuur) h2:after {
+  color: #fff;
+}
+#staf .bestuur-container > :is(#leiders, #plus, #gebe, #praktijkbegeleider, #bestuur) p {
+  margin: auto 0 0.2rem;
+  color: var(--home-text);
+}
+
+@media (max-width: 760px) {
+  #staf .bestuur-container {
+    grid-template-columns: 1fr;
+  }
+  #staf #leiders {
+    grid-column: auto;
+  }
+}
+@media (max-width: 690px) {
+  .contact-container .contact-form {
+    width: 100%;
+    min-width: 0;
+  }
+  .contact-container {
+    gap: 1.5rem;
+  }
+  #landing-page {
+    padding-top: 3rem;
+  }
+}
+#groepen .groepen-container {
+  grid-auto-rows: 1fr;
+  align-items: stretch;
+}
+#groepen .groepen-container > div {
+  position: relative;
+  isolation: isolate;
+  height: auto;
+  background-image: none;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  overflow: hidden;
+}
+#groepen .groepen-container > div::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.18),
+    transparent 140px,
+    rgba(255, 255, 255, 0.88) 320px,
+    #fff 95%
+  );
+}
+#groepen .groepen-container > div h2 {
+  position: relative;
+  margin: -1.25rem -1.25rem 150px;
+  padding: 1rem 1.25rem;
+  color: #fff;
+  background: none;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.85);
+}
+#groepen .groepen-container > div h2:after {
+  color: #fff;
+}
+#groepen .groepen-container > div p {
+  position: static;
+  margin: 0.2rem 0;
+  color: var(--home-text);
+}
+#groepen .groepen-container > div h2 + p {
+  margin-top: auto;
+}
+#groepen .groepen-container > div p.draaitijden {
+  color: #4c5145;
+  margin-top: 0.2rem;
+  margin-bottom: 0;
+  padding-top: 0;
+}
+#groepen .group-contact {
+  padding: 0.2rem 0;
+}
+#groepen .group-photo {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  display: block;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  object-fit: cover;
+  margin: 0;
+}
+#landing-page .hero-content {
+  width: 100%;
+  max-width: 1280px;
+}
+#landing-page h1 {
+  font-size: clamp(3rem, 10vw, 9rem);
+  margin-bottom: 2.5rem;
+}
+.hero-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: start;
+  text-align: left;
+}
+.hero-copy h2 {
+  font-size: clamp(1.6rem, 3vw, 2.3rem);
+  margin-top: 0;
+}
+.hero-copy .home-actions {
+  justify-content: flex-start;
+}
+#landing-page .hero-calendar {
+  margin: 0;
+  padding: 1.5rem;
+  background: rgba(20, 35, 27, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 8px;
+}
+.hero-calendar h2 {
+  margin-top: 0;
+  font-size: 1.6rem;
+}
+.hero-calendar #mini-verhuur ul {
+  display: block;
+  line-height: 1.8;
+}
+.hero-calendar a {
+  color: var(--home-warm);
+}
+#landing-page {
+  position: relative;
+}
+@media (max-width: 760px) {
+  .hero-columns {
+    grid-template-columns: 1fr;
+  }
+  #landing-page h1 {
+    margin-bottom: 2rem;
+  }
+}
+
+/* Activity cards: playful details on a consistent, aligned grid. */
+#activiteiten {
+  background: var(--home-paper);
+  color: var(--home-text);
+  text-shadow: none;
+}
+.activity-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+  text-align: left;
+  align-items: stretch;
+}
+#activiteiten .activity-card {
+  position: relative;
+  padding: 1.75rem;
+  border: 1px solid #d7dfcd;
+  border-radius: var(--home-card-radius);
+  background: var(--home-paper);
+  color: var(--home-text);
+  text-shadow: none;
+  box-shadow: var(--home-card-shadow);
+}
+#activiteiten .activity-card:nth-child(even) {
+  background: #dfe7d5;
+}
+#activiteiten .activity-card::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: calc(50% - 30px);
+  width: 60px;
+  height: 20px;
+  background: #f3d38bcc;
+  transform: rotate(-5deg);
+}
+#activiteiten .activity-card:nth-child(even)::before {
+  transform: rotate(5deg);
+}
+#activiteiten .activity-card::after {
+  content: attr(data-label);
+  display: table;
+  margin-top: 1.25rem;
+  padding: 0.3rem 0.7rem;
+  border: 1px dashed #718366;
+  border-radius: 8px;
+  color: var(--home-green);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+#activiteiten .activity-card h3 {
+  margin: 1rem 0 0.75rem;
+  padding: 0;
+  border: 0;
+  font-size: 1.3rem;
+  line-height: 1.35;
+}
+#activiteiten .activity-card p {
+  margin: 0;
+  line-height: 1.75;
+}
+#activiteiten .activity-card a {
+  color: var(--home-green);
+  text-underline-offset: 0.2em;
+}
+.activity-icon {
+  display: inline-flex;
+  width: 3rem;
+  height: 3rem;
+  align-items: center;
+  justify-content: center;
+  background: var(--home-warm);
+  color: var(--home-green);
+  border-radius: 40% 55% 45% 50%;
+  font-size: 1.5rem;
+  transform: rotate(-6deg);
+}
+.activity-card:nth-child(even) .activity-icon {
+  transform: rotate(6deg);
+  background: #dce5d2;
+}
+@media (max-width: 760px) {
+  .activity-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.kennismaken-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: 3rem;
+  align-items: start;
+}
+.kennismaken-copy,
+.kennismaken-poster {
+  min-width: 0;
+}
+.kennismaken-poster h3 {
+  margin-top: 0;
+}
+.kennismaken-poster-link {
+  display: block;
+}
+.kennismaken-poster img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  background: #fff;
+  box-shadow: 0 5px 20px #0002;
+  border-radius: 6px;
+}
+@media (max-width: 760px) {
+  .kennismaken-layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+.kijkavond-aanmelden {
+  background: var(--home-sage);
+  color: var(--home-text);
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 2.5rem;
+}
+.kijkavond-aanmelden p {
+  max-width: 750px;
+  margin: 1rem auto 2rem;
+  line-height: 1.7;
+}
+a.kijkavond-button {
+  padding: 1.2rem 1.8rem;
+  font-size: 1.2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 0 var(--home-green-dark);
+}
+.kijkavond-button .fa {
+  margin-left: 0.5rem;
+}
+
+#ouders {
+  background: var(--home-paper);
+  color: var(--home-text);
+  text-shadow: none;
+}
+#ouders .size-limit > h2 {
+  margin-bottom: 2rem;
+}
+#ouders a {
+  color: var(--home-green);
+  text-underline-offset: 0.2em;
+}
+#ouders a:hover {
+  color: var(--home-green-dark);
+}
+#ouders h3 {
+  margin: 0 0 1rem;
+  padding: 0;
+  border: 0;
+  line-height: 1.35;
+}
+#ouders p,
+#ouders li {
+  line-height: 1.75;
+}
+#ouders .parent-grid {
+  gap: 1.25rem;
+  text-align: left;
+}
+#ouders .parent-grid > div {
+  background: var(--home-sage);
+  padding: 1.5rem;
+  border-radius: 16px 5px 16px 5px;
+  border-top: 4px solid #95ac7c;
+}
+#ouders .parent-grid > div:nth-child(even) {
+  background: #f8e9d5;
+  border-top-color: #db9a6b;
+}
+#ouders .parent-grid h3 {
+  font-size: 1.15rem;
+}
+#ouders .parent-grid p {
+  margin-bottom: 0;
+}
+.parent-detail-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 1.5rem;
+  margin: 2rem 0;
+  text-align: left;
+}
+#ouders .parent-panel {
+  min-width: 0;
+  background: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 3px 12px #283a2e0d;
+}
+#ouders .parent-panel > :last-child {
+  margin-bottom: 0;
+}
+#ouders .contributie-tabel {
+  max-width: none;
+  margin: 1rem 0;
+  font-size: 0.95rem;
+}
+#ouders .contributie-tabel th,
+#ouders .contributie-tabel td {
+  border-color: #dce5d2;
+  padding: 0.7rem 0.4rem;
+}
+#ouders .contributie-tabel th {
+  background: var(--home-sage);
+}
+.parent-resource-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+  text-align: left;
+}
+#ouders .parent-resource-grid .parent-panel {
+  padding: 1.5rem;
+  border-top: 4px solid var(--home-warm);
+}
+#ouders .parent-resource-grid h3 {
+  font-size: 1.2rem;
+}
+@media (max-width: 760px) {
+  .parent-detail-grid,
+  .parent-resource-grid {
+    grid-template-columns: 1fr;
+  }
+  #ouders .parent-panel {
+    padding: 1.25rem;
+  }
+}
+
+.sociale-veiligheid {
+  background: var(--home-sage);
+  color: var(--home-text);
+}
+.sociale-veiligheid .size-limit-small {
+  display: block;
+}
+.veiligheid-inhoud {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  text-align: left;
+  margin-top: 2rem;
+}
+.veiligheid-card {
+  min-width: 0;
+  background: #fff;
+  border-top: 4px solid #95ac7c;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 3px 12px #283a2e0d;
+  overflow-wrap: anywhere;
+}
+.veiligheid-card h3 {
+  margin: 0 0 1rem;
+  font-size: 1.2rem;
+}
+.veiligheid-card > :last-child {
+  margin-bottom: 0;
+}
+#sociale-veiligheid .size-limit-small {
+  width: 100%;
+  max-width: 1100px;
+}
+.veiligheid-inhoud p {
+  line-height: 1.75;
+}
+.veiligheid-inhoud a {
+  color: var(--home-green);
+  text-underline-offset: 0.2em;
+}
+@media (max-width: 760px) {
+  .veiligheid-inhoud {
+    grid-template-columns: 1fr;
+  }
+  .veiligheid-card {
+    padding: 1.25rem;
+  }
+}
+#menu-links a.nav-blokhut {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Gelijke menuvolgorde, afstanden en ruimte voor het logo op alle pagina's. */
+html {
+  scroll-padding-top: 3.75rem;
+}
+/* Keep the starting point stable when Chrome's address bar changes height. */
+#home-navigation-start,
+#navigatie {
+  top: calc(100vh - 3rem);
+  top: calc(100svh - 3rem);
+}
+#home-navigation-start {
+  position: absolute;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+}
+#navigatie.nav-sticky-top {
+  position: fixed;
+  top: 0;
+}
+#hb-menu-btn-click {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  width: 44px;
+  height: 48px;
+  float: right;
+}
+#hb-menu-btn-click:focus-visible {
+  outline: 3px solid var(--home-green);
+  outline-offset: -3px;
+}
+#hb-menu-btn-click.hb-menu-btn-open::before {
+  content: '\f00d';
+}
+#menu-links,
+.site-nav .site-links {
+  text-align: center;
+}
+@media (min-width: 1281px) {
+  #navigatie,
+  .site-nav.navigatie {
+    padding: 0 115px;
+  }
+  #menu-links,
+  .site-nav .site-links {
+    display: flex;
+    justify-content: center;
+    height: 3rem;
+    margin: 0;
+    width: 100%;
+  }
+  #menu-links li,
+  .site-nav .site-links li {
+    display: block;
+    flex-shrink: 0;
+    padding: 0;
+    height: 3rem;
+    border: 0;
+  }
+  #menu-links li a,
+  .site-nav .site-links li a {
+    display: block;
+    height: 3rem;
+    line-height: 3rem;
+    padding: 0 0.85rem;
+    border-bottom: 2px solid #2e2f2a;
+    color: #2e2f2a;
+    text-decoration: none;
+  }
+  #menu-links li.menu-active a,
+  .site-nav .site-links a[aria-current='page'] {
+    border-bottom: 6px solid #568096;
+  }
+  #menu-links li a:hover,
+  .site-nav .site-links a:hover {
+    border-bottom: 4px solid #000;
+  }
+  .site-nav .site-menu-toggle,
+  #hb-menu-btn-click {
+    display: none;
+  }
+}
+@media (max-width: 1280px) {
+  #navigatie,
+  .site-nav.navigatie {
+    padding: 0;
+  }
+  #hb-menu-btn-click {
+    display: inline;
+  }
+  #menu-links,
+  .site-nav .site-links {
+    display: none;
+    position: absolute;
+    top: 3rem;
+    left: 0;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    max-height: calc(100dvh - 3rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    background: var(--home-paper);
+  }
+  #menu-links.hb-menu-open,
+  .site-nav .site-links.is-open {
+    display: block;
+  }
+  #menu-links li,
+  .site-nav .site-links li {
+    display: block;
+    width: 100%;
+    height: auto;
+    opacity: 1;
+    padding: 0;
+    border: 0;
+    background: var(--home-paper);
+  }
+  #menu-links li a,
+  .site-nav .site-links li a {
+    display: block;
+    height: auto;
+    padding: 0.85rem;
+    line-height: 1.5;
+    border: 0;
+    color: #2e2f2a;
+    text-decoration: none;
+  }
+  #menu-links li.menu-active a,
+  .site-nav .site-links a[aria-current='page'] {
+    border-bottom: 4px solid #568096;
+  }
+  .site-nav .site-menu-toggle {
+    display: block;
+    position: absolute;
+    right: 0.5em;
+    top: 0;
+    border: 0;
+    padding: 0;
+    height: 1.5em;
+    line-height: 1.5;
+    font-size: 2em;
+    background: transparent;
+  }
+}
+
+/* Shared hierarchy, rhythm and controls across every homepage section. */
+body {
+  color: var(--home-text);
+  line-height: 1.7;
+}
+.section {
+  padding: clamp(3.5rem, 6vw, 5.5rem) 1.25rem;
+  box-shadow: none;
+  box-sizing: border-box;
+}
+.section > :is(.size-limit, .size-limit-small),
+#activiteiten .size-limit-small,
+#sociale-veiligheid .size-limit-small {
+  width: 100%;
+  max-width: 1180px;
+  padding: 0;
+  box-sizing: border-box;
+}
+.section > :is(.size-limit, .size-limit-small) > h2,
+#kennismaken-titel {
+  font-size: clamp(1.9rem, 3.2vw, 2.6rem);
+  line-height: 1.2;
+  margin: 0 0 1.25rem;
+  letter-spacing: -0.025em;
+}
+.section > :is(.size-limit, .size-limit-small) > h2::after,
+#kennismaken-titel::after {
+  content: '';
+  display: block;
+  width: 58px;
+  height: 5px;
+  margin-top: 1rem;
+  background: var(--home-warm);
+  border-radius: 99px;
+}
+.section p,
+.section li {
+  line-height: 1.75;
+}
+.section-intro {
+  max-width: 850px;
+}
+.section h3 {
+  line-height: 1.35;
+}
+#groepen,
+#verhuur {
+  background: var(--home-sage);
+}
+
+#ouders {
+  background: #eee9dd;
+  color: var(--home-text);
+  text-shadow: none;
+}
+#ouders .size-limit > h2 {
+  color: var(--home-text);
+  text-shadow: none;
+}
+#landing-page {
+  padding: 6rem 1.5rem 8rem;
+}
+#landing-page .hero-content {
+  max-width: 1180px;
+}
+#landing-page h1 {
+  font-size: clamp(3.25rem, 8vw, 7rem);
+  line-height: 1.06;
+  letter-spacing: -0.04em;
+}
+#landing-page .hero-calendar {
+  border-radius: var(--home-card-radius);
+  padding: 1.5rem;
+  border-color: #ffffff55;
+}
+#landing-page .hero-copy h2 {
+  line-height: 1.25;
+}
+a.home-button,
+.section button.button {
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.5;
+  padding: 0.85rem 1.25rem;
+  border: 2px solid var(--home-green);
+  border-radius: 12px 4px 12px 4px;
+  background: var(--home-green);
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 3px 0 var(--home-green-dark);
+  transition:
+    background-color 0.15s,
+    box-shadow 0.15s;
+}
+a.home-button:hover,
+.section button.button:hover {
+  background: var(--home-green-dark);
+  border-color: var(--home-green-dark);
+  box-shadow: 0 2px 0 var(--home-green-dark);
+}
+#landing-page a.home-button {
+  background: var(--home-warm);
+  border-color: var(--home-warm);
+  color: var(--home-text);
+  box-shadow: 0 3px 0 #b89953;
+}
+#landing-page a.home-button-secondary {
+  background: #172b2280;
+  border-color: #fff;
+  color: #fff;
+  box-shadow: none;
+}
+a.kijkavond-button {
+  font-size: 1rem;
+  padding: 0.85rem 1.25rem;
+}
+#groepen .groepen-container > div,
+#staf .bestuur-container > div {
+  border: 1px solid var(--home-border);
+  border-radius: var(--home-card-radius);
+  box-shadow: var(--home-card-shadow);
+}
+#groepen .groepen-container > div h2,
+#staf .bestuur-container > div h2 {
+  font-size: 1.35rem;
+  line-height: 1.3;
+}
+#groepen .groepen-container,
+#staf .bestuur-container {
+  gap: 1.5rem;
+}
+#groepen .group-contact,
+.section a:not(.home-button) {
+  text-underline-offset: 0.2em;
+}
+#groepen .group-contact {
+  color: var(--home-green);
+}
+#ouders .parent-grid > div,
+#ouders .parent-panel,
+.veiligheid-card,
+.kijkavond-aanmelden {
+  border: 1px solid var(--home-border);
+  border-radius: var(--home-card-radius);
+  box-shadow: var(--home-card-shadow);
+  padding: 1.5rem;
+}
+#ouders .parent-grid > div {
+  background: var(--home-sage);
+  border-top: 4px solid #95ac7c;
+}
+#ouders .parent-grid > div:nth-child(even) {
+  background: var(--home-paper);
+  border-top-color: var(--home-warm);
+}
+#ouders .parent-resource-grid .parent-panel,
+.veiligheid-card {
+  border-top: 4px solid #95ac7c;
+}
+#ouders .parent-resource-grid .parent-panel {
+  border-top-color: var(--home-warm);
+}
+.kijkavond-aanmelden {
+  background: var(--home-sage);
+  border-top: 4px solid var(--home-warm);
+}
+.kijkavond-aanmelden h2 {
+  font-size: 1.5rem;
+  line-height: 1.3;
+}
+.kijkavond-aanmelden p {
+  margin: 1rem 0 1.5rem;
+}
+.kennismaken-poster iframe {
+  border-radius: var(--home-card-radius);
+  box-shadow: var(--home-card-shadow);
+}
+#contact {
+  color: #fff;
+  text-shadow: none;
+}
+#contact > .size-limit > p {
+  max-width: 850px;
+  color: #e7eddf;
+}
+:is(#contact, #verhuur) .contact-container {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+  align-items: start;
+}
+:is(#contact, #verhuur) .contact-form {
+  display: block;
+  width: auto;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 1.5rem;
+  border: 1px solid var(--home-border);
+  border-radius: var(--home-card-radius);
+  background: #fff;
+  color: var(--home-text);
+  text-shadow: none;
+}
+:is(#contact, #verhuur) .contact-form h3 {
+  margin: 1.5rem 0 0.75rem;
+  font-size: 1.25rem;
+}
+:is(#contact, #verhuur) .contact-form h3:first-child {
+  margin-top: 0;
+}
+:is(#contact, #verhuur) .contact-form a {
+  color: var(--home-green);
+}
+.section .inform {
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 8px;
+}
+.section .inp {
+  background: #fbfcf8;
+  border: 1px solid #bac7b0;
+  box-shadow: none;
+  color: var(--home-text);
+}
+.section .inp:focus {
+  outline: 3px solid var(--home-warm);
+  outline-offset: 2px;
+  box-shadow: none;
+}
+.section .inp:focus:required:valid,
+.section .inp:focus:required:invalid {
+  border-right-width: 1px;
+}
+#contact-form textarea {
+  min-height: 170px;
+  resize: vertical;
+}
+#verhuur-tabs li.tab-active {
+  border-color: var(--home-green);
+  color: var(--home-green);
+}
+#navigatie {
+  background: var(--home-paper);
+}
+#menu-links li.menu-active a {
+  border-bottom-color: var(--home-green);
+}
+footer.section {
+  background: var(--home-green-dark);
+  background-image: none;
+  color: #fff;
+  padding: 2rem 1.25rem;
+}
+footer.section a {
+  color: #fff;
+}
+footer.section h2 {
+  font-size: 1.5rem;
+}
+@media (max-width: 760px) {
+  .section {
+    padding: 3rem 1.25rem;
+  }
+  #landing-page {
+    padding: 3.5rem 1.25rem 6.5rem;
+  }
+  .hero-columns {
+    gap: 2rem;
+  }
+  :is(#contact, #verhuur) .contact-container {
+    grid-template-columns: 1fr;
+  }
+  :is(#contact, #verhuur) .contact-form {
+    padding: 1.25rem;
+  }
+  #groepen .groepen-container > div {
+    min-width: 0;
+  }
+  .home-actions {
+    gap: 0.75rem;
+  }
+  #kennismaken .kennismaken-layout {
+    gap: 2rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  a.home-button,
+  .section button.button {
+    transition: none;
+  }
+}
+
+/* Activity glyphs from the existing FontAwesome font. */
+.activity-icon .fa-flag-checkered::before {
+  content: '\f11e';
+}
+.activity-icon .fa-globe::before {
+  content: '\f0ac';
+}
+.activity-icon .fa-moon-o::before {
+  content: '\f186';
+}
+.activity-icon .fa-heart::before {
+  content: '\f004';
+}
+.activity-icon .fa-music::before {
+  content: '\f001';
+}
+.activity-icon .fa-fire::before {
+  content: '\f06d';
+}
+
+/* Alternate full-section photography and color, in page order. */
+#landing-page {
+  --home-photo: url('../images/background.jpg');
+  --home-shade-start: 0.25;
+  --home-shade-end: 0.4;
+}
+#kennismaken {
+  --home-photo: url('../images/background-2-web.webp');
+}
+#staf {
+  --home-photo: url('../images/background-3-web.webp');
+}
+#sociale-veiligheid {
+  --home-photo: url('../images/blokhut/buiten1.jpg');
+}
+#contact {
+  --home-photo: url('../images/background-contact.jpg');
+  --home-shade-start: 0.48;
+  --home-shade-end: 0.65;
+}
+.section.home-photo-section {
+  background-color: var(--home-green-dark);
+  background-image:
+    linear-gradient(
+      rgba(20, 35, 27, var(--home-shade-start, 0.6)),
+      rgba(20, 35, 27, var(--home-shade-end, 0.72))
+    ),
+    var(--home-photo);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: scroll;
+  color: #fff;
+  text-shadow: none;
+}
+.home-photo-section a:not(.home-button) {
+  color: var(--home-warm);
+}
+.home-photo-section .veiligheid-card,
+.home-photo-section .kijkavond-aanmelden {
+  color: var(--home-text);
+}
+.home-photo-section .veiligheid-card a {
+  color: var(--home-green);
+}
+.home-photo-section .home-button:not(.home-button-secondary) {
+  background: var(--home-warm);
+  border-color: var(--home-warm);
+  color: var(--home-text);
+  box-shadow: 0 3px 0 #b89953;
+}
+.home-photo-section .kijkavond-aanmelden .home-button {
+  background: var(--home-green);
+  border-color: var(--home-green);
+  color: #fff;
+  box-shadow: 0 3px 0 var(--home-green-dark);
+}
+.home-photo-section .kennismaken-poster h3 {
+  color: #fff;
+}
+@media (min-width: 961px) and (prefers-reduced-motion: no-preference) {
+  .section.home-photo-section {
+    background-attachment: fixed;
+  }
+}
+
+/* Full rental calendar replaces the old homepage rental form. */
+.home-rental-calendar {
+  display: block;
+  width: 100%;
+  height: 2100px;
+  margin-top: 2rem;
+  border: 0;
+  background: transparent;
+}
+
+/* Compact social links; wrap on small screens. */
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 1.25rem 0;
+}
+.footer-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.55rem 1rem;
+  border: 1px solid #ffffff55;
+  border-radius: 12px 4px 12px 4px;
+  color: #fff;
+  text-decoration: none;
+}
+.footer-links a:hover {
+  background: #ffffff18;
+  border-color: var(--home-warm);
+}
+.footer-links .fa {
+  font-size: 1.25rem;
+}
+.footer-links .fa-instagram::before {
+  content: '\f16d';
+}
+footer.section .small {
+  margin-bottom: 0;
+}
+
+/* Use the navigation wordmark as the accessible homepage title. */
+#landing-page .hero-logo {
+  display: block;
+  width: min(100%, 800px);
+  height: auto;
+  margin: 0 auto;
+  fill: currentColor;
+}
