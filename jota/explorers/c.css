@@ -1,0 +1,127 @@
+/* 
+    Document   : c
+    Created on : 25-Oct-2012
+    Author     : Sahi
+    Description:
+        Purpose of the stylesheet is to make the page beautiful.
+*/
+
+div,
+h1 {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0px auto;
+  width: 800px;
+  height: 100%;
+  font-family: sans-serif;
+}
+
+select,
+option {
+  font-family: sans-serif;
+  color: #202020;
+}
+body {
+  width: 100%;
+  height: 100%;
+  background-attachment: fixed;
+  background-color: #335795;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#3d62b3), to(#335795));
+  background-image: -webkit-linear-gradient(top, #3d62b3, #335795);
+  background-image: -moz-linear-gradient(top, #3d62b3, #335795);
+  background-image: -o-linear-gradient(top, #3d62b3, #335795);
+  background-image: linear-gradient(to bottom, #3d62b3, #335795);
+}
+
+img {
+  border: 0;
+  padding: 0;
+  margin: 0px;
+  display: block;
+}
+
+#head {
+  width: 752px;
+  margin: 0px auto 0px auto;
+  padding: 0;
+  background-color: #fdfdfd;
+  border-left: 1px solid #202020;
+  border-bottom: 1px solid #202020;
+  border-right: 1px solid #202020;
+  border-top: none;
+  -webkit-border-radius: 0px 0px 10px 10px;
+  border-radius: 0px 0px 10px 10px;
+}
+
+#head h1 {
+  text-align: center;
+  color: #202020;
+  text-shadow: 1px 1px 3px #335795;
+  font-size: 28pt;
+  padding: 10px;
+  margin: 0px;
+}
+
+#input {
+  width: 752px;
+  height: auto;
+  margin: 20px auto 0px auto;
+  padding: 10px;
+  background-color: #fdfdfd;
+  border: 1px solid #202020;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+
+#input input,
+#input select,
+#input option {
+  font-size: 16pt;
+  margin-right: 5px;
+}
+
+#copy {
+  font-size: 8pt;
+  text-align: center;
+  color: #c0c0c0;
+  padding: 0;
+  margin: 10px 0px 0px 0px;
+}
+
+#code {
+  width: 460px;
+}
+
+#answer {
+  text-align: center;
+}
+
+#head,
+#input,
+#result {
+  -webkit-box-shadow: 0px 0px 10px 0px #202020;
+  box-shadow: 0px 0px 10px 0px #202020;
+}
+
+#result {
+  width: 752px;
+  margin: 20px auto 0px auto;
+  padding: 0;
+  background-color: #fdfdfd;
+  border: 1px solid #202020;
+}
+#blank {
+  width: 100%;
+  height: 20px;
+  margin: 0;
+  padding: 0;
+}
