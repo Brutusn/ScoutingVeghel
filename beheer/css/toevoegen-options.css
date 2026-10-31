@@ -1,0 +1,6 @@
+#directory_listing ul {
+  display: none;
+}
+#directory_listing ul li {
+  padding-left: 20px;
+}

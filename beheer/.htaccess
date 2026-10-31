@@ -1,0 +1,7 @@
+Options -Indexes
+<FilesMatch "\.(html|php)$">
+    Header always set Cache-Control "no-store"
+</FilesMatch>
+<FilesMatch "(?i)(^error_log$|\.(old|bak|sql|tpl)$)">
+    Require all denied
+</FilesMatch>

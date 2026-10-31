@@ -1,0 +1,15 @@
+table {
+  border-bottom: 1px solid #ddd;
+  margin-top: 5px;
+  width: 100%;
+  border-collapse: collapse;
+}
+.name {
+  font-weight: bold;
+  background-color: #eee;
+  display: block;
+}
+.email {
+  font-size: small;
+  display: block;
+}
