@@ -1,0 +1,138 @@
+name: PHP Tests
+
+on:
+  pull_request:
+  push:
+    branches: main
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: test_database
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+      mailhog:
+        image: mailhog/mailhog
+        ports:
+          - 1025:1025
+          - 8025:8025
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.1"
+          extensions: mbstring, xml, ctype, iconv, intl, pdo, pdo_mysql, dom, filter, gd, json, mbstring
+          coverage: pcov
+
+      - name: Validate composer.json and composer.lock
+        run: composer validate --strict
+
+      - name: Cache Composer packages
+        id: composer-cache
+        uses: actions/cache@v3
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: Create DB2.php config
+        run: |
+          cat > php/DB2.php << 'EOF'
+          <?php
+          function databaseMYSQLi() {
+              $host = '127.0.0.1';
+              $user = 'root';
+              $password = 'root';
+              $database = 'test_database';
+              $port = 3306;
+
+              $mysqli = new mysqli($host, $user, $password, $database, $port);
+
+              if ($mysqli->connect_errno) {
+                  throw new RuntimeException('Failed to connect to MySQL: ' . $mysqli->connect_error);
+              }
+
+              $mysqli->set_charset('utf8mb4');
+              return $mysqli;
+          }
+          ?>
+          EOF
+
+      - name: Create MAIL2.php config
+        run: |
+          cat > php/MAIL2.php << 'EOF'
+          <?php
+          global $SMTP_SERVER;
+          global $SMTP_PORT;
+          global $SMTP_USER;
+          global $SMTP_PASSWORD;
+          global $SMTP_MAIL_FROM;
+          global $SMTP_SECURE;
+          global $SMTP_AUTO_TLS;
+          global $PHPMAILER_DEBUG;
+          global $MAIL_ADDRESS_WEBSITE;
+          global $MAIL_ADDRESS_VERHUUR;
+
+          $SMTP_SERVER = "127.0.0.1";
+          $SMTP_PORT = 1025;
+          $SMTP_USER = "testuser";
+          $SMTP_PASSWORD = "testpass";
+          $SMTP_MAIL_FROM = "website@example.test";
+          $SMTP_SECURE = false;
+          $SMTP_AUTO_TLS = false;
+          $PHPMAILER_DEBUG = 0;
+          $MAIL_ADDRESS_WEBSITE = "website@example.test";
+          $MAIL_ADDRESS_VERHUUR = "verhuur@example.test";
+          ?>
+          EOF
+
+      - name: Install MySQL client
+        # Needed to import the tables and procedures
+        run: sudo apt-get update && sudo apt-get install -y mysql-client
+
+      - name: Set up test database
+        run: |
+          mysql -h 127.0.0.1 -u root -proot test_database < database/database.sql
+          for table_file in database/table_verhuur_*.sql; do
+            mysql -h 127.0.0.1 -u root -proot test_database < "$table_file"
+          done
+          mysql -h 127.0.0.1 -u root -proot test_database < database/stored_procedures.sql
+
+      - name: Run test suite
+        run: vendor/bin/phpunit --coverage-html coverage --coverage-clover coverage.xml --display-skipped --display-warnings --display-incomplete --colors=always
+        env:
+          DB_HOST: 127.0.0.1
+          DB_PORT: 3306
+          DB_DATABASE: test_database
+          DB_USERNAME: root
+          DB_PASSWORD: root
+          MAIL_HOST: 127.0.0.1
+          MAIL_PORT: 1025
+
+      - name: Upload coverage reports
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: coverage-report
+          path: coverage/

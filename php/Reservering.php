@@ -1,24 +1,33 @@
 <?php
-require_once("db_layer.php");
-require_once("date_layer.php");
+require_once __DIR__ . '/db_layer.php';
+require_once __DIR__ . '/date_layer.php';
 
-$d = $_POST['d'];
-$m = $_POST['m'];
-$y = $_POST['y'];
+function handleReserveringRequest(array $input): array
+{
+  $d = filter_var($input['d'] ?? null, FILTER_VALIDATE_INT);
+  $m = filter_var($input['m'] ?? null, FILTER_VALIDATE_INT);
+  $y = filter_var($input['y'] ?? null, FILTER_VALIDATE_INT);
 
-$d = filter_var($d, FILTER_VALIDATE_INT);
-$m = filter_var($m, FILTER_VALIDATE_INT);
-$y = filter_var($y, FILTER_VALIDATE_INT);
+  if (validDate($y, $m, $d, 0, 0)) {
+    return [200, getReservationsNextDays($d, $m, $y)];
+  }
 
-//TODO Add the possibility to specify an end date. If not set use the behaviour specified below and if set check for that specific interval
-if(validDate($y, $m, $d, 0, 0)) {
-	header('HTTP/1.1 200 OK');
-	echo json_encode(getReservationsNextDays($d, $m, $y));
-    exit;
-} else {
-	header('HTTP/1.1 400 Bad Request');
-	echo "Geen geldige datum opgegeven.";
-    exit;
+  return [400, 'Geen geldige datum opgegeven.'];
+}
+
+if (php_sapi_name() !== 'cli' && isset($_SERVER['SCRIPT_FILENAME']) && realpath(__FILE__) === realpath($_SERVER['SCRIPT_FILENAME'])) {
+  [$status, $payload] = handleReserveringRequest($_POST);
+
+  if ($status === 200) {
+    header('Content-Type: application/json');
+    http_response_code(200);
+    echo json_encode($payload);
+  } else {
+    header('Content-Type: text/plain; charset=utf-8');
+    http_response_code(400);
+    echo $payload;
+  }
+  exit;
 }
 
 /**

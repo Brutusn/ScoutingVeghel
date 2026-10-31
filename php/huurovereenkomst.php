@@ -1,51 +1,59 @@
 <?php
 
-require_once("db_layer.php");
-require_once("verhuur_settings.php");
-require_once('kostenberekening_nieuw.php');
+require_once __DIR__ . "/db_layer.php";
+require_once __DIR__ . "/verhuur_settings.php";
+require_once __DIR__ . '/kostenberekening_nieuw.php';
 
-session_start();
-date_default_timezone_set('Europe/Paris');
+function generateHuurovereenkomstPage(string $key): string
+{
+    $key = trim(strip_tags($key), " \n");
+    if ($key === '') {
+        return '[ERROR] Er kon geen verhuring gevonden worden.';
+    }
 
-//get verhuringID from provided key
-$key = trim(strip_tags($_GET["key"]), " \n");
-$verhuring = getVerhuringFromConfirm($key);
-$verhuring_id = $verhuring[0];
+    $verhuring = getVerhuringFromConfirm($key);
+    $verhuring_id = $verhuring[0];
 
-// if there is a verhuring for this key, continue
-if ($verhuring_id != -1) {
-	// Load all data into huurovereenkomst.
-	$tags = array(
-		'verhuurder_naam' => HV_VERHUURDER_NAME,
-		'verhuurder_vertegenwoordiger' => HV_VERHUURDER_REP,
-		'verhuurder_adres' => HV_VERHUURDER_ADDRESS,
-		'verhuurder_plaats' => HV_VERHUURDER_POSTAL,
-		'verhuurder_telefoon' => HV_VERHUURDER_PHONE,
-		'verhuurder_beheerder' => HV_BEHEERDER,
-		'verhuurder_beheerder_telefoon' => HV_BEHEERDER_PHONE,
-		'verhuurder_rekeningnummer' => HV_VERHUURDER_ACCOUNT
-	);
+    if ($verhuring_id == -1) {
+        return '[ERROR] Er kon geen verhuring gevonden worden.';
+    }
 
-	//Get data to fill template from DB
-	$data_array = getHuurovereenkomstData($verhuring_id);
-	if (!empty($data_array)){
-		$tags = array_merge($tags, $data_array);
-		$tags['verhuring_kenmerk_borg'] = 'WVB/'.$verhuring_id;
-		$tags['verhuring_kenmerk_huur'] = 'WVH/'.$verhuring_id;
-		$tags['verhuring_borg'] = '<strong>'.getBorg(getDifferenceInDays($tags['verhuring_begin_datum'], $tags['verhuring_eind_datum'])).'</strong>';
-		$tags['verhuring_prijs']  = '<strong>' .
-			(getKostenByDate($tags['verhuring_begin_datum'], $tags['verhuring_eind_datum'], $tags['verhuring_aantal_personen'])-
-			getBorg(getDifferenceInDays($tags['verhuring_begin_datum'], $tags['verhuring_eind_datum']))).'</strong>';
+    $tags = array(
+        'verhuurder_naam' => HV_VERHUURDER_NAME,
+        'verhuurder_vertegenwoordiger' => HV_VERHUURDER_REP,
+        'verhuurder_adres' => HV_VERHUURDER_ADDRESS,
+        'verhuurder_plaats' => HV_VERHUURDER_POSTAL,
+        'verhuurder_telefoon' => HV_VERHUURDER_PHONE,
+        'verhuurder_beheerder' => HV_BEHEERDER,
+        'verhuurder_beheerder_telefoon' => HV_BEHEERDER_PHONE,
+        'verhuurder_rekeningnummer' => HV_VERHUURDER_ACCOUNT
+    );
 
-		echo displayHuurovereenkomst(...$tags);
-		//echo the print button
-		echo "<p class='print_ignore'><input class='button' id='print' value='Print' type='button' onclick='printPage()'></p>";
-		echo "<script>function printPage() {window.print();}</script>";
-	} else {//Althought here was a verhuring for the key, no data could be retrieved
-		echo '[ERROR] Er kon geen data gevonden worden voor de verhuring.';
-	}
-} else { //ther eis no verhuring for this key
-	echo '[ERROR] Er kon geen verhuring gevonden worden.';
+    $data_array = getHuurovereenkomstData($verhuring_id);
+    if (empty($data_array)) {
+        return '[ERROR] Er kon geen data gevonden worden voor de verhuring.';
+    }
+
+    $tags = array_merge($tags, $data_array);
+    $tags['verhuring_kenmerk_borg'] = 'WVB/' . $verhuring_id;
+    $tags['verhuring_kenmerk_huur'] = 'WVH/' . $verhuring_id;
+    $tags['verhuring_borg'] = '<strong>' . getBorg(getDifferenceInDays($tags['verhuring_begin_datum'], $tags['verhuring_eind_datum'])) . '</strong>';
+    $tags['verhuring_prijs']  = '<strong>' .
+        (getKostenByDate($tags['verhuring_begin_datum'], $tags['verhuring_eind_datum'], $tags['verhuring_aantal_personen']) -
+        getBorg(getDifferenceInDays($tags['verhuring_begin_datum'], $tags['verhuring_eind_datum']))) . '</strong>';
+
+    $page = displayHuurovereenkomst(...$tags);
+    $page .= "<p class='print_ignore'><input class='button' id='print' value='Print' type='button' onclick='printPage()'></p>";
+    $page .= "<script>function printPage() {window.print();}</script>";
+
+    return $page;
+}
+
+if (php_sapi_name() !== 'cli' && isset($_SERVER['SCRIPT_FILENAME']) && realpath(__FILE__) === realpath($_SERVER['SCRIPT_FILENAME'])) {
+    session_start();
+    date_default_timezone_set('Europe/Paris');
+
+    echo generateHuurovereenkomstPage($_GET['key'] ?? '');
 }
 
 function displayHuurovereenkomst(

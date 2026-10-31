@@ -55,11 +55,23 @@ function validDate($year, $month, $day, $hour, $minute){
     $h = filter_var($hour, FILTER_VALIDATE_INT);
     $min = filter_var($minute, FILTER_VALIDATE_INT);
 
-    if($d <= 31 && $d > 0 && $m <= 12 && $m > 0 && $y > 0 && $h < 24 && $h >= 0 && $m < 60 && $m >= 0) {
-        return true;
-    } else {
+    if ($y === false || $m === false || $d === false || $h === false || $min === false) {
         return false;
     }
+
+    if (!checkdate($m, $d, $y)) {
+        return false;
+    }
+
+    if ($h < 0 || $h > 23) {
+        return false;
+    }
+
+    if ($min < 0 || $min > 59) {
+        return false;
+    }
+
+    return true;
 }
 
 ?>

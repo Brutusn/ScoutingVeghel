@@ -1,6 +1,6 @@
 <?php
 
-require_once('verhuur_settings.php');
+require_once __DIR__ . '/verhuur_settings.php';
 
 /**
  * Computes the difference between two dates in hours. Note that this only considers days and hours and does not scale for months and years
