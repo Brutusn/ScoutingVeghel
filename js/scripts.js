@@ -1,34 +1,220 @@
-'use strict';var $jscomp={scope:{}};$jscomp.defineProperty="function"==typeof Object.defineProperties?Object.defineProperty:function(a,b,c){if(c.get||c.set)throw new TypeError("ES3 does not support getters and setters.");a!=Array.prototype&&a!=Object.prototype&&(a[b]=c.value)};$jscomp.getGlobal=function(a){return"undefined"!=typeof window&&window===a?a:"undefined"!=typeof global&&null!=global?global:a};$jscomp.global=$jscomp.getGlobal(this);$jscomp.SYMBOL_PREFIX="jscomp_symbol_";
-$jscomp.initSymbol=function(){$jscomp.initSymbol=function(){};$jscomp.global.Symbol||($jscomp.global.Symbol=$jscomp.Symbol)};$jscomp.symbolCounter_=0;$jscomp.Symbol=function(a){return $jscomp.SYMBOL_PREFIX+(a||"")+$jscomp.symbolCounter_++};
-$jscomp.initSymbolIterator=function(){$jscomp.initSymbol();var a=$jscomp.global.Symbol.iterator;a||(a=$jscomp.global.Symbol.iterator=$jscomp.global.Symbol("iterator"));"function"!=typeof Array.prototype[a]&&$jscomp.defineProperty(Array.prototype,a,{configurable:!0,writable:!0,value:function(){return $jscomp.arrayIterator(this)}});$jscomp.initSymbolIterator=function(){}};$jscomp.arrayIterator=function(a){var b=0;return $jscomp.iteratorPrototype(function(){return b<a.length?{done:!1,value:a[b++]}:{done:!0}})};
-$jscomp.iteratorPrototype=function(a){$jscomp.initSymbolIterator();a={next:a};a[$jscomp.global.Symbol.iterator]=function(){return this};return a};$jscomp.makeIterator=function(a){$jscomp.initSymbolIterator();var b=a[Symbol.iterator];return b?b.call(a):$jscomp.arrayIterator(a)};
-(function(a,b,c,f,d,e,g){a.GoogleAnalyticsObject=d;a[d]=a[d]||function(){(a[d].q=a[d].q||[]).push(arguments)};a[d].l=1*new Date;e=b.createElement(c);g=b.getElementsByTagName(c)[0];e.async=1;e.src=f;g.parentNode.insertBefore(e,g)})(window,document,"script","https://www.google-analytics.com/analytics.js","ga");ga("create","UA-103964119-1","auto");ga("send","pageview");
-var navElem=$id("navigatie"),groupElem=$id("groepen"),actiElem=$id("activiteiten"),stafElem=$id("staf"),contElem=$id("contact"),huurElem=$id("verhuur"),scrollYpos=window.scrollY,isScrolling=!1,menu=$id("menu-links"),menuClick=!1,setScroll;function $id(a){return document.getElementById(a)}function $elem(a){return document.createElement(a)}
-window.requestAnimFrame=function(){return window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||function(a){window.setTimeout(a,1E3/60)}}();function removeClass(a){var b=document.getElementsByClassName(a),c;for(c=0;c<b.length;c++)b[c].classList.remove(a)}
-var ajax=function(a,b,c){var f={},d=[];if("undefined"!==typeof XMLHttpRequest){var f=new XMLHttpRequest,e;for(e in b)d.push(encodeURIComponent(e)+"="+encodeURIComponent(b[e]));f.open("POST",a,!0);f.onreadystatechange=function(){4===f.readyState&&200===f.status?c(null,f.responseText):4===f.readyState&&200!==f.status&&c(!0)};f.onerror=function(){c(!0)};f.setRequestHeader("Content-type","application/x-www-form-urlencoded");f.send(d.join("&"))}else showError("Dingen zijn niet ondersteund... update je browser...")};
-function getSetScrollFunction(){if(window.scrollTo)return function(a){window.scrollTo(0,a)};if(window.pageYOffset)return function(a){window.pageYOffset=a};if(document.documentElement.scrollTop)return function(){document.documentElement.scrollTop=to};if(document.body.scrollTop)return function(a){document.body.scrollTop=a}}setScroll=getSetScrollFunction();
-function onScrollEvt(){var a=navElem.getBoundingClientRect(),b=groupElem.getBoundingClientRect(),c,f,d,e;0>=a.top&&b.top<=a.height?navElem.classList.add("nav-sticky-top"):navElem.classList.remove("nav-sticky-top");menuClick||(c=stafElem.getBoundingClientRect(),f=actiElem.getBoundingClientRect(),d=contElem.getBoundingClientRect(),e=huurElem.getBoundingClientRect(),removeClass("menu-active"),a.height>=b.top&&a.height<b.bottom&&menu.children[0].classList.add("menu-active"),a.height>=f.top&&a.height<
-f.bottom&&menu.children[1].classList.add("menu-active"),a.height>=c.top&&a.height<c.bottom&&menu.children[2].classList.add("menu-active"),a.height>=d.top&&a.height<d.bottom&&menu.children[3].classList.add("menu-active"),a.height>=e.top&&a.height<e.bottom&&menu.children[4].classList.add("menu-active"));isScrolling=!1}function requestScroll(){isScrolling||requestAnimFrame(onScrollEvt);isScrolling=!0}
-function scrollUp(a){function b(){if(50>g){var a=g;f=-e[0]*(a/=50)*(a-2)+c;var a=f,b=e[1]-1,d=e[1]+1;e[2]?a=a>=b&&a<=d:(a*=-1,a=a>=d&&a<=b);a?(setScroll(e[1]),menuClick=!1):(requestAnimFrame(k),g++)}}a=$id(a).offsetTop;var c,f,d=$id("navigatie").clientHeight,e=[],g=0,k=function(){setScroll(f);b()};c=window.pageYOffset||document.documentElement.scrollTop||document.body.scrollTop;c<a?(e[0]=a-d-c,e[1]=a-d,e[2]=!0):(e[0]=-1*(c-(a-d)),e[1]=-1*(a-d),e[2]=!1);b()}
-function showError(a,b){var c;c=$id("errorMsg")?$id("errorMsg"):document.createElement("div");c.className="error-message";c.id="errorMsg";c.innerHTML='<i class="fa fa-times-circle"></i> '+a;b?$id(b).appendChild(c):console.error(a)}function removeError(){var a=$id("errorMsg");a&&a.parentNode.removeChild(a)}function showSuccess(a,b){showError("tmp",b);$id("errorMsg").innerHTML=a;$id("errorMsg").className="success-message"}
-function resizeMap(){if($id("map-size")){var a=$id("map-size").clientWidth;$id("kaartje").innerHTML='<img class="info-kaart" alt="Locatie blokhut Scouting Veghel" src="//maps.googleapis.com/maps/api/staticmap?center=Dorshout+29,Veghel,NL&zoom=14&size='+a+'x300&scale=2&markers=color:blue%7C51.626782,5.522947&maptype=terrain&key=AIzaSyCgVa8lEEM_4SaJqtlLgl8QtBytdSSrhlM&sensor=false" />'}}resizeMap();window.addEventListener("resize",resizeMap);window.onscroll=function(){scrollYpos=window.scrollY;requestScroll()};
-$id("arrowDown").onclick=function(){menuClick=!0;removeClass("menu-active");$id("menu-links").children[0].classList.add("menu-active");scrollUp("groepen")};$id("sv-logo").onclick=function(){removeClass("menu-active");scrollUp("landing-page");window.location.hash=""};
-menu.onclick=function(a){var b=a.target.getAttribute("data-link");b&&(menuClick=!0,removeClass("menu-active"),menu.classList.contains("hb-menu-open")&&(menu.classList.toggle("hb-menu-open"),$id("hb-menu-btn-click").classList.toggle("hb-menu-btn-open")),a.target.classList.add("menu-active"),scrollUp(b),location.hash=b)};
-$id("contact-form").onsubmit=function(a){for(var b={},c=/[^\s@]+@[^\s@]+\.[^\s@]+/,f=this.id,d=this.getElementsByClassName("inp"),d=$jscomp.makeIterator(d),e=d.next();!e.done;e=d.next())e=e.value,b[e.name]=e.value;b["g-recaptcha-response"]=a;b.whoTo||showError("Aan wie moet de vraag of opmerking verstuurd worden?",f);c.test(b.mailadr)||showError("Vul een geldig e-mailadres in.",f);c.test(b.mailadr)&&""!==b.whoTo&&(removeError(),showSuccess("Vraag of opmerking aan het versturen...",f),ajax("../php/contact-form.php",
-b,function(a,b){$id(f).reset();grecaptcha.reset();showSuccess(b,f)}));return!1};function contactSubmit(a){$id("contact-form").onsubmit(a)}
-$id("verhuur-form").onsubmit=function(){var a={},b=/[^\s@]+@[^\s@]+\.[^\s@]+/,c=this.id,f=this.getElementsByClassName("inp");if(14<VERHUUR.verhuurtijd())return showError("De duur van de optie mag maximaal 14 overnachtingen zijn. Mocht u langer willen huren, stuur dan een vraag m.b.v. het bovenstaande formulier.",c),!1;for(var f=$jscomp.makeIterator(f),d=f.next();!d.done;d=f.next())d=d.value,a[d.name]=d.value;""!==a.groepcode?""!==a.people&&""!==a.tArea&&(showSuccess("Aanvraag voor de optie versturen...",
-c),ajax("../php/verhuur-form.php",a,function(a,b){$id(c).reset();showSuccess(b,c)})):a.name&&""!==a.name&&null!==a.name&&void 0!==a.name?a.contactperson&&""!==a.contactperson&&null!==a.contactperson&&void 0!==a.contactperson?b.test(a.mailadr)?b.test(a.mailadr)&&(removeError(),showSuccess("Aanvraag voor de optie versturen...",c),ajax("../php/verhuur-form.php",a,function(a,b){VERHUUR.reset();showSuccess(b,c)})):showError("Vul een geldig e-mailadres in.",c):showError("Wie wil deze optie op de blokhut nemen?",
-c):showError("Waarvoor is deze optie op de blokhut?",c);return!1};$id("verhuur-tabs").addEventListener("click",function(a){removeClass("tab-active");removeClass("tabpanel-active");a.target.classList.add("tab-active");$id(a.target.getAttribute("data-tab")).classList.add("tabpanel-active");"verhuur-stap-2"===a.target.getAttribute("data-tab")&&VERHUUR.setEindDays()});
-$id("verhuur-goto-2").addEventListener("click",function(a){a.preventDefault();removeClass("tab-active");removeClass("tabpanel-active");$id("verhuur-stap-2").classList.add("tabpanel-active");$id("verhuur-tabs").children[1].classList.add("tab-active");VERHUUR.setEindDays()});$id("verhuur-goto-3").addEventListener("click",function(a){a.preventDefault();removeClass("tab-active");removeClass("tabpanel-active");$id("verhuur-stap-3").classList.add("tabpanel-active");$id("verhuur-tabs").children[2].classList.add("tab-active")});
-$id("verhuur-confirm-avail").addEventListener("click",function(a){a.preventDefault();var b=$id("verhuur-form").id;a=$id("aankomst-dag").value;var c=$id("aankomst-maand").value,f=$id("aankomst-jaar").value,d=$id("aankomst-uur").value,e=$id("aankomst-minuut").value,g=$id("vertrek-dag").value,k=$id("vertrek-maand").value,h=$id("vertrek-jaar").value,n=$id("vertrek-uur").value,l=$id("vertrek-minuut").value;showSuccess("Beschikbaarheid aan het controleren...",b);ajax("../php/ReserveringVerification.php",
-{d1:a,m1:c,y1:f,h1:d,min1:e,d2:g,m2:k,y2:h,h2:n,min2:l},function(a,c){var d=a;if(!a)try{0===JSON.parse(c).length?showSuccess("Er zijn geen reserveringen gevonden tijdens de gewenste periode.",b):showError("Er zijn reserveringen gevonden tijdens de gewenste periode. <b>Advies: Neem een optie en neem contact op met de beheerder.</b>",b)}catch(r){console.warn("Er is iets mis gegaan met het ophalen van de reserveringen.",c),d=!0}d&&showError("Er is iets mis gegaan met het ophalen van de reserveringen.",
-b)})});$id("hb-menu-btn-click").onclick=function(){$id("menu-links").classList.toggle("hb-menu-open");this.classList.toggle("hb-menu-btn-open")};$id("groepcode").oninput=function(){var a=document.getElementsByClassName("verhuur-groepcode"),b=!0;""!==this.value&&(b=!1);for(var c=0;c<a.length;c++)a[c].required=b,a[c].disabled=!b};function checkMinMax(a,b){var c=a.getAttribute("min");a=a.getAttribute("max");return c<b&&a>b?b:c>=b&&a>b?c:c<b&&a<=b?a:!1}
-function verhuurDateTime(){function a(a){"number"===typeof a&&(a=checkMinMax(this,+this.value+a),!1!==a&&(this.value=a))}function b(a){"number"===typeof a&&(this.selectedIndex+=a,-1===this.selectedIndex&&(this.selectedIndex=0))}function c(){g[this.getAttribute("for")].onchange(this.getAttribute("data-plus-it")?1:-1)}function f(a){return 1===a.toString().length?"0"+a:a}var d={j:$id("aankomst-jaar"),m:$id("aankomst-maand"),d:$id("aankomst-dag"),uu:$id("aankomst-uur"),mm:$id("aankomst-minuut")},e={j:$id("vertrek-jaar"),
-m:$id("vertrek-maand"),d:$id("vertrek-dag"),uu:$id("vertrek-uur"),mm:$id("vertrek-minuut")},g={"aankomst-jaar":d.j,"aankomst-maand":d.m,"aankomst-dag":d.d,"aankomst-uur":d.uu,"aankomst-minuut":d.mm,"vertrek-jaar":e.j,"vertrek-maand":e.m,"vertrek-dag":e.d,"vertrek-uur":e.uu,"vertrek-minuut":e.mm},k=document.getElementsByClassName("verhuur-label"),h=$id("EllenIkWil1DagHuren"),n=$id("verhuur-tabs"),l,m,q={setEindDays:function(){if(!n.getAttribute("data-first-time")){n.setAttribute("data-first-time",
-!0);var a=d.j.value+"-"+f(d.m.selectedIndex+1)+"-"+f(d.d.value)+"T12:00",a=new Date(a);h.checked?(e.uu.value=23,e.mm.value=59):(a.setDate(a.getDate()+5),e.uu.value=12>d.uu.value?d.uu.value+8:d.uu.value,e.mm.value=d.mm.value);e.j.value=a.getFullYear();e.m.selectedIndex=a.getMonth();e.d.value=a.getDate()}},verhuurtijd:function(){var a=function(a){return new Date(a.j.value+"-"+f(a.m.selectedIndex+1)+"-"+f(a.d.value)+"T"+f(a.uu.value)+":"+f(a.mm.value))},b=a(d);return(a(e)-b)/864E5},reset:function(){n.setAttribute("data-first-time",
-!1);h.checked=!1;for(var a in e){var b=e[a];b.required=!h.checked;b.disabled=h.checked}l=new Date;m=new Date;m.setDate(m.getDate()+5);d.m.selectedIndex=l.getMonth();e.m.selectedIndex=m.getMonth();d.d.value=l.getDate();e.d.value=m.getDate();d.j.value=l.getFullYear();e.j.value=m.getFullYear();d.uu.value=e.uu.value=l.getHours();d.mm.value=e.mm.value=l.getMinutes()}};h.onchange=function(){var a,b,c;for(c in e)a=e[c],b=d[c],this.checked&&("SELECT"===a.nodeName?a.selectedIndex=b.selectedIndex:a.value="uu"===
-c||"mm"===c?"uu"===c?23:59:b.value),a.required=!h.checked,a.disabled=h.checked};for(var k=$jscomp.makeIterator(k),p=k.next();!p.done;p=k.next())p.value.addEventListener("click",c);d.m.onchange=b;e.m.onchange=b;d.d.onchange=a;d.j.onchange=a;d.uu.onchange=a;d.mm.onchange=a;e.d.onchange=a;e.j.onchange=a;e.uu.onchange=a;e.mm.onchange=a;q.reset();return q}var VERHUUR=verhuurDateTime();
-function isTodayHired(a){var b,c,f=Date.now();if(a){for(var d=0;d<a.length;d++)if(b=Date.parse(a[d].dayFrom),c=Date.parse(a[d].dayTo),c=c===b?c+86399999:c,f<=c&&f>=b)return a[d].bySV?"sv":"other";return!1}}(function(){var a=new Date;ajax("../php/Reservering.php",{d:a.getDate(),m:a.getMonth()+1,y:a.getFullYear()},function(a,c){var b=a;if(!a)try{processHired(JSON.parse(c))}catch(d){console.warn("Er is iets mis gegaan met het ophalen van de reserveringen.",c),b=!0}b&&($id("mini-verhuur").innerHTML='<p class="verhuur-status">Er is iets mis gegaan met het ophalen van de reserveringen.</p>')})})();
-(function(){var a=location.hash.replace("#","");""!==a&&$id(a)&&scrollUp(a)})();
-function processHired(a){var b=$id("mini-verhuur"),c=document.createDocumentFragment(),f,d,e,g,k,h=function(a){a=new Date(a);return"zo ma di wo do vr za".split(" ")[a.getDay()]+". "+a.getDate()+" "+"jan feb mrt apr mei jun jul aug sep okt nov dec".split(" ")[a.getMonth()]+"."};d=$elem("ul");d.classList.add("hide-mobile");for(f=0;f<a.length;f++)e=$elem("li"),g=h(a[f].dayFrom),k=h(a[f].dayTo),e.textContent=k===g?"Op "+g:"Van "+g+" tot "+k,d.appendChild(e);c.appendChild(d);f=$elem("p");f.classList.add("verhuur-status");
-c.appendChild(f);a=isTodayHired(a);f.textContent=a?"sv"===a?"De blokhut wordt gebruikt door Scouting Veghel.":"De blokhut is op dit moment bezet.":"De blokhut is op dit moment vrij.";b.innerHTML="";b.appendChild(c)}$id("copy-year").textContent=(new Date).getFullYear();
+'use strict';
+
+// Navigation stays aligned with the existing sections and sticky header.
+const navigation = document.getElementById('navigatie');
+const menu = document.getElementById('menu-links');
+const menuButton = document.getElementById('hb-menu-btn-click');
+const navigationStart = document.getElementById('home-navigation-start');
+const sectionLinks = [...menu.querySelectorAll('[data-link]')];
+let scrollPending = false;
+
+function updateNavigation() {
+  navigation.classList.toggle('nav-sticky-top', navigationStart.getBoundingClientRect().top <= 0);
+  const offset = navigation.getBoundingClientRect().height + 2;
+  for (const link of sectionLinks) {
+    const section = document.getElementById(link.dataset.link);
+    const box = section.getBoundingClientRect();
+    link.classList.toggle('menu-active', box.top <= offset && box.bottom > offset);
+  }
+  scrollPending = false;
+}
+
+function requestNavigationUpdate() {
+  if (scrollPending) return;
+  scrollPending = true;
+  requestAnimationFrame(updateNavigation);
+}
+
+function scrollToSection(id) {
+  const target = document.getElementById(id);
+  if (!target) return;
+  window.scrollTo(
+    0,
+    Math.max(0, target.getBoundingClientRect().top + window.pageYOffset - navigation.offsetHeight),
+  );
+  requestNavigationUpdate();
+}
+
+function setMenuOpen(open) {
+  menu.classList.toggle('hb-menu-open', open);
+  menuButton.classList.toggle('hb-menu-btn-open', open);
+  menuButton.setAttribute('aria-expanded', String(open));
+  menuButton.setAttribute('aria-label', open ? 'Menu sluiten' : 'Menu openen');
+  if (open && !navigation.classList.contains('nav-sticky-top')) {
+    window.scrollTo(
+      0,
+      Math.max(0, navigationStart.getBoundingClientRect().top + window.pageYOffset),
+    );
+    requestNavigationUpdate();
+  }
+}
+
+menuButton.addEventListener('click', () =>
+  setMenuOpen(menuButton.getAttribute('aria-expanded') !== 'true'),
+);
+menu.addEventListener('click', (event) => {
+  const item = event.target.closest('[data-link]');
+  if (!item) return;
+  event.preventDefault();
+  setMenuOpen(false);
+  history.replaceState(null, '', '#' + item.dataset.link);
+  scrollToSection(item.dataset.link);
+});
+document.getElementById('arrowDown').addEventListener('click', () => scrollToSection('groepen'));
+document.getElementById('sv-logo').addEventListener('click', () => {
+  scrollToSection('landing-page');
+  window.location.hash = '';
+});
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && menu.classList.contains('hb-menu-open')) {
+    setMenuOpen(false);
+    menuButton.focus();
+  }
+});
+document.addEventListener('click', (event) => {
+  if (!navigation.contains(event.target)) setMenuOpen(false);
+});
+window.addEventListener('scroll', requestNavigationUpdate, { passive: true });
+window.addEventListener('pageshow', requestNavigationUpdate);
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 1280) setMenuOpen(false);
+  requestNavigationUpdate();
+});
+if (location.hash) scrollToSection(location.hash.slice(1));
+requestNavigationUpdate();
+document.getElementById('copy-year').textContent = new Date().getFullYear();
+
+// reCAPTCHA calls this public callback after checking the contact form.
+const contactForm = document.getElementById('contact-form');
+let contactBusy = false;
+contactForm.addEventListener('submit', (event) => event.preventDefault());
+
+function contactMessage(message, success) {
+  let box = document.getElementById('contact-result');
+  if (!box) {
+    box = document.createElement('div');
+    box.id = 'contact-result';
+    box.setAttribute('role', 'status');
+    contactForm.appendChild(box);
+  }
+  box.className = success ? 'success-message' : 'error-message';
+  box.textContent = message;
+}
+
+function contactSubmit(token) {
+  if (contactBusy) return;
+  if (!contactForm.reportValidity()) {
+    if (window.grecaptcha) grecaptcha.reset();
+    return;
+  }
+  const button = contactForm.querySelector('button.g-recaptcha');
+  contactBusy = true;
+  button.disabled = true;
+  contactMessage('Je bericht wordt verstuurd...', true);
+  const data = new FormData(contactForm);
+  data.set('g-recaptcha-response', token);
+  const request = new XMLHttpRequest();
+  request.open('POST', contactForm.action, true);
+  request.timeout = 20000;
+  function finish() {
+    contactBusy = false;
+    button.disabled = false;
+    if (window.grecaptcha) grecaptcha.reset();
+  }
+  request.onload = () => {
+    const success = request.status === 200;
+    contactMessage(
+      request.responseText || 'Versturen is niet gelukt. Probeer het opnieuw.',
+      success,
+    );
+    if (success) contactForm.reset();
+    finish();
+  };
+  request.onerror = request.ontimeout = () => {
+    contactMessage(
+      'Versturen is niet gelukt. Controleer je verbinding en probeer het opnieuw.',
+      false,
+    );
+    finish();
+  };
+  request.send(data);
+}
+
+// Only the current occupancy summary belongs here; booking lives in calendar.html.
+async function loadOccupancy() {
+  const container = document.getElementById('mini-verhuur');
+  const today = new Date();
+  const data = new URLSearchParams({
+    d: today.getDate(),
+    m: today.getMonth() + 1,
+    y: today.getFullYear(),
+  });
+  const status = document.createElement('p');
+  status.className = 'verhuur-status';
+  try {
+    const response = await fetch('php/Reservering.php', { method: 'POST', body: data });
+    if (!response.ok) throw new Error('Reserveringen niet beschikbaar');
+    const bookings = await response.json();
+    const list = document.createElement('ul');
+    list.className = 'hide-mobile';
+    function formatDate(value) {
+      const date = new Date(value);
+      const day = ['zo', 'ma', 'di', 'wo', 'do', 'vr', 'za'][date.getDay()];
+      const month = [
+        'jan',
+        'feb',
+        'mrt',
+        'apr',
+        'mei',
+        'jun',
+        'jul',
+        'aug',
+        'sep',
+        'okt',
+        'nov',
+        'dec',
+      ][date.getMonth()];
+      return `${day}. ${date.getDate()} ${month}.`;
+    }
+    for (const booking of bookings) {
+      const item = document.createElement('li');
+      const from = formatDate(booking.dayFrom);
+      const to = formatDate(booking.dayTo);
+      item.textContent = from === to ? `Op ${from}` : `Van ${from} tot ${to}`;
+      list.appendChild(item);
+    }
+    const current = bookings.find(
+      (booking) =>
+        today.getTime() >= Date.parse(booking.dayFrom) &&
+        today.getTime() <= Date.parse(booking.dayTo) + 86399999,
+    );
+    status.textContent = current
+      ? current.bySV
+        ? 'De blokhut wordt gebruikt door Scouting Veghel.'
+        : 'De blokhut is op dit moment bezet.'
+      : 'De blokhut is op dit moment vrij.';
+    container.replaceChildren(list, status);
+  } catch (error) {
+    status.textContent = 'Er is iets mis gegaan met het ophalen van de reserveringen.';
+    container.replaceChildren(status);
+    console.warn(error);
+  }
+}
+loadOccupancy();
+
+(function (a, b, c, f, d, e, g) {
+  a.GoogleAnalyticsObject = d;
+  a[d] =
+    a[d] ||
+    function () {
+      (a[d].q = a[d].q || []).push(arguments);
+    };
+  a[d].l = 1 * new Date();
+  e = b.createElement(c);
+  g = b.getElementsByTagName(c)[0];
+  e.async = 1;
+  e.src = f;
+  g.parentNode.insertBefore(e, g);
+})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+ga('create', 'UA-103964119-1', 'auto');
+ga('send', 'pageview');

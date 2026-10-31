@@ -1,35 +1,41 @@
-# for PHP Storm
-/.idea
-
-# for NetBeans
-/NetBeans/
-
-# for VSCode
+# Real deployment configuration and local state must never be committed.
+/private/
+/local/
+/.worktrees/
 /.vscode/
-
-# for node modules thingies
-/node_modules
-
-# for compile hero
-/css/dist/
-
-# config secrets
-/php/DB2.php
-/php/database.php
-/php/MAIL2.php
-
-# private sensitive settings
-/privateSettings
-/CurrentSVSite
-
-# DB backup and export
-/backup
-/db_export
-
-# error log for php
-*error_log*
+/.idea/
+/.env
+/.env.*
+!/.env.example
+**/sftp.json
+**/.ftpconfig*
+**/.svn/
+**/error_log
 *.log
+*.bak
+*.old
+*.dump
+/*.sql
+/backups/
+/exports/
+/db_export/
+/backup/
+/Release/
+/node_modules/
+__pycache__/
+.DS_Store
+Thumbs.db
+desktop.ini
+.ftpquota
 
-# release direcotry
-/Release
-/docs
+# Retired hosting files may still contain credentials when downloaded.
+/privateSettings/
+/CurrentSVSite/
+/php/DB2.php
+/php/MAIL2.php
+/php/info.php
+**/ftp.json
+*.pem
+*.key
+*.p12
+*.pfx

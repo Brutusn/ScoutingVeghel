@@ -1,0 +1,22 @@
+name: PHP checks
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  php:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: ['8.2', '8.3']
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: mysqli, mbstring, dom
+          coverage: none
+      - run: python3 maintenance/check-source.py
+      - run: php tests/configuration.php
+      - run: php tests/php_dependencies.php

@@ -1,63 +1,145 @@
 <?php
+header('Cache-Control: no-store');
+header('Content-Type: text/html; charset=UTF-8');
 
-require_once("db_layer.php");
-require_once("verhuur_settings.php");
-require_once('kostenberekening_nieuw.php');
+require_once __DIR__ . '/bookings.php';
+require_once __DIR__ . '/rental-settings.php';
+require_once __DIR__ . '/rental-costs.php';
 
-session_start();
-date_default_timezone_set('Europe/Paris');
+date_default_timezone_set('Europe/Amsterdam');
+
+if (
+    !isset($_GET['key']) ||
+    !is_string($_GET['key']) ||
+    trim($_GET['key']) === '' ||
+    strlen($_GET['key']) > 1024
+) {
+    exit('[ERROR] Er kon geen verhuring gevonden worden.');
+}
 
 //get verhuringID from provided key
-$key = trim(strip_tags($_GET["key"]), " \n");
+$key = trim(strip_tags($_GET['key']), " \n");
 $verhuring = getVerhuringFromConfirm($key);
 $verhuring_id = $verhuring[0];
 
 // if there is a verhuring for this key, continue
 if ($verhuring_id != -1) {
-	// Load all data into huurovereenkomst.
-	$tags = array(
-		'verhuurder_naam' => HV_VERHUURDER_NAME,
-		'verhuurder_vertegenwoordiger' => HV_VERHUURDER_REP,
-		'verhuurder_adres' => HV_VERHUURDER_ADDRESS,
-		'verhuurder_plaats' => HV_VERHUURDER_POSTAL,
-		'verhuurder_telefoon' => HV_VERHUURDER_PHONE,
-		'verhuurder_beheerder' => HV_BEHEERDER,
-		'verhuurder_beheerder_telefoon' => HV_BEHEERDER_PHONE,
-		'verhuurder_rekeningnummer' => HV_VERHUURDER_ACCOUNT
-	);
+    // Load all data into huurovereenkomst.
+    $contract = rentalContractConfiguration();
+    $tags = [
+        'verhuurder_naam' => htmlspecialchars(
+            $contract['HV_VERHUURDER_NAME'],
+            ENT_QUOTES | ENT_SUBSTITUTE,
+            'UTF-8'
+        ),
+        'verhuurder_vertegenwoordiger' => htmlspecialchars(
+            $contract['HV_VERHUURDER_REP'],
+            ENT_QUOTES | ENT_SUBSTITUTE,
+            'UTF-8'
+        ),
+        'verhuurder_adres' => htmlspecialchars(
+            $contract['HV_VERHUURDER_ADDRESS'],
+            ENT_QUOTES | ENT_SUBSTITUTE,
+            'UTF-8'
+        ),
+        'verhuurder_plaats' => htmlspecialchars(
+            $contract['HV_VERHUURDER_POSTAL'],
+            ENT_QUOTES | ENT_SUBSTITUTE,
+            'UTF-8'
+        ),
+        'verhuurder_telefoon' => htmlspecialchars(
+            $contract['HV_VERHUURDER_PHONE'],
+            ENT_QUOTES | ENT_SUBSTITUTE,
+            'UTF-8'
+        ),
+        'verhuurder_beheerder' => htmlspecialchars(
+            $contract['HV_BEHEERDER'],
+            ENT_QUOTES | ENT_SUBSTITUTE,
+            'UTF-8'
+        ),
+        'verhuurder_beheerder_telefoon' => htmlspecialchars(
+            $contract['HV_BEHEERDER_PHONE'],
+            ENT_QUOTES | ENT_SUBSTITUTE,
+            'UTF-8'
+        ),
+        'verhuurder_rekeningnummer' => htmlspecialchars(
+            $contract['HV_VERHUURDER_ACCOUNT'],
+            ENT_QUOTES | ENT_SUBSTITUTE,
+            'UTF-8'
+        )
+    ];
 
-	//Get data to fill template from DB
-	$data_array = getHuurovereenkomstData($verhuring_id);
-	if (!empty($data_array)){
-		$tags = array_merge($tags, $data_array);
-		$tags['verhuring_kenmerk_borg'] = 'WVB/'.$verhuring_id;
-		$tags['verhuring_kenmerk_huur'] = 'WVH/'.$verhuring_id;
-		$tags['verhuring_borg'] = '<strong>'.getBorg(getDifferenceInDays($tags['verhuring_begin_datum'], $tags['verhuring_eind_datum'])).'</strong>';
-		$tags['verhuring_prijs']  = '<strong>' .
-			(getKostenByDate($tags['verhuring_begin_datum'], $tags['verhuring_eind_datum'], $tags['verhuring_aantal_personen'])-
-			getBorg(getDifferenceInDays($tags['verhuring_begin_datum'], $tags['verhuring_eind_datum']))).'</strong>';
+    //Get data to fill template from DB
+    $data_array = getHuurovereenkomstData($verhuring_id);
+    if (!empty($data_array)) {
+        $tags = array_merge(
+            $tags,
+            array_map(static function ($value) {
+                return htmlspecialchars((string) $value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+            }, $data_array)
+        );
+        $tags['verhuring_kenmerk_borg'] = 'WVB/' . $verhuring_id;
+        $tags['verhuring_kenmerk_huur'] = 'WVH/' . $verhuring_id;
+        $tags['verhuring_borg'] =
+            '<strong>' .
+            getBorg(
+                getDifferenceInDays($tags['verhuring_begin_datum'], $tags['verhuring_eind_datum'])
+            ) .
+            '</strong>';
+        $tags['verhuring_prijs'] =
+            '<strong>' .
+            (getKostenByDate(
+                $tags['verhuring_begin_datum'],
+                $tags['verhuring_eind_datum'],
+                $tags['verhuring_aantal_personen']
+            ) -
+                getBorg(
+                    getDifferenceInDays(
+                        $tags['verhuring_begin_datum'],
+                        $tags['verhuring_eind_datum']
+                    )
+                )) .
+            '</strong>';
 
-		echo displayHuurovereenkomst(...$tags);
-		//echo the print button
-		echo "<p class='print_ignore'><input class='button' id='print' value='Print' type='button' onclick='printPage()'></p>";
-		echo "<script>function printPage() {window.print();}</script>";
-	} else {//Althought here was a verhuring for the key, no data could be retrieved
-		echo '[ERROR] Er kon geen data gevonden worden voor de verhuring.';
-	}
-} else { //ther eis no verhuring for this key
-	echo '[ERROR] Er kon geen verhuring gevonden worden.';
+        echo displayHuurovereenkomst(...$tags);
+        //echo the print button
+        echo "<p class='print_ignore'><input class='button' id='print' value='Print' type='button'></p>";
+        echo "<script src='/js/print-agreement.js'></script>";
+    } else {
+        //Althought here was a verhuring for the key, no data could be retrieved
+        echo '[ERROR] Er kon geen data gevonden worden voor de verhuring.';
+    }
+} else {
+    //ther eis no verhuring for this key
+    echo '[ERROR] Er kon geen verhuring gevonden worden.';
 }
 
 function displayHuurovereenkomst(
-	$verhuurder_naam, $verhuurder_vertegenwoordiger, $verhuurder_adres, $verhuurder_plaats, $verhuurder_telefoon,
-	$verhuurder_beheerder, $verhuurder_beheerder_telefoon, $verhuurder_rekeningnummer,
-	$huurder_naam, $huurder_telefoon, $huurder_adres, $huurder_postcode, $huurder_plaats,
-	$verhuring_begin_datum, $verhuring_eind_datum, $verhuring_aantal_personen,
-	$verhuring_borg_limiet, $verhuring_huurprijs_limiet,
-	$datum,
-	$verhuring_kenmerk_borg, $verhuring_kenmerk_huur, $verhuring_borg, $verhuring_prijs
-	){
-	return "
+    $verhuurder_naam,
+    $verhuurder_vertegenwoordiger,
+    $verhuurder_adres,
+    $verhuurder_plaats,
+    $verhuurder_telefoon,
+    $verhuurder_beheerder,
+    $verhuurder_beheerder_telefoon,
+    $verhuurder_rekeningnummer,
+    $huurder_naam,
+    $huurder_telefoon,
+    $huurder_adres,
+    $huurder_postcode,
+    $huurder_plaats,
+    $verhuring_begin_datum,
+    $verhuring_eind_datum,
+    $verhuring_aantal_personen,
+    $verhuring_borg_limiet,
+    $verhuring_huurprijs_limiet,
+    $datum,
+    $verhuring_kenmerk_borg,
+    $verhuring_kenmerk_huur,
+    $verhuring_borg,
+    $verhuring_prijs
+) {
+    return "
 <!DOCTYPE html
 	PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN'
 	'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
@@ -182,8 +264,10 @@ function displayHuurovereenkomst(
 	   <td>Verhuurder</td>
    </tr>
    <tr>
-	   <td style='height: 120px;'></td>
-	   <td></td>
+	   <td style='height: 120px;'>" .
+        "</td>
+	   <td>" .
+        "</td>
    </tr>
    <tr>
 	   <td>Plaats, datum</td>

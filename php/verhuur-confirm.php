@@ -1,70 +1,83 @@
 <?php
+header('Cache-Control: no-store');
+header('Content-Type: text/html; charset=UTF-8');
 
-require_once("db_layer.php");
-require_once("mail_layer.php");
+require_once __DIR__ . '/bookings.php';
+require_once __DIR__ . '/rental-mail.php';
 
-$BASE_URL = 'https://test.scoutingveghel.nl/';
+$BASE_URL = verhuurSiteBaseUrl() . '/';
 
-session_start();
-date_default_timezone_set('Europe/Paris');
+date_default_timezone_set('Europe/Amsterdam');
 
-if(isset($_GET["key"])) {
-	$key = trim(strip_tags($_GET["key"]), " \n");
+if (
+    !isset($_GET['key']) ||
+    !is_string($_GET['key']) ||
+    trim($_GET['key']) === '' ||
+    strlen($_GET['key']) > 1024
+) {
+    confirmDecline();
+}
+if (isset($_GET['key'])) {
+    $key = trim(strip_tags($_GET['key']), " \n");
 
-	$verhuring = getVerhuringFromConfirm($key);
-	$vid = $verhuring[0];
-	$hid = $verhuring[1];
-	$rid = $verhuring[2];
+    $verhuring = getVerhuringFromConfirm($key);
+    $vid = $verhuring[0];
+    $hid = $verhuring[1];
+    $rid = $verhuring[2];
 
-	if ($rid === -1 || $hid === -1) {
-		confirmDecline();
-	} else {
-		// First check if it can actually be updated
-		$updatable = isReserveringConfirmable($rid);
+    if ($rid === -1 || $hid === -1) {
+        confirmDecline();
+    } else {
+        // First check if it can actually be updated
+        $updatable = isReserveringConfirmable($rid);
 
-		//If so, update DB to confirmed and send email
-		if($updatable) {
-			reserveringConfirmed($rid);
-			$huurder = getInfoFromHid($hid);
-			$name = $huurder[0];
-			$mail = $huurder[1];
-			sendConfirmEmailEllen($name, $mail);
-			//TODO send email with huurcontract and voorwaarden
-			sendDocuments($name, $mail, $key);
-			confirmAccept();
-		} else {
-			confirmAlready();
-		}
-
-	}
+        //If so, update DB to confirmed and send email
+        if ($updatable) {
+            reserveringConfirmed($rid);
+            $huurder = getInfoFromHid($hid);
+            $name = $huurder[0];
+            $mail = $huurder[1];
+            try {
+                if (!sendConfirmEmailEllen(getBookingNotificationData($vid))) {
+                    error_log('Confirmed booking notification could not be sent.');
+                }
+            } catch (Throwable $error) {
+                error_log('Confirmed booking notification could not be sent.');
+            }
+            //TODO send email with huurcontract and voorwaarden
+            sendDocuments($name, $mail, $key);
+            confirmAccept();
+        } else {
+            confirmAlready();
+        }
+    }
 }
 
-
 /**
-* Shows the message that indicates the Verhuring is confirmed
-*/
+ * Shows the message that indicates the Verhuring is confirmed
+ */
 function confirmAccept() {
-	redirect("Uw reservering is bevestigd, u hoort zo spoedig mogelijk van ons.");
+    redirect('Uw reservering is bevestigd, u hoort zo spoedig mogelijk van ons.');
 }
 
 /**
-* Shows the message that indicates the Verhuring is already confirmed
-*/
+ * Shows the message that indicates the Verhuring is already confirmed
+ */
 function confirmAlready() {
-	redirect("Uw reservering is reeds bevestigd, u hoort zo spoedig mogelijk van ons.");
+    redirect('Uw reservering is reeds bevestigd, u hoort zo spoedig mogelijk van ons.');
 }
 
 /**
-* Shows the messages that indicates that the verhuring could not be found
-*/
+ * Shows the messages that indicates that the verhuring could not be found
+ */
 function confirmDecline() {
-	redirect("Uw reservering kon niet bevestigd worden, controleer of de link wel goed is.");
+    redirect('Uw reservering kon niet bevestigd worden, controleer of de link wel goed is.');
 }
 
 function redirect($msg) {
-	global $BASE_URL;
-	header('HTTP/1.1 200 Ok');
-	echo ('<!DOCTYPE html>
+    global $BASE_URL;
+    header('HTTP/1.1 200 Ok');
+    echo '<!DOCTYPE html>
 	<html>
 	<head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -99,20 +112,27 @@ function redirect($msg) {
 
 	<meta name="theme-color" content="#dddac4">
 
-	<meta http-equiv="refresh" content="10; url="' . $BASE_URL . '/>
+	<meta http-equiv="refresh" content="10; url=' .
+        htmlspecialchars($BASE_URL, ENT_QUOTES, 'UTF-8') .
+        '">
 	</head>
 	<body>
 	<div class="activiteiten fixed-background" style="padding: 15vh 0 15vh 0; height: 100vh; color: #202020;">
 	<div class="section verhuur">
 	<span class="size-limit no-text-shadow">
 	<h2>Status bevestiging genomen optie:</h2>
-	<p><strong>' . $msg . '</strong></p>
-	<a href="' . $BASE_URL . '" style="color: inherit; font-size: 75%;">Klik hier als u niet teruggestuurd wordt naar de startpagina.</a>
+	<p>' .
+        '<strong>' .
+        $msg .
+        '</strong></p>
+	<a href="' .
+        $BASE_URL .
+        '" style="color: inherit; font-size: 75%;">Klik hier als u niet teruggestuurd wordt naar de startpagina.</a>
 	</span>
 	</div>
 	</div>
 	</body>
-	</html>');
-	exit;
+	</html>';
+    exit();
 }
 ?>

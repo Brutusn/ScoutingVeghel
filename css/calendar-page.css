@@ -1,0 +1,600 @@
+body.booking-page {
+  margin: 0;
+  background: #f3f0e7;
+  color: #283a2e;
+}
+.booking-header {
+  min-height: 0;
+  padding: 1rem max(1.25rem, calc((100% - 1200px) / 2));
+  background: #32583b;
+  color: #fff;
+}
+.booking-header p {
+  margin: 0.4rem 0;
+}
+.booking-header a {
+  color: #f3d38b;
+  text-decoration: underline;
+}
+.booking-header h1 {
+  font-size: clamp(1.6rem, 3vw, 2.3rem);
+  margin: 0.6rem 0 0.4rem;
+  padding: 0;
+}
+.booking-layout {
+  max-width: 1240px;
+  margin: 2rem auto;
+  padding: 0 1.25rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 2rem;
+  align-items: start;
+}
+.calendar-panel,
+.booking-panel {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 14px;
+  box-shadow: 0 3px 15px #0001;
+  min-width: 0;
+}
+.booking-layout h2 {
+  font-size: 1.5rem;
+  margin-top: 0;
+}
+.booking-layout p {
+  line-height: 1.65;
+}
+.booking-layout a {
+  color: #32583b;
+  text-decoration: underline;
+}
+.calendar-wrapper {
+  width: 100%;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+#btnContainer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.booking-panel .contact-form {
+  width: 100%;
+  min-width: 0;
+  margin: 1.5rem 0;
+  padding: 0;
+}
+.booking-panel .tab-list {
+  display: flex;
+  padding: 0;
+}
+.booking-panel .tab-list li {
+  flex: 1;
+  text-align: center;
+  cursor: pointer;
+}
+.booking-note {
+  padding: 1rem;
+  background: #e4ebd9;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+.booking-page :focus-visible {
+  outline: 3px solid #bd6424;
+  outline-offset: 3px;
+}
+@media (max-width: 900px) {
+  .booking-layout {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 480px) {
+  .calendar-panel,
+  .booking-panel {
+    padding: 1rem;
+  }
+  .booking-layout {
+    padding: 0 0.75rem;
+  }
+  td {
+    height: 40px;
+  }
+}
+
+/* Navigatie in dezelfde stijl als de hoofdpagina. */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 150;
+  min-height: 3rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 1rem;
+  background: #ecf0f1;
+  color: #2e2f2a;
+  box-shadow: 0 1px 3px #0002;
+}
+.site-logo {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+}
+.site-logo svg {
+  display: block;
+  width: 100px;
+  height: 37.5px;
+}
+.site-logo svg path,
+.site-logo svg polygon {
+  fill: #2e2f2a;
+}
+.site-links {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0 0 0 auto;
+  padding: 0;
+}
+.site-links li {
+  margin: 0;
+  padding: 0;
+}
+.site-links a {
+  display: block;
+  padding: 0 0.85rem;
+  line-height: 3rem;
+  color: #2e2f2a;
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+}
+.site-links a:hover {
+  border-bottom-color: #2e2f2a;
+}
+.site-links a[aria-current='page'] {
+  border-bottom-color: #568096;
+}
+.site-menu-toggle {
+  display: none;
+  background: transparent;
+  color: #2e2f2a;
+  border: 1px solid #7d8072;
+  border-radius: 4px;
+  padding: 0.4rem 0.7rem;
+  font: inherit;
+  cursor: pointer;
+}
+.site-nav a:focus-visible,
+.site-menu-toggle:focus-visible {
+  outline: 3px solid #bd6424;
+  outline-offset: 3px;
+}
+@media (max-width: 1050px) {
+  .site-nav {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0.35rem 1rem;
+  }
+  .site-menu-toggle {
+    display: block;
+  }
+  .site-links {
+    display: none;
+    width: 100%;
+    margin: 0;
+    flex-direction: column;
+  }
+  .site-links.is-open {
+    display: flex;
+  }
+  .site-links a {
+    line-height: 2.6rem;
+  }
+}
+
+/* Verhuur in dezelfde warme kleuren als de hoofdpagina. */
+.booking-header {
+  min-height: 0;
+  background:
+    linear-gradient(rgba(20, 35, 27, 0.62), rgba(20, 35, 27, 0.72)),
+    url('images/blokhut/buiten1.jpg') center 55% / cover;
+  color: #fff;
+  border-bottom: 5px solid #f3d38b;
+}
+.booking-header h1 {
+  text-shadow: 0 2px 4px #0006;
+}
+.calendar-panel {
+  background: #e4ebd9;
+  border-top: 5px solid #95ac7c;
+}
+.booking-panel {
+  background: #faf3e5;
+  border-top: 5px solid #db9a6b;
+}
+.booking-panel .tab-list li {
+  background: #eee3ca;
+  color: #283a2e;
+  border-radius: 6px 6px 0 0;
+}
+.booking-panel .tab-list li.tab-active {
+  background: #32583b;
+  color: #fff;
+}
+.booking-panel .booking-note {
+  background: #e4ebd9;
+  border-left: 4px solid #95ac7c;
+}
+.booking-panel button,
+.booking-panel input[type='submit'] {
+  background: #32583b;
+  color: #fff;
+  border-radius: 6px;
+}
+.booking-panel button:hover,
+.booking-panel input[type='submit']:hover {
+  background: #23412b;
+}
+.calendar-panel #divCal thead td,
+.calendar-panel #divCal td.days {
+  background: #32583b;
+  color: #fff;
+}
+.calendar-panel .calendar-legend {
+  margin-top: 1.25rem;
+  padding: 0.75rem 1rem;
+  background: #f7f4eb;
+  border-radius: 8px;
+}
+
+.rental-info {
+  max-width: 1240px;
+  margin: 0 auto 3rem;
+  padding: 0 1.25rem;
+}
+.rental-info > h2 {
+  text-align: center;
+  font-size: 1.8rem;
+  margin: 2rem 0;
+}
+.rental-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+.rental-info-card {
+  min-width: 0;
+  padding: 1.5rem;
+  border-radius: 14px;
+  background: #e4ebd9;
+  border-top: 4px solid #95ac7c;
+}
+.rental-info-card:nth-child(even) {
+  background: #f8e9d5;
+  border-top-color: #db9a6b;
+}
+.rental-info-card h3 {
+  margin: 0 0 1rem;
+  font-size: 1.25rem;
+}
+.rental-info-card p {
+  margin: 0;
+  line-height: 1.75;
+}
+.rental-info-card a {
+  color: #32583b;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+@media (max-width: 760px) {
+  .rental-info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+body.booking-page {
+  padding-top: var(--site-nav-height, 54px);
+}
+.site-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+#boeken {
+  scroll-margin-top: 5rem;
+}
+.calendar-panel {
+  background: #f5edcf;
+  border-top-color: #d7b45c;
+}
+.booking-panel {
+  background: #e4ebd9;
+  border-top-color: #95ac7c;
+}
+.booking-panel .booking-note {
+  background: #fff6e3;
+  border-left-color: #d7b45c;
+}
+.rental-info-card:nth-child(4n + 1) {
+  background: #e4ebd9;
+  border-top-color: #95ac7c;
+}
+.rental-info-card:nth-child(4n + 2) {
+  background: #f8e9d5;
+  border-top-color: #db9a6b;
+}
+.rental-info-card:nth-child(4n + 3) {
+  background: #e4e9e5;
+  border-top-color: #859d8b;
+}
+.rental-info-card:nth-child(4n + 4) {
+  background: #f5edcf;
+  border-top-color: #d7b45c;
+}
+
+/* Dezelfde balk, afmetingen en menu-opmaak als op de hoofdpagina. */
+body {
+  padding-top: 3em;
+}
+body.booking-page {
+  padding-top: 3em;
+}
+.site-nav.navigatie {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 3em;
+  min-height: 0;
+  padding: 0;
+  background: #ecf0f1;
+}
+.site-nav .site-logo {
+  position: absolute;
+  left: 0.5em;
+  top: 0.45em;
+  transform: none;
+  display: block;
+}
+.site-nav .site-logo svg {
+  position: static;
+  width: 100px;
+  height: 37.5px;
+}
+.site-nav .site-links {
+  display: block;
+  width: auto;
+  height: inherit;
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+  list-style: none;
+}
+.site-nav .site-links li {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  height: inherit;
+  border: 0;
+  opacity: 1;
+  background: transparent;
+}
+.site-nav .site-links a {
+  display: block;
+  padding: 0 2em;
+  line-height: 3em;
+  color: #2e2f2a;
+  border-bottom: 2px solid #2e2f2a;
+  text-decoration: none;
+  height: 100%;
+}
+.site-nav .site-links a:hover {
+  border-bottom: 4px solid #000;
+  background: #ecf0f1;
+}
+.site-nav .site-links a[aria-current='page'] {
+  border-bottom: 6px solid #568096;
+}
+.site-nav .site-menu-toggle {
+  display: none;
+}
+@media (min-width: 721px) and (max-width: 825px) {
+  .site-nav .site-links {
+    text-align: right;
+  }
+}
+@media (max-width: 720px) {
+  .site-nav .site-menu-toggle {
+    display: block;
+    position: absolute;
+    right: 0.5em;
+    top: 0;
+    float: right;
+    border: 0;
+    border-radius: 0;
+    margin: 0;
+    padding: 0;
+    height: 1.5em;
+    line-height: 1.5;
+    font-size: 2em;
+    background: transparent;
+  }
+  .site-nav .site-links {
+    display: none;
+    position: absolute;
+    top: 3em;
+    left: 0;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    max-height: calc(100dvh - 3em);
+    overflow-y: auto;
+  }
+  .site-nav .site-links.is-open {
+    display: block;
+  }
+  .site-nav .site-links li {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: #ecf0f1;
+  }
+  .site-nav .site-links a {
+    padding: 1em;
+    line-height: 1.5;
+    border-bottom: 0;
+  }
+}
+
+/* Voorkom dat de kalenderstijl het lettertype van de hoofdnavigatie wijzigt. */
+.site-nav.navigatie {
+  font-family:
+    Segoe UI,
+    Helvetica,
+    Verdana,
+    Arial,
+    sans-serif;
+  font-size: 1rem;
+  line-height: normal;
+}
+
+.rental-info {
+  max-width: none;
+  margin: 2rem 0 0;
+  padding: 2.5rem max(1.25rem, calc((100% - 1200px) / 2)) 3rem;
+  background:
+    linear-gradient(rgba(20, 35, 27, 0.35), rgba(20, 35, 27, 0.45)),
+    url('images/background.jpg') center / cover;
+}
+.rental-info > h2 {
+  color: #fff;
+  text-shadow: 0 2px 4px #0008;
+  margin-top: 0;
+}
+@media (min-width: 761px) {
+  .rental-info {
+    background-attachment: fixed;
+  }
+}
+
+/* Gelijke menuvolgorde, afstanden en ruimte voor het logo op alle pagina's. */
+html {
+  scroll-padding-top: 3.75rem;
+}
+#menu-links,
+.site-nav .site-links {
+  text-align: center;
+}
+@media (min-width: 1101px) {
+  #navigatie,
+  .site-nav.navigatie {
+    padding: 0 115px;
+  }
+  #menu-links,
+  .site-nav .site-links {
+    display: flex;
+    justify-content: center;
+    height: 3rem;
+    margin: 0;
+    width: 100%;
+  }
+  #menu-links li,
+  .site-nav .site-links li {
+    display: block;
+    flex-shrink: 0;
+    padding: 0;
+    height: 3rem;
+    border: 0;
+  }
+  #menu-links li a,
+  .site-nav .site-links li a {
+    display: block;
+    height: 3rem;
+    line-height: 3rem;
+    padding: 0 0.85rem;
+    border-bottom: 2px solid #2e2f2a;
+    color: #2e2f2a;
+    text-decoration: none;
+  }
+  #menu-links li.menu-active a,
+  .site-nav .site-links a[aria-current='page'] {
+    border-bottom: 6px solid #568096;
+  }
+  #menu-links li a:hover,
+  .site-nav .site-links a:hover {
+    border-bottom: 4px solid #000;
+  }
+  .site-nav .site-menu-toggle,
+  #hb-menu-btn-click {
+    display: none;
+  }
+}
+@media (max-width: 1100px) {
+  #navigatie,
+  .site-nav.navigatie {
+    padding: 0;
+  }
+  #hb-menu-btn-click {
+    display: inline;
+  }
+  #menu-links,
+  .site-nav .site-links {
+    display: none;
+    position: absolute;
+    top: 3rem;
+    left: 0;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    max-height: calc(100dvh - 3rem);
+    overflow-y: auto;
+    background: #ecf0f1;
+  }
+  #menu-links.hb-menu-open,
+  .site-nav .site-links.is-open {
+    display: block;
+  }
+  #menu-links li,
+  .site-nav .site-links li {
+    display: block;
+    width: 100%;
+    height: auto;
+    opacity: 1;
+    padding: 0;
+    border: 0;
+    background: #ecf0f1;
+  }
+  #menu-links li a,
+  .site-nav .site-links li a {
+    display: block;
+    height: auto;
+    padding: 0.85rem;
+    line-height: 1.5;
+    border: 0;
+    color: #2e2f2a;
+    text-decoration: none;
+  }
+  #menu-links li.menu-active a,
+  .site-nav .site-links a[aria-current='page'] {
+    border-bottom: 4px solid #568096;
+  }
+  .site-nav .site-menu-toggle {
+    display: block;
+    position: absolute;
+    right: 0.5em;
+    top: 0;
+    border: 0;
+    padding: 0;
+    height: 1.5em;
+    line-height: 1.5;
+    font-size: 2em;
+    background: transparent;
+  }
+}

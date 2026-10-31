@@ -1,552 +1,1155 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!doctype html>
 
-    <meta name="DESCRIPTION" content="De derde incrimentatie van de website van Scouting Veghel.">
-    <meta name="KEYWORDS" content="scouting veghel explorers stam welpen bevers verkenners scouts">
-    <meta name="revisit-after" content="3 days">
-    <meta name="robots" content="all">
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0">
+<html lang="nl">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <meta
+      name="DESCRIPTION"
+      content="Buiten begint het avontuur bij Scouting Veghel. Ontdek onze groepen, lees praktische informatie voor ouders en neem contact op om kennis te maken."
+    />
+
+    <meta
+      name="KEYWORDS"
+      content="scouting veghel explorers stam welpen bevers verkenners scouts"
+    />
+
+    <meta name="revisit-after" content="3 days" />
+
+    <meta name="robots" content="all" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Scouting Veghel</title>
-    <link href="css/style.min.css" type="text/css" rel="stylesheet">
 
-    <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="/images/favicons/apple-touch-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
-    <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="/images/favicons/android-chrome-192x192.png" sizes="192x192">
-    <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
-    <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
-    <link rel="manifest" href="/images/favicons/manifest.json">
-    <link rel="mask-icon" href="/images/favicons/safari-pinned-tab.svg" color="#5bbad5">
-    <link rel="shortcut icon" href="/images/favicons/favicon.ico">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
-    <meta name="msapplication-config" content="/images/favicons/browserconfig.xml">
-    <meta name="theme-color" content="#dddac4">
+    <link href="css/style.min.css" type="text/css" rel="stylesheet" />
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png" />
+
+    <link rel="apple-touch-icon" sizes="60x60" href="/images/favicons/apple-touch-icon-60x60.png" />
+
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png" />
+
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png" />
+
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="/images/favicons/apple-touch-icon-114x114.png"
+    />
+
+    <link
+      rel="apple-touch-icon"
+      sizes="120x120"
+      href="/images/favicons/apple-touch-icon-120x120.png"
+    />
+
+    <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      href="/images/favicons/apple-touch-icon-144x144.png"
+    />
+
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="/images/favicons/apple-touch-icon-152x152.png"
+    />
+
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/images/favicons/apple-touch-icon-180x180.png"
+    />
+
+    <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      href="/images/favicons/android-chrome-192x192.png"
+      sizes="192x192"
+    />
+
+    <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96" />
+
+    <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16" />
+
+    <link rel="manifest" href="/images/favicons/manifest.json" />
+
+    <link rel="mask-icon" href="/images/favicons/safari-pinned-tab.svg" color="#5bbad5" />
+
+    <link rel="shortcut icon" href="/images/favicons/favicon.ico" />
+
+    <meta name="msapplication-TileColor" content="#da532c" />
+
+    <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png" />
+
+    <meta name="msapplication-config" content="/images/favicons/browserconfig.xml" />
+
+    <meta name="theme-color" content="#dddac4" />
 
     <script src="https://www.google.com/recaptcha/api.js" defer></script>
 
-    <!--<script src="js/datepickr.js"></script>-->
-    <script src="js/scripts.origineel.js" defer></script>
+    <script src="js/scripts.js?v=20261029" defer></script>
+
+    <script src="js/home-calendar.js" defer></script>
+    <link href="css/site-theme.css?v=20261025" rel="stylesheet" />
+    <link href="css/home.css?v=20261026-hero-logo" type="text/css" rel="stylesheet" />
   </head>
+
   <body>
-	<div class="navigatie" id="navigatie">
-        <svg id="sv-logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="100px" height="37.5px" viewBox="0 0 800 300" enable-background="new 0 0 800 300" xml:space="preserve">
-            <g>
-            <path d="M118.814 68.788c-3.601 0-7.201-1.35-10.127-4.726c6.076-3.601 10.127-11.927 10.127-19.353 c0-7.877-4.501-15.078-16.428-15.078c-12.377 0-20.929 7.201-20.929 19.578c0 35.3 50.6 37.4 50.6 87.5 c0 31.729-23.404 52.208-59.635 52.208c-18.003 0-49.733-3.825-49.733-36.23c0-21.153 15.753-32.405 33.08-32.405 c10.127 0 16.4 3.4 18.2 11.477c-18.229 1.575-26.329 9.227-26.329 24.754c0 15.1 11.7 21.6 22.3 21.6 c17.778 0 24.754-15.527 24.754-32.18c0-42.307-48.607-51.533-48.607-85.063c0-23.629 26.779-41.856 53.559-41.856 c11.927 0 37.8 1.8 37.8 27.004C137.492 58.9 130.5 68.8 118.8 68.788z"/>
-            <path d="M210.181 91.292c0-5.4-3.375-7.651-8.326-7.651c-18.903 0-31.055 36.681-31.055 61 c0 13.3 2.7 24.1 16.4 24.079c15.978 0 28.805-9.452 39.156-21.153h7.651c-10.802 12.151-22.954 40.281-62.786 40.3 c-18.678 0-30.829-10.352-30.829-36.906c0-32.854 14.177-76.286 57.834-76.286c12.152 0 24.8 3.1 24.8 15.5 c0 2.476-0.225 4.501-1.125 7.426c-1.125-0.675-2.926-1.35-5.626-1.35c-2.025 0-4.275 0.45-7.201 1.4 C209.73 95.1 210.2 93.1 210.2 91.292z"/>
-            <path d="M309.195 106.145c1.351 1.4 3.4 2 6.5 2.025c10.576 0 15.303-7.651 23.629-11.027l0.9 4.7 c-6.977 8.776-18.679 16.202-31.73 19.803c-4.275 45.231-28.805 67.511-51.309 67.511c-24.079 0-34.431-10.127-34.431-36.906 c0-55.358 28.13-79.212 59.185-79.212C303.345 73.1 308.7 89.7 309.2 106.145z M291.867 123.9 c-6.525 0-9.451-4.726-9.451-10.126c0-6.526 3.826-13.502 9.901-15.753c-0.675-7.426-3.15-11.702-9.451-11.702 c-21.153 0-30.155 45.907-30.155 63.91c0 13.5 6.3 17.1 15.1 17.103C281.516 167.4 289.2 145.8 291.9 123.922z"/>
-            <path d="M425.317 75.314l-16.203 76.512c-0.45 2.476-0.899 4.951-0.899 6.977c0 5 2.2 8.6 11.3 8.6 c9.002 0 20.704-12.602 29.705-19.803h7.651c-10.352 10.352-35.78 40.281-53.334 40.281c-15.303 0-25.654-5.851-27.68-18.903 c-10.577 9.902-22.729 18.903-32.405 18.903c-17.328 0-28.13-7.651-28.13-24.529c0-3.375 0.45-7.201 1.351-11.477l16.202-76.512 h32.405l-16.202 76.512c-0.45 2.476-0.9 4.951-0.9 6.977c0 5 2.2 8.6 11.3 8.551c4.726 0 10.352-3.601 15.978-8.102 c0.225-2.25 0.675-4.726 1.351-7.426l16.202-76.512H425.317z"/>
-            <path d="M492.604 39.759c0 0-3.375 15.303-7.651 35.556h13.502l-1.8 9.002h-13.502 c-15.527 71.11-15.303 73.36-15.303 74.486c0 5.2 2.2 8.6 11.3 8.551c9.001 0 20.703-12.602 29.705-19.803h7.651 c-10.353 10.352-35.781 40.281-53.334 40.281c-17.328 0-27.904-7.651-27.904-24.529c0-11.927 11.701-59.634 15.527-78.986h-7.427 l1.801-9.002h7.426l6.751-31.055L492.604 39.759z"/>
-            <path d="M547.963 75.314l-16.202 76.512c-0.45 2.476-0.9 4.951-0.9 6.977c0 5 2.2 8.6 11.3 8.6 c9.001 0 20.703-12.602 29.704-19.803h7.651c-10.352 10.352-35.78 40.281-53.333 40.281c-17.328 0-28.13-7.651-28.13-24.529 c0-3.375 0.45-7.201 1.35-11.477l16.203-76.512H547.963z M537.611 27.606c9.901 0 18 8.1 18 18 c0 9.902-8.102 17.778-18.003 17.778s-17.778-7.876-17.778-17.778C519.833 35.7 527.7 27.6 537.6 27.606z"/>
-            <path d="M651.031 151.826c-0.675 2.476-1.125 4.951-1.125 7.201c0 5 2.5 8.3 11.3 8.3 c9.001 0 12.377-6.976 21.378-14.177h7.651c-10.352 10.352-27.454 34.655-45.007 34.655s-27.904-7.651-27.904-24.529 c0-3.601 0.449-7.201 1.35-11.477l8.552-40.506c0.45-2.025 0.675-4.051 0.675-5.851c0-8.102-4.275-13.277-10.352-13.277 c-5.4 0-9.451 1.575-14.178 4.726l-19.128 90.914H551.79l23.854-112.518h32.405l-2.701 12.2 c9.227-6.751 19.578-12.152 29.48-12.152c12.151 0 25.9 13.1 25.9 28.13c0 1.8 0 3.601-0.45 5.4L651.031 151.826z"/>
-            <path d="M668.809 160.603c0-31.055 11.927-85.063 55.584-85.063c8.102 0 14.6 4.7 18 10.577l2.25-10.802 h32.631l-27.454 130.521c-6.752 32.181-26.104 38.256-40.957 38.256c-13.728 0-26.555-9.676-26.555-24.304 c0-20.479 16.653-23.854 37.581-27.904l2.701-12.152c-6.752 5.401-15.528 9.452-25.88 9.5 C675.109 189.2 668.8 173.9 668.8 160.603z M703.689 224.063c4.726 0 10.352-4.275 13.277-17.553l1.575-7.426 c-14.178 2.476-23.854 5.4-23.854 17.553C694.688 219.8 698.7 224.1 703.7 224.063z M696.488 156.3 c0 10.8 6.5 14.2 16.4 14.177c4.275 0 8.776-3.15 13.052-7.426l13.952-65.26c-3.601-6.751-9.227-9.677-13.052-9.677 C705.04 88.1 696.5 137 696.5 156.327z"/>
-            <path d="M521.162 255.557c3.865 0 10.488-4.571 13.245-10.405h3.549c-4.494 8.122-12.063 16.083-22.234 16.1 c-7.571 0-11.666-5.754-11.666-12.536c0-10.014 4.254-27.595 18.606-27.595c6.466 0 10.1 2.7 10.1 8.2 c0 9.624-10.327 15.142-17.818 16.087c-0.154 1.259-0.235 2.444-0.235 3.389C514.697 254 518.1 255.6 521.2 255.557z M525.262 225.281c-4.413 0-8.042 8.91-9.698 16.321c7.254-0.077 12.381-6.308 12.458-11.905 C528.021 228 527.6 225.3 525.3 225.281z"/>
-            <path d="M570.358 221.813l-7.408 34.928c5.042-2.602 9.538-6.15 12.14-12.063l-0.315 6.2 c-1.027 5.125-6.546 8.042-12.772 10.329l-1.34 6.31c-2.369 11.271-8.99 13.4-14.191 13.4c-4.81 0-8.831-2.525-8.831-7.647 c0-6.465 5.756-9.066 12.852-11.667l0.788-3.551c-2.366 2.13-5.439 3.783-9.067 3.783c-7.566 0-9.773-6.382-9.773-11.034 c0-10.879 4.176-28.937 19.474-28.937c2.836 0 5.1 1.6 6.2 3.705l0.865-3.784H570.358z M544.659 274.8 c1.574 0 3.623-2.365 4.571-7.018l0.473-2.364c-4.494 1.736-7.729 3.705-7.729 6.8 C541.974 273.3 542.9 274.8 544.7 274.795z M542.134 249.327c0 3.8 2.3 5 5.8 5 c1.576 0 3.23-1.185 4.73-2.759l4.651-21.841c-1.261-2.364-3.154-3.393-4.496-3.393 C545.13 226.3 542.1 242.5 542.1 249.327z"/>
-            <path d="M604.734 248.619c-0.236 0.946-0.394 1.813-0.394 2.524c0 1.7 0.9 2.9 3.9 2.9 c3.151 0 7.254-4.414 10.408-6.937h2.68c-3.628 3.626-12.536 14.112-18.685 14.112c-6.152 0-9.777-2.679-9.777-8.594 c0-1.262 0.157-2.522 0.474-4.021l2.997-14.189c0.154-0.712 0.237-1.421 0.237-2.053c0-2.838-1.501-4.65-3.629-4.65 c-1.894 0-3.312 0.553-4.889 1.653l-6.777 31.854h-11.358l11.434-53.613l11.669-1.577l-4.259 19.9 c3.234-2.281 6.861-4.179 10.249-4.179c4.26 0 9.1 4.6 9.1 9.857c0 0.6 0 1.26-0.158 1.89L604.734 248.619z"/>
-            <path d="M629.336 255.557c3.859 0 10.483-4.571 13.242-10.405h3.551c-4.496 8.122-12.064 16.083-22.233 16.1 c-7.567 0-11.669-5.754-11.669-12.536c0-10.014 4.258-27.595 18.607-27.595c6.465 0 10.1 2.7 10.1 8.2 c0 9.624-10.329 15.142-17.82 16.087c-0.155 1.259-0.236 2.444-0.236 3.389C622.868 254 626.3 255.6 629.3 255.557z M633.433 225.281c-4.413 0-8.042 8.91-9.698 16.321c7.255-0.077 12.379-6.308 12.458-11.905 C636.192 228 635.8 225.3 633.4 225.281z"/>
-            <path d="M652.988 248.619c-0.238 0.946-0.395 1.813-0.395 2.683c0 1.7 0.6 2.9 2.8 2.9 c0.55 0 1.4 0 2.052-0.234c-2.207 6.777-5.518 7.253-8.198 7.253c-5.599 0-8.045-3.709-8.045-8.673 c0-1.26 0.156-2.602 0.473-3.942l8.676-40.998l11.666-1.577L652.988 248.619z"/>
-            <polygon points="505.6,202.5 489,250.7 488.3,202.3 488.3,202.3 22.9,202.3 280.6,208.9 477.8,208.9 477.8,261.2 489.2,261.2 511.1,202.5"/>
-            </g>
-        </svg>
+    <div id="home-navigation-start" aria-hidden="true"></div>
+    <div class="navigatie" id="navigatie">
+      <svg
+        id="sv-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        version="1.1"
+        x="0px"
+        y="0px"
+        width="100px"
+        height="37.5px"
+        viewBox="0 0 800 300"
+        enable-background="new 0 0 800 300"
+        xml:space="preserve"
+      >
+        <g>
+          <path
+            d="M118.814 68.788c-3.601 0-7.201-1.35-10.127-4.726c6.076-3.601 10.127-11.927 10.127-19.353 c0-7.877-4.501-15.078-16.428-15.078c-12.377 0-20.929 7.201-20.929 19.578c0 35.3 50.6 37.4 50.6 87.5 c0 31.729-23.404 52.208-59.635 52.208c-18.003 0-49.733-3.825-49.733-36.23c0-21.153 15.753-32.405 33.08-32.405 c10.127 0 16.4 3.4 18.2 11.477c-18.229 1.575-26.329 9.227-26.329 24.754c0 15.1 11.7 21.6 22.3 21.6 c17.778 0 24.754-15.527 24.754-32.18c0-42.307-48.607-51.533-48.607-85.063c0-23.629 26.779-41.856 53.559-41.856 c11.927 0 37.8 1.8 37.8 27.004C137.492 58.9 130.5 68.8 118.8 68.788z"
+          />
 
-        <i id="hb-menu-btn-click" class="fa fa-bars hb-menu-btn"></i>
+          <path
+            d="M210.181 91.292c0-5.4-3.375-7.651-8.326-7.651c-18.903 0-31.055 36.681-31.055 61 c0 13.3 2.7 24.1 16.4 24.079c15.978 0 28.805-9.452 39.156-21.153h7.651c-10.802 12.151-22.954 40.281-62.786 40.3 c-18.678 0-30.829-10.352-30.829-36.906c0-32.854 14.177-76.286 57.834-76.286c12.152 0 24.8 3.1 24.8 15.5 c0 2.476-0.225 4.501-1.125 7.426c-1.125-0.675-2.926-1.35-5.626-1.35c-2.025 0-4.275 0.45-7.201 1.4 C209.73 95.1 210.2 93.1 210.2 91.292z"
+          />
 
-        <ul id="menu-links" class="hb-menu">
-            <li data-link="groepen">Groepen
-            <li data-link="activiteiten">Activiteiten
-            <li data-link="staf">Staf
-            <li data-link="ouders">Ouders
-            <li data-link="contact">Contact
-            <li data-link="verhuur">Verhuur
-        </ul>
-	</div>
+          <path
+            d="M309.195 106.145c1.351 1.4 3.4 2 6.5 2.025c10.576 0 15.303-7.651 23.629-11.027l0.9 4.7 c-6.977 8.776-18.679 16.202-31.73 19.803c-4.275 45.231-28.805 67.511-51.309 67.511c-24.079 0-34.431-10.127-34.431-36.906 c0-55.358 28.13-79.212 59.185-79.212C303.345 73.1 308.7 89.7 309.2 106.145z M291.867 123.9 c-6.525 0-9.451-4.726-9.451-10.126c0-6.526 3.826-13.502 9.901-15.753c-0.675-7.426-3.15-11.702-9.451-11.702 c-21.153 0-30.155 45.907-30.155 63.91c0 13.5 6.3 17.1 15.1 17.103C281.516 167.4 289.2 145.8 291.9 123.922z"
+          />
 
-      <header class="section aanmeld fixed-background" id="landing-page">
-	  <h1>Scouting Veghel</h1>
+          <path
+            d="M425.317 75.314l-16.203 76.512c-0.45 2.476-0.899 4.951-0.899 6.977c0 5 2.2 8.6 11.3 8.6 c9.002 0 20.704-12.602 29.705-19.803h7.651c-10.352 10.352-35.78 40.281-53.334 40.281c-15.303 0-25.654-5.851-27.68-18.903 c-10.577 9.902-22.729 18.903-32.405 18.903c-17.328 0-28.13-7.651-28.13-24.529c0-3.375 0.45-7.201 1.351-11.477l16.202-76.512 h32.405l-16.202 76.512c-0.45 2.476-0.9 4.951-0.9 6.977c0 5 2.2 8.6 11.3 8.551c4.726 0 10.352-3.601 15.978-8.102 c0.225-2.25 0.675-4.726 1.351-7.426l16.202-76.512H425.317z"
+          />
 
-	  <div id="quick-info" class="header-info header-box">
-        <h2>Het doel van Scouting Veghel</h2>
-        <p>
-            Gestalte geven aan het Scoutingspel op grondslag van de ideeën van Lord Robert Baden-Powell en
-            beoogt daarmee een plezierige beleving van de vrije tijd te bieden aan jongens en meisjes, waardoor
-            een bijdrage wordt geleverd aan de vorming van hun persoonlijkheid.
-        </p>
-	  </div>
+          <path
+            d="M492.604 39.759c0 0-3.375 15.303-7.651 35.556h13.502l-1.8 9.002h-13.502 c-15.527 71.11-15.303 73.36-15.303 74.486c0 5.2 2.2 8.6 11.3 8.551c9.001 0 20.703-12.602 29.705-19.803h7.651 c-10.353 10.352-35.781 40.281-53.334 40.281c-17.328 0-27.904-7.651-27.904-24.529c0-11.927 11.701-59.634 15.527-78.986h-7.427 l1.801-9.002h7.426l6.751-31.055L492.604 39.759z"
+          />
 
-	  <div id="verhuur-kalender" class="verhuur-small header-box">
-		<h2>Verhuurd:</h2>
-		<div id="mini-verhuur"><i class="fa fa-fw fa-spinner fa-pulse"></i></div>
-	  </div>
+          <path
+            d="M547.963 75.314l-16.202 76.512c-0.45 2.476-0.9 4.951-0.9 6.977c0 5 2.2 8.6 11.3 8.6 c9.001 0 20.703-12.602 29.704-19.803h7.651c-10.352 10.352-35.78 40.281-53.333 40.281c-17.328 0-28.13-7.651-28.13-24.529 c0-3.375 0.45-7.201 1.35-11.477l16.203-76.512H547.963z M537.611 27.606c9.901 0 18 8.1 18 18 c0 9.902-8.102 17.778-18.003 17.778s-17.778-7.876-17.778-17.778C519.833 35.7 527.7 27.6 537.6 27.606z"
+          />
 
-	  <?xml version="1.0" ?>
-	  <svg id="arrowDown" height="44px" version="1.1" viewBox="0 0 44 44" width="44px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-	  <defs>
-	  <path d="M0,11 C0,4.92486745 4.92486745,0 11,0 C17.0751325,0 22,4.92486745 22,11 C22,17.0751325 17.0751325,22 11,22 C4.92486745,22 0,17.0751325 0,11 L0,11 Z M21,11 C21,5.47715225 16.5228478,1 11,1 C5.47715225,1 1,5.47715225 1,11 C1,16.5228478 5.47715225,21 11,21 C16.5228478,21 21,16.5228478 21,11 L21,11 Z M11,16.5 L15,13.5 L15,12.5 L11.4984375,15.25 L11.4984374,5.5 L10.5,5.5 L10.5,15.25 L7,12.5 L7,13.5 L11,16.5 L11,16.5 Z" id="path-1"/>
-	  </defs>
-	  <g fill="none" fill-rule="evenodd" id="miu" stroke="none" stroke-width="1" transform="scale(2)">
-		  <g id="circle_arrow-down_download_outline_stroke">
-		  <use fill="rgba(255, 255, 255, 0.5)" fill-rule="evenodd" xlink:href="#path-1"/>
-		  <use fill="none" xlink:href="#path-1"/>
-		  </g>
-	  </g>
-	  </svg>
-      </header>
+          <path
+            d="M651.031 151.826c-0.675 2.476-1.125 4.951-1.125 7.201c0 5 2.5 8.3 11.3 8.3 c9.001 0 12.377-6.976 21.378-14.177h7.651c-10.352 10.352-27.454 34.655-45.007 34.655s-27.904-7.651-27.904-24.529 c0-3.601 0.449-7.201 1.35-11.477l8.552-40.506c0.45-2.025 0.675-4.051 0.675-5.851c0-8.102-4.275-13.277-10.352-13.277 c-5.4 0-9.451 1.575-14.178 4.726l-19.128 90.914H551.79l23.854-112.518h32.405l-2.701 12.2 c9.227-6.751 19.578-12.152 29.48-12.152c12.151 0 25.9 13.1 25.9 28.13c0 1.8 0 3.601-0.45 5.4L651.031 151.826z"
+          />
 
-      <div class="section groepen high-margin" id="groepen">
+          <path
+            d="M668.809 160.603c0-31.055 11.927-85.063 55.584-85.063c8.102 0 14.6 4.7 18 10.577l2.25-10.802 h32.631l-27.454 130.521c-6.752 32.181-26.104 38.256-40.957 38.256c-13.728 0-26.555-9.676-26.555-24.304 c0-20.479 16.653-23.854 37.581-27.904l2.701-12.152c-6.752 5.401-15.528 9.452-25.88 9.5 C675.109 189.2 668.8 173.9 668.8 160.603z M703.689 224.063c4.726 0 10.352-4.275 13.277-17.553l1.575-7.426 c-14.178 2.476-23.854 5.4-23.854 17.553C694.688 219.8 698.7 224.1 703.7 224.063z M696.488 156.3 c0 10.8 6.5 14.2 16.4 14.177c4.275 0 8.776-3.15 13.052-7.426l13.952-65.26c-3.601-6.751-9.227-9.677-13.052-9.677 C705.04 88.1 696.5 137 696.5 156.327z"
+          />
 
-		<span class="size-limit scrollable-y">
-			<h2>Informatie over de groepen:</h2>
+          <path
+            d="M521.162 255.557c3.865 0 10.488-4.571 13.245-10.405h3.549c-4.494 8.122-12.063 16.083-22.234 16.1 c-7.571 0-11.666-5.754-11.666-12.536c0-10.014 4.254-27.595 18.606-27.595c6.466 0 10.1 2.7 10.1 8.2 c0 9.624-10.327 15.142-17.818 16.087c-0.154 1.259-0.235 2.444-0.235 3.389C514.697 254 518.1 255.6 521.2 255.557z M525.262 225.281c-4.413 0-8.042 8.91-9.698 16.321c7.254-0.077 12.381-6.308 12.458-11.905 C528.021 228 527.6 225.3 525.3 225.281z"
+          />
 
-			<div class="groepen-container">
-				<div id="bevers">
-					<h2 class="gemengd">Bevers</h2>
-					<p>De jongste leden van Scouting Veghel. De groep om kennis te maken met het scoutingspel op een afwisselende manier. De bosspelletjes worden afgewisseld met de mooiste knutselwerkjes! De bevers mogen soms zelfs een weekendje slapen op de blokhut.</p>
-					<p class="draaitijden"><i class="fa fa-birthday-cake"></i> 5-7 jr., <i class="fa fa-calendar"></i> za. 9:00 - 10:45</p>
-				</div>
-				<div id="nepwelpen">
-					<h2 class="gemengd">Welpen Klavertje 4</h2>
-					<p>De welpen groep waar zowel jongens als meisjes zich helemaal kunnen uitleven tijdens het programma. Luciferbanen, bruggen bouwen van papier, een 8 meter lang schilderij? Waarom niet, dat doen we toch even als we uit het bos komen? Appeltje, eitje.</p>
-					<p class="draaitijden"><i class="fa fa-birthday-cake"></i> 7-11 jr., <i class="fa fa-calendar"></i> za. 11:15 - 13:15</p>
-				</div>
-				<div id="sionie">
-					<h2 class="jongens">Welpen Sionie Horde</h2>
-					<p>De welpen van deze stoere jongensgroep zijn onbevreesd en veelzijdig! Geen bos is onbegaanbaar, geen spel is te moeilijk en ze laten geen uitdaging liggen! Ze spelen samen met anderen in de jungle, houden vol en zorgen goed voor de natuur.</p>
-					<p class="draaitijden"><i class="fa fa-birthday-cake"></i> 7-11 jr., <i class="fa fa-calendar"></i> za. 9:00 - 11:00</p>
-				</div>
-                <div id="doorstartwelpen">
-                    <h2 class="gemengd">Welpen Nishaani Horde</h2>
-                    <p>Vrijdag avond gaan zowel meisjes als jongens de uitdaging van de welpen aan. Zullen ze het donker in gaan of in het veilige licht van de blokhut blijven.</p>
-                    <p class="draaitijden"><i class="fa fa-birthday-cake"></i> 7-11 jr., <i class="fa fa-calendar"></i> vr. 18:30 - 20:30</p>
-                </div>
-				<div id="scouts">
-					<h2 class="gemengd">Scouts de Dwaalsterren</h2>
-					<p>Een scout trekt er samen met anderen op uit om de wijde wereld te ontdekken en op iedere plek een goede grap te kunnen vertellen. De dames en heren van deze groep draaien hun hand niet om voor een kamp midden in het bos. Keuken zelf bouwen? Natuurlijk!</p>
-					<p class="draaitijden"><i class="fa fa-birthday-cake"></i> 11-15 jr., <i class="fa fa-calendar"></i> di. 19:00 - 21:00</p>
-				</div>
-				<div id="verkenners">
-					<h2 class="jongens">Neil Armstrong Troep</h2>
-					<p>De verkenners van Scouting Veghel zijn stoere jongens die veel lol met elkaar hebben. Ze gaan het liefste lekker naar buiten: spelletjes in de bossen, leren survivallen, houthakken of een vuurtje maken. Kom jij ook meedoen met deze actieve en gezellige club?</p>
-					<p class="draaitijden"><i class="fa fa-birthday-cake"></i> 11-15 jr., <i class="fa fa-calendar"></i> wo. 19:00 - 21:00</p>
-				</div>
-				<div id="explo">
-					<h2 class="gemengd">Explorers</h2>
-					<p>De laatste stap naar volwassenheid en onafhankelijkheid. Jij mag je eigen programma's maken, jij mag je eigen activiteiten organiseren. Van een feest tot een grote BBQ tot een mooi kampvuur. De begeleiding laat jou bijna volledig los! Kun jij de groep aan?!</p>
-					<p class="draaitijden"><i class="fa fa-birthday-cake"></i> 15-18 jr., <i class="fa fa-calendar"></i> ma. 19:30 - 21:30</p>
-				</div>
-				<div id="stam">
-					<h2 class="gemengd">S5 Stam</h2>
-					<p>Dit is de groep die het zelf voor het zeggen heeft! Er is geen leider die zal zeggen dat het niet mag. Van een avondje gamen tot de spelletjes die ze bij de welpen spelen, maar dan extreem! Het kan zo gek niet met deze groep S5-ers van de stam!</p>
-					<p class="draaitijden"><i class="fa fa-birthday-cake"></i> 18+, <i class="fa fa-calendar"></i> zo. 20:00 - 23:00</p>
-				</div>
-			</div>
-		</span>
-      </div>
+          <path
+            d="M570.358 221.813l-7.408 34.928c5.042-2.602 9.538-6.15 12.14-12.063l-0.315 6.2 c-1.027 5.125-6.546 8.042-12.772 10.329l-1.34 6.31c-2.369 11.271-8.99 13.4-14.191 13.4c-4.81 0-8.831-2.525-8.831-7.647 c0-6.465 5.756-9.066 12.852-11.667l0.788-3.551c-2.366 2.13-5.439 3.783-9.067 3.783c-7.566 0-9.773-6.382-9.773-11.034 c0-10.879 4.176-28.937 19.474-28.937c2.836 0 5.1 1.6 6.2 3.705l0.865-3.784H570.358z M544.659 274.8 c1.574 0 3.623-2.365 4.571-7.018l0.473-2.364c-4.494 1.736-7.729 3.705-7.729 6.8 C541.974 273.3 542.9 274.8 544.7 274.795z M542.134 249.327c0 3.8 2.3 5 5.8 5 c1.576 0 3.23-1.185 4.73-2.759l4.651-21.841c-1.261-2.364-3.154-3.393-4.496-3.393 C545.13 226.3 542.1 242.5 542.1 249.327z"
+          />
 
-      <div class="section activiteiten fixed-background" id="activiteiten">
-		<span class="size-limit-small">
-        <h2>Activiteiten:</h2>
+          <path
+            d="M604.734 248.619c-0.236 0.946-0.394 1.813-0.394 2.524c0 1.7 0.9 2.9 3.9 2.9 c3.151 0 7.254-4.414 10.408-6.937h2.68c-3.628 3.626-12.536 14.112-18.685 14.112c-6.152 0-9.777-2.679-9.777-8.594 c0-1.262 0.157-2.522 0.474-4.021l2.997-14.189c0.154-0.712 0.237-1.421 0.237-2.053c0-2.838-1.501-4.65-3.629-4.65 c-1.894 0-3.312 0.553-4.889 1.653l-6.777 31.854h-11.358l11.434-53.613l11.669-1.577l-4.259 19.9 c3.234-2.281 6.861-4.179 10.249-4.179c4.26 0 9.1 4.6 9.1 9.857c0 0.6 0 1.26-0.158 1.89L604.734 248.619z"
+          />
 
-            <h3>Opening van het scoutingjaar</h3>
-            <p>
-                Als de zomervakantie is afgelopen en de scholen weer begonnen zijn, kan ook de Scouting weer beginnen! Dit kunnen wij natuurlijk niet zomaar voorbij laten gaan.
-                Alle groepen zijn aanwezig voor een geweldig programma en aan het eind van het programma mogen sommige leden overvliegen naar de volgende groep. Altijd een waar
-                spektakel waar je niet met droge voeten van thuis komt.
-            </p>
+          <path
+            d="M629.336 255.557c3.859 0 10.483-4.571 13.242-10.405h3.551c-4.496 8.122-12.064 16.083-22.233 16.1 c-7.567 0-11.669-5.754-11.669-12.536c0-10.014 4.258-27.595 18.607-27.595c6.465 0 10.1 2.7 10.1 8.2 c0 9.624-10.329 15.142-17.82 16.087c-0.155 1.259-0.236 2.444-0.236 3.389C622.868 254 626.3 255.6 629.3 255.557z M633.433 225.281c-4.413 0-8.042 8.91-9.698 16.321c7.255-0.077 12.379-6.308 12.458-11.905 C636.192 228 635.8 225.3 633.4 225.281z"
+          />
 
-            <h3>JOTA/JOTI: Jamboree on the air/internet</h3>
-            <p>
-                Zet het vast in je agenda, het 3e weekend van oktober is het JOTA/JOTI. Het weekend waar Scouting Veghel heel eventjes bekend staat als
-                <a href="http://www.walterwatson.nl/pa3ezc" target="_blank">PA3EZC/J</a>. Een weekend vol morse code, zend apparatuur en IRC. Contact leggen met anderen is de basis
-                en de gezelligheid is een zeer gewenst bij-effect! Tijdens het weekend de JOTA/JOTI volgen kan op
-                <a href="http://jota.scoutingveghel.nl" target="_blank">jota.scoutingveghel.nl</a>.
-            </p>
+          <path
+            d="M652.988 248.619c-0.238 0.946-0.395 1.813-0.395 2.683c0 1.7 0.6 2.9 2.8 2.9 c0.55 0 1.4 0 2.052-0.234c-2.207 6.777-5.518 7.253-8.198 7.253c-5.599 0-8.045-3.709-8.045-8.673 c0-1.26 0.156-2.602 0.473-3.942l8.676-40.998l11.666-1.577L652.988 248.619z"
+          />
 
-            <h3>Weekenden</h3>
-            <p>
-                Dit is het voorproefje van de zomerkampen, de groepen blijven vaak op onze eigen blokhut een paar dagen overnachten. Deze weekenden zijn vaak in de eerste helft
-                van het scoutingjaar.
-            </p>
+          <polygon
+            points="505.6,202.5 489,250.7 488.3,202.3 488.3,202.3 22.9,202.3 280.6,208.9 477.8,208.9 477.8,261.2 489.2,261.2 511.1,202.5"
+          />
+        </g>
+      </svg>
 
-            <h3>Sponsoracties</h3>
-            <p>
-                Van het verkopen van cakes tot vrachtwagens wassen. Scouting Veghel kan een extra zakcentje goed gebruiken, wie weet kom je ze nog tegen als ze bijvoorbeeld 
-                aan het collecteren zijn voor Jantje Beton.
-            </p>
+      <button
+        type="button"
+        id="hb-menu-btn-click"
+        class="fa fa-bars hb-menu-btn"
+        aria-label="Menu openen"
+        aria-controls="menu-links"
+        aria-expanded="false"
+      ></button>
 
-            <h3>Carnaval</h3>
-            <p>
-                Een Brabantse traditie laten wij niet zomaar voorbij gaan, zeker niet met een feest als carnaval. Het vieren doen we met heel Scouting Veghel.
-                Misschien dat we nog wel een keer een carnavalswagen gaan bouwen.
-            </p>
-
-            <h3>Zomerkampen</h3>
-            <p>
-                Het moment waar ieder scoutinglid op wacht, het zomerkamp! Het scoutingspel spelen op een andere plek dan dat je gewend bent, soms zelfs in het
-                buitenland! Dit meerdaagse evenement blijft lang in je herrinneringen zitten en je zal het nog vaak over die gave avonturen hebben.
-            </p>
-
-		</span>
-      </div>
-
-    <div class="section staf" id="staf">
-
-        <span class="size-limit scrollable-y">
-        <h2>Staf:</h2>
-
-        <div class="groepen-container bestuur-container">
-            <div id="leiders">
-                <h2 class="gemengd">Het leidingteam</h2>
-                <p>De fanatieke leid(st)ers zetten zich wekelijks in om een te gek programma te maken met als doel een lachend kind! Ze vormen een gezellig groep binnen Scouting Veghel! Naast de verschillende groepen zetten ze zich ook in voor andere activiteiten.</p>
-            </div>
-            <div id="plus">
-                    <h2 class="gemengd">+Scouts</h2>
-                <p>Het doel van de +Scouts (plus-Scouts) is het ondersteunen van alle jeugdgroepen en het verrichten van allerhande klusjes bij de blokhut. Een soort klus-Scouts dus en tevens helpende handjes tijdens activiteiten zoals JOTA, dropping of kookstaf op kamp.</p>
-            </div>
-            <div id="gebe">
-                <h2 class="gemengd">De groepsbegeleiding</h2>
-                <p>De groepsbegeleiding is minder zichtbaar voor de leden. Ze kijken naar het totaalplaatje. Denk hierbij aan het bewaken van de kwaliteit van het “Scouting-spel”, groepssamenstellingen, en zaken vanuit Scouting Nederland onder de aandacht brengen. Daarnaast zijn ze actief betrokken bij overkoepelende activiteiten.</p>
-            </div>
-            <div id="praktijkbegeleider">
-                <h2 class="gemengd">De praktijkbegeleider</h2>
-                <p>Hij of zij ondersteunt individuele leidinggevenden en de verscheidene leidingteams bij het verwerven van persoonlijke en teamkwalificaties. Zij of hij gebruikt daarvoor de binnen deskundigheid ontwikkelde instrumenten.</p>
-            </div>
-            <div id="bestuur">
-                <h2 class="gemengd">Het bestuur</h2>
-                <p>Je ziet ze niet vaak, maar het bestuur is er wel degelijk. Als geen ander weten ze Scouting Veghel draaiende te houden, dragen ze zorg voor de blokhut en een gezond financieel plaatje. De sterke kracht achter Scouting Veghel.</p>
-            </div>
-        </div>
-
-        </span>
+      <ul id="menu-links" class="hb-menu">
+        <li data-link="groepen"><a href="#groepen">Groepen</a></li>
+        <li data-link="kennismaken"><a href="#kennismaken">Komen kijken</a></li>
+        <li data-link="activiteiten"><a href="#activiteiten">Activiteiten</a></li>
+        <li data-link="staf"><a href="#staf">Staf</a></li>
+        <li data-link="ouders"><a href="#ouders">Ouders</a></li>
+        <li data-link="sociale-veiligheid"><a href="#sociale-veiligheid">Sociale veiligheid</a></li>
+        <li data-link="verhuur"><a href="#verhuur">Verhuur</a></li>
+        <li data-link="contact"><a href="#contact">Contact</a></li>
+        <li><a href="blokhut.html">Blokhut</a></li>
+      </ul>
     </div>
 
-    <div class="section ouders fixed-background" id="ouders">
+    <header class="section aanmeld fixed-background home-photo-section" id="landing-page">
+      <div class="hero-content">
+        <h1 aria-label="Scouting Veghel">
+          <svg
+            class="hero-logo"
+            aria-hidden="true"
+            focusable="false"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            version="1.1"
+            x="0px"
+            y="0px"
+            width="100px"
+            height="37.5px"
+            viewBox="0 0 800 300"
+            enable-background="new 0 0 800 300"
+            xml:space="preserve"
+          >
+            <g>
+              <path
+                d="M118.814 68.788c-3.601 0-7.201-1.35-10.127-4.726c6.076-3.601 10.127-11.927 10.127-19.353 c0-7.877-4.501-15.078-16.428-15.078c-12.377 0-20.929 7.201-20.929 19.578c0 35.3 50.6 37.4 50.6 87.5 c0 31.729-23.404 52.208-59.635 52.208c-18.003 0-49.733-3.825-49.733-36.23c0-21.153 15.753-32.405 33.08-32.405 c10.127 0 16.4 3.4 18.2 11.477c-18.229 1.575-26.329 9.227-26.329 24.754c0 15.1 11.7 21.6 22.3 21.6 c17.778 0 24.754-15.527 24.754-32.18c0-42.307-48.607-51.533-48.607-85.063c0-23.629 26.779-41.856 53.559-41.856 c11.927 0 37.8 1.8 37.8 27.004C137.492 58.9 130.5 68.8 118.8 68.788z"
+              />
 
-		<span class="size-limit">
-            <h2>Informatie voor ouders:</h2>
-            
-            <h3>Contributie en kosten</h3>
-            <p>
-                De totale kosten voor een lid van Scouting Veghel bestaan uit verschillende onderdelen. Naast de jaarlijkse contributie is er een bijdrage voor weekenden en kampen. De jaarlijkse contributie voor Bevers en Welpen is €92 en voor Verkenners, Scouts, en Explorers €110. De bijdrage voor weekenden ligt tussen de €5 en €15, afhankelijk van de groep en de activiteiten die ze doen. De bijdragen voor het kamp verschillen per leeftijdscategorie, zo is een kamp voor de bevers een weekendje op de blokhut terwijl de explorers een week naar het buitenland gaan.
+              <path
+                d="M210.181 91.292c0-5.4-3.375-7.651-8.326-7.651c-18.903 0-31.055 36.681-31.055 61 c0 13.3 2.7 24.1 16.4 24.079c15.978 0 28.805-9.452 39.156-21.153h7.651c-10.802 12.151-22.954 40.281-62.786 40.3 c-18.678 0-30.829-10.352-30.829-36.906c0-32.854 14.177-76.286 57.834-76.286c12.152 0 24.8 3.1 24.8 15.5 c0 2.476-0.225 4.501-1.125 7.426c-1.125-0.675-2.926-1.35-5.626-1.35c-2.025 0-4.275 0.45-7.201 1.4 C209.73 95.1 210.2 93.1 210.2 91.292z"
+              />
+
+              <path
+                d="M309.195 106.145c1.351 1.4 3.4 2 6.5 2.025c10.576 0 15.303-7.651 23.629-11.027l0.9 4.7 c-6.977 8.776-18.679 16.202-31.73 19.803c-4.275 45.231-28.805 67.511-51.309 67.511c-24.079 0-34.431-10.127-34.431-36.906 c0-55.358 28.13-79.212 59.185-79.212C303.345 73.1 308.7 89.7 309.2 106.145z M291.867 123.9 c-6.525 0-9.451-4.726-9.451-10.126c0-6.526 3.826-13.502 9.901-15.753c-0.675-7.426-3.15-11.702-9.451-11.702 c-21.153 0-30.155 45.907-30.155 63.91c0 13.5 6.3 17.1 15.1 17.103C281.516 167.4 289.2 145.8 291.9 123.922z"
+              />
+
+              <path
+                d="M425.317 75.314l-16.203 76.512c-0.45 2.476-0.899 4.951-0.899 6.977c0 5 2.2 8.6 11.3 8.6 c9.002 0 20.704-12.602 29.705-19.803h7.651c-10.352 10.352-35.78 40.281-53.334 40.281c-15.303 0-25.654-5.851-27.68-18.903 c-10.577 9.902-22.729 18.903-32.405 18.903c-17.328 0-28.13-7.651-28.13-24.529c0-3.375 0.45-7.201 1.351-11.477l16.202-76.512 h32.405l-16.202 76.512c-0.45 2.476-0.9 4.951-0.9 6.977c0 5 2.2 8.6 11.3 8.551c4.726 0 10.352-3.601 15.978-8.102 c0.225-2.25 0.675-4.726 1.351-7.426l16.202-76.512H425.317z"
+              />
+
+              <path
+                d="M492.604 39.759c0 0-3.375 15.303-7.651 35.556h13.502l-1.8 9.002h-13.502 c-15.527 71.11-15.303 73.36-15.303 74.486c0 5.2 2.2 8.6 11.3 8.551c9.001 0 20.703-12.602 29.705-19.803h7.651 c-10.353 10.352-35.781 40.281-53.334 40.281c-17.328 0-27.904-7.651-27.904-24.529c0-11.927 11.701-59.634 15.527-78.986h-7.427 l1.801-9.002h7.426l6.751-31.055L492.604 39.759z"
+              />
+
+              <path
+                d="M547.963 75.314l-16.202 76.512c-0.45 2.476-0.9 4.951-0.9 6.977c0 5 2.2 8.6 11.3 8.6 c9.001 0 20.703-12.602 29.704-19.803h7.651c-10.352 10.352-35.78 40.281-53.333 40.281c-17.328 0-28.13-7.651-28.13-24.529 c0-3.375 0.45-7.201 1.35-11.477l16.203-76.512H547.963z M537.611 27.606c9.901 0 18 8.1 18 18 c0 9.902-8.102 17.778-18.003 17.778s-17.778-7.876-17.778-17.778C519.833 35.7 527.7 27.6 537.6 27.606z"
+              />
+
+              <path
+                d="M651.031 151.826c-0.675 2.476-1.125 4.951-1.125 7.201c0 5 2.5 8.3 11.3 8.3 c9.001 0 12.377-6.976 21.378-14.177h7.651c-10.352 10.352-27.454 34.655-45.007 34.655s-27.904-7.651-27.904-24.529 c0-3.601 0.449-7.201 1.35-11.477l8.552-40.506c0.45-2.025 0.675-4.051 0.675-5.851c0-8.102-4.275-13.277-10.352-13.277 c-5.4 0-9.451 1.575-14.178 4.726l-19.128 90.914H551.79l23.854-112.518h32.405l-2.701 12.2 c9.227-6.751 19.578-12.152 29.48-12.152c12.151 0 25.9 13.1 25.9 28.13c0 1.8 0 3.601-0.45 5.4L651.031 151.826z"
+              />
+
+              <path
+                d="M668.809 160.603c0-31.055 11.927-85.063 55.584-85.063c8.102 0 14.6 4.7 18 10.577l2.25-10.802 h32.631l-27.454 130.521c-6.752 32.181-26.104 38.256-40.957 38.256c-13.728 0-26.555-9.676-26.555-24.304 c0-20.479 16.653-23.854 37.581-27.904l2.701-12.152c-6.752 5.401-15.528 9.452-25.88 9.5 C675.109 189.2 668.8 173.9 668.8 160.603z M703.689 224.063c4.726 0 10.352-4.275 13.277-17.553l1.575-7.426 c-14.178 2.476-23.854 5.4-23.854 17.553C694.688 219.8 698.7 224.1 703.7 224.063z M696.488 156.3 c0 10.8 6.5 14.2 16.4 14.177c4.275 0 8.776-3.15 13.052-7.426l13.952-65.26c-3.601-6.751-9.227-9.677-13.052-9.677 C705.04 88.1 696.5 137 696.5 156.327z"
+              />
+
+              <path
+                d="M521.162 255.557c3.865 0 10.488-4.571 13.245-10.405h3.549c-4.494 8.122-12.063 16.083-22.234 16.1 c-7.571 0-11.666-5.754-11.666-12.536c0-10.014 4.254-27.595 18.606-27.595c6.466 0 10.1 2.7 10.1 8.2 c0 9.624-10.327 15.142-17.818 16.087c-0.154 1.259-0.235 2.444-0.235 3.389C514.697 254 518.1 255.6 521.2 255.557z M525.262 225.281c-4.413 0-8.042 8.91-9.698 16.321c7.254-0.077 12.381-6.308 12.458-11.905 C528.021 228 527.6 225.3 525.3 225.281z"
+              />
+
+              <path
+                d="M570.358 221.813l-7.408 34.928c5.042-2.602 9.538-6.15 12.14-12.063l-0.315 6.2 c-1.027 5.125-6.546 8.042-12.772 10.329l-1.34 6.31c-2.369 11.271-8.99 13.4-14.191 13.4c-4.81 0-8.831-2.525-8.831-7.647 c0-6.465 5.756-9.066 12.852-11.667l0.788-3.551c-2.366 2.13-5.439 3.783-9.067 3.783c-7.566 0-9.773-6.382-9.773-11.034 c0-10.879 4.176-28.937 19.474-28.937c2.836 0 5.1 1.6 6.2 3.705l0.865-3.784H570.358z M544.659 274.8 c1.574 0 3.623-2.365 4.571-7.018l0.473-2.364c-4.494 1.736-7.729 3.705-7.729 6.8 C541.974 273.3 542.9 274.8 544.7 274.795z M542.134 249.327c0 3.8 2.3 5 5.8 5 c1.576 0 3.23-1.185 4.73-2.759l4.651-21.841c-1.261-2.364-3.154-3.393-4.496-3.393 C545.13 226.3 542.1 242.5 542.1 249.327z"
+              />
+
+              <path
+                d="M604.734 248.619c-0.236 0.946-0.394 1.813-0.394 2.524c0 1.7 0.9 2.9 3.9 2.9 c3.151 0 7.254-4.414 10.408-6.937h2.68c-3.628 3.626-12.536 14.112-18.685 14.112c-6.152 0-9.777-2.679-9.777-8.594 c0-1.262 0.157-2.522 0.474-4.021l2.997-14.189c0.154-0.712 0.237-1.421 0.237-2.053c0-2.838-1.501-4.65-3.629-4.65 c-1.894 0-3.312 0.553-4.889 1.653l-6.777 31.854h-11.358l11.434-53.613l11.669-1.577l-4.259 19.9 c3.234-2.281 6.861-4.179 10.249-4.179c4.26 0 9.1 4.6 9.1 9.857c0 0.6 0 1.26-0.158 1.89L604.734 248.619z"
+              />
+
+              <path
+                d="M629.336 255.557c3.859 0 10.483-4.571 13.242-10.405h3.551c-4.496 8.122-12.064 16.083-22.233 16.1 c-7.567 0-11.669-5.754-11.669-12.536c0-10.014 4.258-27.595 18.607-27.595c6.465 0 10.1 2.7 10.1 8.2 c0 9.624-10.329 15.142-17.82 16.087c-0.155 1.259-0.236 2.444-0.236 3.389C622.868 254 626.3 255.6 629.3 255.557z M633.433 225.281c-4.413 0-8.042 8.91-9.698 16.321c7.255-0.077 12.379-6.308 12.458-11.905 C636.192 228 635.8 225.3 633.4 225.281z"
+              />
+
+              <path
+                d="M652.988 248.619c-0.238 0.946-0.395 1.813-0.395 2.683c0 1.7 0.6 2.9 2.8 2.9 c0.55 0 1.4 0 2.052-0.234c-2.207 6.777-5.518 7.253-8.198 7.253c-5.599 0-8.045-3.709-8.045-8.673 c0-1.26 0.156-2.602 0.473-3.942l8.676-40.998l11.666-1.577L652.988 248.619z"
+              />
+
+              <polygon
+                points="505.6,202.5 489,250.7 488.3,202.3 488.3,202.3 22.9,202.3 280.6,208.9 477.8,208.9 477.8,261.2 489.2,261.2 511.1,202.5"
+              />
+            </g>
+          </svg>
+        </h1>
+        <div class="hero-columns">
+          <div class="hero-copy">
+            <h2>Buiten begint het avontuur</h2>
+            <p class="hero-intro">
+              Samen buiten spelen, nieuwe vrienden maken, op kamp gaan en uitdagingen aangaan. Bij
+              Scouting Veghel ontdek je wat je kunt en beleef je iedere week iets anders.
             </p>
+            <p>Benieuwd of scouting bij jouw kind past? Neem contact op om kennis te maken.</p>
+            <div class="home-actions">
+              <a class="home-button" href="#kennismaken">Kom kennismaken</a>
+              <a class="home-button home-button-secondary" href="#groepen">Bekijk de groepen</a>
+            </div>
+          </div>
+          <div id="verhuur-kalender" class="verhuur-overzicht hero-calendar">
+            <h2>Verhuurkalender</h2>
+
+            <div id="mini-verhuur"><i class="fa fa-fw fa-spinner fa-pulse"></i></div>
+          </div>
+        </div>
+      </div>
+      <svg
+        id="arrowDown"
+        height="44px"
+        version="1.1"
+        viewBox="0 0 44 44"
+        width="44px"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+      >
+        <defs>
+          <path
+            d="M0,11 C0,4.92486745 4.92486745,0 11,0 C17.0751325,0 22,4.92486745 22,11 C22,17.0751325 17.0751325,22 11,22 C4.92486745,22 0,17.0751325 0,11 L0,11 Z M21,11 C21,5.47715225 16.5228478,1 11,1 C5.47715225,1 1,5.47715225 1,11 C1,16.5228478 5.47715225,21 11,21 C16.5228478,21 21,16.5228478 21,11 L21,11 Z M11,16.5 L15,13.5 L15,12.5 L11.4984375,15.25 L11.4984374,5.5 L10.5,5.5 L10.5,15.25 L7,12.5 L7,13.5 L11,16.5 L11,16.5 Z"
+            id="path-1"
+          />
+        </defs>
+
+        <g
+          fill="none"
+          fill-rule="evenodd"
+          id="miu"
+          stroke="none"
+          stroke-width="1"
+          transform="scale(2)"
+        >
+          <g id="circle_arrow-down_download_outline_stroke">
+            <use fill="rgba(255, 255, 255, 0.5)" fill-rule="evenodd" xlink:href="#path-1" />
+
+            <use fill="none" xlink:href="#path-1" />
+          </g>
+        </g>
+      </svg>
+    </header>
+
+    <div class="section groepen high-margin home-color-section" id="groepen">
+      <span class="size-limit scrollable-y">
+        <h2>Welke groep past bij jouw kind?</h2>
+        <p class="section-intro">
+          Van de eerste avonturen bij de Bevers tot zelf activiteiten organiseren bij de Explorers:
+          bij Scouting Veghel groeit het avontuur met je mee. Bekijk hieronder de leeftijden en
+          opkomsttijden.
+        </p>
+
+        <div class="groepen-container">
+          <div id="bevers">
+            <img
+              class="group-photo"
+              src="images/bevers.jpg"
+              alt=""
+              loading="lazy"
+              width="600"
+              height="360"
+            />
+
+            <h2 class="gemengd">Bevers</h2>
+
             <p>
-                Verdere kosten zijn er voor de aanschaf van het uniform. Het uniform bestaat uit verschillende onderdelen. Sommige onderdelen hoeven maar een keer aangeschaft te worden, zoals de das. Andere onderdelen eenmaal per leeftijdsgroep, zoals de blouse. Het uniform verschilt per groep, maar bij de <a href="https://www.scoutshop.nl/voor-scouts/alles-voor-je-installatie" target="_blank">ScoutShop</a> kun je wel een idee krijgen van de kosten. Verder kun je de ScoutShop ook fysiek in Eindhoven bezoeken. Zij hebben alle benodigheden op voorraad en zijn open op dinsdag en donderdag van 19:00 tot 20:00 en zaterdag van 09:00 tot 12:00 aan de <a href="https://goo.gl/maps/xMBjRsjF5HTX78F16" target="_blank">Cahorslaan 20, 5627 BX, te Eindhoven</a>.
+              De jongste leden van Scouting Veghel. De groep om kennis te maken met het scoutingspel
+              op een afwisselende manier. De bosspelletjes worden afgewisseld met de mooiste
+              knutselwerkjes! De bevers mogen soms zelfs een weekendje slapen op de blokhut.
             </p>
-			<p>
-				Overzicht jaarlijkse contributie:
-				 <table style="width:25%">
-					  <tr>
-						<th>Groepen</th>
-						<th>Leeftijd</th>
-						<th>Contributie</th>
-					  </tr>
-					  <tr>
-						<td>Bevers en Welpen</td>
-						<td>5 - 11 jaar</td>
-						<td><center>€97.50</center></td>
-					  </tr>
-					  <tr>
-						<td>Scouts en Explorers</td>
-						<td>11 - 18 jaar</td>
-						<td><center>€117</center></td>
-					  </tr>
-					</table> 
-			</p>
 
-            <h3>Ouderparticipatie</h3>
+            <p class="draaitijden">
+              <i class="fa fa-birthday-cake"></i> 5-7 jr., <i class="fa fa-calendar"></i> za. 9:00 -
+              10:45
+            </p>
+            <p><a class="group-contact" href="#kennismaken">Kennismaken met deze groep</a></p>
+          </div>
+
+          <div id="nepwelpen">
+            <img
+              class="group-photo"
+              src="images/kl4.jpg"
+              alt=""
+              loading="lazy"
+              width="600"
+              height="360"
+            />
+
+            <h2 class="gemengd">Welpen Klavertje 4</h2>
+
             <p>
-                Een vereniging zoals Scouting Veghel heeft veel ballen hoog te houden en al onze leiders en plusscouts zijn vrijwilligers die hun vrije tijd met veel enthousiasme
-                besteden aan het plezier van onze jeugdleden. Er zijn echter ook veel zaken waar we extra hulp voor kunnen gebruiken.
-                Dat zijn:
-                <ul>
-                    <li>kinderen wegbrengen naar een buitenactiviteit of op kamp;</li>
-                    <li>oudervertegenwoordiger groepsraad;</li>
-                    <li>periodiek schoonmaken van onze blokhut;</li>
-                    <li>en onderhoud uitvoeren, bijvoorbeeld tijdens NLDoet, met schilderwerk, en kleine klussen.</li>
-                </ul>
-				Verder zijn er ook activiteiten waar ouders bij betrokken worden, zoals:
-				<ul>
-                    <li>ouder-kind weekend;</li>
-                    <li>en installatie.</li>
-                </ul>
+              De welpen groep waar zowel jongens als meisjes zich helemaal kunnen uitleven tijdens
+              het programma. Luciferbanen, bruggen bouwen van papier, een 8 meter lang schilderij?
+              Waarom niet, dat doen we toch even als we uit het bos komen? Appeltje, eitje.
             </p>
 
-            <h3>Sociale Veiligheid</h3>
-			<p>
-				We vinden het binnen Scouting Veghel belangrijk dat leden binnen een sociaal veilige omgeving leuke en uitdagende Scoutingactiviteiten kunnen doen. Sociale veiligheid binnen Scouting Veghel betekent dat leden zich beschermd weten en voelen tegen grensoverschrijdend gedrag in de vereniging. Onder grensoverschrijdend gedrag verstaan we het overschrijden van normen (gedragscode) en de wet. Zoals bijvoorbeeld: zeden, verduistering, pesten, groepsdruk, geweld et cetera.
-			</p>
-			<p>
-				Samen met Scouting Nederland werken wij actief mee aan de bescherming van alle leden op lokaal, regionaal en landelijk niveau. Bewustwording en preventie zijn belangrijke ingrediënten die bijdragen aan een sociaal veilige omgeving.
-			</p>
-			<p>
-				Binnen Scouting Veghel wordt gewerkt met een Gedragscode. De gedragscode geeft grenzen aan in het contact met minderjarigen. Deze code dient door iedereen die een functie binnen onze Scoutinggroep vervult, te worden onderschreven. Wij maken gebruik van de gedragscode van Scouting Nederland die je hier kunt downloaden: <a href="https://www.scouting.nl/scouting-toekomstproof/vrijwilligers/tools/gedragscode" target="blank">Gedragscode - Scouting</a>. Alle vrijwilligers worden bij aanvang van hun vrijwilligerswerk, gewezen op deze gedragscode. Een verplichte Verklaring Omtrent het Gedrag (VOG), welke iedere 3 jaar wordt vernieuwd, is één van de maatregelen die Scouting Veghel getroffen heeft om binnen onze organisatie een veilige omgeving te bieden. Het Huishoudelijk reglement van Scouting Nederland biedt voldoende mogelijkheden om bij grensoverschrijdend gedrag en/of het niet overleggen van een VOG, leden te weren en/of uit te schrijven.
-			</p>
-			<p>
-				Om te zorgen dat de wensen en verwachtingen van (nieuwe) vrijwilliger(s) matchen met de wensen van onze organisatie voeren wij niet alleen intakegesprekken maar hebben we ook conform Huishoudelijk reglement van Scouting Nederland, afgesproken dat de eerste 3 maanden een soort proefperiode zijn. In die proefperiode zoomen we o.a. in op de inhoudelijk functie, de gedragscode, het Huishoudelijk reglement en allerlei trainingen die onze (nieuwe) vrijwilliger kan volgen om zich zo snel als mogelijk onderdeel te voelen van onze organisatie. Als bestuur maken wij gebruik van diverse methodieken die door Scouting Nederland zijn ontwikkeld.
-			</p>
-			<p>
-				Binnen Scouting Veghel is een vertrouwenspersoon aangesteld. De naam en het telefoonnummer is te vinden in de <a href="docs/OuderInfo_2021.pdf" target="_blank">algemene informatiebrief voor ouders</a>. Als er sprake is van een calamiteitensituatie, zoals grensoverschrijdend gedrag, een ongeluk of een sterfgeval, staan onze bestuursleden graag voor je klaar. Ook kun je via het team Sociale Veiligheid van Scouting Nederland altijd contact opnemen met het landelijk opvangteam. Dit team bestaat uit landelijk vrijwilligers die groepsbesturen adviseren over hoe ze hiermee om kunnen gaan. Deze vrijwilligers zijn ervaren in de hulpverlening en hebben veel ervaring met dit soort situaties. Zij verwijzen Scoutinggroepen indien nodig door naar de juiste instanties. Het team Sociale Veiligheid is 24 uur te bereiken (na kantoor tijden via een bereikbaarheidsdienst) op 033 496 09 11 of via de e-mail: <a href="mailto:inveiligehanden@scouting.nl">inveiligehanden@scouting.nl</a> en <a href="mailto:socialeveiligheid@scouting.nl">socialeveiligheid@scouting.nl</a>.
-			</p>
+            <p class="draaitijden">
+              <i class="fa fa-birthday-cake"></i> 7-11 jr., <i class="fa fa-calendar"></i> za. 11:15
+              - 13:15
+            </p>
+            <p><a class="group-contact" href="#kennismaken">Kennismaken met deze groep</a></p>
+          </div>
 
+          <div id="sionie">
+            <img
+              class="group-photo"
+              src="images/welpen.jpg"
+              alt=""
+              loading="lazy"
+              width="600"
+              height="360"
+            />
+
+            <h2 class="jongens">Welpen Sionie Horde</h2>
+
+            <p>
+              De welpen van deze stoere jongensgroep zijn onbevreesd en veelzijdig! Geen bos is
+              onbegaanbaar, geen spel is te moeilijk en ze laten geen uitdaging liggen! Ze spelen
+              samen met anderen in de jungle, houden vol en zorgen goed voor de natuur.
+            </p>
+
+            <p class="draaitijden">
+              <i class="fa fa-birthday-cake"></i> 7-11 jr., <i class="fa fa-calendar"></i> za. 9:00
+              - 11:00
+            </p>
+            <p><a class="group-contact" href="#kennismaken">Kennismaken met deze groep</a></p>
+          </div>
+
+          <div id="doorstartwelpen">
+            <img
+              class="group-photo"
+              src="images/nishaani.jpg"
+              alt=""
+              loading="lazy"
+              width="600"
+              height="360"
+            />
+
+            <h2 class="gemengd">Welpen Nishaani Horde</h2>
+
+            <p>
+              Vrijdag avond gaan zowel meisjes als jongens de uitdaging van de welpen aan. Zullen ze
+              het donker in gaan of in het veilige licht van de blokhut blijven.
+            </p>
+
+            <p class="draaitijden">
+              <i class="fa fa-birthday-cake"></i> 7-11 jr., <i class="fa fa-calendar"></i> vr. 18:30
+              - 20:30
+            </p>
+            <p><a class="group-contact" href="#kennismaken">Kennismaken met deze groep</a></p>
+          </div>
+
+          <div id="scouts">
+            <img
+              class="group-photo"
+              src="images/scouts.jpg"
+              alt=""
+              loading="lazy"
+              width="600"
+              height="360"
+            />
+
+            <h2 class="gemengd">Scouts de Dwaalsterren</h2>
+
+            <p>
+              Een scout trekt er samen met anderen op uit om de wijde wereld te ontdekken en op
+              iedere plek een goede grap te kunnen vertellen. De dames en heren van deze groep
+              draaien hun hand niet om voor een kamp midden in het bos. Keuken zelf bouwen?
+              Natuurlijk!
+            </p>
+
+            <p class="draaitijden">
+              <i class="fa fa-birthday-cake"></i> 11-15 jr., <i class="fa fa-calendar"></i> di.
+              19:00 - 21:00
+            </p>
+            <p><a class="group-contact" href="#kennismaken">Kennismaken met deze groep</a></p>
+          </div>
+
+          <div id="verkenners">
+            <img
+              class="group-photo"
+              src="images/verkenners.jpg"
+              alt=""
+              loading="lazy"
+              width="600"
+              height="360"
+            />
+
+            <h2 class="jongens">Neil Armstrong Troep</h2>
+
+            <p>
+              De verkenners van Scouting Veghel zijn stoere jongens die veel lol met elkaar hebben.
+              Ze gaan het liefste lekker naar buiten: spelletjes in de bossen, leren survivallen,
+              houthakken of een vuurtje maken. Kom jij ook meedoen met deze actieve en gezellige
+              club?
+            </p>
+
+            <p class="draaitijden">
+              <i class="fa fa-birthday-cake"></i> 11-15 jr., <i class="fa fa-calendar"></i> wo.
+              19:00 - 21:00
+            </p>
+            <p><a class="group-contact" href="#kennismaken">Kennismaken met deze groep</a></p>
+          </div>
+
+          <div id="explo">
+            <img
+              class="group-photo"
+              src="images/explo.jpg"
+              alt=""
+              loading="lazy"
+              width="600"
+              height="360"
+            />
+
+            <h2 class="gemengd">Explorers</h2>
+
+            <p>
+              De laatste stap naar volwassenheid en onafhankelijkheid. Jij mag je eigen programma's
+              maken, jij mag je eigen activiteiten organiseren. Van een feest tot een grote BBQ tot
+              een mooi kampvuur. De begeleiding laat jou bijna volledig los! Kun jij de groep aan?!
+            </p>
+
+            <p class="draaitijden">
+              <i class="fa fa-birthday-cake"></i> 15-18 jr., <i class="fa fa-calendar"></i> ma.
+              19:30 - 21:30
+            </p>
+            <p><a class="group-contact" href="#kennismaken">Kennismaken met deze groep</a></p>
+          </div>
+
+          <div id="stam">
+            <img
+              class="group-photo"
+              src="images/stam.jpg"
+              alt=""
+              loading="lazy"
+              width="600"
+              height="360"
+            />
+
+            <h2 class="gemengd">S5 Stam</h2>
+
+            <p>
+              Dit is de groep die het zelf voor het zeggen heeft! Er is geen leider die zal zeggen
+              dat het niet mag. Van een avondje gamen tot de spelletjes die ze bij de welpen spelen,
+              maar dan extreem! Het kan zo gek niet met deze groep S5-ers van de stam!
+            </p>
+
+            <p class="draaitijden">
+              <i class="fa fa-birthday-cake"></i> 18+, <i class="fa fa-calendar"></i> zo. 20:00 -
+              23:00
+            </p>
+            <p><a class="group-contact" href="#kennismaken">Kennismaken met deze groep</a></p>
+          </div>
+        </div>
+      </span>
+    </div>
+
+    <section
+      class="section kennismaken home-photo-section"
+      id="kennismaken"
+      aria-labelledby="kennismaken-titel"
+    >
+      <div class="size-limit kennismaken-layout">
+        <div class="kennismaken-copy">
+          <div class="kijkavond-aanmelden">
+            <h2>Kom jij op avontuur tijdens de kijkavond?</h2>
+            <p>
+              Benieuwd naar de Welpen Nishaani Horde? Kom kennismaken, proef de sfeer en ontdek hoe
+              leuk scouting is. Meld je aan voor de kijkavond via het formulier hieronder!
+            </p>
+            <a
+              class="home-button kijkavond-button"
+              href="https://forms.cloud.microsoft/e/T8TRcZUJwN"
+              target="_blank"
+              rel="noopener"
+              >Ja, ik meld me aan voor de kijkavond!
+              <i class="fa fa-arrow-right" aria-hidden="true"></i
+            ></a>
+          </div>
+
+          <h2 id="kennismaken-titel">Een keer komen kijken?</h2>
+          <p>
+            Een nieuwe groep leren kennen is best spannend. Daarom helpen we je graag op weg. Neem
+            contact op met de groepsbegeleiding om te bespreken welke groep bij jouw kind past en
+            hoe kennismaken werkt.
+          </p>
+          <ol class="intro-steps">
+            <li>
+              <strong>Bekijk de groepen.</strong> Ontdek welke leeftijdsgroep bij jouw kind past.
+            </li>
+            <li>
+              <strong>Stuur ons een bericht.</strong> Vermeld de leeftijd van je kind en eventueel
+              je voorkeur voor een groep.
+            </li>
+            <li>
+              <strong>Bespreek de kennismaking.</strong> De groepsbegeleiding helpt je met de
+              mogelijkheden en het vervolg.
+            </li>
+          </ol>
+          <a class="home-button" href="#contact">Vraag een kennismaking aan</a>
+        </div>
+        <aside class="kennismaken-poster" aria-label="Kijkavond Welpen Nishaani Horde">
+          <h3>Klaar voor avontuur bij de Welpen Nishaani Horde?</h3>
+          <p>
+            Nieuwe vrienden, buiten spelen en samen op ontdekkingstocht. Kom sfeer proeven tijdens
+            onze kijkavond!
+          </p>
+          <a
+            class="kennismaken-poster-link"
+            href="openavond/openavond.pdf"
+            target="_blank"
+            rel="noopener"
+            ><img
+              src="openavond/poster-kijkavond.webp"
+              alt="Poster van de kijkavond van de Welpen Nishaani Horde. Open de PDF om de poster groter te bekijken."
+              loading="lazy"
+          /></a>
+          <p>
+            <a href="openavond/openavond.pdf" target="_blank" rel="noopener"
+              >Bekijk de poster van de kijkavond (PDF)</a
+            >
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <div class="section activiteiten fixed-background home-color-section" id="activiteiten">
+      <span class="size-limit-small">
+        <h2>Iedere week een ander avontuur</h2>
+        <p>
+          Buiten spelen, samen iets bouwen en op kamp: ontdek wat we bij Scouting Veghel beleven.
+        </p>
+
+        <div class="activity-grid">
+          <article class="activity-card" data-label="Samen het jaar in">
+            <span class="activity-icon" aria-hidden="true"
+              ><i class="fa fa-flag-checkered"></i
+            ></span>
+            <h3>Opening van het scoutingjaar</h3>
+            <p>
+              Als de zomervakantie is afgelopen en de scholen weer begonnen zijn, kan ook de
+              Scouting weer beginnen! Dit kunnen wij natuurlijk niet zomaar voorbij laten gaan. Alle
+              groepen zijn aanwezig voor een geweldig programma en aan het eind van het programma
+              mogen sommige leden overvliegen naar de volgende groep. Altijd een waar spektakel waar
+              je niet met droge voeten van thuis komt.
+            </p>
+          </article>
+
+          <article class="activity-card" data-label="Hallo wereld!">
+            <span class="activity-icon" aria-hidden="true"><i class="fa fa-globe"></i></span>
+            <h3>JOTA/JOTI: Jamboree on the air/internet</h3>
+            <p>
+              Zet het vast in je agenda, het 3e weekend van oktober is het JOTA/JOTI. Het weekend
+              waar Scouting Veghel heel eventjes bekend staat als PA3EZC/J. Een weekend vol morse
+              code, zend apparatuur en IRC. Contact leggen met anderen is de basis en de
+              gezelligheid is een zeer gewenst bij-effect! Tijdens het weekend de JOTA/JOTI volgen
+              kan op
+
+              <a href="https://jota.scoutingveghel.nl" target="_blank">jota.scoutingveghel.nl</a>.
+            </p>
+          </article>
+
+          <article class="activity-card" data-label="Een nachtje avontuur">
+            <span class="activity-icon" aria-hidden="true"><i class="fa fa-moon-o"></i></span>
+            <h3>Weekenden</h3>
+            <p>
+              Dit is het voorproefje van de zomerkampen, de groepen blijven vaak op onze eigen
+              blokhut een paar dagen overnachten. Deze weekenden zijn vaak in de eerste helft van
+              het scoutingjaar.
+            </p>
+          </article>
+
+          <article class="activity-card" data-label="Samen de handen uit de mouwen">
+            <span class="activity-icon" aria-hidden="true"><i class="fa fa-heart"></i></span>
+            <h3>Sponsoracties</h3>
+            <p>
+              Van het verkopen van cakes tot vrachtwagens wassen. Scouting Veghel kan een extra
+              zakcentje goed gebruiken, wie weet kom je ze nog tegen als ze bijvoorbeeld aan het
+              collecteren zijn voor Jantje Beton.
+            </p>
+          </article>
+
+          <article class="activity-card" data-label="Tijd voor feest!">
+            <span class="activity-icon" aria-hidden="true"><i class="fa fa-music"></i></span>
+            <h3>Carnaval</h3>
+            <p>
+              Een Brabantse traditie laten wij niet zomaar voorbij gaan, zeker niet met een feest
+              als carnaval. Het vieren doen we met heel Scouting Veghel. Misschien dat we nog wel
+              een keer een carnavalswagen gaan bouwen.
+            </p>
+          </article>
+
+          <article class="activity-card" data-label="Het grote avontuur">
+            <span class="activity-icon" aria-hidden="true"><i class="fa fa-fire"></i></span>
+            <h3>Zomerkampen</h3>
+            <p>
+              Het moment waar ieder scoutinglid op wacht, het zomerkamp! Het scoutingspel spelen op
+              een andere plek dan dat je gewend bent, soms zelfs in het buitenland! Dit meerdaagse
+              evenement blijft lang in je herrinneringen zitten en je zal het nog vaak over die gave
+              avonturen hebben.
+            </p>
+          </article>
+        </div>
+      </span>
+    </div>
+
+    <div class="section staf home-photo-section" id="staf">
+      <span class="size-limit scrollable-y">
+        <h2>De mensen achter het avontuur</h2>
+        <p>
+          Onze vrijwilligers maken scouting mogelijk: van het wekelijkse programma tot het onderhoud
+          van de blokhut.
+        </p>
+        <p>
+          We zijn altijd op zoek naar extra helpende handen! Wil je ook iets betekenen voor Scouting
+          Veghel? <a href="#contact">Neem contact met ons op</a>.
+        </p>
+
+        <div class="groepen-container bestuur-container">
+          <div id="leiders">
+            <h2 class="gemengd">Het leidingteam</h2>
+
+            <p>
+              De fanatieke leid(st)ers zetten zich wekelijks in om een te gek programma te maken met
+              als doel een lachend kind! Ze vormen een gezellig groep binnen Scouting Veghel! Naast
+              de verschillende groepen zetten ze zich ook in voor andere activiteiten.
+            </p>
+          </div>
+
+          <div id="plus">
+            <h2 class="gemengd">+Scouts</h2>
+
+            <p>
+              Het doel van de +Scouts (plus-Scouts) is het ondersteunen van alle jeugdgroepen en het
+              verrichten van allerhande klusjes bij de blokhut. Een soort klus-Scouts dus en tevens
+              helpende handjes tijdens activiteiten zoals JOTA, dropping of kookstaf op kamp.
+            </p>
+          </div>
+
+          <div id="gebe">
+            <h2 class="gemengd">De groepsbegeleiding</h2>
+
+            <p>
+              De groepsbegeleiding is minder zichtbaar voor de leden. Ze kijken naar het
+              totaalplaatje. Denk hierbij aan het bewaken van de kwaliteit van het “Scouting-spel”,
+              groepssamenstellingen, en zaken vanuit Scouting Nederland onder de aandacht brengen.
+              Daarnaast zijn ze actief betrokken bij overkoepelende activiteiten.
+            </p>
+          </div>
+
+          <div id="praktijkbegeleider">
+            <h2 class="gemengd">De praktijkbegeleider</h2>
+
+            <p>
+              Hij of zij ondersteunt individuele leidinggevenden en de verscheidene leidingteams bij
+              het verwerven van persoonlijke en teamkwalificaties. Zij of hij gebruikt daarvoor de
+              binnen deskundigheid ontwikkelde instrumenten.
+            </p>
+          </div>
+
+          <div id="bestuur">
+            <h2 class="gemengd">Het bestuur</h2>
+
+            <p>
+              Je ziet ze niet vaak, maar het bestuur is er wel degelijk. Als geen ander weten ze
+              Scouting Veghel draaiende te houden, dragen ze zorg voor de blokhut en een gezond
+              financieel plaatje. De sterke kracht achter Scouting Veghel.
+            </p>
+          </div>
+        </div>
+      </span>
+    </div>
+
+    <div class="section ouders fixed-background home-color-section" id="ouders">
+      <div class="size-limit">
+        <h2>Goed om te weten voor ouders</h2>
+        <div class="parent-grid">
+          <div>
+            <h3>Wanneer is scouting?</h3>
+            <p>
+              Elke groep heeft een eigen opkomsttijd. Bekijk het
+              <a href="#groepen">overzicht van de groepen</a>. Vraag het leidingteam hoe brengen,
+              ophalen en afmelden bij jullie groep werkt.
+            </p>
+          </div>
+          <div>
+            <h3>Wat heeft mijn kind nodig?</h3>
+            <p>
+              Kies kleding die vies mag worden en schoenen waarmee je buiten kunt spelen. Bespreek
+              bij de kennismaking wat je kind nodig heeft en wanneer een uniform aan de orde is.
+            </p>
+          </div>
+          <div>
+            <h3>Weekenden en kampen</h3>
+            <p>
+              Ook buiten de gewone opkomsten beleven we avonturen. Het leidingteam vertelt je meer
+              over de planning, benodigdheden en bijdragen voor weekenden en kampen.
+            </p>
+          </div>
+          <div>
+            <h3>Vragen of zorgen?</h3>
+            <p>
+              De groepsbegeleiding is het aanspreekpunt voor ouders. Lees ook over
+              <a href="#sociale-veiligheid">sociale veiligheid en de vertrouwenspersoon</a>, of stel
+              je vraag via <a href="#contact">het contactformulier</a>.
+            </p>
+          </div>
+        </div>
+
+        <div class="parent-detail-grid">
+          <article class="parent-panel">
+            <h3>Wat kost scouting?</h3>
+
+            <p>
+              De totale kosten voor een lid van Scouting Veghel bestaan uit verschillende
+              onderdelen. Naast de jaarlijkse contributie is er een bijdrage voor weekenden en
+              kampen. De bijdrage voor weekenden ligt tussen de €5 en €15, afhankelijk van de groep
+              en de activiteiten die ze doen. De bijdragen voor het kamp verschillen per
+              leeftijdscategorie, zo is een kamp voor de bevers een weekendje op de blokhut terwijl
+              de explorers een week naar het buitenland gaan.
+            </p>
+
+            <p>
+              Verdere kosten zijn er voor de aanschaf van het uniform. Het uniform bestaat uit
+              verschillende onderdelen. Sommige onderdelen hoeven maar een keer aangeschaft te
+              worden, zoals de das. Andere onderdelen eenmaal per leeftijdsgroep, zoals de blouse.
+              Het uniform verschilt per groep, maar bij de
+              <a
+                href="https://www.scoutshop.nl/voor-scouts/alles-voor-je-installatie"
+                target="_blank"
+                >ScoutShop</a
+              >
+              kun je wel een idee krijgen van de kosten. Verder kun je de ScoutShop ook fysiek in
+              Eindhoven bezoeken. Zij hebben alle benodigheden op voorraad en zijn open op dinsdag
+              en donderdag van 19:00 tot 20:00 en zaterdag van 09:00 tot 12:00 aan de
+              <a href="https://goo.gl/maps/xMBjRsjF5HTX78F16" target="_blank"
+                >Cahorslaan 20, 5627 BX, te Eindhoven</a
+              >.
+            </p>
+
+            <p>Overzicht jaarlijkse contributie:</p>
+            <table class="contributie-tabel">
+              <tr>
+                <th>Groepen</th>
+
+                <th>Leeftijd</th>
+
+                <th>Contributie</th>
+              </tr>
+
+              <tr>
+                <td>Bevers en Welpen</td>
+
+                <td>5 - 11 jaar</td>
+
+                <td>€97,50</td>
+              </tr>
+
+              <tr>
+                <td>Scouts en Explorers</td>
+
+                <td>11 - 18 jaar</td>
+
+                <td>€117</td>
+              </tr>
+            </table>
+          </article>
+          <article class="parent-panel">
+            <h3>Meehelpen als ouder</h3>
+
+            <p>
+              Een vereniging zoals Scouting Veghel heeft veel ballen hoog te houden en al onze
+              leiders en plusscouts zijn vrijwilligers die hun vrije tijd met veel enthousiasme
+              besteden aan het plezier van onze jeugdleden. Er zijn echter ook veel zaken waar we
+              extra hulp voor kunnen gebruiken. Dat zijn:
+            </p>
+
+            <ul>
+              <li>kinderen wegbrengen naar een buitenactiviteit of op kamp;</li>
+
+              <li>oudervertegenwoordiger groepsraad;</li>
+
+              <li>periodiek schoonmaken van onze blokhut;</li>
+
+              <li>
+                en onderhoud uitvoeren, bijvoorbeeld tijdens NLDoet, met schilderwerk, en kleine
+                klussen.
+              </li>
+            </ul>
+
+            <p>Verder zijn er ook activiteiten waar ouders bij betrokken worden, zoals:</p>
+
+            <ul>
+              <li>ouder-kind weekend;</li>
+
+              <li>en installatie.</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="parent-resource-grid">
+          <article class="parent-panel">
             <h3>Informatie overzicht</h3>
-            <p>
-                Alle informatie voor ouders is samengevat in het <a href="docs/OuderInfo_2021.pdf" target="_blank">volgende document</a>
-            </p>
 
+            <p>
+              Meer achtergrondinformatie vind je in de
+              <a href="docs/OuderInfo_2021.pdf" target="_blank">ouderinformatie</a>. Vraag de
+              groepsbegeleiding naar de actuele afspraken.
+            </p>
+          </article>
+          <article class="parent-panel">
             <h3>Vragen en aanmelden nieuwe leden</h3>
-            <p>
-                Mochten er nog vragen zijn, neem dan contact op met het bestuur via het onderstaande contact formulier. Wilt u graag uw kind aanmelden als nieuw lid, neem dan contact
-                op met de groepsbegeleiding.
-            </p>
 
+            <p>
+              Mochten er nog vragen zijn, neem dan contact op met het bestuur via het onderstaande
+              contact formulier. Wilt u graag uw kind aanmelden als nieuw lid, neem dan contact op
+              met de groepsbegeleiding.
+            </p>
+          </article>
+          <article class="parent-panel">
             <h3>Privacybeleid</h3>
+
             <p>
-                Het privacybeleid van Scouting Veghel is te vinden in ons <a href="docs/PrivacyStatement.pdf" target="_blank">Privacy Statement</a>. Indien er onduidelijkheden of vragen zijn, neem dan alstublieft contact op met het bestuur.
+              Het privacybeleid van Scouting Veghel is te vinden in ons
+              <a href="docs/PrivacyStatement.pdf" target="_blank">Privacy Statement</a>. Indien er
+              onduidelijkheden of vragen zijn, neem dan alstublieft contact op met het bestuur.
             </p>
-		</span>
+          </article>
+        </div>
       </div>
+    </div>
 
-	  <div class="section contact fixed-background" id="contact">
-
-		<span class="size-limit">
-            <h2>Contact en vragen:</h2>
-            <div class="contact-container">
-                <div class="contact-form contact-left">
-                    <form id="contact-form" action="./php/contact-form.php" method="POST">
-                        <input type="text" id="name" name="name" class="inform inp btm" maxlength="33" placeholder="Naam" required>
-                        <br><input type="email" id="mail" name="mailadr" class="inform inp" placeholder="E-mailadres" required>
-                        <br><select class="inform inp" name="whoTo" required="">
-                            <option value="" disabled>Gericht aan...</option>
-                            <option value="gebe">Groepsbegeleiding</option>
-                            <option value="verhuur">Verhuur</option>
-                            <option value="bestuur">Bestuur</option>
-                            <option value="sponsor">Sponsoring</option>
-                            <option value="site">Website</option>
-                        </select>
-                        <br><textarea class="inform inp" name="tArea"  id="tArea-contact" required placeholder="Vul hier je vraag of opmerking in..."></textarea>
-                        <br><button class="inform button g-recaptcha" data-sitekey="6LdOoSsUAAAAAJzkLaGujoiw3qZ3NIZ5HYhGuDjK" data-callback="contactSubmit" data-badge="inline">
-                            Stel de vraag
-                        </button>
-                        <br><span>Alle velden zijn verplicht.</span>
-                    </form>
-                </div>
-
-                <div class="contact-form contact-right" id="map-size">
-                    <h3>Wie moet ik hebben?</h3>
-                    <strong>Groepsbegeleiding:</strong> Ik wil graag mijn kind aanmelden of ik wil graag het leidingteam versterken. Verder is de groepsbegeleiding ook het aanspreekpunt voor ouders.
-                    <br><strong>Bestuur:</strong> Ik heb algemene vragen over Scouting veghel of over een van de documenten op de site.
-                    <br><strong>Verhuur:</strong> Ik wil iets weten over het verhuur van de blokhut.
-                    <br><strong>Sponsoring:</strong> Ik kan een financiele of materiele bijdrage leveren aan Scouting Veghel.
-                    <br><strong>Website:</strong> Ik heb een idee voor of probleem met de website.
-                    <br>
-                    <br> Wanneer je alsnog niet weet wie je nodig hebt, kies dan de groepsbegeleiding.<br><br>
-                    <h3>Waar vind je ons?</h3>
-                    Dorshout 29<br>5462 GM Veghel<br>
-                    <div id="kaartje" class="map-box">
-                        <!-- placeholder -->
-                    </div>
-                </div>
-            </div>
-		</span>
+    <section
+      class="section sociale-veiligheid home-photo-section"
+      id="sociale-veiligheid"
+      aria-labelledby="veiligheid-titel"
+    >
+      <div class="size-limit-small">
+        <h2 id="veiligheid-titel">Sociale veiligheid</h2>
+        <div class="veiligheid-inhoud">
+          <article class="veiligheid-card">
+            <h3>Een veilige plek voor iedereen</h3>
+            <p>
+              We vinden het binnen Scouting Veghel belangrijk dat leden binnen een sociaal veilige
+              omgeving leuke en uitdagende Scoutingactiviteiten kunnen doen. Sociale veiligheid
+              binnen Scouting Veghel betekent dat leden zich beschermd weten en voelen tegen
+              grensoverschrijdend gedrag in de vereniging. Onder grensoverschrijdend gedrag verstaan
+              we het overschrijden van normen (gedragscode) en de wet. Zoals bijvoorbeeld: zeden,
+              verduistering, pesten, groepsdruk, geweld et cetera.
+            </p>
+            <p>
+              Samen met Scouting Nederland werken wij actief mee aan de bescherming van alle leden
+              op lokaal, regionaal en landelijk niveau. Bewustwording en preventie zijn belangrijke
+              ingrediënten die bijdragen aan een sociaal veilige omgeving.
+            </p>
+          </article>
+          <article class="veiligheid-card">
+            <h3>Duidelijke grenzen: de gedragscode</h3>
+            <p>
+              Binnen Scouting Veghel wordt gewerkt met een Gedragscode. De gedragscode geeft grenzen
+              aan in het contact met minderjarigen. Deze code dient door iedereen die een functie
+              binnen onze Scoutinggroep vervult, te worden onderschreven. Wij maken gebruik van de
+              gedragscode van Scouting Nederland die je hier kunt downloaden:
+              <a
+                href="https://www.scouting.nl/scouting-toekomstproof/vrijwilligers/tools/gedragscode"
+                target="blank"
+                >Gedragscode - Scouting</a
+              >. Alle vrijwilligers worden bij aanvang van hun vrijwilligerswerk, gewezen op deze
+              gedragscode.
+            </p>
+          </article>
+          <article class="veiligheid-card">
+            <h3>Verklaring Omtrent het Gedrag (VOG)</h3>
+            <p>
+              Een verplichte Verklaring Omtrent het Gedrag (VOG), welke iedere 3 jaar wordt
+              vernieuwd, is één van de maatregelen die Scouting Veghel getroffen heeft om binnen
+              onze organisatie een veilige omgeving te bieden. Het Huishoudelijk reglement van
+              Scouting Nederland biedt voldoende mogelijkheden om bij grensoverschrijdend gedrag
+              en/of het niet overleggen van een VOG, leden te weren en/of uit te schrijven.
+            </p>
+          </article>
+          <article class="veiligheid-card">
+            <h3>Nieuwe vrijwilligers goed begeleiden</h3>
+            <p>
+              Om te zorgen dat de wensen en verwachtingen van (nieuwe) vrijwilliger(s) matchen met
+              de wensen van onze organisatie voeren wij niet alleen intakegesprekken maar hebben we
+              ook conform Huishoudelijk reglement van Scouting Nederland, afgesproken dat de eerste
+              3 maanden een soort proefperiode zijn. In die proefperiode zoomen we o.a. in op de
+              inhoudelijk functie, de gedragscode, het Huishoudelijk reglement en allerlei
+              trainingen die onze (nieuwe) vrijwilliger kan volgen om zich zo snel als mogelijk
+              onderdeel te voelen van onze organisatie. Als bestuur maken wij gebruik van diverse
+              methodieken die door Scouting Nederland zijn ontwikkeld.
+            </p>
+          </article>
+          <article class="veiligheid-card">
+            <h3>Onze vertrouwenspersoon</h3>
+            <p>
+              Binnen Scouting Veghel is een vertrouwenspersoon aangesteld. De naam en het
+              telefoonnummer is te vinden in de
+              <a href="docs/OuderInfo.pdf" target="_blank">algemene informatiebrief voor ouders</a>.
+            </p>
+          </article>
+          <article class="veiligheid-card">
+            <h3>Hulp bij zorgen of calamiteiten</h3>
+            <p>
+              Als er sprake is van een calamiteitensituatie, zoals grensoverschrijdend gedrag, een
+              ongeluk of een sterfgeval, staan onze bestuursleden graag voor je klaar. Ook kun je
+              via het team Sociale Veiligheid van Scouting Nederland altijd contact opnemen met het
+              landelijk opvangteam. Dit team bestaat uit landelijk vrijwilligers die groepsbesturen
+              adviseren over hoe ze hiermee om kunnen gaan. Deze vrijwilligers zijn ervaren in de
+              hulpverlening en hebben veel ervaring met dit soort situaties. Zij verwijzen
+              Scoutinggroepen indien nodig door naar de juiste instanties. Het team Sociale
+              Veiligheid is 24 uur te bereiken (na kantoor tijden via een bereikbaarheidsdienst) op
+              033 496 09 11 of via de e-mail:
+              <a href="mailto:inveiligehanden@scouting.nl">inveiligehanden@scouting.nl</a> en
+              <a href="mailto:socialeveiligheid@scouting.nl">socialeveiligheid@scouting.nl</a>.
+            </p>
+          </article>
+        </div>
       </div>
+    </section>
 
-	  <div class="section verhuur" id="verhuur">
-
-		<span class="size-limit">
-        <h2>Blokhut en verhuur:</h2>
-            <div class="contact-container">
-                <div class="contact-form contact-left">
-                    <ul id="verhuur-tabs" class="tab-list" role="tablist">
-                        <li role="tab" data-tab="verhuur-stap-1" class="tab-active" title="Aankomst">Aankomst</li>
-                        <li role="tab" data-tab="verhuur-stap-2" title="Vertrek">Vertrek</li>
-                        <li role="tab" data-tab="verhuur-stap-3" title="Gegevens">Gegegevens</li>
-                    </ul>
-
-                    <form id="verhuur-form" action="./php/verhuur-form.php" method="POST">
-                        <!-- One form to rule them all -->
-                    <span id="verhuur-stap-1" role="tabpanel" class="tabpanel tabpanel-active">
-                        <p>Stap 1: Kies een aankomst datum en tijd.</p>
-
-                        <!-- Datum -->
-                        <span class="input-wrapper datum-wrapper">
-                          <span class="wrapper-one-third">
-                            <label for="aankomst-dag" data-plus-it="true" class="label-top verhuur-label"><i class="fa fa-chevron-up"></i></label>
-                                <input type="number" data-aankomst="true" id="aankomst-dag" name="aankomst-dag" class="inform inp btm" min="1" max="31" required>
-                            <label for="aankomst-dag" class="label-bottom verhuur-label"><i class="fa fa-chevron-down"></i></label>
-                          </span>
-
-                          <span class="wrapper-one-third">
-                            <label for="aankomst-maand" data-plus-it="true" class="label-top verhuur-label"><i class="fa fa-chevron-up"></i></label>
-                                <select id="aankomst-maand" data-aankomst="true" name="aankomst-maand" class="inform inp btm" required>
-                                  <option>januari</option>
-                                  <option>februari</option>
-                                  <option>maart</option>
-                                  <option>april</option>
-                                  <option>mei</option>
-                                  <option>juni</option>
-                                  <option>juli</option>
-                                  <option>augustus</option>
-                                  <option>september</option>
-                                  <option>oktober</option>
-                                  <option>november</option>
-                                  <option>december</option>
-                                </select>
-                            <label for="aankomst-maand" class="label-bottom verhuur-label"><i class="fa fa-chevron-down"></i></label>
-                          </span>
-
-                          <span class="wrapper-one-third">
-                            <label for="aankomst-jaar" data-plus-it="true" class="label-top verhuur-label"><i class="fa fa-chevron-up"></i></label>
-                                <input type="number" data-aankomst="true" id="aankomst-jaar" name="aankomst-jaar" class="inform inp btm" min="2016" max="2099" required>
-                            <label for="aankomst-jaar" class="label-bottom verhuur-label"><i class="fa fa-chevron-down"></i></label>
-                            </span>
-                        </span>
-
-                        <!-- Tijd -->
-                        <span class="input-wrapper tijd-wrapper">
-
-                          <span class="wrapper-half">
-                            <label for="aankomst-uur" data-plus-it="true" class="label-top verhuur-label"><i class="fa fa-chevron-up"></i></label>
-                                <input type="number" data-aankomst="true" id="aankomst-uur" name="aankomst-uur" class="inform inp btm" min="0" max="23" required>
-                            <label for="aankomst-uur" class="label-bottom verhuur-label"><i class="fa fa-chevron-down"></i></label>
-                            </span>
-
-                          <span class="wrapper-half">
-                            <label for="aankomst-minuut" data-plus-it="true" class="label-top verhuur-label"><i class="fa fa-chevron-up"></i></label>
-                                <input type="number" data-aankomst="true" id="aankomst-minuut" name="aankomst-minuut" class="inform inp btm" min="0" max="59" required>
-                            <label for="aankomst-minuut" class="label-bottom verhuur-label"><i class="fa fa-chevron-down"></i></label>
-                            </span>
-                        </span>
-
-                        <button id="verhuur-goto-2" class="inform">Vertrektijd invullen <i class="fa fa-angle-right"></i></button>
-                    </span>
-                    <span id="verhuur-stap-2" role="tabpanel" class="tabpanel">
-                        <p>Stap 2: Kies een vertrek datum en tijd.</p>
-
-                        <input type="checkbox" id="EllenIkWil1DagHuren">
-                        <label for="EllenIkWil1DagHuren">Reservering voor 1 dag</label> <br><br>
-
-                        <!-- Datum -->
-                        <span class="input-wrapper datum-wrapper">
-                          <span class="wrapper-one-third">
-                            <label for="vertrek-dag" data-plus-it="true" class="label-top verhuur-label"><i class="fa fa-chevron-up"></i></label>
-                                <input type="number" id="vertrek-dag" name="vertrek-dag" class="inform inp btm" min="1" max="31" required>
-                            <label for="vertrek-dag" class="label-bottom verhuur-label"><i class="fa fa-chevron-down"></i></label>
-                          </span>
-                          <span class="wrapper-one-third">
-                            <label for="vertrek-maand" data-plus-it="true" class="label-top verhuur-label"><i class="fa fa-chevron-up"></i></label>
-                                <select id="vertrek-maand" name="vertrek-maand" class="inform inp btm" list="maanden" required>
-                                    <option>januari</option>
-                                    <option>februari</option>
-                                    <option>maart</option>
-                                    <option>april</option>
-                                    <option>mei</option>
-                                    <option>juni</option>
-                                    <option>juli</option>
-                                    <option>augustus</option>
-                                    <option>september</option>
-                                    <option>oktober</option>
-                                    <option>november</option>
-                                    <option>december</option>
-                                </select>
-                            <label for="vertrek-maand" class="label-bottom verhuur-label"><i class="fa fa-chevron-down"></i></label>
-                          </span>
-                          <span class="wrapper-one-third">
-                            <label for="vertrek-jaar" data-plus-it="true" class="label-top verhuur-label"><i class="fa fa-chevron-up"></i></label>
-                                <input type="number" id="vertrek-jaar" name="vertrek-jaar" class="inform inp btm" min="2016" max="2099" required>
-                            <label for="vertrek-jaar" class="label-bottom verhuur-label"><i class="fa fa-chevron-down"></i></label>
-                            </span>
-                        </span>
-
-                        <!-- Tijd -->
-                        <span class="input-wrapper tijd-wrapper">
-
-                          <span class="wrapper-half">
-                            <label for="vertrek-uur" data-plus-it="true" class="label-top verhuur-label"><i class="fa fa-chevron-up"></i></label>
-                                <input type="number" id="vertrek-uur" name="vertrek-uur" class="inform inp btm" min="0" max="23" required>
-                            <label for="vertrek-uur" class="label-bottom verhuur-label"><i class="fa fa-chevron-down"></i></label>
-                          </span>
-
-                          <span class="wrapper-half">
-                            <label for="vertrek-minuut" data-plus-it="true" class="label-top verhuur-label"><i class="fa fa-chevron-up"></i></label>
-                                <input type="number" id="vertrek-minuut" name="vertrek-minuut" class="inform inp btm" min="0" max="59" required>
-                            <label for="vertrek-minuut" class="label-bottom verhuur-label"><i class="fa fa-chevron-down"></i></label>
-                            </span>
-                        </span>
-
-                        <button id="verhuur-confirm-avail" class="inform">Beschikbaarheid controleren</button>
-                        <button id="verhuur-goto-3" class="inform">Gegevens invullen <i class="fa fa-angle-right"></i></button>
-                    </span>
-                    <span id="verhuur-stap-3" role="tabpanel" class="tabpanel">
-                        <p>Stap 3: Vul uw gegevens in.</p>
-                        <input type="text" id="name" name="name" class="inform inp btm verhuur-groepcode" maxlength="133" placeholder="Naam activiteit" required>
-                        <input type="text" id="contactperson" name="contactperson" class="inform inp btm verhuur-groepcode" maxlength="133" placeholder="Contactpersoon" required>
-                        <br><input type="email" id="mail" name="mailadr" class="inform inp verhuur-groepcode" placeholder="E-mailadres" required>
-                        <br><input type="number" id="phone" name="phone" class="inform inp verhuur-groepcode" placeholder="Telefoonnummer" required>
-                        <input type="text" id="adress" name="adress" class="inform inp btm verhuur-groepcode" maxlength="133" placeholder="Straat + huisnummer" required>
-                        <input type="text" id="postcode verhuur-groepcode" name="postcode" class="inform inp btm inp-25 verhuur-groepcode" maxlength="7" placeholder="Postcode" required>
-                        <input type="text" id="city verhuur-groepcode" name="city" class="inform inp btm inp-75 verhuur-groepcode" maxlength="133" placeholder="Woonplaats" required>
-
-                        <br><input type="number" id="people" name="people" class="inform inp" min="20" max="60" onchange="checkMinMax(this, this.value)" placeholder="Aantal personen" required>
-
-                        <br><textarea class="inform inp" name="tArea" id="tArea-verhuur" required placeholder="Beschrijving van de activiteit en eventuele wensen en/of vragen."></textarea>
-                        <p>Onderstaand veld is alleen van toepassing voor groepen van Scouting Veghel.</p>
-                        <input type="text" id="groepcode" name="groepcode" class="inform inp btm" maxlength="255" placeholder="Groepcode">
-                        <br><input type="submit" value="Neem optie" id="subm" name="subm" class="inform button">
-                        <br><span class="text-small">Alle velden behalve "Eigen groepen" zijn verplicht.</span>
-                    </span>
-
-                    </form>
-                </div>
-
-                <div class="contact-form contact-right">
-                    <h3>Blokhut van Scouting Veghel huren?</h3>
-                    <p>Onze blokhut is het hele jaar door (met uitzondering van de weekenden tussen half september en half oktober) beschikbaar voor verhuur voor kampen en weekenden van verenigingen.
-                      Let op: wij mogen onze blokhut niet verhuren voor feesten!</p>
-
-                    <h3>Hoe kan ik een optie nemen?</h3>
-                    <p>U neemt een optie door het verhuurformulier in te vullen.
-                      Bij het nemen van een optie wordt een indicatie gegeven van de daadwerkelijke beschikbaarheid.
-                      Een reservering is pas definitief wanneer een huurovereenkomst is opgesteld en door beide partijen is ondertekend.
-                      Een belangrijk punt is dat, u als potentiële huurder, in principe de blokhut dient te verlaten als er groepen van Scouting Veghel draaien.
-                      Uiteraard is er in overleg veel mogelijk. </p>
-
-                    <h3>Beschikbaarheid van de Blokhut</h3>
-                    <p>Op de <a href="/calendar.html" target="_blank">verhuurkalender</a> kunt u zien waneer de blokhut al verhuurd is. Op de kalendar kunt u alleen de data zien, niet de tijden.
-                      Na het invullen van de gewenste aankomst en vertrek tijd kunt u de specifieke beschikbaarheid controleren.</p>
-
-                    <h3>Wensen of vragen?</h3>
-                    <p>Heeft u speciale wensen voor het verhuur, dan kunt u deze aangeven bij het nemen van de optie.
-                      Vragen kunnen altijd gesteld worden via het bovenstaande contactformulier.</p>
-
-                    <h3>Wat zijn de kosten?</h3>
-					          <p>Het huren van de blokhut kost €5,00 p.p.p.n. en geldt vanaf minimaal 1 overnachting met een minimum van 20 personen.
-                      De genoemde prijs is exclusief waarborgsom (die wordt bepaald naar aanleiding van o.a. de duur van uw verblijf).</p>
-
-
-
-                    <h3>Wat zijn de huurvoorwaarden?</h3>
-                    <p>De huurvoorwaarden zijn te vinden in het volgende <a href="docs/huurvoorwaarden.pdf" target="_blank">document</a>.</p>
-                    <!--<p>Gebruik onderstaande rekenmachine om een indicatie te krijgen van de kosten voor het huren. De rekenmachine dient enkel als indicatie!</p>-->
-                </div>
-            </div>
-		</span>
+    <section
+      class="section verhuur home-color-section"
+      id="verhuur"
+      aria-labelledby="verhuur-heading"
+    >
+      <div class="size-limit">
+        <h2 id="verhuur-heading">Verhuurkalender</h2>
+        <p>
+          Bekijk wanneer de blokhut beschikbaar is, vraag een optie aan en lees de praktische
+          verhuurinformatie.
+        </p>
+        <iframe
+          id="home-rental-calendar"
+          class="home-rental-calendar"
+          src="calendar.html?embed=1"
+          title="Verhuurkalender en reservering aanvragen"
+          loading="lazy"
+        ></iframe>
       </div>
+    </section>
 
-      <footer class="section fixed-background">
-	    <h2>Volg ons:</h2>
-		<p><a href="https://www.facebook.com/ScoutingVeghel" target="_BLANK"><i class="fa fa-facebook-square"></i> /ScoutingVeghel</a></p>
-		<p><a href="https://twitter.com/scoutingveghel" target="_BLANK"><i class="fa fa-twitter-square"></i> @ScoutingVeghel</a></p>
-        <p><a href="https://github.com/Brutusn/ScoutingVeghel" target="_BLANK"><i class="fa fa-github-square"></i> GitHub project</a></p>
-		<p class="small">&copy; Scouting Veghel - <span id="copy-year">2023</span></p>
-      </footer>
+    <div class="section contact fixed-background home-photo-section" id="contact">
+      <span class="size-limit">
+        <h2>Kennismaken of een vraag stellen</h2>
+        <p>
+          Wil je kennismaken? Kies hieronder de groepsbegeleiding en vermeld in je bericht de
+          leeftijd van je kind. Ook met andere vragen helpen we je graag verder.
+        </p>
+
+        <div class="contact-container">
+          <div class="contact-form contact-left">
+            <form id="contact-form" action="./php/contact-form.php" method="POST">
+              <div class="contact-honeypot" hidden aria-hidden="true">
+                <label for="contact-website">Laat dit veld leeg</label
+                ><input
+                  type="text"
+                  id="contact-website"
+                  name="contact_website"
+                  tabindex="-1"
+                  autocomplete="off"
+                />
+              </div>
+              <label for="contact-name">Naam</label
+              ><input
+                autocomplete="name"
+                type="text"
+                id="contact-name"
+                name="name"
+                class="inform inp btm"
+                maxlength="33"
+                placeholder="Naam"
+                required
+              />
+              <br /><label for="contact-mail">E-mailadres</label
+              ><input
+                autocomplete="email"
+                type="email"
+                id="contact-mail"
+                maxlength="254"
+                name="mailadr"
+                class="inform inp"
+                placeholder="E-mailadres"
+                required
+              />
+              <br /><label for="contact-recipient">Voor wie is je bericht?</label
+              ><select id="contact-recipient" class="inform inp" name="whoTo" required="">
+                <option value="" disabled>Gericht aan...</option>
+                <option value="gebe">Groepsbegeleiding</option>
+                <option value="verhuur">Verhuur</option>
+                <option value="bestuur">Bestuur</option>
+                <option value="sponsor">Sponsoring</option>
+                <option value="site">Website</option>
+              </select>
+              <br /><label for="tArea-contact">Je bericht</label
+              ><textarea
+                class="inform inp"
+                name="tArea"
+                id="tArea-contact"
+                maxlength="5000"
+                required
+                placeholder="Vul hier je vraag of opmerking in..."
+              ></textarea>
+              <br /><button
+                class="inform button g-recaptcha"
+                data-sitekey="6LdOoSsUAAAAAJzkLaGujoiw3qZ3NIZ5HYhGuDjK"
+                data-callback="contactSubmit"
+                data-badge="inline"
+              >
+                Verstuur je bericht
+              </button>
+              <br /><span>Alle velden zijn verplicht.</span>
+            </form>
+          </div>
+
+          <div class="contact-form contact-right">
+            <h3>Wie moet ik hebben?</h3>
+
+            <strong>Groepsbegeleiding:</strong> Ik wil graag mijn kind aanmelden of ik wil graag het
+            leidingteam versterken. Verder is de groepsbegeleiding ook het aanspreekpunt voor
+            ouders.
+
+            <br /><strong>Bestuur:</strong> Ik heb algemene vragen over Scouting veghel of over een
+            van de documenten op de site.
+
+            <br /><strong>Verhuur:</strong> Ik wil iets weten over het verhuur van de blokhut.
+
+            <br /><strong>Sponsoring:</strong> Ik kan een financiele of materiele bijdrage leveren
+            aan Scouting Veghel.
+
+            <br /><strong>Website:</strong> Ik heb een idee voor of probleem met de website.
+
+            <br />
+
+            <br />
+            Wanneer je alsnog niet weet wie je nodig hebt, kies dan de groepsbegeleiding.<br /><br />
+
+            <h3>Waar vind je ons?</h3>
+
+            Dorshout 29<br />5462 GM Veghel<br />
+          </div>
+        </div>
+      </span>
+    </div>
+
+    <footer class="section home-color-section">
+      <h2>Volg ons:</h2>
+      <div class="footer-links">
+        <a
+          href="https://www.facebook.com/ScoutingVeghel"
+          target="_blank"
+          rel="noopener"
+          aria-label="Facebook van Scouting Veghel"
+          ><i class="fa fa-facebook-square" aria-hidden="true"></i> Facebook</a
+        >
+        <a
+          href="https://www.instagram.com/scoutingveghel/"
+          target="_blank"
+          rel="noopener"
+          aria-label="Instagram van Scouting Veghel"
+          ><i class="fa fa-instagram" aria-hidden="true"></i> Instagram</a
+        >
+        <a href="https://github.com/Brutusn/ScoutingVeghel" target="_blank" rel="noopener"
+          ><i class="fa fa-github-square" aria-hidden="true"></i> GitHub project</a
+        >
+      </div>
+      <p class="small">&copy; Scouting Veghel - <span id="copy-year">2023</span></p>
+    </footer>
   </body>
 </html>

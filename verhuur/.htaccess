@@ -1,0 +1,6 @@
+
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^verhuur\.scoutingveghel\.nl$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.verhuur\.scoutingveghel\.nl$
+RewriteRule ^/?$ "http\:\/\/scoutingveghel\.nl\#verhuur" [R=301,L]
+
